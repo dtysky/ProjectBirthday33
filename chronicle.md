@@ -160,6 +160,19 @@ AI竞聘失败，作为最懂AI的Leader，被完全不懂的人指挥
 - 这个时刻触发了对过去一年“事业、共鸣、梦想、人生”等幻觉的回看。
 - 之后写成《幻灭2025》，发布日期为 2026-02-23。
 
+### 2026年五一｜丙察察、格聂南线与子梅垭口穿越
+
+- 从深圳出发，沿途经过丙察察、G318、格聂南线、格聂之眼与子梅垭口。
+- 行程开始时共有四人，进入最后阶段时只剩自己一人继续拍摄。
+- 2026-05-04 凌晨，从上木居村出发，在无车辙、结冰打滑的雪路上开到海拔约 4500 米的子梅垭口。
+- 第一次到达时受大雪和云雾影响，未能看到贡嘎，也没有拍到预期中的日照金山。
+- 下山后天气转晴；抵达新都桥后，临时改签，与同伴告别，独自折返回子梅垭口。
+- 当晚独自在子梅垭口完成日落、星空、月升与雪山延时拍摄，直到接近午夜才下山。
+- 在现场口播中总结：世界并不以个人意志或真善美运转，努力经常无法立即得到结果；但当积累达到一定程度，结局也可能迎来反转。
+- 这次穿越同时验证了长途驾驶、复杂路况处理、独立拍摄和现场决策能力，为离职后环游全国拍纪录片的计划提供了现实信心。
+- 行程规划来源：`/Users/dtysky/Projects/dtysky/Pharos/plans/20260424-丙察察格聂贡嘎穿越-风光摄影自驾.md`。
+- 实际素材与行程复盘来源：`/Users/dtysky/Projects/dtysky/Kairos/projects/bingchacha-genie-south-zimeiyakou/edits/main/planning/edit-framework.md`、`/Users/dtysky/Projects/dtysky/Kairos/projects/bingchacha-genie-south-zimeiyakou/edits/main/postlock/narration-framework.md`。
+
 ### 2026年7月｜ProjectBirthday33
 
 - 2026-07-06，建立 `ProjectBirthday33`。
