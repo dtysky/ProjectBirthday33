@@ -6,6 +6,8 @@
 
 - [chronicle.md](chronicle.md)：这一年的事件动态与编年史。
 - [inbox.md](inbox.md)：碎片化灵感与我们后续交互的收件箱。
+- [outline.md](outline.md)：微电影的整体叙事与影像骨架。
+- [continuity.md](continuity.md)：按成片顺序编排的连续性分镜。
 
 ## 说明
 
