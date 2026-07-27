@@ -2,15 +2,17 @@
 
 33 岁生日作品。当前形态为使用 Godot 制作的单线动态视觉小说。
 
-## 文件
+## 目录
 
-- [chronicle.md](chronicle.md)：这一年的事件动态与编年史。
-- [inbox.md](inbox.md)：碎片化灵感与我们后续交互的收件箱。
-- [outline.md](outline.md)：由微电影阶段形成的整体叙事与影像骨架。
-- [continuity.md](continuity.md)：微电影阶段的连续性分镜，作为改编依据保留。
-- [game-scenes.md](game-scenes.md)：文字冒险的逐单元生产场景。
-- [project-plan.md](project-plan.md)：Godot 工程、资产、排期与验收规划。
+- [design/](design/)：事实、灵感、叙事结构与逐单元游戏台本。
+- [art/](art/)：美术方向、资产清单与美术交付规则。
+- [game/](game/)：Godot 工程与运行时资产。
+- [project-plan.md](project-plan.md)：整体技术方案、排期、分工与验收标准。
 
-## 说明
+## 当前依据
 
-原微电影文档作为创作过程保留；当前生产以 `game-scenes.md` 和 `project-plan.md` 为准。
+- 剧情与演出：[design/game-scenes.md](design/game-scenes.md)
+- 美术：[art/style-guide.md](art/style-guide.md)、[art/asset-list.md](art/asset-list.md)
+- 工程：[project-plan.md](project-plan.md)、[game/README.md](game/README.md)
+
+原微电影分镜保存在 [design/archive/](design/archive/)，只作为改编依据，不参与当前生产。

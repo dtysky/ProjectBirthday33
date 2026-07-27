@@ -1,3 +1,6 @@
 .DS_Store
+art/generated/
+art/references-local/
+art/workfiles/
 game/.godot/
 game/builds/
