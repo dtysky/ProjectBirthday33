@@ -5,23 +5,27 @@
 ## 文件
 
 - [style-guide.md](style-guide.md)：已经确认的画风、动态边界与视觉递进。
-- [asset-list.md](asset-list.md)：背景、人物、CG 和真实素材的编号与状态。
+- [asset-list.md](asset-list.md)：人设、地点母版、镜头包和来源素材的编号与状态。
 
 ## 工作流
 
-1. 从 `design/game-scenes.md` 确认单元和构图需求。
-2. 由人工提供人物设定与关键构图草图。
-3. AI 根据草图扩展背景、差分和关键 CG。
-4. 人工审核人物一致性、构图和风格。
-5. 最终文件按资产编号导出到 `game/assets/`。
-6. Codex 更新 `game/content/asset_manifest.json` 并接入场景。
+1. 从 `design/game-scenes.md` 确认生产单元，再从 `asset-list.md` 确认对应的 `SHOT-xx`。
+2. 由人工提供全局人设、服装设定和该镜头的构图草图。
+3. AI 先生成包含背景、人物、光线和前后景关系的一体母帧。
+4. 人工审核人物一致性、机位、景别、光线和对白安全区。
+5. 母帧通过后，按动态需求补出干净背景、人物、前景、差分和遮罩。
+6. 最终文件导出到 `game/assets/shots/shot-xx/`，Codex 更新资产清单并接入场景。
+
+背景和人物不分开盲做。简单镜头只交付母帧；需要视差、表情差分或局部动画时才拆层。
+
+来源素材默认只进入 `references-local/`。只有聊天、检索等必须保留原貌的叙事证据，才会经过裁切和遮罩后导出到 `game/assets/evidence/`；旅行和道路素材不直接进入运行时目录。
 
 ## 本地目录
 
 以下目录按需创建，不进入 Git：
 
-- `references-local/`：本地参考照片。
+- `references-local/`：实拍照片、视频、录屏和旧作等来源素材。
 - `workfiles/`：PSD、工程文件和中间稿。
 - `generated/`：未经筛选的 AI 生成结果。
 
-需要进入 Git 的只有规范、台账和体积可控的最终交付。大型视频在选定片段后再决定 Git LFS 或发布存储方案。
+需要进入 Git 的只有规范、台账和体积可控的最终交付。来源素材不进入 Git；画中证据和最终动态 CG 在确定后再决定 Git LFS 或发布存储方案。

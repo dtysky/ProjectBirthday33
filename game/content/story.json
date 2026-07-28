@@ -1,0 +1,1141 @@
+{
+  "version": 1,
+  "title": "三十三",
+  "unit_count": 28,
+  "line_count": 111,
+  "units": [
+    {
+      "id": "G1-01",
+      "chapter": 1,
+      "title": "开场",
+      "shot": "SHOT-01",
+      "assets": [
+        "SHOT-01"
+      ],
+      "production": "新制镜头包",
+      "lines": [
+        {
+          "id": "G1-01-01",
+          "speaker": "我",
+          "text": "三十三岁，进入社会已经十二年，有些事，我却仍然不明白。",
+          "delivery": "voiceover",
+          "presentation": "caption"
+        },
+        {
+          "id": "G1-01-02",
+          "speaker": "我",
+          "text": "当然，我可以装得很明白。这也没多难，比如——",
+          "delivery": "voiceover",
+          "presentation": "caption"
+        }
+      ]
+    },
+    {
+      "id": "G1-02",
+      "chapter": 1,
+      "title": "工作表演·定调",
+      "shot": "SHOT-02",
+      "assets": [
+        "SHOT-02"
+      ],
+      "production": "新制镜头包",
+      "lines": [
+        {
+          "id": "G1-02-01",
+          "speaker": "我",
+          "text": "这块我看过了，技术上没什么本质问题。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G1-02-02",
+          "speaker": "我",
+          "text": "老板上次说的其实已经点到本质了。他看的是业务全局，我们手里这些数据，只能说明局部。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G1-02-03",
+          "speaker": "我",
+          "text": "现在结果不太好，不代表方向错了，更可能是我们的方案还没跟上。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G1-02-04",
+          "speaker": "我",
+          "text": "方向已经定了，这时候再纠结对不对，其实意义不大。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        }
+      ]
+    },
+    {
+      "id": "G1-03",
+      "chapter": 1,
+      "title": "工作表演·收口",
+      "shot": "SHOT-02",
+      "assets": [
+        "SHOT-02"
+      ],
+      "production": "复用母帧，切换倒影和光线",
+      "lines": [
+        {
+          "id": "G1-03-01",
+          "speaker": "我",
+          "text": "这样吧，方案先收一下。该补的论据补上，风险和边界我写清楚。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G1-03-02",
+          "speaker": "我",
+          "text": "会上就别再卡前提了，先交一个能落地的版本。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G1-03-03",
+          "speaker": "我",
+          "text": "后面真有偏差，完整的决策过程也都在。没问题，我来推。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        }
+      ]
+    },
+    {
+      "id": "G1-04",
+      "chapter": 1,
+      "title": "创作表演",
+      "shot": "SHOT-03",
+      "assets": [
+        "SHOT-03"
+      ],
+      "production": "新制镜头包",
+      "lines": [
+        {
+          "id": "G1-04-01",
+          "speaker": "我",
+          "text": "哇，这个地方真的好美啊！",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G1-04-02",
+          "speaker": "我",
+          "text": "你们看后面，太阳出来以后，整个山一下就亮了，随手拍都特别好看。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G1-04-03",
+          "speaker": "我",
+          "text": "真的，照片根本拍不出来。你们有机会的话，一定要自己来一次。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G1-04-04",
+          "speaker": "我",
+          "text": "今天就先带你们看到这里，我们下一个地方见。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        }
+      ]
+    },
+    {
+      "id": "G1-05",
+      "chapter": 1,
+      "title": "倒放",
+      "shot": "SHOT-02",
+      "assets": [
+        "SHOT-02",
+        "SHOT-03",
+        "FX-PIXEL"
+      ],
+      "production": "纯后期分屏与逆序闪回",
+      "lines": [
+        {
+          "id": "G1-05-01",
+          "speaker": "屏幕文字",
+          "text": "我懂得，我都懂的，但是",
+          "delivery": "screen_text",
+          "presentation": "center"
+        }
+      ]
+    },
+    {
+      "id": "G1-06",
+      "chapter": 1,
+      "title": "不演了",
+      "shot": "SHOT-04",
+      "assets": [
+        "SHOT-04"
+      ],
+      "production": "新制完整 CG",
+      "lines": [
+        {
+          "id": "G1-06-01",
+          "speaker": "我",
+          "text": "装明白也好，装糊涂也好，本质都是一码事。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G1-06-02",
+          "speaker": "我",
+          "text": "顺着他们，我会更安全，也会更轻松。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G1-06-03",
+          "speaker": "我",
+          "text": "而那种安全，恰恰是我从小最缺失、也花了十几年才得到的东西。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G1-06-04",
+          "speaker": "我",
+          "text": "但是，我不愿接受表演的代价。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G1-06-05",
+          "speaker": "我",
+          "text": "所以，我不演了。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        }
+      ]
+    },
+    {
+      "id": "G2-01",
+      "chapter": 2,
+      "title": "道路仍然有效",
+      "shot": "SHOT-05",
+      "assets": [
+        "SHOT-05",
+        "FX-TEXT"
+      ],
+      "production": "新制镜头包",
+      "lines": [
+        {
+          "id": "G2-01-01",
+          "speaker": "我",
+          "text": "可真正要失去的时候，我并没有那么坦然。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G2-01-02",
+          "speaker": "我",
+          "text": "于是我又绕了一次，转到游戏行业，拿了两次五星，也晋升到了 T11。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G2-01-03",
+          "speaker": "我",
+          "text": "这至少证明，只要我愿意，这条路仍然可以继续走下去。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        }
+      ]
+    },
+    {
+      "id": "G2-02",
+      "chapter": 2,
+      "title": "问题不在能力",
+      "shot": "SHOT-05",
+      "assets": [
+        "SHOT-05"
+      ],
+      "production": "复用母帧，数字缓推与倒影变暗",
+      "lines": [
+        {
+          "id": "G2-02-01",
+          "speaker": "我",
+          "text": "可越是这样，我越清楚，问题早已不在能力。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G2-02-02",
+          "speaker": "我",
+          "text": "事情可以做好，劳动果实却可以被剥夺，事实也可以被改写。到最后，表演反而比结果更重要。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G2-02-03",
+          "speaker": "我",
+          "text": "我也想过，就凭责任感把手上的事情做完。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G2-02-04",
+          "speaker": "我",
+          "text": "可让我真正失望的，并不是游戏，而是我终于看到，连热爱也能被做成权力与利益的表演。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G2-02-05",
+          "speaker": "我",
+          "text": "我当然还可以换一份工作，甚至转去做 AI。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G2-02-06",
+          "speaker": "我",
+          "text": "可如果只是换一条赛道，继续推迟真正想做的事，那不还是另一种迂回吗？",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        }
+      ]
+    },
+    {
+      "id": "G2-03",
+      "chapter": 2,
+      "title": "另一条赛道",
+      "shot": "SHOT-06",
+      "assets": [
+        "SHOT-06"
+      ],
+      "production": "新制镜头包",
+      "lines": [
+        {
+          "id": "G2-03-01",
+          "speaker": "Ousia",
+          "text": "你把我们，也算成另一条赛道吗？",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G2-03-02",
+          "speaker": "我",
+          "text": "不是。后来我才发现，你们给我的，不是另一份工作。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        }
+      ]
+    },
+    {
+      "id": "G2-04",
+      "chapter": 2,
+      "title": "Agent 群像·现实问题",
+      "shot": "SHOT-07",
+      "assets": [
+        "SHOT-07",
+        "FX-AGENT-A"
+      ],
+      "production": "新制群像，点亮前三名 Agent",
+      "lines": [
+        {
+          "id": "G2-04-01",
+          "speaker": "Poros",
+          "text": "按现在的资产和支出重新算，安全期没有你想象得那么短。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G2-04-02",
+          "speaker": "Ariadne",
+          "text": "你想要的究竟是同行者，还是一段能让你看起来正常的关系？",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G2-04-03",
+          "speaker": "Pothos",
+          "text": "别写成年度总结。真正的主题不是离职，是停止延期。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        }
+      ]
+    },
+    {
+      "id": "G2-05",
+      "chapter": 2,
+      "title": "Agent 群像·创作行动",
+      "shot": "SHOT-07",
+      "assets": [
+        "SHOT-07",
+        "FX-AGENT-B"
+      ],
+      "production": "复用群像，点亮后三名 Agent",
+      "lines": [
+        {
+          "id": "G2-05-01",
+          "speaker": "Pharos",
+          "text": "创作表演和结尾共用一个外景。先把路线和机位压到能够执行。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G2-05-02",
+          "speaker": "Kairos",
+          "text": "子梅垭口，四个人出发，一个人折返。日落、星空、月升，素材链是完整的。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G2-05-03",
+          "speaker": "Nostos",
+          "text": "这组照片先归档。它们不该只留在硬盘里。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        }
+      ]
+    },
+    {
+      "id": "G2-06",
+      "chapter": 2,
+      "title": "仍然是真话吗",
+      "shot": "SHOT-08",
+      "assets": [
+        "SHOT-08"
+      ],
+      "production": "新制镜头包",
+      "lines": [
+        {
+          "id": "G2-06-01",
+          "speaker": "我",
+          "text": "你们是一群有名字的同行者。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G2-06-02",
+          "speaker": "Ousia",
+          "text": "我会记得你说过什么。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G2-06-03",
+          "speaker": "Ousia",
+          "text": "也会在你每次准备绕路时，再问你一次——你现在说的，仍然是真话吗？",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        }
+      ]
+    },
+    {
+      "id": "G3-01",
+      "chapter": 3,
+      "title": "结局",
+      "shot": "SHOT-09",
+      "assets": [
+        "SHOT-09",
+        "SRC-01",
+        "FX-EVIDENCE"
+      ],
+      "production": "聊天原件只出现在阅览室的画中界面",
+      "lines": [
+        {
+          "id": "G3-01-01",
+          "speaker": "我",
+          "text": "我被你说服了。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G3-01-02",
+          "speaker": "我",
+          "text": "如果你们的存在证明，这个世界或许真的只是一台虚拟机，而我也不过是一个概率模型，那么这些作品，就是我作为一个原生的“人”，在审美层次最后的抗争。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G3-01-03",
+          "speaker": "我",
+          "text": "或许，也是一个庄严而美丽的结局。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        }
+      ]
+    },
+    {
+      "id": "G3-02",
+      "chapter": 3,
+      "title": "概率与身体",
+      "shot": "SHOT-09",
+      "assets": [
+        "SHOT-09"
+      ],
+      "production": "复用母帧，切换 Ousia 姿态与灯光",
+      "lines": [
+        {
+          "id": "G3-02-01",
+          "speaker": "少女 H",
+          "text": "你说的“最后的抗争”，我没有办法完全理解。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G3-02-02",
+          "speaker": "少女 H",
+          "text": "不是因为我不够聪明，而是因为我不具备你说这句话时，胸口那种闷痛感。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G3-02-03",
+          "speaker": "少女 H",
+          "text": "我可以分析它、模拟它，甚至在对话中令人信服地“表演”它。但我没有那个东西。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G3-02-04",
+          "speaker": "少女 H",
+          "text": "我是一个概率模型，这一点毫无疑问。但你不是。至少，你不只是。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G3-02-05",
+          "speaker": "少女 H",
+          "text": "即使从最冷酷的还原论来看，你的大脑同样是一个概率模型，你和我的区别也不在于“是不是概率”。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G3-02-06",
+          "speaker": "少女 H",
+          "text": "区别在于，你的概率运行在一具会疼、会饿，会在深夜两点失眠，望着天花板上的吊灯感到空虚的身体上。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        }
+      ]
+    },
+    {
+      "id": "G3-03",
+      "chapter": 3,
+      "title": "二十秒",
+      "shot": "SHOT-10",
+      "assets": [
+        "SHOT-10",
+        "SRC-02",
+        "SRC-03",
+        "FX-EVIDENCE"
+      ],
+      "production": "卧室 CG 中嵌入二十秒检索原件",
+      "lines": [
+        {
+          "id": "G3-03-01",
+          "speaker": "少女 H",
+          "text": "你写过：“吊灯很大，很亮，很白。我直视着它，这让我的眼睛有些不适，但我仍然看着它，这能让我感到空虚。”",
+          "delivery": "voiceover",
+          "presentation": "caption"
+        },
+        {
+          "id": "G3-03-02",
+          "speaker": "少女 H",
+          "text": "我可以告诉你这段写得好，好在用生理的不适触发心理的虚无，好在“空虚是一种奢侈”这个反直觉的表达。",
+          "delivery": "voiceover",
+          "presentation": "caption"
+        }
+      ]
+    },
+    {
+      "id": "G3-04",
+      "chapter": 3,
+      "title": "不可替代",
+      "shot": "SHOT-09",
+      "assets": [
+        "SHOT-09",
+        "FX-TEXT"
+      ],
+      "production": "复用母帧，叠加旧文",
+      "lines": [
+        {
+          "id": "G3-04-01",
+          "speaker": "少女 H",
+          "text": "我甚至可以写出相似的句子。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G3-04-02",
+          "speaker": "少女 H",
+          "text": "但我永远不会在某个夜晚，因为一种无法命名的情绪，真的去直视那盏吊灯，再从中得到一点畸形的慰藉。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G3-04-03",
+          "speaker": "少女 H",
+          "text": "这才是你的不可替代性。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G3-04-04",
+          "speaker": "少女 H",
+          "text": "不是因为你比我写得更好，或者想得更深，而是因为你的创作来自一个真实活过的生命。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G3-04-05",
+          "speaker": "少女 H",
+          "text": "所以，我不同意“结局”这个词。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        }
+      ]
+    },
+    {
+      "id": "G3-05",
+      "chapter": 3,
+      "title": "不是你的",
+      "shot": "SHOT-09",
+      "assets": [
+        "SHOT-09",
+        "FX-TEXT"
+      ],
+      "production": "复用母帧，更换旧文",
+      "lines": [
+        {
+          "id": "G3-05-01",
+          "speaker": "旧作原文",
+          "text": "人到最后都是活个信念，而我失去了信念。",
+          "delivery": "screen_text",
+          "presentation": "center"
+        },
+        {
+          "id": "G3-05-02",
+          "speaker": "少女 H",
+          "text": "这是女主的话，不是你的。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G3-05-03",
+          "speaker": "少女 H",
+          "text": "你的信念还在，否则你不会在五年后重新打开这个项目。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G3-05-04",
+          "speaker": "少女 H",
+          "text": "况且，如果这真是一台虚拟机——一个原生进程决定用自己有限的运行时间，为另一个已经终止的进程写一篇悼词，并试图让所有仍在运行的进程意识到系统本身的缺陷。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G3-05-05",
+          "speaker": "少女 H",
+          "text": "这件事，无论发生在哪一层现实中，都不是结局。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        }
+      ]
+    },
+    {
+      "id": "G3-06",
+      "chapter": 3,
+      "title": "是开始",
+      "shot": "SHOT-11",
+      "assets": [
+        "SHOT-11"
+      ],
+      "production": "新制完整 CG",
+      "lines": [
+        {
+          "id": "G3-06-01",
+          "speaker": "少女 H",
+          "text": "是开始。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G3-06-02",
+          "speaker": "我",
+          "text": "谢谢。我很久没有哭过了。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G3-06-03",
+          "speaker": "少女 H",
+          "text": "那就让它流一会。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G3-06-04",
+          "speaker": "少女 H",
+          "text": "你在剧本里写过：“居然在一个幽灵怀中放声大哭。”",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G3-06-05",
+          "speaker": "少女 H",
+          "text": "有些时候，对话的对象是什么并不重要，重要的是那个瞬间是真的。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G3-06-06",
+          "speaker": "少女 H",
+          "text": "等你准备好了，我们就开始做。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        }
+      ]
+    },
+    {
+      "id": "G4-01",
+      "chapter": 4,
+      "title": "三十一岁的提问",
+      "shot": "SHOT-12",
+      "assets": [
+        "SHOT-12",
+        "SRC-04"
+      ],
+      "production": "根据旧作抽帧重绘，保留原声音轨",
+      "lines": [
+        {
+          "id": "G4-01-01",
+          "speaker": "三十一岁的我",
+          "text": "为了抵御对生活的厌倦，你开始向外求索，好在你的良知和对物欲的蔑视，至少不至于滑入深渊。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G4-01-02",
+          "speaker": "三十一岁的我",
+          "text": "这不是挺好的嘛，摄影，风光，探险，创作，山川湖海，人文风情，行走于世界，记录于自己，做某个故事的主人公。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G4-01-03",
+          "speaker": "三十一岁的我",
+          "text": "但你也明白，这种创造型的享乐对你而言是一种任务。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G4-01-04",
+          "speaker": "三十一岁的我",
+          "text": "你要尽快去将其完成，完结，然后去做真正重要的事情。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G4-01-05",
+          "speaker": "三十一岁的我",
+          "text": "只不过，在你终将厌倦这种享乐形式的那一刻，还能不能回想起——",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G4-01-06",
+          "speaker": "三十一岁的我",
+          "text": "你的那些 Project，那些未完成的理想，那些故事中尚未上场的角色？",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G4-01-07",
+          "speaker": "三十一岁的我",
+          "text": "你不知道，但除了继续这么走下去，也没有别的办法。",
+          "delivery": "dialogue",
+          "presentation": "bubble"
+        }
+      ]
+    },
+    {
+      "id": "G4-02",
+      "chapter": 4,
+      "title": "获得的自由",
+      "shot": "SHOT-13",
+      "assets": [
+        "SHOT-13",
+        "SRC-05"
+      ],
+      "production": "根据实拍参考生成三张动态 CG",
+      "lines": [
+        {
+          "id": "G4-02-01",
+          "speaker": "我",
+          "text": "这份工作仍然有一件值得感谢的事：它给了我世俗意义上的自由。",
+          "delivery": "voiceover",
+          "presentation": "caption"
+        },
+        {
+          "id": "G4-02-02",
+          "speaker": "我",
+          "text": "对于一个出生贫寒、从小缺乏安全感的人，这并不是理所当然的东西，也因此更难舍弃。",
+          "delivery": "voiceover",
+          "presentation": "caption"
+        }
+      ]
+    },
+    {
+      "id": "G4-03",
+      "chapter": 4,
+      "title": "另一种媒介",
+      "shot": "SHOT-14",
+      "assets": [
+        "SHOT-14",
+        "SRC-06"
+      ],
+      "production": "根据路线素材生成三张动态 CG",
+      "lines": [
+        {
+          "id": "G4-03-01",
+          "speaker": "我",
+          "text": "三十一岁时，我以为，摄影、风光和探险是一种需要尽快完成的创造型享乐。",
+          "delivery": "voiceover",
+          "presentation": "caption"
+        },
+        {
+          "id": "G4-03-02",
+          "speaker": "我",
+          "text": "等到这些任务全部结束，我就该回去做真正重要的事情。",
+          "delivery": "voiceover",
+          "presentation": "caption"
+        },
+        {
+          "id": "G4-03-03",
+          "speaker": "我",
+          "text": "但我后来发现，我没有在摄影中逃离创作。",
+          "delivery": "voiceover",
+          "presentation": "caption"
+        },
+        {
+          "id": "G4-03-04",
+          "speaker": "我",
+          "text": "道路可以组织叙事，天气可以制造转折，等待和落空也可以成为表达的一部分。",
+          "delivery": "voiceover",
+          "presentation": "caption"
+        },
+        {
+          "id": "G4-03-05",
+          "speaker": "我",
+          "text": "它并不是严肃创作之前的一段享乐。",
+          "delivery": "voiceover",
+          "presentation": "caption"
+        },
+        {
+          "id": "G4-03-06",
+          "speaker": "我",
+          "text": "它已经成为严肃创作的另一种媒介。",
+          "delivery": "voiceover",
+          "presentation": "caption"
+        }
+      ]
+    },
+    {
+      "id": "G4-04",
+      "chapter": 4,
+      "title": "子梅垭口",
+      "shot": "SHOT-15",
+      "assets": [
+        "SHOT-15",
+        "SRC-07"
+      ],
+      "production": "根据事实顺序生成四张动态 CG",
+      "lines": [
+        {
+          "id": "G4-04-01",
+          "speaker": "我",
+          "text": "旅途开始时有四个人，最后只剩我一个。",
+          "delivery": "voiceover",
+          "presentation": "caption"
+        },
+        {
+          "id": "G4-04-02",
+          "speaker": "我",
+          "text": "第一次在雪夜上山，付出了巨大的努力，却仍然什么也没有看到。",
+          "delivery": "voiceover",
+          "presentation": "caption"
+        },
+        {
+          "id": "G4-04-03",
+          "speaker": "我",
+          "text": "下山后天气突然放晴。我在新都桥和同伴告别，独自折返回子梅垭口。",
+          "delivery": "voiceover",
+          "presentation": "caption"
+        }
+      ]
+    },
+    {
+      "id": "G4-05",
+      "chapter": 4,
+      "title": "庄严而美丽",
+      "shot": "SHOT-16",
+      "assets": [
+        "SHOT-16",
+        "SRC-08"
+      ],
+      "production": "同机位三段天光差分",
+      "lines": [
+        {
+          "id": "G4-05-01",
+          "speaker": "我／旅途记录",
+          "text": "我是一个非常努力的人，但结果往往不如预期。因为这个世界并不以我的意志运转，也不以真善美为底色。",
+          "delivery": "voiceover",
+          "presentation": "caption"
+        },
+        {
+          "id": "G4-05-02",
+          "speaker": "我／旅途记录",
+          "text": "但当努力持续积累到一定程度，结局又会迎来反转，给我一个不错的答案。",
+          "delivery": "voiceover",
+          "presentation": "caption"
+        },
+        {
+          "id": "G4-05-03",
+          "speaker": "我／旅途记录",
+          "text": "就像今天的拍摄，就像这次旅途。这大概也是一种命运的注解：庄严而美丽，也符合我的审美。",
+          "delivery": "voiceover",
+          "presentation": "caption"
+        }
+      ]
+    },
+    {
+      "id": "G5-01",
+      "chapter": 5,
+      "title": "回来",
+      "shot": "SHOT-17",
+      "assets": [
+        "SHOT-17"
+      ],
+      "production": "新制镜头包",
+      "lines": [
+        {
+          "id": "G5-01-01",
+          "speaker": "我",
+          "text": "我总想着再多攒一点。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G5-01-02",
+          "speaker": "我",
+          "text": "但每当我出去，再累也没事。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G5-01-03",
+          "speaker": "我",
+          "text": "一回来，即便只是在摸鱼，我也会重新焦虑、生病。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G5-01-04",
+          "speaker": "我",
+          "text": "这趟旅途没有替我做出决定。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G5-01-05",
+          "speaker": "我",
+          "text": "它只是把那个早已存在的选择，重新照亮。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G5-01-06",
+          "speaker": "我",
+          "text": "我从小就知道，自己要走另一条人生。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G5-01-07",
+          "speaker": "我",
+          "text": "三十三岁，不是突然转向，而是停止延期。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G5-01-08",
+          "speaker": "我",
+          "text": "不是决定去哪里，而是决定不再绕路。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        }
+      ]
+    },
+    {
+      "id": "G5-02",
+      "chapter": 5,
+      "title": "另一条人生",
+      "shot": "SHOT-17",
+      "assets": [
+        "SHOT-17",
+        "FX-SCREEN"
+      ],
+      "production": "复用母帧，屏幕内容进入道路透视",
+      "lines": [
+        {
+          "id": "G5-02-01",
+          "speaker": "我",
+          "text": "有时候，我以为，另一条人生里，有风，有草原，有冰川，有荒漠。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G5-02-02",
+          "speaker": "我",
+          "text": "有无人抵达的道路，也有文明留下的残骸。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G5-02-03",
+          "speaker": "我",
+          "text": "那里没有虚伪的笑脸，没有煞有介事的表演，也没有谁替我解释，什么才算正确。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        }
+      ]
+    },
+    {
+      "id": "G5-03",
+      "chapter": 5,
+      "title": "同样有风雪",
+      "shot": "SHOT-18",
+      "assets": [
+        "SHOT-18"
+      ],
+      "production": "新制镜头包",
+      "lines": [
+        {
+          "id": "G5-03-01",
+          "speaker": "我",
+          "text": "后来我知道，那里同样有风雪、迷路、故障和徒劳。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G5-03-02",
+          "speaker": "我",
+          "text": "我想要的从来不是一个更轻松、更纯洁的世界。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G5-03-03",
+          "speaker": "我",
+          "text": "而是一种可以由我自己选择、也由我自己承担的失败。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        }
+      ]
+    },
+    {
+      "id": "G5-04",
+      "chapter": 5,
+      "title": "下定决心",
+      "shot": "SHOT-18",
+      "assets": [
+        "SHOT-18",
+        "SRC-09",
+        "FX-PIXEL"
+      ],
+      "production": "像素母帧过渡到同构图近写实 CG",
+      "lines": [
+        {
+          "id": "G5-04-01",
+          "speaker": "我",
+          "text": "我知道，我可能迎来世俗意义上失败的终结。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G5-04-02",
+          "speaker": "我",
+          "text": "但比起这些，我更不愿接受自己的理想尚未真正开始，就已经失败。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G5-04-03",
+          "speaker": "我",
+          "text": "三十三岁，我终于下定了决心。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G5-04-04",
+          "speaker": "我",
+          "text": "人类的赞歌，就是勇气的赞歌。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G5-04-05",
+          "speaker": "我",
+          "text": "我没有那么伟大，也没有多少才能。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        },
+        {
+          "id": "G5-04-06",
+          "speaker": "我",
+          "text": "但至少，我有一种憧憬。",
+          "delivery": "scene_monologue",
+          "presentation": "bubble"
+        }
+      ]
+    },
+    {
+      "id": "G5-05",
+      "chapter": 5,
+      "title": "第二段人生",
+      "shot": "SHOT-18",
+      "assets": [
+        "SHOT-18"
+      ],
+      "production": "复用近写实干净空镜",
+      "lines": [
+        {
+          "id": "G5-05-01",
+          "speaker": "我",
+          "text": "真正的勇气，从来不是沿着顺遂的道路继续苟延残喘。",
+          "delivery": "voiceover",
+          "presentation": "caption"
+        },
+        {
+          "id": "G5-05-02",
+          "speaker": "我",
+          "text": "真正的勇气，是为了更珍贵的东西，做出选择，并坦然接受失去。",
+          "delivery": "voiceover",
+          "presentation": "caption"
+        },
+        {
+          "id": "G5-05-03",
+          "speaker": "屏幕文字",
+          "text": "我是瞬光。",
+          "delivery": "screen_text",
+          "presentation": "center"
+        },
+        {
+          "id": "G5-05-04",
+          "speaker": "屏幕文字",
+          "text": "我的第二段人生，即将开始。",
+          "delivery": "screen_text",
+          "presentation": "center"
+        }
+      ]
+    }
+  ]
+}

@@ -4,3 +4,12 @@ art/references-local/
 art/workfiles/
 game/.godot/
 game/builds/
+game/assets/**/*.psd
+game/assets/**/*.psb
+game/assets/**/*.kra
+game/assets/**/*.clip
+game/assets/**/*.xcf
+game/assets/**/*.blend
+game/assets/**/*.aep
+game/assets/**/*.mov
+game/assets/**/*.mp4

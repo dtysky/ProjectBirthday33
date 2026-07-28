@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "shots": {
+    "SHOT-01": {
+      "units": "G1-01",
+      "composition": "黑色空间中的正面近景",
+      "characters": "CHAR-H／OUTFIT-H-NEUTRAL",
+      "deliverables": "母帧、闭眼差分、睁眼差分",
+      "motion": "呼吸、睁眼",
+      "master": "res://assets/shots/shot-01/master.webp"
+    },
+    "SHOT-02": {
+      "units": "G1-02、G1-03",
+      "composition": "园区玻璃前的工作表演",
+      "characters": "CHAR-H／OUTFIT-H-WORK、EXTRA-COWORKERS",
+      "deliverables": "母帧、干净背景、人物层、倒影层、前景层",
+      "motion": "呼吸、玻璃反光",
+      "master": "res://assets/shots/shot-02/master.webp"
+    },
+    "SHOT-03": {
+      "units": "G1-04",
+      "composition": "山地风景前的创作表演",
+      "characters": "CHAR-H／OUTFIT-H-OUTDOOR",
+      "deliverables": "母帧、干净背景、指景姿态、收尾姿态",
+      "motion": "眨眼、衣角、云",
+      "master": "res://assets/shots/shot-03/master.webp"
+    },
+    "SHOT-04": {
+      "units": "G1-06",
+      "composition": "两种表演融合后的正面特写",
+      "characters": "CHAR-H／OUTFIT-H-NEUTRAL",
+      "deliverables": "完整 CG、闭眼差分、睁眼差分",
+      "motion": "呼吸、睁眼",
+      "master": "res://assets/shots/shot-04/master.webp"
+    },
+    "SHOT-05": {
+      "units": "G2-01、G2-02",
+      "composition": "园区中的静止坐姿与倒影",
+      "characters": "CHAR-H／OUTFIT-H-WORK",
+      "deliverables": "母帧、干净背景、低头坐姿、抬眼差分、倒影层",
+      "motion": "呼吸、一次抬眼、缓推",
+      "master": "res://assets/shots/shot-05/master.webp"
+    },
+    "SHOT-06": {
+      "units": "G2-03",
+      "composition": "意识道路近端的背影",
+      "characters": "CHAR-H／OUTFIT-H-NEUTRAL",
+      "deliverables": "母帧、道路背景、背影层、光点层",
+      "motion": "像素流动",
+      "master": "res://assets/shots/shot-06/master.webp"
+    },
+    "SHOT-07": {
+      "units": "G2-04、G2-05",
+      "composition": "七名 Agent 的统一群像",
+      "characters": "CHAR-AGENTS",
+      "deliverables": "群像母帧、七人独立亮度层、专属意象层",
+      "motion": "逐人点亮",
+      "master": "res://assets/shots/shot-07/master.webp"
+    },
+    "SHOT-08": {
+      "units": "G2-06",
+      "composition": "道路尽头的 Ousia 与我的背影",
+      "characters": "CHAR-H／OUTFIT-H-NEUTRAL、CHAR-OUSIA／OUTFIT-OUSIA",
+      "deliverables": "母帧、前景背影、Ousia 层、光点层",
+      "motion": "Ousia 眨眼、光点收束",
+      "master": "res://assets/shots/shot-08/master.webp"
+    },
+    "SHOT-09": {
+      "units": "G3-01、G3-02、G3-04、G3-05",
+      "composition": "阅览室长桌两端",
+      "characters": "CHAR-H／OUTFIT-H-NEUTRAL、CHAR-OUSIA／OUTFIT-OUSIA",
+      "deliverables": "母帧、干净背景、两名人物层、吊灯层、纸页层",
+      "motion": "Ousia 姿态差分、灯光变化",
+      "master": "res://assets/shots/shot-09/master.webp"
+    },
+    "SHOT-10": {
+      "units": "G3-03",
+      "composition": "卧室仰视中的吊灯与侧面检索屏",
+      "characters": "无人物正面",
+      "deliverables": "母帧、眨眼遮罩、屏幕区域、吊灯光层",
+      "motion": "眨眼、检索原件播放",
+      "master": "res://assets/shots/shot-10/master.webp"
+    },
+    "SHOT-11": {
+      "units": "G3-06",
+      "composition": "白纸、影子与并肩近景",
+      "characters": "CHAR-H／OUTFIT-H-NEUTRAL、CHAR-OUSIA／OUTFIT-OUSIA",
+      "deliverables": "完整 CG、影子遮罩、白纸层",
+      "motion": "影子延伸、白纸亮起",
+      "master": "res://assets/shots/shot-11/master.webp"
+    },
+    "SHOT-12": {
+      "units": "G4-01",
+      "composition": "三十一岁作品的记忆重演",
+      "characters": "CHAR-H／OUTFIT-H-ARCHIVE",
+      "deliverables": "两张原片抽帧重绘、纸面边界、投影光层",
+      "motion": "数字推拉、原声音轨",
+      "master": "res://assets/shots/shot-12/master.webp"
+    },
+    "SHOT-13": {
+      "units": "G4-02",
+      "composition": "埃及与新西兰的自由",
+      "characters": "无近景人物",
+      "deliverables": "荒漠道路、湖泊雪山、车窗三张 CG",
+      "motion": "云影、车窗光、视差",
+      "master": "res://assets/shots/shot-13/master.webp"
+    },
+    "SHOT-14": {
+      "units": "G4-03",
+      "composition": "摄影成为另一种媒介",
+      "characters": "CHAR-H／OUTFIT-H-OUTDOOR，仅一张远景可出现",
+      "deliverables": "道路、天气、取景三张 CG",
+      "motion": "景深、天气、缓推",
+      "master": "res://assets/shots/shot-14/master.webp"
+    },
+    "SHOT-15": {
+      "units": "G4-04",
+      "composition": "子梅垭口的失败与折返",
+      "characters": "CHAR-H／OUTFIT-H-OUTDOOR、场景内同行者剪影",
+      "deliverables": "雪夜、放晴、告别、折返四张 CG",
+      "motion": "风雪、云开、路线显影",
+      "master": "res://assets/shots/shot-15/master.webp"
+    },
+    "SHOT-16": {
+      "units": "G4-05",
+      "composition": "日落、星空与月升",
+      "characters": "无近景人物",
+      "deliverables": "同机位日落、星空、月升三张差分",
+      "motion": "天光变化、星点、月升",
+      "master": "res://assets/shots/shot-16/master.webp"
+    },
+    "SHOT-17": {
+      "units": "G5-01、G5-02",
+      "composition": "家中工作桌侧背面",
+      "characters": "CHAR-H／OUTFIT-H-HOME",
+      "deliverables": "母帧、干净背景、看屏幕姿态、看摄影包差分、屏幕层、摄影包层",
+      "motion": "呼吸、一次视线切换、屏幕微光",
+      "master": "res://assets/shots/shot-17/master.webp"
+    },
+    "SHOT-18": {
+      "units": "G5-03、G5-04、G5-05",
+      "composition": "山地道路上的静止背影与最终空镜",
+      "characters": "CHAR-H／OUTFIT-H-OUTDOOR",
+      "deliverables": "像素母帧、近写实 CG、背影层、干净空镜、风雪层",
+      "motion": "衣角、风雪、像素退去",
+      "master": "res://assets/shots/shot-18/master.webp"
+    }
+  }
+}
