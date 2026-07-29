@@ -113,6 +113,12 @@ if (units.length !== 28 || lineCount !== 111) {
   throw new Error(`Expected 28 units and 111 lines, got ${units.length} and ${lineCount}`);
 }
 
+const shotVariants = {
+  "SHOT-01": {
+    open: "res://assets/shots/shot-01/open.webp",
+  },
+};
+
 const shots = {};
 for (const match of assetSource.matchAll(
   /^\| (SHOT-\d{2}) \| ([^|]+) \| ([^|]+) \| ([^|]+) \| ([^|]+) \| ([^|]+) \| ([^|]+) \|$/gm,
@@ -126,6 +132,7 @@ for (const match of assetSource.matchAll(
     deliverables: match[5].trim(),
     motion: match[6].trim(),
     master: `res://assets/shots/${folder}/master.webp`,
+    variants: shotVariants[id] ?? {},
   };
 }
 

@@ -16,3 +16,14 @@
 - 工程：[project-plan.md](project-plan.md)、[game/README.md](game/README.md)
 
 原微电影分镜保存在 [design/archive/](design/archive/)，只作为改编依据，不参与当前生产。
+
+## Git LFS
+
+`art/characters/` 中的人设资源，以及 `game/assets/` 中的图片、音频、视频、字体和大型美术源文件使用 Git LFS。首次克隆后执行：
+
+```bash
+git lfs install
+git lfs pull
+```
+
+台本、配置、脚本和 Godot `.import` 文件仍由普通 Git 管理。

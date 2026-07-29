@@ -6,6 +6,11 @@
 
 - [style-guide.md](style-guide.md)：已经确认的画风、动态边界与视觉递进。
 - [asset-list.md](asset-list.md)：人设、地点母版、镜头包和来源素材的编号与状态。
+- [reference-request.md](reference-request.md)：需要用户提供的人物、场景与旅行参考清单。
+- [character-h-reference-catalog.md](character-h-reference-catalog.md)：我的服装套系、姿态与原文件索引。
+- [char-h-look-04-sheet-v1.png](characters/char-h/outfits/char-h-look-04-sheet-v1.png)：`H-LOOK-04`，同时作为 `CHAR-H` 人物身份基准。
+- [char-ousia-sheet-v1.png](characters/char-ousia/char-ousia-sheet-v1.png)：`CHAR-OUSIA` 正式人物与核心服装设定。
+- [agents/](characters/agents/)：Poros、Ariadne、Pothos、Pharos、Kairos、Nostos 的正式人物与核心服装设定。
 
 ## 工作流
 

@@ -12,6 +12,7 @@
 - 已实现历史、保存、读取、文字速度、自动等待、音量和全屏设置。
 - 常驻界面仅保留折叠菜单入口，场景编号等制作信息默认隐藏，可用 `F3` 检查。
 - 已接入 `SHOT-xx` 资产清单；正式母帧缺失时显示章节占位画面。
+- 章节演出由 `src/chapters/chapter_01.gd` 至 `chapter_05.gd` 分别管理；`main.gd` 只负责通用播放流程、界面与服务调度。
 - 尚未接入正式美术、音频、画中证据和镜头动态。
 
 ## 技术边界
@@ -34,7 +35,16 @@ game/
 │   ├── asset_registry.gd
 │   ├── save_service.gd
 │   ├── audio_service.gd
+│   ├── chapters/
+│   │   ├── chapter_director.gd
+│   │   ├── chapter_01.gd
+│   │   ├── chapter_02.gd
+│   │   ├── chapter_03.gd
+│   │   ├── chapter_04.gd
+│   │   └── chapter_05.gd
 │   ├── ui/
+│   │   ├── game_ui.gd
+│   │   └── dialogue_presenter.gd
 │   └── effects/
 ├── content/
 │   ├── story.json
@@ -78,6 +88,8 @@ node tools/build_story.mjs
 前三项已经完成，当前进入 G1 垂直切片。
 
 运行时以镜头包为资产单位，不维护一套可任意组合的全局背景库和人物立绘库。每个生产单元引用一个 `SHOT-xx`，再指定需要显示的母帧、差分、前景或遮罩层。
+
+章节专属的节奏、镜头差分、字幕位置和转场写入对应的 `chapter_xx.gd`。跨章节复用的对白分页、输入、菜单、存档和资产加载留在 `main.gd` 或独立服务中。
 
 `assets/evidence/` 只存放裁切后的聊天和检索等叙事原件，必须显示在镜头包定义的屏幕、纸面或投影区域内。旅行实拍与道路照片只作为美术参考，不进入运行时目录。
 

@@ -19,6 +19,7 @@ func _run() -> void:
 
 	var required := [
 		"Stage",
+		"ChapterFxLayer",
 		"DialoguePanel",
 		"CenterLine",
 		"QuickMenuOverlay",
@@ -41,10 +42,74 @@ func _run() -> void:
 		quit(1)
 		return
 	if (
-		not (scene.get_node("DialoguePanel") as Control).visible
-		and not (scene.get_node("CenterLine") as Control).visible
+		(scene.get_node("DialoguePanel") as Control).visible
+		or (scene.get_node("CenterLine") as Control).visible
 	):
-		push_error("Neither dialogue bubble nor caption is visible after starting a new game.")
+		push_error("G1-01 does not begin with its intentional silent hold.")
+		quit(1)
+		return
+	scene.call("_advance_story")
+	await process_frame
+	if not (scene.get_node("CenterLine") as Control).visible:
+		push_error("G1-01 caption did not appear after skipping the opening hold.")
+		quit(1)
+		return
+	var opening_director := scene.get("active_chapter_director") as RefCounted
+	if opening_director == null or int(opening_director.get("chapter_number")) != 1:
+		push_error("Chapter 1 director was not activated.")
+		quit(1)
+		return
+	var opening_segments := opening_director.get("current_segments") as Array
+	if opening_segments.size() != 2 or str(opening_segments[0]) != "三十三岁。":
+		push_error("G1-01 line 1 was not divided into its directed performance beats.")
+		quit(1)
+		return
+	var open_variant_path := "ChapterFxLayer/OpenVariantTexture"
+	if (scene.get_node(open_variant_path) as TextureRect).texture == null:
+		push_error("G1-01 open-eyes variant was not preloaded.")
+		quit(1)
+		return
+	scene.call("_finish_typing")
+	scene.call("_advance_story")
+	await create_timer(0.45).timeout
+	if int(opening_director.get("current_segment_index")) != 1:
+		push_error("G1-01 did not fade into the second directed caption beat.")
+		quit(1)
+		return
+	scene.call("_finish_typing")
+	scene.call("_advance_story")
+	await create_timer(1.05).timeout
+	if (
+		int(story.get("line_index")) != 1
+		or int(opening_director.get("current_segment_index")) != 0
+	):
+		push_error("G1-01 did not preserve its silent hold before '当然。'.")
+		quit(1)
+		return
+	scene.call("_finish_typing")
+	scene.call("_advance_story")
+	await create_timer(1.2).timeout
+	var open_variant := scene.get_node(open_variant_path) as TextureRect
+	if (
+		not open_variant.visible
+		or open_variant.modulate.a < 0.99
+		or int(opening_director.get("current_segment_index")) != 1
+	):
+		push_error("G1-01 eye opening did not complete before the next caption beat.")
+		quit(1)
+		return
+	scene.call("_finish_typing")
+	scene.call("_advance_story")
+	await create_timer(0.45).timeout
+	if int(opening_director.get("current_segment_index")) != 2:
+		push_error("G1-01 did not isolate the final '比如——' cue.")
+		quit(1)
+		return
+	scene.call("_finish_typing")
+	scene.call("_advance_story")
+	await create_timer(0.3).timeout
+	if int(story.get("unit_index")) != 1:
+		push_error("G1-01 did not transition to G1-02 after the final cue.")
 		quit(1)
 		return
 
@@ -80,7 +145,8 @@ func _run() -> void:
 		push_error("Longest dialogue line was not loaded correctly.")
 		quit(1)
 		return
-	var segments := scene.get("current_segments") as Array
+	var presenter := scene.get("dialogue_presenter") as RefCounted
+	var segments := presenter.get("current_segments") as Array
 	if segments.size() < 3:
 		push_error("Long dialogue was not divided into compact visual beats.")
 		quit(1)
@@ -92,7 +158,10 @@ func _run() -> void:
 			return
 	scene.call("_advance_story")
 	await process_frame
-	if int(story.get("line_index")) != 3 or int(scene.get("current_segment_index")) != 1:
+	if (
+		int(story.get("line_index")) != 3
+		or int(presenter.get("current_segment_index")) != 1
+	):
 		push_error("Advancing a paginated line skipped directly to the next dialogue.")
 		quit(1)
 		return

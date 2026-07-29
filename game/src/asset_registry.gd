@@ -27,3 +27,12 @@ func load_master(shot_id: String) -> Texture2D:
 	if path.is_empty() or not ResourceLoader.exists(path):
 		return null
 	return ResourceLoader.load(path) as Texture2D
+
+
+func load_variant(shot_id: String, variant_id: String) -> Texture2D:
+	var shot: Dictionary = shots.get(shot_id, {})
+	var variants: Dictionary = shot.get("variants", {}) as Dictionary
+	var path := str(variants.get(variant_id, ""))
+	if path.is_empty() or not ResourceLoader.exists(path):
+		return null
+	return ResourceLoader.load(path) as Texture2D

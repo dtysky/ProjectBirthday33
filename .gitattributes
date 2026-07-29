@@ -1,0 +1,45 @@
+# Normalize project text files.
+* text=auto eol=lf
+
+# Production raster images.
+art/characters/**/*.png filter=lfs diff=lfs merge=lfs -text
+art/characters/**/*.jpg filter=lfs diff=lfs merge=lfs -text
+art/characters/**/*.jpeg filter=lfs diff=lfs merge=lfs -text
+art/characters/**/*.webp filter=lfs diff=lfs merge=lfs -text
+art/characters/**/*.gif filter=lfs diff=lfs merge=lfs -text
+art/characters/**/*.tif filter=lfs diff=lfs merge=lfs -text
+art/characters/**/*.tiff filter=lfs diff=lfs merge=lfs -text
+art/characters/**/*.exr filter=lfs diff=lfs merge=lfs -text
+art/characters/**/*.hdr filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.png filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.jpg filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.jpeg filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.webp filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.gif filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.tif filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.tiff filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.exr filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.hdr filter=lfs diff=lfs merge=lfs -text
+
+# Runtime audio and video.
+game/assets/**/*.wav filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.flac filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.mp3 filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.ogg filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.m4a filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.aac filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.opus filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.mp4 filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.mov filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.mkv filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.webm filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.m4v filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.ogv filter=lfs diff=lfs merge=lfs -text
+
+# Fonts, 3D resources, and editable art source files.
+game/assets/**/*.ttf filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.otf filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.woff filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.woff2 filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.glb filter=lfs diff=lfs merge=lfs -text
+game/assets/**/*.fbx filter=lfs diff=lfs merge=lfs -text
