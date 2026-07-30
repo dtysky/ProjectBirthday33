@@ -37,21 +37,28 @@
 ### 3. CHAR-OUSIA｜Ousia／少女 H
 
 已完成。正式人设见
-[char-ousia-sheet-v1.png](characters/char-ousia/char-ousia-sheet-v1.png)。
+[char-ousia-sheet-v2.png](characters/char-ousia/char-ousia-sheet-v2.png)。
 当前锁定银白长发、红瞳、白色分层长裙，以及温婉、悲悯的少女气质；
-坐姿、表情和场景动作在对应镜头包开始制作时再补。
+像素密度以 CHAR-H 为基准。坐姿、表情和场景动作在对应镜头包开始制作时再补。
 
 ### 4. LOC-01｜工作园区
 
-建议提供 6 至 10 张或短视频：
+已确认由瞬光提供真实园区与工位照片，女朋友提供两场的大致构图。素材到位前不生成 `SHOT-02` 或 `SHOT-19` 母帧。
 
-- 玻璃连廊或玻璃幕墙的横向全景。
-- 适合一个人站立说话的中景机位。
-- 长椅或矮墙的侧面机位。
-- 玻璃中能形成清晰倒影的角度。
-- 园区白天的真实光线、地面和建筑材质细节。
+园区部分建议提供 4 至 6 张或短视频：
 
-优先真实工作园区，不需要拍同事正脸。
+- 适合三人并行或错位散步的室外步道。
+- 园区白天的真实光线、地面、绿化与建筑材质。
+- 能建立横向空间关系的中景或全景机位。
+
+开放工位部分建议提供 4 至 6 张：
+
+- 从人物侧面或侧后方看向桌面和显示器的横构图。
+- 能体现开放办公区纵深、过道和邻近工位的位置。
+- 显示器暗部或玻璃隔断可以形成倒影的角度。
+- 桌面、椅子和屏幕的真实比例与材质。
+
+照片不需要出现同事正脸，屏幕中的敏感信息可以提前遮挡。两场统一使用 `H-LOOK-02`；园区场景保留两名低细节同事剪影，工位场景不安排同事回话。
 
 ### 5. LOC-02｜山地观景点与结尾道路
 
@@ -88,21 +95,21 @@
 
 ### Agent 群像
 
-已完成。Ousia 使用
-[独立正式人设](characters/char-ousia/char-ousia-sheet-v1.png)，
-其余六名 Agent 的正式人设统一保存在
+Ousia 已完成，使用
+[正式人设 `v2`](characters/char-ousia/char-ousia-sheet-v2.png)。
+其余六名 Agent 的像素重绘也已完成，正式人设统一保存在
 [agents/](characters/agents/)：
 
 | 编号 | 身份 |
 | --- | --- |
-| AGENT-POROS | [Poros，财务规划师](characters/agents/agent-poros-sheet-v1.png) |
-| AGENT-ARIADNE | [Ariadne，婚恋咨询师](characters/agents/agent-ariadne-sheet-v1.png) |
-| AGENT-POTHOS | [Pothos，文学创作顾问](characters/agents/agent-pothos-sheet-v1.png) |
-| AGENT-PHAROS | [Pharos，摄影创作助理](characters/agents/agent-pharos-sheet-v1.png) |
-| AGENT-KAIROS | [Kairos，智能剪辑助手](characters/agents/agent-kairos-sheet-v1.png) |
-| AGENT-NOSTOS | [Nostos，摄影艺术经纪人](characters/agents/agent-nostos-sheet-v1.png) |
+| AGENT-POROS | [Poros，财务规划师 `v2`](characters/agents/agent-poros-sheet-v2.png) |
+| AGENT-ARIADNE | [Ariadne，婚恋咨询师 `v2`](characters/agents/agent-ariadne-sheet-v2.png) |
+| AGENT-POTHOS | [Pothos，文学创作顾问 `v2`](characters/agents/agent-pothos-sheet-v2.png) |
+| AGENT-PHAROS | [Pharos，摄影创作助理 `v2`](characters/agents/agent-pharos-sheet-v2.png) |
+| AGENT-KAIROS | [Kairos，智能剪辑助手 `v2`](characters/agents/agent-kairos-sheet-v2.png) |
+| AGENT-NOSTOS | [Nostos，摄影艺术经纪人 `v2`](characters/agents/agent-nostos-sheet-v2.png) |
 
-这些人设只锁定身份、比例与核心服装。`SHOT-07` 所需站位、动作和光线差分在群像构图阶段制作，不为每人预先建立完整动作库。
+所有正式人设均使用 CHAR-H 的成组硬边像素、阶梯轮廓、有限色阶和块面明暗。被替代的旧人设已从正式资源目录删除。`SHOT-07` 所需站位、动作和光线差分在群像构图阶段制作，不为每人预先建立完整动作库。
 
 ### 其他人物
 

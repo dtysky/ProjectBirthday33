@@ -42,8 +42,8 @@ func _init() -> void:
 		failures.append("Expected 20 voiceover lines.")
 	if int(delivery_counts["scene_monologue"]) != 34:
 		failures.append("Expected 34 scene-monologue lines.")
-	if (manifest.get("shots", {}) as Dictionary).size() != 18:
-		failures.append("Expected 18 shot packages.")
+	if (manifest.get("shots", {}) as Dictionary).size() != 19:
+		failures.append("Expected 19 shot packages.")
 	if int(ProjectSettings.get_setting("display/window/size/viewport_width", 0)) != 1920:
 		failures.append("Expected a 1920-wide logical viewport.")
 	if int(ProjectSettings.get_setting("display/window/size/viewport_height", 0)) != 1080:
@@ -54,7 +54,7 @@ func _init() -> void:
 		failures.append("Expected a 2160-high output window.")
 
 	if failures.is_empty():
-		print("Validation passed: 28 units, 111 lines, balanced delivery, 18 shots, 4K output.")
+		print("Validation passed: 28 units, 111 lines, balanced delivery, 19 shots, 4K output.")
 		quit(0)
 		return
 

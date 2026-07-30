@@ -38,7 +38,7 @@
       "assets": [
         "SHOT-02"
       ],
-      "production": "新制镜头包",
+      "production": "新制园区散步镜头包",
       "lines": [
         {
           "id": "G1-02-01",
@@ -74,11 +74,11 @@
       "id": "G1-03",
       "chapter": 1,
       "title": "工作表演·收口",
-      "shot": "SHOT-02",
+      "shot": "SHOT-19",
       "assets": [
-        "SHOT-02"
+        "SHOT-19"
       ],
-      "production": "复用母帧，切换倒影和光线",
+      "production": "新制开放工位镜头包",
       "lines": [
         {
           "id": "G1-03-01",
@@ -150,6 +150,7 @@
       "shot": "SHOT-02",
       "assets": [
         "SHOT-02",
+        "SHOT-19",
         "SHOT-03",
         "FX-PIXEL"
       ],

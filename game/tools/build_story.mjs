@@ -136,8 +136,8 @@ for (const match of assetSource.matchAll(
   };
 }
 
-if (Object.keys(shots).length !== 18) {
-  throw new Error(`Expected 18 shot packages, got ${Object.keys(shots).length}`);
+if (Object.keys(shots).length !== 19) {
+  throw new Error(`Expected 19 shot packages, got ${Object.keys(shots).length}`);
 }
 
 fs.mkdirSync(contentDir, { recursive: true });

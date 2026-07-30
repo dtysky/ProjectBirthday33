@@ -8,6 +8,7 @@
 - [art/](art/)：美术方向、资产清单与美术交付规则。
 - [game/](game/)：Godot 工程与运行时资产。
 - [project-plan.md](project-plan.md)：整体技术方案、排期、分工与验收标准。
+- [HANDOFF.md](HANDOFF.md)：新对话使用的项目索引、当前进度与未提交状态。
 
 ## 当前依据
 

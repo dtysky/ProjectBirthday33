@@ -22,7 +22,10 @@ window/size/viewport_height=1080
 window/size/window_width_override=3840
 window/size/window_height_override=2160
 window/stretch/mode="canvas_items"
-window/stretch/aspect="keep"
+
+[dotnet]
+
+project/assembly_name="project-birthday-33"
 
 [physics]
 
@@ -32,4 +35,3 @@ window/stretch/aspect="keep"
 
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
-renderer/rendering_method.mobile="mobile"

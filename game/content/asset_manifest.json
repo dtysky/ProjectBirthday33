@@ -13,11 +13,11 @@
       }
     },
     "SHOT-02": {
-      "units": "G1-02、G1-03",
-      "composition": "园区玻璃前的工作表演",
-      "characters": "CHAR-H／OUTFIT-H-WORK、EXTRA-COWORKERS",
-      "deliverables": "母帧、干净背景、人物层、倒影层、前景层",
-      "motion": "呼吸、玻璃反光",
+      "units": "G1-02",
+      "composition": "园区内与同事边散步边谈工作",
+      "characters": "CHAR-H／H-LOOK-02（OUTFIT-H-WORK）、EXTRA-COWORKERS",
+      "deliverables": "母帧、干净背景、人物层、同事剪影层、前景层",
+      "motion": "有限步行暗示、园区视差",
       "master": "res://assets/shots/shot-02/master.webp",
       "variants": {}
     },
@@ -163,6 +163,15 @@
       "deliverables": "像素母帧、近写实 CG、背影层、干净空镜、风雪层",
       "motion": "衣角、风雪、像素退去",
       "master": "res://assets/shots/shot-18/master.webp",
+      "variants": {}
+    },
+    "SHOT-19": {
+      "units": "G1-03",
+      "composition": "开放办公区工位中的工作收口",
+      "characters": "CHAR-H／H-LOOK-02（OUTFIT-H-WORK）",
+      "deliverables": "母帧、干净背景、人物层、屏幕层、倒影层、前景层",
+      "motion": "呼吸、屏幕微光、倒影微笑",
+      "master": "res://assets/shots/shot-19/master.webp",
       "variants": {}
     }
   }
