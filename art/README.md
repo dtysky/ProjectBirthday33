@@ -7,8 +7,19 @@
 - [style-guide.md](style-guide.md)：已经确认的画风、动态边界与视觉递进。
 - [asset-list.md](asset-list.md)：人设、地点母版、镜头包和来源素材的编号与状态。
 - [reference-request.md](reference-request.md)：需要用户提供的人物、场景与旅行参考清单。
+- [reference-source-catalog.md](reference-source-catalog.md)：已经收到的实景、人物与物件参考及其使用边界。
+- [generation-manifest-20260731.md](generation-manifest-20260731.md)：2026-07-31 参考批次的生成结果、输入角色与提示词摘要。
 - [character-h-reference-catalog.md](character-h-reference-catalog.md)：我的服装套系、姿态与原文件索引。
 - [char-h-look-04-sheet-v1.png](characters/char-h/outfits/char-h-look-04-sheet-v1.png)：`H-LOOK-04`，同时作为 `CHAR-H` 人物身份基准。
+- [char-h-look-09-sheet-v1.png](characters/char-h/outfits/char-h-look-09-sheet-v1.png)：`H-LOOK-09` 浅灰蓝睡衣待审核人设。
+- [char-cats-sheet-v1.png](characters/cats/char-cats-sheet-v1.png)：两只猫当前保留的人设版本，后续仍需调整。
+- [team-five-placeholder-sheet-v5.png](characters/team/team-five-placeholder-sheet-v5.png)：我与四名下属的差异化待审核人设，已锁定具体身高、偏瘦体型与 3 号短裤穿搭。
+- [vehicle-dawn-sheet-v1.png](vehicles/vehicle-dawn-sheet-v1.png)：车辆“破晓”的待审核母版。
+- [g0-home-garage-dawn-placeholder-v2.png](locations/g0/g0-home-garage-dawn-placeholder-v2.png)：家中地库与“破晓”的像素风地点参考。
+- [g0-car-interior-clean-placeholder-v2.png](locations/g0/g0-car-interior-clean-placeholder-v2.png)：车内自拍机位的像素风空底图。
+- [loc-01-campus-master-v2.png](locations/loc-01/loc-01-campus-master-v2.png)：公司园区的像素风地点母版。
+- [loc-01-workstation-master-v2.png](locations/loc-01/loc-01-workstation-master-v2.png)：个人工位的像素风地点母版。
+- [company-garage-master-v2.png](locations/work/company-garage-master-v2.png)：公司地库的像素风地点母版。
 - [char-ousia-sheet-v2.png](characters/char-ousia/char-ousia-sheet-v2.png)：`CHAR-OUSIA` 正式人物与核心服装设定。
 - [agents/](characters/agents/)：Poros、Ariadne、Pothos、Pharos、Kairos、Nostos 的正式 `v2` 人设。
 
