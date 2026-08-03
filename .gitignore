@@ -16,7 +16,7 @@ Thumbs.db
 *.tmp
 *.temp
 
-# Local art sources and unreviewed generations
+# Local art sources, generated CG originals, and candidate versions
 art/generated/
 art/references-local/
 art/workfiles/

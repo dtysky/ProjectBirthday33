@@ -5,6 +5,8 @@ const PAGE_BREAK_PUNCTUATION := "，。！？；：、—…,.!?;:"
 const BUBBLE_PAGE_LIMIT := 30
 const CAPTION_PAGE_LIMIT := 38
 const CENTER_PAGE_LIMIT := 32
+const BUBBLE_COLOR := Color(0.025, 0.028, 0.032, 0.90)
+const BUBBLE_BORDER_COLOR := Color(0.82, 0.86, 0.88, 0.30)
 
 var dialogue_panel: PanelContainer
 var dialogue_tail: Polygon2D
@@ -38,9 +40,16 @@ func start_line(line: Dictionary, director = null) -> void:
 	cancel_reveal()
 	current_presentation = str(line.get("presentation", "bubble"))
 	current_speaker = str(line.get("speaker", ""))
-	current_segments = paginate_text(str(line.get("text", "")), current_presentation)
-	current_segment_index = 0
 	caption_director = director
+	current_segments = []
+	if caption_director != null:
+		current_segments = caption_director.paginate_dialogue(line)
+	if current_segments.is_empty():
+		current_segments = paginate_text(
+			str(line.get("text", "")),
+			current_presentation,
+		)
+	current_segment_index = 0
 	_show_current_segment()
 
 
@@ -152,6 +161,8 @@ func _format_screen_text(text: String) -> String:
 
 
 func _format_bubble_text(text: String) -> String:
+	if text.contains("\n"):
+		return text
 	if text.length() <= 16:
 		return text
 
@@ -172,13 +183,14 @@ func _format_bubble_text(text: String) -> String:
 
 
 func _position_bubble() -> void:
+	_reset_bubble_visuals()
 	var lines := current_text.split("\n")
 	var line_count := lines.size()
 	var longest_line_chars := 1
 	for line in lines:
 		longest_line_chars = maxi(longest_line_chars, line.length())
-	var bubble_width := clampf(96.0 + longest_line_chars * 32.0, 430.0, 680.0)
-	var bubble_height := 144.0 if line_count == 1 else 190.0
+	var bubble_width := clampf(72.0 + longest_line_chars * 31.0, 410.0, 650.0)
+	var bubble_height := 120.0 if line_count == 1 else 158.0
 	var bubble_position := Vector2(600.0, 140.0)
 	var tail_ratio := 0.5
 
@@ -215,10 +227,52 @@ func _position_bubble() -> void:
 	bubble_position.y = clampf(bubble_position.y, 70.0, 950.0 - bubble_height)
 	dialogue_panel.position = bubble_position
 	dialogue_panel.size = Vector2(bubble_width, bubble_height)
+	dialogue_tail.rotation = 0.0
 	dialogue_tail.position = Vector2(
 		bubble_position.x + bubble_width * tail_ratio,
 		bubble_position.y + bubble_height - 1.0,
 	)
+	if (
+		caption_director != null
+		and caption_director.position_bubble(
+			dialogue_panel,
+			dialogue_tail,
+			current_speaker,
+			current_text,
+		)
+	):
+		return
+
+
+func _reset_bubble_visuals() -> void:
+	var style := StyleBoxFlat.new()
+	style.bg_color = BUBBLE_COLOR
+	style.border_color = BUBBLE_BORDER_COLOR
+	style.set_border_width_all(2)
+	style.corner_radius_top_left = 0
+	style.corner_radius_top_right = 0
+	style.corner_radius_bottom_left = 0
+	style.corner_radius_bottom_right = 0
+	style.shadow_color = Color(0.0, 0.0, 0.0, 0.42)
+	style.shadow_size = 5
+	dialogue_panel.add_theme_stylebox_override("panel", style)
+
+	dialogue_tail.color = BUBBLE_COLOR
+	dialogue_tail.rotation = 0.0
+	dialogue_tail.polygon = PackedVector2Array([
+		Vector2(-12.0, 0.0),
+		Vector2(12.0, 0.0),
+		Vector2(0.0, 34.0),
+	])
+
+	var margin := dialogue_panel.get_child(0) as MarginContainer
+	if margin != null:
+		margin.add_theme_constant_override("margin_left", 26)
+		margin.add_theme_constant_override("margin_top", 16)
+		margin.add_theme_constant_override("margin_right", 26)
+		margin.add_theme_constant_override("margin_bottom", 12)
+	body_label.add_theme_font_size_override("font_size", 30)
+	body_label.add_theme_constant_override("line_spacing", 7)
 
 
 func _position_caption() -> void:

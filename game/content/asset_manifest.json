@@ -1,43 +1,54 @@
 {
-  "version": 1,
+  "version": 2,
   "shots": {
     "SHOT-01": {
       "units": "G1-01",
-      "composition": "黑色空间中的正面近景",
-      "characters": "CHAR-H／H-LOOK-08（OUTFIT-H-NEUTRAL）",
-      "deliverables": "母帧、闭眼差分、睁眼差分",
-      "motion": "呼吸、睁眼",
-      "master": "res://assets/shots/shot-01/master.webp",
+      "composition": "G0 梦境占位、清晨日常、家中地库、车内与公司地库序列",
+      "characters": "CHAR-H／H-LOOK-09、H-LOOK-03，CHAR-CATS，破晓",
+      "deliverables": "六张现实段 CG、梦境占位、黑屏",
+      "motion": "同画面连续旁白、跨画面淡入、黑屏回声",
+      "master": "res://assets/shots/shot-01/g0-wake.webp",
       "variants": {
-        "open": "res://assets/shots/shot-01/open.webp"
+        "wake": "res://assets/shots/shot-01/g0-wake.webp",
+        "wash": "res://assets/shots/shot-01/g0-wash.webp",
+        "cats": "res://assets/shots/shot-01/g0-cats-goodbye.webp",
+        "board": "res://assets/shots/shot-01/g0-board-dawn.webp",
+        "drive": "res://assets/shots/shot-01/g0-driving.webp",
+        "arrive": "res://assets/shots/shot-01/g0-company-arrival.webp"
       }
     },
     "SHOT-02": {
       "units": "G1-02",
-      "composition": "园区内与同事边散步边谈工作",
-      "characters": "CHAR-H／H-LOOK-02（OUTFIT-H-WORK）、EXTRA-COWORKERS",
-      "deliverables": "母帧、干净背景、人物层、同事剪影层、前景层",
-      "motion": "有限步行暗示、园区视差",
+      "composition": "园区散步途中，主角位于五人松散讨论圈中央",
+      "characters": "CHAR-H／H-LOOK-02、TEAM-02（既定四名下属）",
+      "deliverables": "[完整 CG](../game/assets/shots/shot-02/master.webp)",
+      "motion": "极慢缓推、园区视差、轻微重心变化",
       "master": "res://assets/shots/shot-02/master.webp",
       "variants": {}
     },
     "SHOT-03": {
       "units": "G1-04",
       "composition": "山地风景前的创作表演",
-      "characters": "CHAR-H／OUTFIT-H-OUTDOOR",
-      "deliverables": "母帧、干净背景、指景姿态、收尾姿态",
-      "motion": "眨眼、衣角、云",
-      "master": "res://assets/shots/shot-03/master.webp",
-      "variants": {}
+      "characters": "CHAR-H／H-LOOK-05、Shimoda 三脚架摄影包",
+      "deliverables": "[指景 CG](../game/assets/shots/shot-03/point.webp)、[手持自拍 CG](../game/assets/shots/shot-03/thumb.webp)",
+      "motion": "第三方机位切手持自拍、云与衣角",
+      "master": "res://assets/shots/shot-03/point.webp",
+      "variants": {
+        "point": "res://assets/shots/shot-03/point.webp",
+        "thumb": "res://assets/shots/shot-03/thumb.webp"
+      }
     },
     "SHOT-04": {
       "units": "G1-06",
       "composition": "两种表演融合后的正面特写",
-      "characters": "CHAR-H／OUTFIT-H-NEUTRAL",
-      "deliverables": "完整 CG、闭眼差分、睁眼差分",
-      "motion": "呼吸、睁眼",
-      "master": "res://assets/shots/shot-04/master.webp",
-      "variants": {}
+      "characters": "CHAR-H；衣服与肩线沉入黑场",
+      "deliverables": "[闭眼 CG](../game/assets/shots/shot-04/closed.webp)、[睁眼 CG](../game/assets/shots/shot-04/open.webp)",
+      "motion": "呼吸、最后一句睁眼",
+      "master": "res://assets/shots/shot-04/closed.webp",
+      "variants": {
+        "closed": "res://assets/shots/shot-04/closed.webp",
+        "open": "res://assets/shots/shot-04/open.webp"
+      }
     },
     "SHOT-05": {
       "units": "G2-01、G2-02",
@@ -167,12 +178,15 @@
     },
     "SHOT-19": {
       "units": "G1-03",
-      "composition": "开放办公区工位中的工作收口",
-      "characters": "CHAR-H／H-LOOK-02（OUTFIT-H-WORK）",
-      "deliverables": "母帧、干净背景、人物层、屏幕层、倒影层、前景层",
-      "motion": "呼吸、屏幕微光、倒影微笑",
-      "master": "res://assets/shots/shot-19/master.webp",
-      "variants": {}
+      "composition": "凌晨两点亮灯工位中，主角重新调动疲惫的团队",
+      "characters": "CHAR-H／H-LOOK-02、TEAM-02（既定四名下属）",
+      "deliverables": "[无倒影 CG](../game/assets/shots/shot-19/base.webp)、[微笑倒影 CG](../game/assets/shots/shot-19/reflection.webp)",
+      "motion": "顶灯与屏幕微光、最后一句倒影出现",
+      "master": "res://assets/shots/shot-19/base.webp",
+      "variants": {
+        "base": "res://assets/shots/shot-19/base.webp",
+        "reflection": "res://assets/shots/shot-19/reflection.webp"
+      }
     }
   }
 }

@@ -44,6 +44,7 @@ func _ready() -> void:
 	if not story.load_story():
 		ui.show_toast("台本数据加载失败")
 		return
+	ui.set_scene_units(story.units)
 	if not asset_registry.load_manifest():
 		ui.show_toast("资产清单加载失败")
 
@@ -71,7 +72,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 
 	if event.is_action_pressed("ui_cancel"):
-		if ui.history_overlay.visible:
+		if ui.scene_select_overlay.visible:
+			ui.scene_select_overlay.visible = false
+		elif ui.history_overlay.visible:
 			ui.history_overlay.visible = false
 		elif ui.settings_overlay.visible:
 			ui.settings_overlay.visible = false
@@ -103,6 +106,8 @@ func _ui_callbacks() -> Dictionary:
 		"save_game": _save_game,
 		"load_game": _load_game,
 		"show_settings": _show_settings,
+		"show_scene_select": _show_scene_select,
+		"jump_to_scene": _jump_to_scene,
 		"save_and_return_to_title": _save_and_return_to_title,
 		"close_quick_menu": _close_quick_menu,
 		"start_new_game": _start_new_game,
@@ -134,6 +139,7 @@ func _setup_chapter_directors() -> void:
 		"host": self,
 		"story": story,
 		"asset_registry": asset_registry,
+		"master_texture": ui.master_texture,
 		"fx_layer": ui.chapter_fx_layer,
 		"dialogue_panel": ui.dialogue_panel,
 		"dialogue_tail": ui.dialogue_tail,
@@ -151,6 +157,7 @@ func _start_new_game() -> void:
 	ui.title_overlay.visible = false
 	ui.ending_overlay.visible = false
 	ui.quick_menu_overlay.visible = false
+	ui.scene_select_overlay.visible = false
 	ui.menu_button.visible = true
 	story.start_at(0, 0)
 
@@ -271,6 +278,38 @@ func _show_settings() -> void:
 	ui.settings_overlay.visible = true
 
 
+func _show_scene_select() -> void:
+	auto_timer.stop()
+	ui.quick_menu_overlay.visible = false
+	ui.show_scene_selector(story.unit_index)
+
+
+func _jump_to_scene(unit_index: int) -> void:
+	if story.units.is_empty():
+		return
+	auto_timer.stop()
+	dialogue_presenter.cancel_reveal()
+	if active_chapter_director != null:
+		active_chapter_director.leave()
+		active_chapter_director = null
+	is_auto = false
+	ui.auto_button.text = "自动"
+	ui.title_overlay.visible = false
+	ui.ending_overlay.visible = false
+	ui.quick_menu_overlay.visible = false
+	ui.scene_select_overlay.visible = false
+	ui.dialogue_panel.visible = false
+	ui.dialogue_tail.visible = false
+	ui.center_line_label.visible = false
+	ui.menu_button.visible = true
+	history_entries.clear()
+	history_keys.clear()
+	ui.history_text.text = ""
+	var safe_index := clampi(unit_index, 0, story.units.size() - 1)
+	story.start_at(safe_index, 0)
+	ui.show_toast("已进入 %s" % story.get_current_unit().get("id", ""))
+
+
 func _save_game() -> void:
 	if story.units.is_empty():
 		return
@@ -295,6 +334,7 @@ func _load_game() -> void:
 	ui.title_overlay.visible = false
 	ui.ending_overlay.visible = false
 	ui.quick_menu_overlay.visible = false
+	ui.scene_select_overlay.visible = false
 	ui.menu_button.visible = true
 	story.start_at(
 		int(state.get("unit_index", 0)),
@@ -387,5 +427,6 @@ func _has_blocking_overlay() -> bool:
 		or ui.ending_overlay.visible
 		or ui.history_overlay.visible
 		or ui.settings_overlay.visible
+		or ui.scene_select_overlay.visible
 		or ui.quick_menu_overlay.visible
 	)

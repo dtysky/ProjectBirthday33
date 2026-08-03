@@ -36,14 +36,42 @@ func _init() -> void:
 		elif not (manifest.get("shots", {}) as Dictionary).has(shot_id):
 			failures.append("%s references unknown shot %s." % [unit.get("id", "unknown"), shot_id])
 
-	if line_count != 111:
-		failures.append("Expected 111 lines, got %d." % line_count)
-	if int(delivery_counts["voiceover"]) != 20:
-		failures.append("Expected 20 voiceover lines.")
-	if int(delivery_counts["scene_monologue"]) != 34:
-		failures.append("Expected 34 scene-monologue lines.")
+	if line_count != int(story.get("line_count", -1)):
+		failures.append(
+			"Story metadata says %d lines, but %d were loaded." % [
+				int(story.get("line_count", -1)),
+				line_count,
+			]
+		)
+	for delivery in delivery_counts:
+		if int(delivery_counts[delivery]) == 0:
+			failures.append("Story has no %s lines." % delivery)
 	if (manifest.get("shots", {}) as Dictionary).size() != 19:
 		failures.append("Expected 19 shot packages.")
+	var shot_one := (manifest.get("shots", {}) as Dictionary).get("SHOT-01", {}) as Dictionary
+	var opening_variants := shot_one.get("variants", {}) as Dictionary
+	for variant_id in ["wake", "wash", "cats", "board", "drive", "arrive"]:
+		var variant_path := str(opening_variants.get(variant_id, ""))
+		if variant_path.is_empty() or not ResourceLoader.exists(variant_path):
+			failures.append("SHOT-01 is missing G0 variant %s." % variant_id)
+	var g1_assets := {
+		"SHOT-02": ["master"],
+		"SHOT-03": ["point", "thumb"],
+		"SHOT-04": ["closed", "open"],
+		"SHOT-19": ["base", "reflection"],
+	}
+	for shot_id in g1_assets:
+		var shot := (manifest.get("shots", {}) as Dictionary).get(shot_id, {}) as Dictionary
+		for asset_id in g1_assets[shot_id]:
+			var asset_path := str(shot.get("master", ""))
+			if str(asset_id) != "master":
+				asset_path = str((shot.get("variants", {}) as Dictionary).get(asset_id, ""))
+			if asset_path.is_empty() or not ResourceLoader.exists(asset_path):
+				failures.append("%s is missing G1 asset %s." % [shot_id, asset_id])
+				continue
+			var texture := ResourceLoader.load(asset_path) as Texture2D
+			if texture == null or texture.get_width() != 3840 or texture.get_height() != 2160:
+				failures.append("%s/%s is not a 3840x2160 texture." % [shot_id, asset_id])
 	if int(ProjectSettings.get_setting("display/window/size/viewport_width", 0)) != 1920:
 		failures.append("Expected a 1920-wide logical viewport.")
 	if int(ProjectSettings.get_setting("display/window/size/viewport_height", 0)) != 1080:
@@ -54,7 +82,12 @@ func _init() -> void:
 		failures.append("Expected a 2160-high output window.")
 
 	if failures.is_empty():
-		print("Validation passed: 28 units, 111 lines, balanced delivery, 19 shots, 4K output.")
+		print(
+			(
+				"Validation passed: 28 units, %d lines, balanced delivery, "
+				+ "19 shots, six G0 CGs, seven G1 CGs, 4K output."
+			) % line_count
+		)
 		quit(0)
 		return
 

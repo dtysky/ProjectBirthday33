@@ -37,6 +37,19 @@ func position_caption(_label: Label, _presentation: String) -> bool:
 	return false
 
 
+func paginate_dialogue(_line: Dictionary) -> Array[String]:
+	return []
+
+
+func position_bubble(
+	_panel: PanelContainer,
+	_tail: Polygon2D,
+	_speaker: String,
+	_text: String,
+) -> bool:
+	return false
+
+
 func resume() -> bool:
 	return false
 

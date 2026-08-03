@@ -32,6 +32,9 @@ var title_overlay: ColorRect
 var history_overlay: ColorRect
 var history_text: RichTextLabel
 var settings_overlay: ColorRect
+var scene_select_overlay: ColorRect
+var scene_list: ItemList
+var scene_chapter_label: Label
 var ending_overlay: ColorRect
 var toast_label: Label
 var text_speed_slider: HSlider
@@ -39,6 +42,9 @@ var auto_delay_slider: HSlider
 var volume_slider: HSlider
 var fullscreen_toggle: CheckButton
 var toast_timer: Timer
+var scene_units: Array = []
+var scene_unit_indices: Array[int] = []
+var selected_scene_chapter := 1
 
 
 func build(
@@ -54,6 +60,7 @@ func build(
 	_build_center_line()
 	_build_quick_menu()
 	_build_title_screen()
+	_build_scene_selector()
 	_build_history()
 	_build_settings(initial_settings)
 	_build_ending()
@@ -81,6 +88,25 @@ func show_toast(message: String) -> void:
 	toast_label.text = message
 	toast_label.visible = true
 	toast_timer.start()
+
+
+func set_scene_units(units: Array) -> void:
+	scene_units = units
+	_populate_scene_list(selected_scene_chapter)
+
+
+func show_scene_selector(current_unit_index: int) -> void:
+	if scene_units.is_empty():
+		return
+	var safe_index := clampi(current_unit_index, 0, scene_units.size() - 1)
+	var unit := scene_units[safe_index] as Dictionary
+	_populate_scene_list(int(unit.get("chapter", 1)))
+	for item_index in range(scene_unit_indices.size()):
+		if scene_unit_indices[item_index] == safe_index:
+			scene_list.select(item_index)
+			scene_list.ensure_current_is_visible()
+			break
+	scene_select_overlay.visible = true
 
 
 func _build_stage() -> void:
@@ -139,11 +165,11 @@ func _build_debug_meta() -> void:
 func _build_dialogue() -> void:
 	dialogue_tail = Polygon2D.new()
 	dialogue_tail.name = "DialogueTail"
-	dialogue_tail.color = Color(0.035, 0.035, 0.038, 0.82)
+	dialogue_tail.color = Color(0.025, 0.028, 0.032, 0.90)
 	dialogue_tail.polygon = PackedVector2Array([
-		Vector2(-18.0, 0.0),
-		Vector2(18.0, 0.0),
-		Vector2(0.0, 38.0),
+		Vector2(-12.0, 0.0),
+		Vector2(12.0, 0.0),
+		Vector2(0.0, 34.0),
 	])
 	dialogue_tail.visible = false
 	host.add_child(dialogue_tail)
@@ -155,15 +181,15 @@ func _build_dialogue() -> void:
 	dialogue_panel.size = Vector2(520.0, 144.0)
 	dialogue_panel.add_theme_stylebox_override(
 		"panel",
-		_rounded_style(Color(0.035, 0.035, 0.038, 0.82), 22),
+		_bubble_style(),
 	)
 	host.add_child(dialogue_panel)
 
 	var margin := MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 32)
-	margin.add_theme_constant_override("margin_top", 24)
-	margin.add_theme_constant_override("margin_right", 32)
-	margin.add_theme_constant_override("margin_bottom", 18)
+	margin.add_theme_constant_override("margin_left", 26)
+	margin.add_theme_constant_override("margin_top", 16)
+	margin.add_theme_constant_override("margin_right", 26)
+	margin.add_theme_constant_override("margin_bottom", 12)
 	dialogue_panel.add_child(margin)
 
 	var box := VBoxContainer.new()
@@ -174,8 +200,8 @@ func _build_dialogue() -> void:
 	body_label.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	body_label.autowrap_mode = TextServer.AUTOWRAP_OFF
 	body_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	body_label.add_theme_font_size_override("font_size", 32)
-	body_label.add_theme_constant_override("line_spacing", 8)
+	body_label.add_theme_font_size_override("font_size", 30)
+	body_label.add_theme_constant_override("line_spacing", 7)
 	box.add_child(body_label)
 
 	var marker_row := HBoxContainer.new()
@@ -248,9 +274,9 @@ func _build_quick_menu() -> void:
 
 	var panel := PanelContainer.new()
 	panel.anchor_left = 0.40
-	panel.anchor_top = 0.26
+	panel.anchor_top = 0.18
 	panel.anchor_right = 0.60
-	panel.anchor_bottom = 0.74
+	panel.anchor_bottom = 0.82
 	panel.add_theme_stylebox_override("panel", _rounded_style(Color("#15191a"), 18))
 	quick_menu_overlay.add_child(panel)
 
@@ -280,6 +306,7 @@ func _build_quick_menu() -> void:
 	box.add_child(_make_button("保存", callbacks["save_game"]))
 	box.add_child(_make_button("读取", callbacks["load_game"]))
 	box.add_child(_make_button("设置", callbacks["show_settings"]))
+	box.add_child(_make_button("场景选择", callbacks["show_scene_select"]))
 	box.add_child(_make_button("返回标题", callbacks["save_and_return_to_title"]))
 
 	var final_gap := Control.new()
@@ -325,8 +352,124 @@ func _build_title_screen() -> void:
 	box.add_child(_make_button("开始", callbacks["start_new_game"], 360))
 	continue_button = _make_button("继续", callbacks["load_game"], 360)
 	box.add_child(continue_button)
+	box.add_child(_make_button("场景选择", callbacks["show_scene_select"], 360))
 	box.add_child(_make_button("设置", callbacks["show_settings"], 360))
 	box.add_child(_make_button("退出", callbacks["quit_game"], 360))
+
+
+func _build_scene_selector() -> void:
+	scene_select_overlay = ColorRect.new()
+	scene_select_overlay.name = "SceneSelectOverlay"
+	scene_select_overlay.color = Color(0.0, 0.0, 0.0, 0.78)
+	scene_select_overlay.mouse_filter = Control.MOUSE_FILTER_STOP
+	scene_select_overlay.visible = false
+	_set_full_rect(scene_select_overlay)
+	host.add_child(scene_select_overlay)
+
+	var panel := PanelContainer.new()
+	panel.anchor_left = 0.19
+	panel.anchor_top = 0.10
+	panel.anchor_right = 0.81
+	panel.anchor_bottom = 0.90
+	panel.add_theme_stylebox_override("panel", _panel_style(Color("#15191a")))
+	scene_select_overlay.add_child(panel)
+
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 38)
+	margin.add_theme_constant_override("margin_top", 30)
+	margin.add_theme_constant_override("margin_right", 38)
+	margin.add_theme_constant_override("margin_bottom", 30)
+	panel.add_child(margin)
+
+	var box := VBoxContainer.new()
+	box.add_theme_constant_override("separation", 18)
+	margin.add_child(box)
+
+	var header := HBoxContainer.new()
+	box.add_child(header)
+	var title := Label.new()
+	title.text = "章节与场景"
+	title.add_theme_font_size_override("font_size", 30)
+	header.add_child(title)
+	var header_spacer := Control.new()
+	header_spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	header.add_child(header_spacer)
+	header.add_child(_make_button(
+		"关闭",
+		func() -> void: scene_select_overlay.visible = false,
+	))
+
+	var chapter_row := HBoxContainer.new()
+	chapter_row.add_theme_constant_override("separation", 10)
+	box.add_child(chapter_row)
+	for chapter in range(1, 6):
+		chapter_row.add_child(_make_button(
+			"G%d" % chapter,
+			_populate_scene_list.bind(chapter),
+			104,
+		))
+	var chapter_spacer := Control.new()
+	chapter_spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	chapter_row.add_child(chapter_spacer)
+	scene_chapter_label = Label.new()
+	scene_chapter_label.add_theme_font_size_override("font_size", 18)
+	scene_chapter_label.modulate = Color(1.0, 1.0, 1.0, 0.56)
+	chapter_row.add_child(scene_chapter_label)
+
+	scene_list = ItemList.new()
+	scene_list.name = "SceneList"
+	scene_list.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scene_list.add_theme_font_size_override("font_size", 22)
+	scene_list.add_theme_constant_override("v_separation", 9)
+	scene_list.item_activated.connect(_activate_scene_item)
+	box.add_child(scene_list)
+
+	var footer := HBoxContainer.new()
+	footer.add_theme_constant_override("separation", 12)
+	box.add_child(footer)
+	var hint := Label.new()
+	hint.text = "双击场景，或选中后进入"
+	hint.modulate = Color(1.0, 1.0, 1.0, 0.48)
+	hint.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	footer.add_child(hint)
+	footer.add_child(_make_button("进入场景", _activate_selected_scene, 180))
+
+
+func _populate_scene_list(chapter: int) -> void:
+	selected_scene_chapter = chapter
+	if scene_list == null:
+		return
+	scene_chapter_label.text = "第 %d 章" % chapter
+	scene_list.clear()
+	scene_unit_indices.clear()
+	for unit_index in range(scene_units.size()):
+		var unit := scene_units[unit_index] as Dictionary
+		if int(unit.get("chapter", 1)) != chapter:
+			continue
+		scene_unit_indices.append(unit_index)
+		var item_index := scene_list.add_item("%s    %s" % [
+			unit.get("id", ""),
+			unit.get("title", ""),
+		])
+		scene_list.set_item_tooltip(
+			item_index,
+			str(unit.get("production", "")),
+		)
+	if scene_list.item_count > 0:
+		scene_list.select(0)
+
+
+func _activate_selected_scene() -> void:
+	var selected := scene_list.get_selected_items()
+	if selected.is_empty():
+		return
+	_activate_scene_item(int(selected[0]))
+
+
+func _activate_scene_item(item_index: int) -> void:
+	if item_index < 0 or item_index >= scene_unit_indices.size():
+		return
+	callbacks["jump_to_scene"].call(scene_unit_indices[item_index])
 
 
 func _build_history() -> void:
@@ -574,6 +717,15 @@ func _rounded_style(color: Color, radius: int) -> StyleBoxFlat:
 	style.corner_radius_top_right = radius
 	style.corner_radius_bottom_left = radius
 	style.corner_radius_bottom_right = radius
+	return style
+
+
+func _bubble_style() -> StyleBoxFlat:
+	var style := _rounded_style(Color(0.025, 0.028, 0.032, 0.90), 0)
+	style.border_color = Color(0.82, 0.86, 0.88, 0.30)
+	style.set_border_width_all(2)
+	style.shadow_color = Color(0.0, 0.0, 0.0, 0.42)
+	style.shadow_size = 5
 	return style
 
 

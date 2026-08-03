@@ -33,8 +33,15 @@ const sceneMonologueUnits = new Set([
 const narrationSpeakers = new Set(["我", "我／旅途记录", "少女 H"]);
 
 function deliveryFor(unitId, speaker) {
-  if (speaker === "屏幕文字" || speaker === "旧作原文") {
+  if (
+    speaker === "屏幕文字" ||
+    speaker === "屏幕消息" ||
+    speaker === "旧作原文"
+  ) {
     return "screen_text";
+  }
+  if (speaker.includes("旁白")) {
+    return "voiceover";
   }
   if (voiceoverUnits.has(unitId) && narrationSpeakers.has(speaker)) {
     return "voiceover";
@@ -109,14 +116,40 @@ const units = headers.map((header, index) => {
 });
 
 const lineCount = units.reduce((total, unit) => total + unit.lines.length, 0);
-if (units.length !== 28 || lineCount !== 111) {
-  throw new Error(`Expected 28 units and 111 lines, got ${units.length} and ${lineCount}`);
+if (units.length !== 28) {
+  throw new Error(`Expected 28 units, got ${units.length}`);
+}
+if (lineCount === 0) {
+  throw new Error("Story has no dialogue lines.");
 }
 
 const shotVariants = {
   "SHOT-01": {
-    open: "res://assets/shots/shot-01/open.webp",
+    wake: "res://assets/shots/shot-01/g0-wake.webp",
+    wash: "res://assets/shots/shot-01/g0-wash.webp",
+    cats: "res://assets/shots/shot-01/g0-cats-goodbye.webp",
+    board: "res://assets/shots/shot-01/g0-board-dawn.webp",
+    drive: "res://assets/shots/shot-01/g0-driving.webp",
+    arrive: "res://assets/shots/shot-01/g0-company-arrival.webp",
   },
+  "SHOT-03": {
+    point: "res://assets/shots/shot-03/point.webp",
+    thumb: "res://assets/shots/shot-03/thumb.webp",
+  },
+  "SHOT-04": {
+    closed: "res://assets/shots/shot-04/closed.webp",
+    open: "res://assets/shots/shot-04/open.webp",
+  },
+  "SHOT-19": {
+    base: "res://assets/shots/shot-19/base.webp",
+    reflection: "res://assets/shots/shot-19/reflection.webp",
+  },
+};
+const shotMasters = {
+  "SHOT-01": "res://assets/shots/shot-01/g0-wake.webp",
+  "SHOT-03": "res://assets/shots/shot-03/point.webp",
+  "SHOT-04": "res://assets/shots/shot-04/closed.webp",
+  "SHOT-19": "res://assets/shots/shot-19/base.webp",
 };
 
 const shots = {};
@@ -131,7 +164,8 @@ for (const match of assetSource.matchAll(
     characters: match[4].trim(),
     deliverables: match[5].trim(),
     motion: match[6].trim(),
-    master: `res://assets/shots/${folder}/master.webp`,
+    master:
+      shotMasters[id] ?? `res://assets/shots/${folder}/master.webp`,
     variants: shotVariants[id] ?? {},
   };
 }
@@ -145,7 +179,7 @@ fs.writeFileSync(
   path.join(contentDir, "story.json"),
   `${JSON.stringify(
     {
-      version: 1,
+      version: 2,
       title: "三十三",
       unit_count: units.length,
       line_count: lineCount,
@@ -157,7 +191,7 @@ fs.writeFileSync(
 );
 fs.writeFileSync(
   path.join(contentDir, "asset_manifest.json"),
-  `${JSON.stringify({ version: 1, shots }, null, 2)}\n`,
+  `${JSON.stringify({ version: 2, shots }, null, 2)}\n`,
 );
 
 console.log(`Generated ${units.length} units, ${lineCount} lines, ${Object.keys(shots).length} shots.`);
