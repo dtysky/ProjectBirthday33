@@ -52,6 +52,13 @@ function deliveryFor(unitId, speaker) {
   return "dialogue";
 }
 
+function deliveryForShot(unitId, speaker, shotId) {
+  if (unitId === "G3-03") {
+    return shotId === "SHOT-09" ? "dialogue" : "voiceover";
+  }
+  return deliveryFor(unitId, speaker);
+}
+
 function presentationFor(delivery) {
   if (delivery === "screen_text") {
     return "center";
@@ -60,6 +67,37 @@ function presentationFor(delivery) {
     return "caption";
   }
   return "bubble";
+}
+
+function parseSceneLines(section, unitId, defaultShot) {
+  const lines = [];
+  let currentShot = defaultShot;
+
+  for (const sourceLine of section.split(/\r?\n/)) {
+    const shotMarker = sourceLine.match(/^独立美术资源：`(SHOT-\d{2})`。$/);
+    if (shotMarker) {
+      currentShot = shotMarker[1];
+      continue;
+    }
+
+    const dialogue = sourceLine.match(/^> \*\*([^*]+)：\*\*\s*(.+)$/);
+    if (!dialogue) {
+      continue;
+    }
+
+    const speaker = dialogue[1].trim();
+    const delivery = deliveryForShot(unitId, speaker, currentShot);
+    lines.push({
+      id: `${unitId}-${String(lines.length + 1).padStart(2, "0")}`,
+      speaker,
+      text: dialogue[2].trim(),
+      delivery,
+      presentation: presentationFor(delivery),
+      shot: currentShot,
+    });
+  }
+
+  return lines;
 }
 
 const mapping = new Map();
@@ -82,24 +120,12 @@ const units = headers.map((header, index) => {
   const start = header.index + header[0].length;
   const end = index + 1 < headers.length ? headers[index + 1].index : sceneSource.length;
   const section = sceneSource.slice(start, end);
-  const lines = [...section.matchAll(/^> \*\*([^*]+)：\*\*\s*(.+)$/gm)].map(
-    (line, lineIndex) => {
-      const speaker = line[1].trim();
-      const delivery = deliveryFor(header[1], speaker);
-      return {
-        id: `${header[1]}-${String(lineIndex + 1).padStart(2, "0")}`,
-        speaker,
-        text: line[2].trim(),
-        delivery,
-        presentation: presentationFor(delivery),
-      };
-    },
-  );
   const assets = mapping.get(header[1]);
 
   if (!assets) {
     throw new Error(`Missing asset mapping for ${header[1]}`);
   }
+  const lines = parseSceneLines(section, header[1], assets.shot);
   if (lines.length === 0) {
     throw new Error(`Scene ${header[1]} has no dialogue lines`);
   }
@@ -170,8 +196,8 @@ for (const match of assetSource.matchAll(
   };
 }
 
-if (Object.keys(shots).length !== 19) {
-  throw new Error(`Expected 19 shot packages, got ${Object.keys(shots).length}`);
+if (Object.keys(shots).length !== 42) {
+  throw new Error(`Expected 42 shot packages, got ${Object.keys(shots).length}`);
 }
 
 fs.mkdirSync(contentDir, { recursive: true });

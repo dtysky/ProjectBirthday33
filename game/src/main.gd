@@ -32,6 +32,7 @@ func _ready() -> void:
 	dialogue_presenter.setup(
 		ui.dialogue_panel,
 		ui.dialogue_tail,
+		ui.speaker_label,
 		ui.body_label,
 		ui.center_line_label,
 	)
@@ -137,6 +138,7 @@ func _setup_chapter_directors() -> void:
 	}
 	var director_context := {
 		"host": self,
+		"ui": ui,
 		"story": story,
 		"asset_registry": asset_registry,
 		"master_texture": ui.master_texture,

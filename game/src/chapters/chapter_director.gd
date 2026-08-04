@@ -41,6 +41,10 @@ func paginate_dialogue(_line: Dictionary) -> Array[String]:
 	return []
 
 
+func uses_speaker_label() -> bool:
+	return false
+
+
 func position_bubble(
 	_panel: PanelContainer,
 	_tail: Polygon2D,

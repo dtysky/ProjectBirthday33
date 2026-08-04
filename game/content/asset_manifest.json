@@ -51,65 +51,65 @@
       }
     },
     "SHOT-05": {
-      "units": "G2-01、G2-02",
-      "composition": "园区中的静止坐姿与倒影",
-      "characters": "CHAR-H／OUTFIT-H-WORK",
-      "deliverables": "母帧、干净背景、低头坐姿、抬眼差分、倒影层",
-      "motion": "呼吸、一次抬眼、缓推",
+      "units": "G2-01",
+      "composition": "转岗前夜，在旧公司工位从纪录片计划转向游戏机会",
+      "characters": "CHAR-H／H-LOOK-04",
+      "deliverables": "[试制母帧](../game/assets/shots/shot-05/master.webp)；`plan`、`accepted` 差分待实机审查后决定",
+      "motion": "光标、手部移动、确认状态",
       "master": "res://assets/shots/shot-05/master.webp",
       "variants": {}
     },
     "SHOT-06": {
-      "units": "G2-03",
-      "composition": "意识道路近端的背影",
-      "characters": "CHAR-H／OUTFIT-H-NEUTRAL",
-      "deliverables": "母帧、道路背景、背影层、光点层",
-      "motion": "像素流动",
+      "units": "G2-02",
+      "composition": "白天同一组工位从一个人增加到五个人",
+      "characters": "CHAR-H／H-LOOK-03、CHAR-TEAM（我／丁／乙／丙／甲）",
+      "deliverables": "[试制母帧](../game/assets/shots/shot-06/master.webp)；成员进入差分待实机审查后决定",
+      "motion": "成员依次进入、办公底噪增加",
       "master": "res://assets/shots/shot-06/master.webp",
       "variants": {}
     },
     "SHOT-07": {
-      "units": "G2-04、G2-05",
-      "composition": "七名 Agent 的统一群像",
-      "characters": "CHAR-AGENTS",
-      "deliverables": "群像母帧、七人独立亮度层、专属意象层",
-      "motion": "逐人点亮",
+      "units": "G2-03",
+      "composition": "公司食堂小火锅桌前，五人围着蓝色蛋糕庆祝即将上线",
+      "characters": "CHAR-H／H-LOOK-08、CHAR-TEAM（我／丁／乙／丙／甲）",
+      "deliverables": "[试制母帧](../game/assets/shots/shot-07/master.webp)；切蛋糕与递盘差分待定",
+      "motion": "轻微说笑、递盘",
       "master": "res://assets/shots/shot-07/master.webp",
       "variants": {}
     },
     "SHOT-08": {
-      "units": "G2-06",
-      "composition": "道路尽头的 Ousia 与我的背影",
-      "characters": "CHAR-H／OUTFIT-H-NEUTRAL、CHAR-OUSIA／OUTFIT-OUSIA",
-      "deliverables": "母帧、前景背影、Ousia 层、光点层",
-      "motion": "Ousia 眨眼、光点收束",
+      "units": "G2-04",
+      "composition": "项目被拆后五人在原工位讨论去留",
+      "characters": "CHAR-H／H-LOOK-02、CHAR-TEAM（我／丁／乙／丙／甲）",
+      "deliverables": "[试制母帧](../game/assets/shots/shot-08/master.webp)；视线与坐姿差分待定",
+      "motion": "轻微重心变化",
       "master": "res://assets/shots/shot-08/master.webp",
       "variants": {}
     },
     "SHOT-09": {
-      "units": "G3-01、G3-02、G3-04、G3-05",
-      "composition": "阅览室长桌两端",
-      "characters": "CHAR-H／OUTFIT-H-NEUTRAL、CHAR-OUSIA／OUTFIT-OUSIA",
-      "deliverables": "母帧、干净背景、两名人物层、吊灯层、纸页层",
-      "motion": "Ousia 姿态差分、灯光变化",
+      "units": "G3-02",
+      "composition": "我和 Ousia 并坐在纯白花海空地，聊天设备低位放在两人之间",
+      "characters": "CHAR-H／H-LOOK-04、CHAR-OUSIA／OUTFIT-OUSIA",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-09/master.webp)、SRC-01 屏幕层待替换",
+      "motion": "屏幕刷新、视线交换、花影风动",
       "master": "res://assets/shots/shot-09/master.webp",
       "variants": {}
     },
     "SHOT-10": {
       "units": "G3-03",
-      "composition": "卧室仰视中的吊灯与侧面检索屏",
-      "characters": "无人物正面",
-      "deliverables": "母帧、眨眼遮罩、屏幕区域、吊灯光层",
-      "motion": "眨眼、检索原件播放",
+      "composition": "深夜普通卧室中，躺在床上的第一人称视线直视开着的圆形吸顶灯，周围保留天花板和房间边缘",
+      "characters": "无可见人物",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-10/master.webp)、SRC-03 全屏证据切片待替换",
+      "motion": "灯芯与视野边缘曝光呼吸、完整二十秒检索切入",
       "master": "res://assets/shots/shot-10/master.webp",
       "variants": {}
     },
     "SHOT-11": {
       "units": "G3-06",
-      "composition": "白纸、影子与并肩近景",
-      "characters": "CHAR-H／OUTFIT-H-NEUTRAL、CHAR-OUSIA／OUTFIT-OUSIA",
-      "deliverables": "完整 CG、影子遮罩、白纸层",
-      "motion": "影子延伸、白纸亮起",
+      "composition": "花海俯斜手部近景，Ousia 在空白页旁放下笔，我伸手接近",
+      "characters": "CHAR-H／H-LOOK-04、CHAR-OUSIA／OUTFIT-OUSIA",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-11/master.webp)、G4 旧作投影层待补",
+      "motion": "落笔、手靠近、纸面投影与推近",
       "master": "res://assets/shots/shot-11/master.webp",
       "variants": {}
     },
@@ -187,6 +187,213 @@
         "base": "res://assets/shots/shot-19/base.webp",
         "reflection": "res://assets/shots/shot-19/reflection.webp"
       }
+    },
+    "SHOT-20": {
+      "units": "G2-05",
+      "composition": "陶波湖岸草地上的远程答辩",
+      "characters": "CHAR-H／H-LOOK-05、低细节远程与会者",
+      "deliverables": "[试制母帧](../game/assets/shots/shot-20/master.webp)；会议屏幕已烘焙",
+      "motion": "网络刷新、屏幕微光",
+      "master": "res://assets/shots/shot-20/master.webp",
+      "variants": {}
+    },
+    "SHOT-21": {
+      "units": "G2-06",
+      "composition": "木质坡顶、深绿墙面餐厅中的组员丙送别宴",
+      "characters": "CHAR-H／H-LOOK-03、CHAR-TEAM（丙／甲／乙）",
+      "deliverables": "[试制母帧](../game/assets/shots/shot-21/master.webp)；`after-banquet` 待实机审查后决定",
+      "motion": "夹菜、放杯、缓推、饭后空桌",
+      "master": "res://assets/shots/shot-21/master.webp",
+      "variants": {}
+    },
+    "SHOT-22": {
+      "units": "G2-02",
+      "composition": "凌晨两点五人在办公室排查最后一个内存问题",
+      "characters": "CHAR-H／H-LOOK-03、CHAR-TEAM（我／丁／乙／丙／甲）",
+      "deliverables": "[试制母帧](../game/assets/shots/shot-22/master.webp)；当前为 `memory-high` 状态",
+      "motion": "数值刷新、奶茶落桌、缓推",
+      "master": "res://assets/shots/shot-22/master.webp",
+      "variants": {}
+    },
+    "SHOT-23": {
+      "units": "G2-03",
+      "composition": "科兴科学园雨后沿街步道散步时收到再次延期的消息",
+      "characters": "CHAR-H／H-LOOK-08、CHAR-TEAM（我／丁／乙／丙／甲）",
+      "deliverables": "[试制母帧](../game/assets/shots/shot-23/master.webp)；消息屏幕已烘焙",
+      "motion": "停步、回头、屏幕亮起",
+      "master": "res://assets/shots/shot-23/master.webp",
+      "variants": {}
+    },
+    "SHOT-24": {
+      "units": "G2-03",
+      "composition": "项目后来终于上线，但已经与我无关",
+      "characters": "CHAR-H／H-LOOK-08",
+      "deliverables": "[试制母帧](../game/assets/shots/shot-24/master.webp)；上线页面已烘焙",
+      "motion": "屏幕滚动、缓推",
+      "master": "res://assets/shots/shot-24/master.webp",
+      "variants": {}
+    },
+    "SHOT-25": {
+      "units": "G2-04",
+      "composition": "工位上查看两次五星、T11 与团队高绩效证据",
+      "characters": "CHAR-H／H-LOOK-02",
+      "deliverables": "[试制母帧](../game/assets/shots/shot-25/master.webp)；绩效页面已烘焙",
+      "motion": "三条证据依次出现",
+      "master": "res://assets/shots/shot-25/master.webp",
+      "variants": {}
+    },
+    "SHOT-26": {
+      "units": "G2-04",
+      "composition": "小会议室中填写不可能完成的数据预测",
+      "characters": "CHAR-H／H-LOOK-02、低细节同事",
+      "deliverables": "[试制母帧](../game/assets/shots/shot-26/master.webp)；数据表已烘焙",
+      "motion": "数字填写、翻页",
+      "master": "res://assets/shots/shot-26/master.webp",
+      "variants": {}
+    },
+    "SHOT-27": {
+      "units": "G2-04",
+      "composition": "原工位前与准备去网易的组员丁告别",
+      "characters": "CHAR-H／H-LOOK-02、CHAR-TEAM 组员丁",
+      "deliverables": "[试制母帧](../game/assets/shots/shot-27/master.webp)；背包与暗屏状态已烘焙",
+      "motion": "背包、点头、脚步",
+      "master": "res://assets/shots/shot-27/master.webp",
+      "variants": {}
+    },
+    "SHOT-28": {
+      "units": "G2-05",
+      "composition": "第一次竞聘后任务重新落回我身上",
+      "characters": "CHAR-H／H-LOOK-05",
+      "deliverables": "[试制母帧](../game/assets/shots/shot-28/master.webp)；任务回流页面已烘焙",
+      "motion": "任务回流、提示刷新",
+      "master": "res://assets/shots/shot-28/master.webp",
+      "variants": {}
+    },
+    "SHOT-29": {
+      "units": "G2-05",
+      "composition": "深圳竞聘结束后会议室中与某 HR 两人谈话",
+      "characters": "CHAR-H／H-LOOK-04、低细节某 HR",
+      "deliverables": "[试制母帧](../game/assets/shots/shot-29/master.webp)；结果页轻度失焦",
+      "motion": "翻页、抬眼、缓推",
+      "master": "res://assets/shots/shot-29/master.webp",
+      "variants": {}
+    },
+    "SHOT-30": {
+      "units": "G2-05",
+      "composition": "两周后我与甲、乙、丙共同看到职责再次调整",
+      "characters": "CHAR-H／H-LOOK-04、CHAR-TEAM（甲／乙／丙）",
+      "deliverables": "[试制母帧](../game/assets/shots/shot-30/master.webp)；职责通知已烘焙",
+      "motion": "通知滚动、耸肩",
+      "master": "res://assets/shots/shot-30/master.webp",
+      "variants": {}
+    },
+    "SHOT-31": {
+      "units": "G2-05",
+      "composition": "远程会议中指出决策儿戏并触发第二次竞聘",
+      "characters": "CHAR-H／H-LOOK-05、低细节参会者",
+      "deliverables": "[试制母帧](../game/assets/shots/shot-31/master.webp)；重新竞聘通知已烘焙",
+      "motion": "会议刷新、通知出现",
+      "master": "res://assets/shots/shot-31/master.webp",
+      "variants": {}
+    },
+    "SHOT-32": {
+      "units": "G3-01",
+      "composition": "Poros 在真实家中把离职后的生活换成月度跑道，我坐在旅行装备旁听他说明",
+      "characters": "AGENT-POROS `v2`、CHAR-H／H-LOOK-04、CHAR-CATS `v1`",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-32/master.webp)、墙屏跑道与警戒线前后状态",
+      "motion": "点选、视线移动、红线后退",
+      "master": "res://assets/shots/shot-32/master.webp",
+      "variants": {}
+    },
+    "SHOT-33": {
+      "units": "G3-01",
+      "composition": "Ariadne 与我并肩穿过植物园，在真实岔路前区分“正常”和“同行”",
+      "characters": "AGENT-ARIADNE `v2`、CHAR-H／H-LOOK-04",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-33/master.webp)、手机证据层、Godot 路牌标签",
+      "motion": "同行、停顿、回头、花叶风动",
+      "master": "res://assets/shots/shot-33/master.webp",
+      "variants": {}
+    },
+    "SHOT-34": {
+      "units": "G3-01",
+      "composition": "Pothos 在黑盒剧场推动带轮人生场景板，露出被延期的真正主题",
+      "characters": "AGENT-POTHOS `v2`",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-34/master.webp)、五块场景板与主题状态",
+      "motion": "站立推动、脚轮、舞台灯亮起",
+      "master": "res://assets/shots/shot-34/master.webp",
+      "variants": {}
+    },
+    "SHOT-35": {
+      "units": "G3-01",
+      "composition": "我在高地花甸操作相机，Pharos 在旁核对路线、天气、抵达时间和落日并提示机位",
+      "characters": "AGENT-PHAROS `v2`、CHAR-H／H-LOOK-04",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-35/master.webp)、取景器／终端、粗略与锁定状态",
+      "motion": "我微调相机，Pharos 核对终端并短促提示山脊",
+      "master": "res://assets/shots/shot-35/master.webp",
+      "variants": {}
+    },
+    "SHOT-36": {
+      "units": "G3-01",
+      "composition": "Kairos 在小型放映厅重排投影素材，我坐在观众席共同观看",
+      "characters": "AGENT-KAIROS `v2`、CHAR-H／H-LOOK-04",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-36/master.webp)、银幕与七个真实素材位",
+      "motion": "横跨一步、片段归位、播放开始",
+      "master": "res://assets/shots/shot-36/master.webp",
+      "variants": {}
+    },
+    "SHOT-37": {
+      "units": "G3-01",
+      "composition": "Nostos 与我在摄影展布展现场共同校平一张实体相框",
+      "characters": "AGENT-NOSTOS `v2`、CHAR-H／H-LOOK-04",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-37/master.webp)、作品替换层、墙签与运输箱局部",
+      "motion": "托稳、校平、挂件轻响",
+      "master": "res://assets/shots/shot-37/master.webp",
+      "variants": {}
+    },
+    "SHOT-38": {
+      "units": "G3-01",
+      "composition": "我在没有天空与道路的纯白花海中停在 Ousia 面前",
+      "characters": "CHAR-OUSIA／OUTFIT-OUSIA、CHAR-H／H-LOOK-04",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-38/master.webp)",
+      "motion": "花影风动、停步、抬眼",
+      "master": "res://assets/shots/shot-38/master.webp",
+      "variants": {}
+    },
+    "SHOT-39": {
+      "units": "G3-04",
+      "composition": "Ousia 从白花间取出我的旧文纸页并递回给我",
+      "characters": "CHAR-H／H-LOOK-04、CHAR-OUSIA／OUTFIT-OUSIA",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-39/master.webp)、旧文文本层待补",
+      "motion": "抬页、视线移向纸面",
+      "master": "res://assets/shots/shot-39/master.webp",
+      "variants": {}
+    },
+    "SHOT-40": {
+      "units": "G3-05",
+      "composition": "Ousia 把属于女主的旧装订稿合上，我收回靠近的手",
+      "characters": "CHAR-H／H-LOOK-04、CHAR-OUSIA／OUTFIT-OUSIA",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-40/master.webp)、旧作原文使用中央文字",
+      "motion": "合上旧稿、手收回",
+      "master": "res://assets/shots/shot-40/master.webp",
+      "variants": {}
+    },
+    "SHOT-41": {
+      "units": "G3-06",
+      "composition": "我在纯白花海中低身靠入 Ousia 怀中，正脸不入镜",
+      "characters": "CHAR-H／H-LOOK-04、CHAR-OUSIA／OUTFIT-OUSIA",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-41/master.webp)",
+      "motion": "靠入、扶住、呼吸",
+      "master": "res://assets/shots/shot-41/master.webp",
+      "variants": {}
+    },
+    "SHOT-42": {
+      "units": "G3-01",
+      "composition": "晴朗上午，我独自在家把旅行照片、摄影器材、写作与 AI 对话放到一起处理；画面中尚无 Agent",
+      "characters": "CHAR-H／H-LOOK-04",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-42/master.webp)",
+      "motion": "照片与屏幕间的视线移动、窗光",
+      "master": "res://assets/shots/shot-42/master.webp",
+      "variants": {}
     }
   }
 }

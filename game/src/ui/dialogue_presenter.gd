@@ -10,6 +10,7 @@ const BUBBLE_BORDER_COLOR := Color(0.82, 0.86, 0.88, 0.30)
 
 var dialogue_panel: PanelContainer
 var dialogue_tail: Polygon2D
+var speaker_label: Label
 var body_label: Label
 var center_line_label: Label
 
@@ -27,11 +28,13 @@ var caption_director
 func setup(
 	panel: PanelContainer,
 	tail: Polygon2D,
+	speaker: Label,
 	body: Label,
 	center_line: Label,
 ) -> void:
 	dialogue_panel = panel
 	dialogue_tail = tail
+	speaker_label = speaker
 	body_label = body
 	center_line_label = center_line
 
@@ -123,6 +126,12 @@ func _show_current_segment() -> void:
 	dialogue_panel.visible = not is_screen_line
 	dialogue_tail.visible = not is_screen_line
 	center_line_label.visible = is_screen_line
+	speaker_label.text = current_speaker
+	speaker_label.visible = (
+		not is_screen_line
+		and caption_director != null
+		and caption_director.uses_speaker_label()
+	)
 
 	if is_screen_line:
 		current_text = _format_screen_text(segment_text)

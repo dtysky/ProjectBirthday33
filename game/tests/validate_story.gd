@@ -30,11 +30,32 @@ func _init() -> void:
 				failures.append("%s has an invalid delivery mode." % line.get("id", "unknown"))
 			else:
 				delivery_counts[delivery] += 1
+			var line_shot_id := str(line.get("shot", ""))
+			if line_shot_id.is_empty():
+				failures.append("%s has no line-level shot mapping." % line.get("id", "unknown"))
+			elif not (manifest.get("shots", {}) as Dictionary).has(line_shot_id):
+				failures.append(
+					"%s references unknown line shot %s." % [
+						line.get("id", "unknown"),
+						line_shot_id,
+					]
+				)
+			elif not (unit.get("assets", []) as Array).has(line_shot_id):
+				failures.append(
+					"%s uses %s outside its unit asset list." % [
+						line.get("id", "unknown"),
+						line_shot_id,
+					]
+				)
 		var shot_id := str(unit.get("shot", ""))
 		if shot_id.is_empty():
 			failures.append("%s has no shot mapping." % unit.get("id", "unknown"))
 		elif not (manifest.get("shots", {}) as Dictionary).has(shot_id):
 			failures.append("%s references unknown shot %s." % [unit.get("id", "unknown"), shot_id])
+		for asset_ref_variant in unit.get("assets", []) as Array:
+			var asset_ref := str(asset_ref_variant)
+			if asset_ref.begins_with("SHOT-") and not (manifest.get("shots", {}) as Dictionary).has(asset_ref):
+				failures.append("%s references unknown asset %s." % [unit.get("id", "unknown"), asset_ref])
 
 	if line_count != int(story.get("line_count", -1)):
 		failures.append(
@@ -46,8 +67,8 @@ func _init() -> void:
 	for delivery in delivery_counts:
 		if int(delivery_counts[delivery]) == 0:
 			failures.append("Story has no %s lines." % delivery)
-	if (manifest.get("shots", {}) as Dictionary).size() != 19:
-		failures.append("Expected 19 shot packages.")
+	if (manifest.get("shots", {}) as Dictionary).size() != 42:
+		failures.append("Expected 42 shot packages.")
 	var shot_one := (manifest.get("shots", {}) as Dictionary).get("SHOT-01", {}) as Dictionary
 	var opening_variants := shot_one.get("variants", {}) as Dictionary
 	for variant_id in ["wake", "wash", "cats", "board", "drive", "arrive"]:
@@ -72,6 +93,35 @@ func _init() -> void:
 			var texture := ResourceLoader.load(asset_path) as Texture2D
 			if texture == null or texture.get_width() != 3840 or texture.get_height() != 2160:
 				failures.append("%s/%s is not a 3840x2160 texture." % [shot_id, asset_id])
+	var g2_masters := [
+		"SHOT-05", "SHOT-06", "SHOT-07", "SHOT-08",
+		"SHOT-20", "SHOT-21", "SHOT-22", "SHOT-23",
+		"SHOT-24", "SHOT-25", "SHOT-26", "SHOT-27",
+		"SHOT-28", "SHOT-29", "SHOT-30", "SHOT-31",
+	]
+	for shot_id in g2_masters:
+		var shot := (manifest.get("shots", {}) as Dictionary).get(shot_id, {}) as Dictionary
+		var asset_path := str(shot.get("master", ""))
+		if asset_path.is_empty() or not ResourceLoader.exists(asset_path):
+			failures.append("%s is missing its G2 trial master." % shot_id)
+			continue
+		var texture := ResourceLoader.load(asset_path) as Texture2D
+		if texture == null or texture.get_width() != 3840 or texture.get_height() != 2160:
+			failures.append("%s/master is not a 3840x2160 texture." % shot_id)
+	var g3_masters := [
+		"SHOT-09", "SHOT-10", "SHOT-11",
+		"SHOT-32", "SHOT-33", "SHOT-34", "SHOT-35", "SHOT-36", "SHOT-37",
+		"SHOT-38", "SHOT-39", "SHOT-40", "SHOT-41", "SHOT-42",
+	]
+	for shot_id in g3_masters:
+		var shot := (manifest.get("shots", {}) as Dictionary).get(shot_id, {}) as Dictionary
+		var asset_path := str(shot.get("master", ""))
+		if asset_path.is_empty() or not ResourceLoader.exists(asset_path):
+			failures.append("%s is missing its G3 master." % shot_id)
+			continue
+		var texture := ResourceLoader.load(asset_path) as Texture2D
+		if texture == null or texture.get_width() != 3840 or texture.get_height() != 2160:
+			failures.append("%s/master is not a 3840x2160 texture." % shot_id)
 	if int(ProjectSettings.get_setting("display/window/size/viewport_width", 0)) != 1920:
 		failures.append("Expected a 1920-wide logical viewport.")
 	if int(ProjectSettings.get_setting("display/window/size/viewport_height", 0)) != 1080:
@@ -85,7 +135,8 @@ func _init() -> void:
 		print(
 			(
 				"Validation passed: 28 units, %d lines, balanced delivery, "
-				+ "19 shots, six G0 CGs, seven G1 CGs, 4K output."
+				+ "42 shots, six G0 CGs, seven G1 CGs, sixteen G2 trial masters, "
+				+ "fourteen G3 masters, 4K output."
 			) % line_count
 		)
 		quit(0)

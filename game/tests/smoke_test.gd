@@ -20,8 +20,10 @@ func _run() -> void:
 	var required := [
 		"Stage",
 		"MasterTexture",
+		"AssetPlaceholder",
 		"ChapterFxLayer",
 		"DialoguePanel",
+		"DialoguePanel/DialogueMargin/DialogueBox/SpeakerLabel",
 		"CenterLine",
 		"QuickMenuOverlay",
 		"SceneSelectOverlay",
@@ -33,6 +35,10 @@ func _run() -> void:
 		"ChapterFxLayer/OpeningTexture",
 		"ChapterFxLayer/OpeningPlaceholder",
 		"ChapterFxLayer/G1ReverseSplit",
+		"ChapterFxLayer/G3GlareOverlay",
+		"ChapterFxLayer/G3TransitionOverlay",
+		"ChapterFxLayer/G3EvidenceOverlay",
+		"G3EvidenceTimer",
 	]
 	for node_name in required:
 		if scene.get_node_or_null(node_name) == null:
@@ -248,6 +254,9 @@ func _run() -> void:
 	var master_texture := scene.get_node("MasterTexture") as TextureRect
 	var dialogue_panel := scene.get_node("DialoguePanel") as PanelContainer
 	var dialogue_tail := scene.get_node("DialogueTail") as Polygon2D
+	var speaker_label := scene.get_node(
+		"DialoguePanel/DialogueMargin/DialogueBox/SpeakerLabel"
+	) as Label
 	var reverse_split := scene.get_node("ChapterFxLayer/G1ReverseSplit") as Control
 
 	story.call("start_at", 1, 0)
@@ -339,6 +348,207 @@ func _run() -> void:
 		quit(1)
 		return
 
+	var asset_placeholder := scene.get_node("AssetPlaceholder") as CenterContainer
+	var placeholder_label := scene.get_node(
+		"AssetPlaceholder/PlaceholderLabel"
+	) as Label
+	story.call("start_at", 7, 0)
+	await process_frame
+	var chapter_two_director := scene.get("active_chapter_director") as RefCounted
+	if (
+		chapter_two_director == null
+		or int(chapter_two_director.get("chapter_number")) != 2
+		or str(chapter_two_director.get("current_shot_id")) != "SHOT-06"
+		or master_texture.texture == null
+		or asset_placeholder.visible
+		or not center_line.visible
+		or center_line.anchor_left > 0.07
+	):
+		push_error("G2-02 did not begin on the SHOT-06 trial master with the chapter-two caption layout.")
+		quit(1)
+		return
+	story.call("start_at", 7, 2)
+	await process_frame
+	if (
+		str(chapter_two_director.get("current_shot_id")) != "SHOT-22"
+		or master_texture.texture == null
+		or asset_placeholder.visible
+	):
+		push_error("G2-02 did not switch from SHOT-06 to the independent SHOT-22 trial master.")
+		quit(1)
+		return
+	story.call("start_at", 7, 3)
+	await process_frame
+	if (
+		not dialogue_panel.visible
+		or dialogue_tail.visible
+		or speaker_label.visible
+		or not dialogue_panel.position.is_equal_approx(Vector2(1260.0, 450.0))
+	):
+		push_error("G2 spoken dialogue did not use the speaker's tailless spatial card.")
+		quit(1)
+		return
+	var g2_member_a_position := dialogue_panel.position
+	story.call("start_at", 7, 4)
+	await process_frame
+	if (
+		speaker_label.visible
+		or not dialogue_panel.position.is_equal_approx(Vector2(650.0, 760.0))
+		or dialogue_panel.position.is_equal_approx(g2_member_a_position)
+	):
+		push_error("G2 did not move the content-only card from member A to the protagonist.")
+		quit(1)
+		return
+	story.call("start_at", 7, 5)
+	await process_frame
+	if (
+		speaker_label.visible
+		or not dialogue_panel.position.is_equal_approx(Vector2(490.0, 40.0))
+	):
+		push_error("G2 did not anchor member B's content-only card to member B.")
+		quit(1)
+		return
+	story.call("start_at", 8, 5)
+	await process_frame
+	if (
+		str(chapter_two_director.get("current_shot_id")) != "SHOT-23"
+		or master_texture.texture == null
+		or asset_placeholder.visible
+	):
+		push_error("G2-03 did not switch from the birthday scene to the Kexing scene.")
+		quit(1)
+		return
+	story.call("start_at", 8, 10)
+	await process_frame
+	if (
+		str(chapter_two_director.get("current_shot_id")) != "SHOT-24"
+		or master_texture.texture == null
+		or asset_placeholder.visible
+	):
+		push_error("G2-03 did not switch to the independent launch-without-me scene.")
+		quit(1)
+		return
+
+	story.call("start_at", 12, 0)
+	await process_frame
+	var chapter_three_director := scene.get("active_chapter_director") as RefCounted
+	if (
+		chapter_three_director == null
+		or int(chapter_three_director.get("chapter_number")) != 3
+		or str(chapter_three_director.get("current_shot_id")) != "SHOT-42"
+		or master_texture.texture == null
+		or asset_placeholder.visible
+		or not center_line.visible
+		or center_line.anchor_left > 0.05
+	):
+		push_error("G3 did not begin on the independent no-Agent master with a safe unboxed caption.")
+		quit(1)
+		return
+	story.call("start_at", 12, 2)
+	await process_frame
+	if (
+		not dialogue_panel.visible
+		or dialogue_tail.visible
+		or speaker_label.visible
+		or str(chapter_three_director.get("current_shot_id")) != "SHOT-32"
+		or not dialogue_panel.position.is_equal_approx(Vector2(60.0, 520.0))
+		or not dialogue_panel.size.is_equal_approx(Vector2(580.0, 158.0))
+	):
+		push_error("G3 Poros dialogue did not use its content-only spatial card.")
+		quit(1)
+		return
+	story.call("start_at", 12, 20)
+	await process_frame
+	if (
+		str(chapter_three_director.get("current_shot_id")) != "SHOT-38"
+		or master_texture.texture == null
+		or asset_placeholder.visible
+		or dialogue_tail.visible
+		or not dialogue_panel.position.is_equal_approx(Vector2(1300.0, 40.0))
+	):
+		push_error("G3 did not enter Ousia's flower sea with her anchored dialogue card.")
+		quit(1)
+		return
+
+	story.call("start_at", 13, 0)
+	await process_frame
+	if (
+		str(chapter_three_director.get("current_shot_id")) != "SHOT-09"
+		or master_texture.texture == null
+		or asset_placeholder.visible
+		or center_line.anchor_top > 0.04
+	):
+		push_error("G3 flower-sea prelude did not use the upper caption safe area.")
+		quit(1)
+		return
+
+	story.call("start_at", 14, 0)
+	await process_frame
+	var glare_overlay := scene.get_node("ChapterFxLayer/G3GlareOverlay") as ColorRect
+	if (
+		str(chapter_three_director.get("current_shot_id")) != "SHOT-09"
+		or master_texture.texture == null
+		or asset_placeholder.visible
+		or glare_overlay.visible
+		or not dialogue_panel.visible
+		or not dialogue_panel.position.is_equal_approx(Vector2(1300.0, 40.0))
+	):
+		push_error("G3-03 did not keep its opening probability dialogue in the flower sea.")
+		quit(1)
+		return
+
+	story.call("start_at", 14, 2)
+	await process_frame
+	if (
+		str(chapter_three_director.get("current_shot_id")) != "SHOT-10"
+		or master_texture.texture == null
+		or asset_placeholder.visible
+		or not glare_overlay.visible
+		or not center_line.visible
+		or center_line.anchor_top < 0.66
+	):
+		push_error("G3 ceiling-light shot did not wait for the line that names the ceiling light.")
+		quit(1)
+		return
+
+	story.call("start_at", 14, 3)
+	await process_frame
+	scene.call("_finish_typing")
+	scene.call("_advance_story")
+	await process_frame
+	var evidence_overlay := scene.get_node("ChapterFxLayer/G3EvidenceOverlay") as ColorRect
+	if not evidence_overlay.visible or center_line.visible:
+		push_error("G3 did not insert the twenty-second SRC-03 placeholder after the cue line.")
+		quit(1)
+		return
+	scene.call("_advance_story")
+	await process_frame
+	if evidence_overlay.visible or int(story.get("line_index")) != 4:
+		push_error("G3 evidence placeholder could not be skipped into the retrieved quote.")
+		quit(1)
+		return
+
+	story.call("start_at", 17, 1)
+	await process_frame
+	if (
+		str(chapter_three_director.get("current_shot_id")) != "SHOT-41"
+		or master_texture.texture == null
+		or asset_placeholder.visible
+	):
+		push_error("G3 crying beat did not switch to the independent embrace master.")
+		quit(1)
+		return
+	story.call("start_at", 17, 5)
+	await process_frame
+	if (
+		str(chapter_three_director.get("current_shot_id")) != "SHOT-11"
+		or master_texture.texture == null
+		or asset_placeholder.visible
+	):
+		push_error("G3 did not return from the embrace to the blank-page master.")
+		quit(1)
+		return
+
 	story.call("start_at", 19, 0)
 	await process_frame
 	if (
@@ -399,7 +609,9 @@ func _run() -> void:
 
 	print(
 		"Smoke test passed: current script, six G0 CGs, seven G1 CGs, "
-		+ "semantic dialogue beats, shot variants, reverse split, core UI, and ending flow."
+		+ "sixteen G2 trial masters with line-level shot switching, semantic dialogue beats, shot variants, "
+		+ "fourteen G3 masters with an independent opening, safe Ousia staging and timed evidence placeholder, "
+		+ "reverse split, core UI, and ending flow."
 	)
 	quit(0)
 

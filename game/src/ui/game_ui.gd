@@ -14,6 +14,8 @@ var callbacks: Dictionary
 
 var stage: ColorRect
 var master_texture: TextureRect
+var asset_placeholder: CenterContainer
+var asset_placeholder_label: Label
 var chapter_fx_layer: Control
 var debug_meta: MarginContainer
 var unit_label: Label
@@ -21,6 +23,7 @@ var unit_title_label: Label
 var shot_label: Label
 var dialogue_tail: Polygon2D
 var dialogue_panel: PanelContainer
+var speaker_label: Label
 var body_label: Label
 var bubble_next_mark: Label
 var center_line_label: Label
@@ -45,6 +48,7 @@ var toast_timer: Timer
 var scene_units: Array = []
 var scene_unit_indices: Array[int] = []
 var selected_scene_chapter := 1
+var current_production := ""
 
 
 func build(
@@ -70,18 +74,22 @@ func build(
 func show_unit(unit: Dictionary, unit_index: int, unit_count: int, texture: Texture2D) -> void:
 	var chapter := int(unit.get("chapter", 1))
 	stage.color = CHAPTER_COLORS.get(chapter, Color("#1b2023"))
+	current_production = str(unit.get("production", ""))
 	unit_label.text = "%s  ·  %d / %d" % [
 		unit.get("id", ""),
 		unit_index + 1,
 		unit_count,
 	]
 	unit_title_label.text = str(unit.get("title", ""))
-	shot_label.text = "%s  ·  %s" % [
-		unit.get("shot", "NO SHOT"),
-		unit.get("production", ""),
-	]
+	show_line_shot(str(unit.get("shot", "NO SHOT")), texture)
+
+
+func show_line_shot(shot_id: String, texture: Texture2D) -> void:
+	shot_label.text = "%s  ·  %s" % [shot_id, current_production]
 	master_texture.texture = texture
 	master_texture.visible = texture != null
+	asset_placeholder_label.text = "%s\n美术占位" % shot_id
+	asset_placeholder.visible = texture == null
 
 
 func show_toast(message: String) -> void:
@@ -123,6 +131,24 @@ func _build_stage() -> void:
 	master_texture.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_set_full_rect(master_texture)
 	host.add_child(master_texture)
+
+	asset_placeholder = CenterContainer.new()
+	asset_placeholder.name = "AssetPlaceholder"
+	asset_placeholder.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_set_full_rect(asset_placeholder)
+	host.add_child(asset_placeholder)
+
+	asset_placeholder_label = Label.new()
+	asset_placeholder_label.name = "PlaceholderLabel"
+	asset_placeholder_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	asset_placeholder_label.add_theme_font_size_override("font_size", 42)
+	asset_placeholder_label.add_theme_constant_override("line_spacing", 12)
+	asset_placeholder_label.add_theme_color_override(
+		"font_color",
+		Color(0.86, 0.90, 0.88, 0.42),
+	)
+	asset_placeholder.add_child(asset_placeholder_label)
+	asset_placeholder.visible = false
 
 	chapter_fx_layer = Control.new()
 	chapter_fx_layer.name = "ChapterFxLayer"
@@ -186,6 +212,7 @@ func _build_dialogue() -> void:
 	host.add_child(dialogue_panel)
 
 	var margin := MarginContainer.new()
+	margin.name = "DialogueMargin"
 	margin.add_theme_constant_override("margin_left", 26)
 	margin.add_theme_constant_override("margin_top", 16)
 	margin.add_theme_constant_override("margin_right", 26)
@@ -193,8 +220,16 @@ func _build_dialogue() -> void:
 	dialogue_panel.add_child(margin)
 
 	var box := VBoxContainer.new()
+	box.name = "DialogueBox"
 	box.add_theme_constant_override("separation", 2)
 	margin.add_child(box)
+
+	speaker_label = Label.new()
+	speaker_label.name = "SpeakerLabel"
+	speaker_label.add_theme_font_size_override("font_size", 18)
+	speaker_label.add_theme_color_override("font_color", Color("#a8c6b6"))
+	speaker_label.visible = false
+	box.add_child(speaker_label)
 
 	body_label = Label.new()
 	body_label.size_flags_vertical = Control.SIZE_EXPAND_FILL
