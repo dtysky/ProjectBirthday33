@@ -549,13 +549,134 @@ func _run() -> void:
 		quit(1)
 		return
 
+	story.call("start_at", 18, 0)
+	await process_frame
+	var chapter_four_director := scene.get("active_chapter_director") as RefCounted
+	if (
+		chapter_four_director == null
+		or int(chapter_four_director.get("chapter_number")) != 4
+		or str(chapter_four_director.get("current_shot_id")) != "SHOT-12"
+		or (scene.get_node("DialoguePanel") as Control).visible
+		or not (scene.get_node("CenterLine") as Control).visible
+		or not asset_placeholder.visible
+		or not placeholder_label.text.contains("旧作重演")
+	):
+		push_error("G4-01 did not present the archived voice as an unboxed placeholder caption.")
+		quit(1)
+		return
 	story.call("start_at", 19, 0)
 	await process_frame
 	if (
-		(scene.get_node("DialoguePanel") as Control).visible
+		chapter_four_director == null
+		or int(chapter_four_director.get("chapter_number")) != 4
+		or str(chapter_four_director.get("current_shot_id")) != "SHOT-13"
+		or master_texture.texture == null
+		or asset_placeholder.visible
+		or (scene.get_node("DialoguePanel") as Control).visible
 		or not (scene.get_node("CenterLine") as Control).visible
 	):
 		push_error("G4-02 travel voiceover is not presented as an unboxed caption.")
+		quit(1)
+		return
+	story.call("start_at", 19, 2)
+	await process_frame
+	if (
+		str(chapter_four_director.get("current_shot_id")) != "SHOT-62"
+		or master_texture.texture == null
+		or asset_placeholder.visible
+	):
+		push_error("G4-02 did not switch to the accepted Dawn reveal master.")
+		quit(1)
+		return
+	story.call("start_at", 19, 3)
+	await process_frame
+	if (
+		str(chapter_four_director.get("current_shot_id")) != "SHOT-43"
+		or master_texture.texture == null
+		or asset_placeholder.visible
+	):
+		push_error("G4-02 did not switch to the accepted Tengger sunset master.")
+		quit(1)
+		return
+	story.call("start_at", 20, 0)
+	await process_frame
+	if (
+		str(chapter_four_director.get("current_shot_id")) != "SHOT-14"
+		or not asset_placeholder.visible
+		or not placeholder_label.text.contains("出发前规划")
+	):
+		push_error("G4-03 did not keep its missing planning image as a semantic placeholder.")
+		quit(1)
+		return
+	story.call("start_at", 20, 4)
+	await process_frame
+	if (
+		str(chapter_four_director.get("current_shot_id")) != "SHOT-53"
+		or master_texture.texture == null
+		or asset_placeholder.visible
+	):
+		push_error("G4-03 did not switch from its placeholder to the accepted field master.")
+		quit(1)
+		return
+	story.call("start_at", 20, 8)
+	await process_frame
+	if (
+		str(chapter_four_director.get("current_shot_id")) != "SHOT-55"
+		or not asset_placeholder.visible
+		or not placeholder_label.text.contains("完成作品被观看")
+	):
+		push_error("G4-03 did not preserve the missing screening image as a semantic placeholder.")
+		quit(1)
+		return
+	story.call("start_at", 21, 2)
+	await process_frame
+	if (
+		str(chapter_four_director.get("current_shot_id")) != "SHOT-56"
+		or master_texture.texture == null
+		or asset_placeholder.visible
+	):
+		push_error("G4-04 did not load the accepted snow arrival master.")
+		quit(1)
+		return
+	story.call("start_at", 21, 4)
+	await process_frame
+	if (
+		str(chapter_four_director.get("current_shot_id")) != "SHOT-58"
+		or not asset_placeholder.visible
+		or not placeholder_label.text.contains("新都桥告别")
+	):
+		push_error("G4-04 did not keep the missing farewell image as a semantic placeholder.")
+		quit(1)
+		return
+	story.call("start_at", 22, 0)
+	await process_frame
+	if (
+		str(chapter_four_director.get("current_shot_id")) != "SHOT-16"
+		or not asset_placeholder.visible
+		or not placeholder_label.text.contains("日落占位")
+	):
+		push_error("G4-05 did not begin the fixed-camera placeholder at sunset.")
+		quit(1)
+		return
+	story.call("start_at", 22, 2)
+	await process_frame
+	if not placeholder_label.text.contains("星空占位"):
+		push_error("G4-05 did not advance the fixed-camera placeholder to stars.")
+		quit(1)
+		return
+	story.call("start_at", 22, 4)
+	await process_frame
+	scene.call("_finish_typing")
+	scene.call("_advance_story")
+	await process_frame
+	if (
+		str(chapter_four_director.get("current_shot_id")) != "SHOT-61"
+		or not bool(chapter_four_director.get("descent_active"))
+		or not asset_placeholder.visible
+		or not placeholder_label.text.contains("夜间下山")
+		or (scene.get_node("CenterLine") as Control).visible
+	):
+		push_error("G4-05 did not insert the silent night-descent placeholder after the record.")
 		quit(1)
 		return
 
@@ -611,6 +732,7 @@ func _run() -> void:
 		"Smoke test passed: current script, six G0 CGs, seven G1 CGs, "
 		+ "sixteen G2 trial masters with line-level shot switching, semantic dialogue beats, shot variants, "
 		+ "fourteen G3 masters with an independent opening, safe Ousia staging and timed evidence placeholder, "
+		+ "nineteen G4 masters, eight semantic placeholders, staged sky phases and silent descent, "
 		+ "reverse split, core UI, and ending flow."
 	)
 	quit(0)

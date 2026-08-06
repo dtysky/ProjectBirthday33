@@ -172,6 +172,8 @@ func _advance_story() -> void:
 		return
 	auto_timer.stop()
 	if dialogue_presenter.advance_page():
+		if is_auto:
+			auto_timer.start(auto_delay)
 		return
 	story.advance()
 

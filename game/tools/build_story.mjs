@@ -15,6 +15,7 @@ const assetSource = fs.readFileSync(assetPath, "utf8");
 const voiceoverUnits = new Set([
   "G1-01",
   "G3-03",
+  "G4-01",
   "G4-02",
   "G4-03",
   "G4-04",
@@ -30,7 +31,12 @@ const sceneMonologueUnits = new Set([
   "G5-03",
   "G5-04",
 ]);
-const narrationSpeakers = new Set(["我", "我／旅途记录", "少女 H"]);
+const narrationSpeakers = new Set([
+  "我",
+  "我／旅途记录",
+  "少女 H",
+  "三十一岁的我",
+]);
 
 function deliveryFor(unitId, speaker) {
   if (
@@ -170,6 +176,11 @@ const shotVariants = {
     base: "res://assets/shots/shot-19/base.webp",
     reflection: "res://assets/shots/shot-19/reflection.webp",
   },
+  "SHOT-16": {
+    sunset: "res://assets/shots/shot-16/sunset.webp",
+    stars: "res://assets/shots/shot-16/stars.webp",
+    moonrise: "res://assets/shots/shot-16/moonrise.webp",
+  },
 };
 const shotMasters = {
   "SHOT-01": "res://assets/shots/shot-01/g0-wake.webp",
@@ -196,8 +207,8 @@ for (const match of assetSource.matchAll(
   };
 }
 
-if (Object.keys(shots).length !== 42) {
-  throw new Error(`Expected 42 shot packages, got ${Object.keys(shots).length}`);
+if (Object.keys(shots).length !== 64) {
+  throw new Error(`Expected 64 shot packages, got ${Object.keys(shots).length}`);
 }
 
 fs.mkdirSync(contentDir, { recursive: true });

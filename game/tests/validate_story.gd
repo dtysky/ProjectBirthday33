@@ -67,8 +67,8 @@ func _init() -> void:
 	for delivery in delivery_counts:
 		if int(delivery_counts[delivery]) == 0:
 			failures.append("Story has no %s lines." % delivery)
-	if (manifest.get("shots", {}) as Dictionary).size() != 42:
-		failures.append("Expected 42 shot packages.")
+	if (manifest.get("shots", {}) as Dictionary).size() != 64:
+		failures.append("Expected 64 shot packages.")
 	var shot_one := (manifest.get("shots", {}) as Dictionary).get("SHOT-01", {}) as Dictionary
 	var opening_variants := shot_one.get("variants", {}) as Dictionary
 	for variant_id in ["wake", "wash", "cats", "board", "drive", "arrive"]:
@@ -122,6 +122,30 @@ func _init() -> void:
 		var texture := ResourceLoader.load(asset_path) as Texture2D
 		if texture == null or texture.get_width() != 3840 or texture.get_height() != 2160:
 			failures.append("%s/master is not a 3840x2160 texture." % shot_id)
+	var g4_masters := [
+		"SHOT-13", "SHOT-43", "SHOT-44", "SHOT-45", "SHOT-46",
+		"SHOT-47", "SHOT-48", "SHOT-49", "SHOT-50", "SHOT-51",
+		"SHOT-52", "SHOT-53", "SHOT-54", "SHOT-56", "SHOT-62",
+		"SHOT-63", "SHOT-66", "SHOT-68", "SHOT-69",
+	]
+	for shot_id in g4_masters:
+		var shot := (manifest.get("shots", {}) as Dictionary).get(shot_id, {}) as Dictionary
+		var asset_path := str(shot.get("master", ""))
+		if asset_path.is_empty() or not ResourceLoader.exists(asset_path):
+			failures.append("%s is missing its accepted G4 master." % shot_id)
+			continue
+		var texture := ResourceLoader.load(asset_path) as Texture2D
+		if texture == null or texture.get_width() != 3840 or texture.get_height() != 2160:
+			failures.append("%s/master is not a 3840x2160 texture." % shot_id)
+	var g4_placeholders := [
+		"SHOT-12", "SHOT-14", "SHOT-15", "SHOT-16",
+		"SHOT-55", "SHOT-58", "SHOT-60", "SHOT-61",
+	]
+	for shot_id in g4_placeholders:
+		var shot := (manifest.get("shots", {}) as Dictionary).get(shot_id, {}) as Dictionary
+		var asset_path := str(shot.get("master", ""))
+		if not asset_path.is_empty() and ResourceLoader.exists(asset_path):
+			failures.append("%s should still be an explicit G4 placeholder." % shot_id)
 	if int(ProjectSettings.get_setting("display/window/size/viewport_width", 0)) != 1920:
 		failures.append("Expected a 1920-wide logical viewport.")
 	if int(ProjectSettings.get_setting("display/window/size/viewport_height", 0)) != 1080:
@@ -135,8 +159,8 @@ func _init() -> void:
 		print(
 			(
 				"Validation passed: 28 units, %d lines, balanced delivery, "
-				+ "42 shots, six G0 CGs, seven G1 CGs, sixteen G2 trial masters, "
-				+ "fourteen G3 masters, 4K output."
+				+ "64 planned shots, six G0 CGs, seven G1 CGs, sixteen G2 trial masters, "
+				+ "fourteen G3 masters, nineteen accepted G4 masters, eight G4 placeholders, 4K output."
 			) % line_count
 		)
 		quit(0)

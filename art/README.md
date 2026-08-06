@@ -6,11 +6,14 @@
 
 - [style-guide.md](style-guide.md)：已经确认的画风、动态边界与视觉递进。
 - [asset-list.md](asset-list.md)：人设、地点母版、镜头包和来源素材的编号与状态。
+- [g4-original-reference-checklist.md](g4-original-reference-checklist.md)：G4 全部原始照片、视频、录屏与共用连续性素材的可勾选准备表。
 - [reference-request.md](reference-request.md)：需要用户提供的人物、场景与旅行参考清单。
 - [reference-source-catalog.md](reference-source-catalog.md)：已经收到的实景、人物与物件参考及其使用边界。
 - [generation-manifest-20260731.md](generation-manifest-20260731.md)：2026-07-31 参考批次的生成结果、输入角色与提示词摘要。
 - [g0-cg-manifest-20260731.md](g0-cg-manifest-20260731.md)：G0 现实段六张 CG 草稿的镜头约束、生成输入与审核边界。
 - [g1-cg-manifest-20260803.md](g1-cg-manifest-20260803.md)：G1 园区、工位、创作表演与黑场关键 CG 的最终候选、输入约束与逐句用途。
+- [g4-asset-plan-20260804.md](g4-asset-plan-20260804.md)：G4 具体旅途、摄影工序与子梅垭口过程的独立镜头边界、参考路由和生成前约束。
+- [g4-cg-manifest-20260806.md](g4-cg-manifest-20260806.md)：G4 已接入的十九张 4K 母帧、八个语义占位与当前演出规则。
 - [character-h-reference-catalog.md](character-h-reference-catalog.md)：我的服装套系、姿态与原文件索引。
 - [char-h-look-04-sheet-v1.png](characters/char-h/outfits/char-h-look-04-sheet-v1.png)：`H-LOOK-04`，同时作为 `CHAR-H` 人物身份基准。
 - [char-h-look-09-sheet-v1.png](characters/char-h/outfits/char-h-look-09-sheet-v1.png)：`H-LOOK-09` 浅灰蓝睡衣待审核人设。

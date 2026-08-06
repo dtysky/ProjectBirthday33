@@ -124,39 +124,43 @@
     },
     "SHOT-13": {
       "units": "G4-02",
-      "composition": "埃及与新西兰的自由",
-      "characters": "无近景人物",
-      "deliverables": "荒漠道路、湖泊雪山、车窗三张 CG",
-      "motion": "云影、车窗光、视差",
+      "composition": "从旧作最后一步匹配切入真实练车，表现对驾驶恐惧的具体处理",
+      "characters": "CHAR-H／练车实穿服装待确认",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-13/master.webp)",
+      "motion": "后视镜光、道路视差、手部轻微紧张",
       "master": "res://assets/shots/shot-13/master.webp",
       "variants": {}
     },
     "SHOT-14": {
       "units": "G4-03",
-      "composition": "摄影成为另一种媒介",
-      "characters": "CHAR-H／OUTFIT-H-OUTDOOR，仅一张远景可出现",
-      "deliverables": "道路、天气、取景三张 CG",
-      "motion": "景深、天气、缓推",
+      "composition": "出发前在真实家中工作桌完成选题、路线、光线、银河与机位规划，持续承载本段前四句",
+      "characters": "CHAR-H／G4 服装待确认",
+      "deliverables": "家中规划母帧、真实记录与屏幕信息层",
+      "motion": "路线与光线信息低频刷新、极慢缓推",
       "master": "res://assets/shots/shot-14/master.webp",
       "variants": {}
     },
     "SHOT-15": {
       "units": "G4-04",
-      "composition": "子梅垭口的失败与折返",
-      "characters": "CHAR-H／OUTFIT-H-OUTDOOR、场景内同行者剪影",
-      "deliverables": "雪夜、放晴、告别、折返四张 CG",
-      "motion": "风雪、云开、路线显影",
+      "composition": "四个人共同出发，车辆与摄影装备建立连续性",
+      "characters": "CHAR-H／G4 户外服装待确认、三名同行者远景轮廓、破晓",
+      "deliverables": "出发母帧",
+      "motion": "车灯、轻微环境视差",
       "master": "res://assets/shots/shot-15/master.webp",
       "variants": {}
     },
     "SHOT-16": {
       "units": "G4-05",
-      "composition": "日落、星空与月升",
-      "characters": "无近景人物",
-      "deliverables": "同机位日落、星空、月升三张差分",
+      "composition": "子梅垭口同一固定机位的日落、星空与月升",
+      "characters": "无近景人物；远处可见静止主角与三脚架剪影",
+      "deliverables": "日落母帧、星空与月升同构图差分",
       "motion": "天光变化、星点、月升",
       "master": "res://assets/shots/shot-16/master.webp",
-      "variants": {}
+      "variants": {
+        "sunset": "res://assets/shots/shot-16/sunset.webp",
+        "stars": "res://assets/shots/shot-16/stars.webp",
+        "moonrise": "res://assets/shots/shot-16/moonrise.webp"
+      }
     },
     "SHOT-17": {
       "units": "G5-01、G5-02",
@@ -393,6 +397,204 @@
       "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-42/master.webp)",
       "motion": "照片与屏幕间的视线移动、窗光",
       "master": "res://assets/shots/shot-42/master.webp",
+      "variants": {}
+    },
+    "SHOT-43": {
+      "units": "G4-02",
+      "composition": "提车一个月后独自抵达腾格里沙漠，黄昏晚霞照亮沙脊与破晓",
+      "characters": "CHAR-H 只作远景背影，破晓",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-43/master.webp)",
+      "motion": "云影、风沙、车身反光",
+      "master": "res://assets/shots/shot-43/master.webp",
+      "variants": {}
+    },
+    "SHOT-44": {
+      "units": "G4-02",
+      "composition": "G219、汹涌怒江、云雾山谷与行驶中的破晓由一张主参考共同承载",
+      "characters": "破晓；同行关系按主参考可见范围表达",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-44/master.webp)",
+      "motion": "江水、云雾、道路视差",
+      "master": "res://assets/shots/shot-44/master.webp",
+      "variants": {}
+    },
+    "SHOT-45": {
+      "units": "G4-02",
+      "composition": "破晓进入丙察察的狭窄复杂道路",
+      "characters": "破晓；不出现清晰同行者",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-45/master.webp)",
+      "motion": "水流／尘土与轻微视差",
+      "master": "res://assets/shots/shot-45/master.webp",
+      "variants": {}
+    },
+    "SHOT-46": {
+      "units": "G4-02",
+      "composition": "三年后重返格聂南线，大雪把道路与山体覆盖",
+      "characters": "破晓；主角不近景出现",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-46/master.webp)",
+      "motion": "横向风雪、车灯或轮迹",
+      "master": "res://assets/shots/shot-46/master.webp",
+      "variants": {}
+    },
+    "SHOT-47": {
+      "units": "G4-02",
+      "composition": "第一次海外自驾起点，主角与朋友共同确认车辆、导航和道路规则",
+      "characters": "CHAR-H／H-LOOK-01、独立同行者、真实租赁车",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-47/master.webp)",
+      "motion": "行李／导航检查、车门或屏幕微光",
+      "master": "res://assets/shots/shot-47/master.webp",
+      "variants": {}
+    },
+    "SHOT-48": {
+      "units": "G4-02",
+      "composition": "在开罗密集而混乱的真实车流中驾驶",
+      "characters": "CHAR-H／H-LOOK-04 驾驶局部、独立同行者局部、真实租赁车",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-48/master.webp)",
+      "motion": "车流、并线、道路视差",
+      "master": "res://assets/shots/shot-48/master.webp",
+      "variants": {}
+    },
+    "SHOT-49": {
+      "units": "G4-02",
+      "composition": "凌晨三点独自在瓦纳卡湖拍摄银河；主角和三脚架都进入冷水，主角站在脚架前方",
+      "characters": "CHAR-H／H-LOOK-06 灰棕色翻领长大衣远景背影、相机与三脚架；禁止羽绒服、连帽外套",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-49/master.webp)",
+      "motion": "银河缓移、云层、腿边和脚架腿边的水波",
+      "master": "res://assets/shots/shot-49/master.webp",
+      "variants": {}
+    },
+    "SHOT-50": {
+      "units": "G4-02",
+      "composition": "三姐妹与大象岩海岸，主角守在延时相机旁等待日落",
+      "characters": "CHAR-H／H-LOOK-05 砖红色轻薄衬衫外套与灰色 T 恤；深色裤脚挽至小腿、露出脚踝并穿拖鞋；相机与三脚架",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-50/master.webp)",
+      "motion": "海浪、云影、色温变化",
+      "master": "res://assets/shots/shot-50/master.webp",
+      "variants": {}
+    },
+    "SHOT-51": {
+      "units": "G4-02",
+      "composition": "深夜独自在莫科莫科入海口湿地拍摄银河",
+      "characters": "CHAR-H／H-LOOK-01 远景剪影、相机与三脚架、车辆远处停放",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-51/master.webp)",
+      "motion": "星点、浅水反光、风吹草丛",
+      "master": "res://assets/shots/shot-51/master.webp",
+      "variants": {}
+    },
+    "SHOT-52": {
+      "units": "G4-02",
+      "composition": "回到家中后在工作桌旁的地面整理真实摄影装备，以可触摸的设备承接工作给予的现实回报",
+      "characters": "CHAR-H／H-LOOK-03、真实摄影包、无人机包与 Sony 设备",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-52/master.webp)",
+      "motion": "拉链、分隔板、镜头与无人机收纳",
+      "master": "res://assets/shots/shot-52/master.webp",
+      "variants": {}
+    },
+    "SHOT-53": {
+      "units": "G4-03",
+      "composition": "同一个真实拍摄现场从寻找构图、架设设备持续到等待与天气遮挡，完整承载两句现场旁白",
+      "characters": "CHAR-H／H-LOOK-06、真实摄影装备",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-53/master.webp)；状态层按需补充",
+      "motion": "人物与脚架位置变化、云雨和环境亮度变化",
+      "master": "res://assets/shots/shot-53/master.webp",
+      "variants": {}
+    },
+    "SHOT-54": {
+      "units": "G4-03",
+      "composition": "回家后导入素材，处理声音、脚本与剪辑，并把道路、天气、等待和光线组织成叙事",
+      "characters": "CHAR-H／H-LOOK-03、Sony Alpha 机身与 Sony／腾龙黑色镜头",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-54/master.webp)",
+      "motion": "素材导入、波形和时间线重排、屏幕微光",
+      "master": "res://assets/shots/shot-54/master.webp",
+      "variants": {}
+    },
+    "SHOT-55": {
+      "units": "G4-03",
+      "composition": "夜晚在真实家中观看已经完成的作品，由作品中的四人出发画面进入下一场",
+      "characters": "CHAR-H／G4 居家服装待确认",
+      "deliverables": "家中观看母帧、作品播放层、与 SHOT-15 同构图的末帧",
+      "motion": "屏幕内容推进、极慢缓推、画框边界退场",
+      "master": "res://assets/shots/shot-55/master.webp",
+      "variants": {}
+    },
+    "SHOT-56": {
+      "units": "G4-04",
+      "composition": "第一次抵达白茫垭口；真实车位与人物关系融合风雪蓝调，车辆、轮迹和能见度留下凌晨冰雪上山的过程",
+      "characters": "破晓、CHAR-H／H-LOOK-06；三名同行者不在本镜头出现",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-56/master.webp)",
+      "motion": "横向风雪、车灯、手中暖光、低能见度",
+      "master": "res://assets/shots/shot-56/master.webp",
+      "variants": {}
+    },
+    "SHOT-58": {
+      "units": "G4-04",
+      "composition": "新都桥真实告别现场同时保留下山后放晴的天光、湿路与四人行李分离",
+      "characters": "CHAR-H 与三名同行者远景轮廓、破晓、真实行李与装备",
+      "deliverables": "放晴与告别母帧",
+      "motion": "云层散开、路面反光、同伴声场远去",
+      "master": "res://assets/shots/shot-58/master.webp",
+      "variants": {}
+    },
+    "SHOT-60": {
+      "units": "G4-04",
+      "composition": "只有主角一人的返程车内以空副驾、摄影包、导航和道路建立独自折返",
+      "characters": "破晓；主角只作车内侧后轮廓",
+      "deliverables": "独自折返母帧",
+      "motion": "仪表微光、道路视差、导航低频刷新",
+      "master": "res://assets/shots/shot-60/master.webp",
+      "variants": {}
+    },
+    "SHOT-61": {
+      "units": "G4-05",
+      "composition": "月升拍摄结束后的夜间下山道路",
+      "characters": "破晓；不出现近景人物",
+      "deliverables": "夜间道路母帧",
+      "motion": "车灯、道路反光、远处微光",
+      "master": "res://assets/shots/shot-61/master.webp",
+      "variants": {}
+    },
+    "SHOT-62": {
+      "units": "G4-02",
+      "composition": "坦克 500 完成黄色黑灰改装并被命名为“破晓”",
+      "characters": "CHAR-H／H-LOOK-03、破晓",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-62/master.webp)",
+      "motion": "车身反光、轻微缓推",
+      "master": "res://assets/shots/shot-62/master.webp",
+      "variants": {}
+    },
+    "SHOT-63": {
+      "units": "G4-02",
+      "composition": "腾格里独处一夜后的日出，主角站在破晓车顶唱歌；身体直立、头部基本平视，一只手在腰侧自然摊开，另一只手放松垂下，表情是克制的自然微笑",
+      "characters": "CHAR-H／H-LOOK-06、破晓；双手空着，禁止麦克风、耳麦、线缆及任何手持物；禁止仰头、张开双臂等舞台化姿态；车牌必须是无字、无号码、不可识别的虚构像素道具牌",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-63/master.webp)",
+      "motion": "晨风、衣摆、低频天光变化",
+      "master": "res://assets/shots/shot-63/master.webp",
+      "variants": {}
+    },
+    "SHOT-66": {
+      "units": "G4-02",
+      "composition": "埃及戈壁、荒漠与湛蓝红海同框，真实租赁的深蓝灰 Subaru XV 停在原卡车所在道路位置，镜头拉近",
+      "characters": "CHAR-H／H-LOOK-04、原合照中的同行朋友与真实租赁车，三者同时出现；照片不承担 CHAR-H 身份",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-66/master.webp)",
+      "motion": "热浪、海面微光、极慢缓推",
+      "master": "res://assets/shots/shot-66/master.webp",
+      "variants": {}
+    },
+    "SHOT-68": {
+      "units": "G4-02",
+      "composition": "以原始现场照片锁定金字塔层次、交叉手势、三张卡牌及嘴角轻微上扬的自然微笑，按 16:9 重新构图为原生像素 CG",
+      "characters": "CHAR-H／H-LOOK-05；身份、脸型、发型、眼镜与比例只取正式人设；禁止中性严肃脸和夸张大笑",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-68/master.webp)",
+      "motion": "仅允许极慢缓推，不生成肢体差分",
+      "master": "res://assets/shots/shot-68/master.webp",
+      "variants": {}
+    },
+    "SHOT-69": {
+      "units": "G4-02",
+      "composition": "意外骤雨、清晨风暴中起舞与自由由同一张 CG 承载",
+      "characters": "CHAR-H／新西兰实穿服装待确认、车辆或设备远景",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-69/master.webp)",
+      "motion": "雨线、低云、衣摆与真实身体动作",
+      "master": "res://assets/shots/shot-69/master.webp",
       "variants": {}
     }
   }

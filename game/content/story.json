@@ -2,7 +2,7 @@
   "version": 2,
   "title": "三十三",
   "unit_count": 28,
-  "line_count": 258,
+  "line_count": 281,
   "units": [
     {
       "id": "G1-01",
@@ -1867,56 +1867,56 @@
           "id": "G4-01-01",
           "speaker": "三十一岁的我",
           "text": "为了抵御对生活的厌倦，你开始向外求索，好在你的良知和对物欲的蔑视，至少不至于滑入深渊。",
-          "delivery": "dialogue",
-          "presentation": "bubble",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-12"
         },
         {
           "id": "G4-01-02",
           "speaker": "三十一岁的我",
           "text": "这不是挺好的嘛，摄影，风光，探险，创作，山川湖海，人文风情，行走于世界，记录于自己，做某个故事的主人公。",
-          "delivery": "dialogue",
-          "presentation": "bubble",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-12"
         },
         {
           "id": "G4-01-03",
           "speaker": "三十一岁的我",
           "text": "但你也明白，这种创造型的享乐对你而言是一种任务。",
-          "delivery": "dialogue",
-          "presentation": "bubble",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-12"
         },
         {
           "id": "G4-01-04",
           "speaker": "三十一岁的我",
           "text": "你要尽快去将其完成，完结，然后去做真正重要的事情。",
-          "delivery": "dialogue",
-          "presentation": "bubble",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-12"
         },
         {
           "id": "G4-01-05",
           "speaker": "三十一岁的我",
           "text": "只不过，在你终将厌倦这种享乐形式的那一刻，还能不能回想起——",
-          "delivery": "dialogue",
-          "presentation": "bubble",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-12"
         },
         {
           "id": "G4-01-06",
           "speaker": "三十一岁的我",
           "text": "你的那些 Project，那些未完成的理想，那些故事中尚未上场的角色？",
-          "delivery": "dialogue",
-          "presentation": "bubble",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-12"
         },
         {
           "id": "G4-01-07",
           "speaker": "三十一岁的我",
           "text": "你不知道，但除了继续这么走下去，也没有别的办法。",
-          "delivery": "dialogue",
-          "presentation": "bubble",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-12"
         }
       ]
@@ -1928,9 +1928,39 @@
       "shot": "SHOT-13",
       "assets": [
         "SHOT-13",
-        "SRC-05"
+        "SHOT-43",
+        "SHOT-44",
+        "SHOT-45",
+        "SHOT-46",
+        "SHOT-47",
+        "SHOT-48",
+        "SHOT-49",
+        "SHOT-50",
+        "SHOT-51",
+        "SHOT-52",
+        "SHOT-62",
+        "SHOT-63",
+        "SHOT-66",
+        "SHOT-68",
+        "SHOT-69",
+        "SRC-05A",
+        "SRC-05B",
+        "SRC-05C",
+        "SRC-05D",
+        "SRC-05E",
+        "SRC-05F",
+        "SRC-05G",
+        "SRC-05I",
+        "SRC-05J",
+        "SRC-05K",
+        "SRC-05L",
+        "SRC-05M",
+        "SRC-05N",
+        "SRC-05O",
+        "SRC-05P",
+        "SRC-05Q"
       ],
-      "production": "根据实拍参考生成三张动态 CG",
+      "production": "十六张经台本确认的独立母帧；格聂两句共用 SHOT-46，G219／怒江、埃及戈壁／红海、骤雨／清晨起舞分别按一张 CG 处理，不再增拆",
       "lines": [
         {
           "id": "G4-02-01",
@@ -1943,7 +1973,7 @@
         {
           "id": "G4-02-02",
           "speaker": "我",
-          "text": "这两年，我克服了对驾驶的恐惧，逼自己学会开车。",
+          "text": "过去这一年，我克服了因ADHD对驾驶的恐惧，逼自己拿起了驾照。",
           "delivery": "voiceover",
           "presentation": "caption",
           "shot": "SHOT-13"
@@ -1951,50 +1981,194 @@
         {
           "id": "G4-02-03",
           "speaker": "我",
-          "text": "在国内，我一个人从深圳穿越到内蒙古，也走过 G219、G318、丙察察和格聂南线。",
+          "text": "买了辆坦克500，并改装成了自己喜欢的模样，将其命名为“破晓”。",
           "delivery": "voiceover",
           "presentation": "caption",
-          "shot": "SHOT-13"
+          "shot": "SHOT-62"
         },
         {
           "id": "G4-02-04",
           "speaker": "我",
-          "text": "我还先后去了埃及、希腊和新西兰自驾。语言、规则和路况都不熟，也只能自己处理。",
+          "text": "提车一个月，我就一个人从深圳开到了内蒙古，在腾格里沙漠看完了一场晚霞。",
           "delivery": "voiceover",
           "presentation": "caption",
-          "shot": "SHOT-13"
+          "shot": "SHOT-43"
         },
         {
           "id": "G4-02-05",
           "speaker": "我",
-          "text": "而且，我也不能假装，这份工作只给我留下了失望。",
+          "text": "在沙漠中孤独呆了一夜后，日出时刻，我站在车顶，唱着“秦皇岛”，感觉心中的某种悸动被唤醒了。",
           "delivery": "voiceover",
           "presentation": "caption",
-          "shot": "SHOT-13"
+          "shot": "SHOT-63"
         },
         {
           "id": "G4-02-06",
           "speaker": "我",
-          "text": "它给了我收入、安全感，也给了我驾车远行、抵达世界另一端的自由。",
+          "text": "后来，我又和同伴一起走过了 G219。",
           "delivery": "voiceover",
           "presentation": "caption",
-          "shot": "SHOT-13"
+          "shot": "SHOT-44"
         },
         {
           "id": "G4-02-07",
           "speaker": "我",
-          "text": "对于一个出生贫寒、从小缺乏安全感的人，这些从来都不是理所当然的东西。",
+          "text": "滇西汹涌的怒江，云雾缭绕的山谷，破晓行驶在其中。",
           "delivery": "voiceover",
           "presentation": "caption",
-          "shot": "SHOT-13"
+          "shot": "SHOT-44"
         },
         {
           "id": "G4-02-08",
           "speaker": "我",
+          "text": "甚至通过了丙察察，那些我曾经向往却从未想象过能到达的地方。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-45"
+        },
+        {
+          "id": "G4-02-09",
+          "speaker": "我",
+          "text": "真的驾车行驶在其中，那苍茫的景象，一下驱散了我在事业上的阴霾。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-45"
+        },
+        {
+          "id": "G4-02-10",
+          "speaker": "我",
+          "text": "而相隔三年，再次到达格聂南线，一场大雪把道路和山都盖住了。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-46"
+        },
+        {
+          "id": "G4-02-11",
+          "speaker": "我",
+          "text": "此时的心境，和彼时，也是完全不同。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-46"
+        },
+        {
+          "id": "G4-02-12",
+          "speaker": "我",
+          "text": "除了国内，我还尝试了突破自己，去海外自驾。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-47"
+        },
+        {
+          "id": "G4-02-13",
+          "speaker": "我",
+          "text": "语言、规则和路况都不熟，也能和朋友一起处理过来。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-47"
+        },
+        {
+          "id": "G4-02-14",
+          "speaker": "我",
+          "text": "在埃及，闯过了开罗的地狱难度的街道。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-48"
+        },
+        {
+          "id": "G4-02-15",
+          "speaker": "我",
+          "text": "然后是广阔无垠的戈壁、荒漠，和湛蓝的红海。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-66"
+        },
+        {
+          "id": "G4-02-16",
+          "speaker": "我",
+          "text": "印象最深的，是我终于拿着三幻神，站在了金字塔前。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-68"
+        },
+        {
+          "id": "G4-02-17",
+          "speaker": "我",
+          "text": "那是年少的我，从未想过能靠自己完成这样一次特别的“圣地巡礼”。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-68"
+        },
+        {
+          "id": "G4-02-18",
+          "speaker": "我",
+          "text": "到了新西兰，凌晨三点，我一个人开到瓦纳卡湖，守着那棵孤独的树拍银河。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-49"
+        },
+        {
+          "id": "G4-02-19",
+          "speaker": "我",
+          "text": "在三姐妹和大象岩，趟过海水和泥地，我站在延时相机旁，等到最后的晚霞把海岸染红。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-50"
+        },
+        {
+          "id": "G4-02-20",
+          "speaker": "我",
+          "text": "到了南岛最南端，我半夜又一个人找到了一处湿地，在那里拍了一夜银河。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-51"
+        },
+        {
+          "id": "G4-02-21",
+          "speaker": "我",
+          "text": "虽然遇到了意料之外的骤雨，但在清晨，我卸下所有所谓的体面，在风暴中起舞。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-69"
+        },
+        {
+          "id": "G4-02-22",
+          "speaker": "我",
+          "text": "那种自由，是过去的我，几乎没有体验过的。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-69"
+        },
+        {
+          "id": "G4-02-23",
+          "speaker": "我",
+          "text": "所以，我并不能假装，这份工作只给我留下了失望。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-52"
+        },
+        {
+          "id": "G4-02-24",
+          "speaker": "我",
+          "text": "它给了我收入、安全感，也给了我完成这些旅程所需要的时间、装备和自由。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-52"
+        },
+        {
+          "id": "G4-02-25",
+          "speaker": "我",
+          "text": "对于一个出生贫寒、从小缺乏安全感的人，这些从来都不是理所当然的东西。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-52"
+        },
+        {
+          "id": "G4-02-26",
+          "speaker": "我",
           "text": "所以，真正要放弃的时候，我才会那么犹豫。",
           "delivery": "voiceover",
           "presentation": "caption",
-          "shot": "SHOT-13"
+          "shot": "SHOT-52"
         }
       ]
     },
@@ -2005,14 +2179,20 @@
       "shot": "SHOT-14",
       "assets": [
         "SHOT-14",
-        "SRC-06"
+        "SHOT-53",
+        "SHOT-54",
+        "SHOT-55",
+        "SRC-06A",
+        "SRC-06B",
+        "SRC-06C",
+        "SRC-06D"
       ],
-      "production": "根据路线素材生成三张动态 CG",
+      "production": "规划、同场完整拍摄过程、素材组织、完成作品／证明入口四段；分别持续承载 4／2／2／3 句旁白",
       "lines": [
         {
           "id": "G4-03-01",
           "speaker": "我",
-          "text": "但是，有一件事，三十一岁的你看错了。",
+          "text": "但真正改变我的，并不只是我去过多少地方。",
           "delivery": "voiceover",
           "presentation": "caption",
           "shot": "SHOT-14"
@@ -2020,7 +2200,7 @@
         {
           "id": "G4-03-02",
           "speaker": "我",
-          "text": "摄影、风光和探险，并不是一项需要尽快完成，然后丢在身后的任务。",
+          "text": "三十一岁的我，你有一件事看错了。",
           "delivery": "voiceover",
           "presentation": "caption",
           "shot": "SHOT-14"
@@ -2028,7 +2208,7 @@
         {
           "id": "G4-03-03",
           "speaker": "我",
-          "text": "这两年，我开始认真地规划选题、路线、光线和机位，也开始处理声音、脚本、剪辑和叙事。",
+          "text": "摄影、风光和探险，并不是一项需要尽快完成，然后丢在身后的任务。",
           "delivery": "voiceover",
           "presentation": "caption",
           "shot": "SHOT-14"
@@ -2036,7 +2216,7 @@
         {
           "id": "G4-03-04",
           "speaker": "我",
-          "text": "道路可以组织叙事，天气可以制造转折。等待、落空和一次真实发生的光线，也都可以成为表达的一部分。",
+          "text": "为了拍到这些画面，我会提前规划选题、路线、光线和机位。",
           "delivery": "voiceover",
           "presentation": "caption",
           "shot": "SHOT-14"
@@ -2044,26 +2224,58 @@
         {
           "id": "G4-03-05",
           "speaker": "我",
-          "text": "我没有在摄影中逃离创作。我只是开始用画面、声音和真实的时间继续写作。",
+          "text": "到了现场，再一遍遍寻找真正成立的构图。",
           "delivery": "voiceover",
           "presentation": "caption",
-          "shot": "SHOT-14"
+          "shot": "SHOT-53"
         },
         {
           "id": "G4-03-06",
           "speaker": "我",
-          "text": "所以，它不是严肃创作之前的一段享乐。它已经成为严肃创作本身。",
+          "text": "我会架好设备等上几个小时，也会遇上云、雨和风，最后什么都没有拍到。",
           "delivery": "voiceover",
           "presentation": "caption",
-          "shot": "SHOT-14"
+          "shot": "SHOT-53"
         },
         {
           "id": "G4-03-07",
           "speaker": "我",
+          "text": "回来以后，我还要处理声音、脚本、剪辑和叙事，把路上发生的事情重新组织起来。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-54"
+        },
+        {
+          "id": "G4-03-08",
+          "speaker": "我",
+          "text": "道路可以组织叙事，天气可以制造转折。等待、落空和一次真实发生的光线，也都可以成为表达的一部分。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-54"
+        },
+        {
+          "id": "G4-03-09",
+          "speaker": "我",
+          "text": "我没有在摄影中逃离创作。我只是在另一个媒介上，开始用画面、声音和真实的时间继续写作。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-55"
+        },
+        {
+          "id": "G4-03-10",
+          "speaker": "我",
+          "text": "所以，它不是严肃创作之前的一段享乐。它已经成为严肃创作本身。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-55"
+        },
+        {
+          "id": "G4-03-11",
+          "speaker": "我",
           "text": "如果你想要一个证明，我会让你看这一次。",
           "delivery": "voiceover",
           "presentation": "caption",
-          "shot": "SHOT-14"
+          "shot": "SHOT-55"
         }
       ]
     },
@@ -2074,9 +2286,15 @@
       "shot": "SHOT-15",
       "assets": [
         "SHOT-15",
-        "SRC-07"
+        "SHOT-56",
+        "SHOT-58",
+        "SHOT-60",
+        "SRC-07A",
+        "SRC-07B",
+        "SRC-07C",
+        "SRC-07D"
       ],
-      "production": "根据事实顺序生成四张动态 CG",
+      "production": "共同出发、第一次上山直到落空、放晴后的告别、独自折返四段；分别持续承载 2／2／2／2 句旁白",
       "lines": [
         {
           "id": "G4-04-01",
@@ -2097,10 +2315,10 @@
         {
           "id": "G4-04-03",
           "speaker": "我",
-          "text": "第一次上山是在凌晨。没有车辙，雪路结冰打滑。我们开到海拔四千五百米，最后却只看到了大雪和云雾。",
+          "text": "第一次上山是在凌晨。没有车辙，雪路结冰打滑。我开到海拔四千五百米，最后却只看到了大雪和云雾。",
           "delivery": "voiceover",
           "presentation": "caption",
-          "shot": "SHOT-15"
+          "shot": "SHOT-56"
         },
         {
           "id": "G4-04-04",
@@ -2108,7 +2326,7 @@
           "text": "我们付出了巨大的努力，但什么也没有看到。",
           "delivery": "voiceover",
           "presentation": "caption",
-          "shot": "SHOT-15"
+          "shot": "SHOT-56"
         },
         {
           "id": "G4-04-05",
@@ -2116,23 +2334,31 @@
           "text": "下山以后，天气却突然放晴了。",
           "delivery": "voiceover",
           "presentation": "caption",
-          "shot": "SHOT-15"
+          "shot": "SHOT-58"
         },
         {
           "id": "G4-04-06",
           "speaker": "我",
-          "text": "原本的行程已经结束。我在新都桥临时改签，和同伴告别，又一个人开回了子梅垭口。",
+          "text": "原本的行程已经结束。我在新都桥临时改签，和同伴告别。",
           "delivery": "voiceover",
           "presentation": "caption",
-          "shot": "SHOT-15"
+          "shot": "SHOT-58"
         },
         {
           "id": "G4-04-07",
           "speaker": "我",
+          "text": "又一个人开回了子梅垭口。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-60"
+        },
+        {
+          "id": "G4-04-08",
+          "speaker": "我",
           "text": "我不知道这一次能不能拍到，只是决定再回去一次。",
           "delivery": "voiceover",
           "presentation": "caption",
-          "shot": "SHOT-15"
+          "shot": "SHOT-60"
         }
       ]
     },
@@ -2143,9 +2369,13 @@
       "shot": "SHOT-16",
       "assets": [
         "SHOT-16",
-        "SRC-08"
+        "SHOT-61",
+        "SRC-08A",
+        "SRC-08B",
+        "SRC-08C",
+        "SRC-08D"
       ],
-      "production": "同机位三段天光差分",
+      "production": "固定机位三段天光差分后切独立下山道路",
       "lines": [
         {
           "id": "G4-05-01",
