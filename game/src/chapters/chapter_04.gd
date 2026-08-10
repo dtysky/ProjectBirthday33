@@ -27,10 +27,11 @@ const CAPTION_RECTS := {
 	"SHOT-68": Rect2(1050.0, 74.0, 790.0, 220.0),
 	"SHOT-69": Rect2(70.0, 70.0, 820.0, 220.0),
 	"SHOT-14": Rect2(90.0, 742.0, 900.0, 226.0),
-	"SHOT-15": Rect2(90.0, 742.0, 900.0, 226.0),
-	"SHOT-16": Rect2(90.0, 742.0, 900.0, 226.0),
+	# 深圳地库图的四人与装备集中在中下部，字幕放到顶棚空区。
+	"SHOT-15": Rect2(70.0, 38.0, 900.0, 210.0),
+	"SHOT-16": Rect2(70.0, 70.0, 820.0, 220.0),
 	"SHOT-55": Rect2(90.0, 742.0, 900.0, 226.0),
-	"SHOT-58": Rect2(90.0, 742.0, 900.0, 226.0),
+	"SHOT-58": Rect2(1040.0, 70.0, 800.0, 220.0),
 	"SHOT-60": Rect2(90.0, 742.0, 900.0, 226.0),
 }
 
@@ -38,7 +39,7 @@ const PLACEHOLDER_COPY := {
 	"SHOT-12": "SHOT-12 · 旧作重演占位\n三十一岁的我继续向前走",
 	"SHOT-14": "SHOT-14 · 出发前规划占位\n选题 · 路线 · 光线 · 机位",
 	"SHOT-15": "SHOT-15 · 四人共同出发占位\n破晓 · 行李 · 摄影装备",
-	"SHOT-16": "SHOT-16 · 固定机位天光占位\n日落 → 星空 → 月升",
+	"SHOT-16": "SHOT-16 · 固定机位天光占位\n日落 → 蓝调 → 星空 → 月照",
 	"SHOT-55": "SHOT-55 · 完成作品被观看占位\n投映画面将匹配切入四人出发",
 	"SHOT-58": "SHOT-58 · 新都桥告别占位\n放晴 · 湿路 · 四人和行李分离",
 	"SHOT-60": "SHOT-60 · 独自折返占位\n空副驾 · 摄影包 · 导航",
@@ -52,9 +53,9 @@ const SKY_PHASES := {
 		"wash": Color(0.96, 0.55, 0.28, 0.30),
 	},
 	"G4-05-02": {
-		"variant": "stars",
-		"copy": "SHOT-16 · 星空占位\n道路、天气和落空已经进入画面",
-		"wash": Color(0.10, 0.18, 0.34, 0.42),
+		"variant": "blue",
+		"copy": "SHOT-16 · 蓝调占位\n道路、天气和落空已经进入画面",
+		"wash": Color(0.10, 0.18, 0.34, 0.38),
 	},
 	"G4-05-03": {
 		"variant": "stars",
@@ -266,7 +267,7 @@ func _show_sky_phase(line_id: String, previous_shot_id: String) -> void:
 		wash.a *= 0.28
 	_apply_ambient(wash)
 	_start_camera_motion(texture)
-	if previous_shot_id != "SHOT-16" or ["G4-05-02", "G4-05-04"].has(line_id):
+	if previous_shot_id != "SHOT-16" or ["G4-05-02", "G4-05-03", "G4-05-04"].has(line_id):
 		_flash_for_shot(previous_shot_id, "SHOT-16", previous_shot_id.is_empty())
 
 

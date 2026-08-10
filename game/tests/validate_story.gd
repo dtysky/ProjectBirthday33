@@ -123,10 +123,10 @@ func _init() -> void:
 		if texture == null or texture.get_width() != 3840 or texture.get_height() != 2160:
 			failures.append("%s/master is not a 3840x2160 texture." % shot_id)
 	var g4_masters := [
-		"SHOT-13", "SHOT-43", "SHOT-44", "SHOT-45", "SHOT-46",
+		"SHOT-13", "SHOT-14", "SHOT-15", "SHOT-16", "SHOT-43", "SHOT-44", "SHOT-45", "SHOT-46",
 		"SHOT-47", "SHOT-48", "SHOT-49", "SHOT-50", "SHOT-51",
-		"SHOT-52", "SHOT-53", "SHOT-54", "SHOT-56", "SHOT-62",
-		"SHOT-63", "SHOT-66", "SHOT-68", "SHOT-69",
+		"SHOT-52", "SHOT-53", "SHOT-54", "SHOT-55", "SHOT-56", "SHOT-58", "SHOT-60", "SHOT-61",
+		"SHOT-62", "SHOT-63", "SHOT-66", "SHOT-68", "SHOT-69",
 	]
 	for shot_id in g4_masters:
 		var shot := (manifest.get("shots", {}) as Dictionary).get(shot_id, {}) as Dictionary
@@ -137,10 +137,17 @@ func _init() -> void:
 		var texture := ResourceLoader.load(asset_path) as Texture2D
 		if texture == null or texture.get_width() != 3840 or texture.get_height() != 2160:
 			failures.append("%s/master is not a 3840x2160 texture." % shot_id)
-	var g4_placeholders := [
-		"SHOT-12", "SHOT-14", "SHOT-15", "SHOT-16",
-		"SHOT-55", "SHOT-58", "SHOT-60", "SHOT-61",
-	]
+	var shot_sixteen := (manifest.get("shots", {}) as Dictionary).get("SHOT-16", {}) as Dictionary
+	var shot_sixteen_variants := shot_sixteen.get("variants", {}) as Dictionary
+	for variant_id in ["sunset", "blue", "stars", "moonrise"]:
+		var variant_path := str(shot_sixteen_variants.get(variant_id, ""))
+		if variant_path.is_empty() or not ResourceLoader.exists(variant_path):
+			failures.append("SHOT-16 is missing G4 sky variant %s." % variant_id)
+			continue
+		var variant_texture := ResourceLoader.load(variant_path) as Texture2D
+		if variant_texture == null or variant_texture.get_width() != 3840 or variant_texture.get_height() != 2160:
+			failures.append("SHOT-16/%s is not a 3840x2160 texture." % variant_id)
+	var g4_placeholders := ["SHOT-12"]
 	for shot_id in g4_placeholders:
 		var shot := (manifest.get("shots", {}) as Dictionary).get(shot_id, {}) as Dictionary
 		var asset_path := str(shot.get("master", ""))
@@ -160,7 +167,7 @@ func _init() -> void:
 			(
 				"Validation passed: 28 units, %d lines, balanced delivery, "
 				+ "64 planned shots, six G0 CGs, seven G1 CGs, sixteen G2 trial masters, "
-				+ "fourteen G3 masters, nineteen accepted G4 masters, eight G4 placeholders, 4K output."
+				+ "fourteen G3 masters, twenty-six G4 runtime masters, one G4 placeholder, 4K output."
 			) % line_count
 		)
 		quit(0)

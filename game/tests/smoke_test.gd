@@ -602,10 +602,10 @@ func _run() -> void:
 	await process_frame
 	if (
 		str(chapter_four_director.get("current_shot_id")) != "SHOT-14"
-		or not asset_placeholder.visible
-		or not placeholder_label.text.contains("出发前规划")
+		or master_texture.texture == null
+		or asset_placeholder.visible
 	):
-		push_error("G4-03 did not keep its missing planning image as a semantic placeholder.")
+		push_error("G4-03 did not load the generated planning master.")
 		quit(1)
 		return
 	story.call("start_at", 20, 4)
@@ -622,10 +622,20 @@ func _run() -> void:
 	await process_frame
 	if (
 		str(chapter_four_director.get("current_shot_id")) != "SHOT-55"
-		or not asset_placeholder.visible
-		or not placeholder_label.text.contains("完成作品被观看")
+		or master_texture.texture == null
+		or asset_placeholder.visible
 	):
-		push_error("G4-03 did not preserve the missing screening image as a semantic placeholder.")
+		push_error("G4-03 did not load the generated monitor-viewing master.")
+		quit(1)
+		return
+	story.call("start_at", 21, 0)
+	await process_frame
+	if (
+		str(chapter_four_director.get("current_shot_id")) != "SHOT-15"
+		or master_texture.texture == null
+		or asset_placeholder.visible
+	):
+		push_error("G4-04 did not begin on the accepted Shenzhen garage departure master.")
 		quit(1)
 		return
 	story.call("start_at", 21, 2)
@@ -642,26 +652,26 @@ func _run() -> void:
 	await process_frame
 	if (
 		str(chapter_four_director.get("current_shot_id")) != "SHOT-58"
-		or not asset_placeholder.visible
-		or not placeholder_label.text.contains("新都桥告别")
+		or master_texture.texture == null
+		or asset_placeholder.visible
 	):
-		push_error("G4-04 did not keep the missing farewell image as a semantic placeholder.")
+		push_error("G4-04 did not load the generated farewell master.")
 		quit(1)
 		return
 	story.call("start_at", 22, 0)
 	await process_frame
 	if (
 		str(chapter_four_director.get("current_shot_id")) != "SHOT-16"
-		or not asset_placeholder.visible
-		or not placeholder_label.text.contains("日落占位")
+		or master_texture.texture == null
+		or asset_placeholder.visible
 	):
-		push_error("G4-05 did not begin the fixed-camera placeholder at sunset.")
+		push_error("G4-05 did not begin on the generated fixed-camera sunset variant.")
 		quit(1)
 		return
 	story.call("start_at", 22, 2)
 	await process_frame
-	if not placeholder_label.text.contains("星空占位"):
-		push_error("G4-05 did not advance the fixed-camera placeholder to stars.")
+	if master_texture.texture == null or asset_placeholder.visible:
+		push_error("G4-05 did not advance to the generated stars variant.")
 		quit(1)
 		return
 	story.call("start_at", 22, 4)
@@ -672,11 +682,11 @@ func _run() -> void:
 	if (
 		str(chapter_four_director.get("current_shot_id")) != "SHOT-61"
 		or not bool(chapter_four_director.get("descent_active"))
-		or not asset_placeholder.visible
-		or not placeholder_label.text.contains("夜间下山")
+		or master_texture.texture == null
+		or asset_placeholder.visible
 		or (scene.get_node("CenterLine") as Control).visible
 	):
-		push_error("G4-05 did not insert the silent night-descent placeholder after the record.")
+		push_error("G4-05 did not insert the silent generated night-descent master after the record.")
 		quit(1)
 		return
 
@@ -732,7 +742,7 @@ func _run() -> void:
 		"Smoke test passed: current script, six G0 CGs, seven G1 CGs, "
 		+ "sixteen G2 trial masters with line-level shot switching, semantic dialogue beats, shot variants, "
 		+ "fourteen G3 masters with an independent opening, safe Ousia staging and timed evidence placeholder, "
-		+ "nineteen G4 masters, eight semantic placeholders, staged sky phases and silent descent, "
+		+ "twenty-six G4 runtime masters, one semantic placeholder, staged sky phases and silent descent, "
 		+ "reverse split, core UI, and ending flow."
 	)
 	quit(0)

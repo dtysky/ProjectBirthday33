@@ -178,6 +178,7 @@ const shotVariants = {
   },
   "SHOT-16": {
     sunset: "res://assets/shots/shot-16/sunset.webp",
+    blue: "res://assets/shots/shot-16/blue.webp",
     stars: "res://assets/shots/shot-16/stars.webp",
     moonrise: "res://assets/shots/shot-16/moonrise.webp",
   },

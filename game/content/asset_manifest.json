@@ -134,30 +134,31 @@
     "SHOT-14": {
       "units": "G4-03",
       "composition": "出发前在真实家中工作桌完成选题、路线、光线、银河与机位规划，持续承载本段前四句",
-      "characters": "CHAR-H／G4 服装待确认",
-      "deliverables": "家中规划母帧、真实记录与屏幕信息层",
+      "characters": "CHAR-H／H-LOOK-03",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-14/master.webp)、出发前计划屏幕层",
       "motion": "路线与光线信息低频刷新、极慢缓推",
       "master": "res://assets/shots/shot-14/master.webp",
       "variants": {}
     },
     "SHOT-15": {
       "units": "G4-04",
-      "composition": "四个人共同出发，车辆与摄影装备建立连续性",
-      "characters": "CHAR-H／G4 户外服装待确认、三名同行者远景轮廓、破晓",
-      "deliverables": "出发母帧",
-      "motion": "车灯、轻微环境视差",
+      "composition": "深圳清晨，四个人在家中地库围绕破晓与摄影装备装车出发",
+      "characters": "CHAR-H／H-LOOK-01、三名独立同行者、破晓",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-15/master.webp)",
+      "motion": "地库冷光、车灯、装载动作与轻微环境视差",
       "master": "res://assets/shots/shot-15/master.webp",
       "variants": {}
     },
     "SHOT-16": {
       "units": "G4-05",
-      "composition": "子梅垭口同一固定机位的日落、星空与月升",
-      "characters": "无近景人物；远处可见静止主角与三脚架剪影",
-      "deliverables": "日落母帧、星空与月升同构图差分",
-      "motion": "天光变化、星点、月升",
+      "composition": "以有人物的子梅垭口日落原片锁定主构图，连续进入蓝调、星空与月照银山",
+      "characters": "CHAR-H／H-LOOK-01 远景、三脚架与相机、画面左侧清晰可辨的破晓；四态位置固定；贡嘎方向无银河，月亮在右侧",
+      "deliverables": "[日落](../game/assets/shots/shot-16/sunset.webp)、[蓝调](../game/assets/shots/shot-16/blue.webp)、[星空](../game/assets/shots/shot-16/stars.webp)、[月照](../game/assets/shots/shot-16/moonrise.webp)",
+      "motion": "天光变化、暖灯、星点、月照雪山",
       "master": "res://assets/shots/shot-16/master.webp",
       "variants": {
         "sunset": "res://assets/shots/shot-16/sunset.webp",
+        "blue": "res://assets/shots/shot-16/blue.webp",
         "stars": "res://assets/shots/shot-16/stars.webp",
         "moonrise": "res://assets/shots/shot-16/moonrise.webp"
       }
@@ -410,10 +411,10 @@
     },
     "SHOT-44": {
       "units": "G4-02",
-      "composition": "G219、汹涌怒江、云雾山谷与行驶中的破晓由一张主参考共同承载",
-      "characters": "破晓；同行关系按主参考可见范围表达",
+      "composition": "抵达怒江铁索桥：湿石场地、汹涌江水、峡谷植被、旧桥与停放的破晓共同承载 G219／怒江两句",
+      "characters": "破晓；不出现近景人物",
       "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-44/master.webp)",
-      "motion": "江水、云雾、道路视差",
+      "motion": "江水、湿石地面反光、植被与轻微云影",
       "master": "res://assets/shots/shot-44/master.webp",
       "variants": {}
     },
@@ -509,10 +510,10 @@
     },
     "SHOT-55": {
       "units": "G4-03",
-      "composition": "夜晚在真实家中观看已经完成的作品，由作品中的四人出发画面进入下一场",
-      "characters": "CHAR-H／G4 居家服装待确认",
-      "deliverables": "家中观看母帧、作品播放层、与 SHOT-15 同构图的末帧",
-      "motion": "屏幕内容推进、极慢缓推、画框边界退场",
+      "composition": "夜晚回到同一家中工作桌，双手离开键鼠，只看显示器中的完成作品，再进入下一场",
+      "characters": "CHAR-H／H-LOOK-03",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-55/master.webp)、显示器作品播放层、与 SHOT-15 同构图的末帧",
+      "motion": "屏幕内容推进、极慢缓推、显示器边框退场",
       "master": "res://assets/shots/shot-55/master.webp",
       "variants": {}
     },
@@ -527,27 +528,27 @@
     },
     "SHOT-58": {
       "units": "G4-04",
-      "composition": "新都桥真实告别现场同时保留下山后放晴的天光、湿路与四人行李分离",
-      "characters": "CHAR-H 与三名同行者远景轮廓、破晓、真实行李与装备",
-      "deliverables": "放晴与告别母帧",
+      "composition": "新都桥真实告别现场同时保留下山后放晴的天光、湿路与四人关系分离",
+      "characters": "CHAR-H／H-LOOK-01 红衣上一版与三名独立同行者；白车承担同伴离开，黄色黑灰破晓清晰停在主角一侧",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-58/master.webp)",
       "motion": "云层散开、路面反光、同伴声场远去",
       "master": "res://assets/shots/shot-58/master.webp",
       "variants": {}
     },
     "SHOT-60": {
       "units": "G4-04",
-      "composition": "只有主角一人的返程车内以空副驾、摄影包、导航和道路建立独自折返",
-      "characters": "破晓；主角只作车内侧后轮廓",
-      "deliverables": "独自折返母帧",
+      "composition": "只有主角一人的返程车内以空副驾、减少的行李和道路建立独自折返",
+      "characters": "破晓蓝白座舱；CHAR-H／H-LOOK-01 车内侧后轮廓",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-60/master.webp)",
       "motion": "仪表微光、道路视差、导航低频刷新",
       "master": "res://assets/shots/shot-60/master.webp",
       "variants": {}
     },
     "SHOT-61": {
       "units": "G4-05",
-      "composition": "月升拍摄结束后的夜间下山道路",
-      "characters": "破晓；不出现近景人物",
-      "deliverables": "夜间道路母帧",
+      "composition": "拍摄结束后的夜间下山道路，以道路为主并保留边缘驾驶者关系",
+      "characters": "破晓蓝白座舱；CHAR-H／H-LOOK-06 画面边缘轮廓",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-61/master.webp)",
       "motion": "车灯、道路反光、远处微光",
       "master": "res://assets/shots/shot-61/master.webp",
       "variants": {}
