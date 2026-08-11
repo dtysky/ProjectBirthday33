@@ -25,6 +25,13 @@ func _run() -> void:
 		"DialoguePanel",
 		"DialoguePanel/DialogueMargin/DialogueBox/SpeakerLabel",
 		"CenterLine",
+		"ChapterInterludeOverlay",
+		"ChapterInterludeOverlay/Backdrop",
+		"ChapterInterludeOverlay/AtmosphereWash",
+		"ChapterInterludeOverlay/OrganicVignette",
+		"ChapterInterludeOverlay/ChapterNumber",
+		"ChapterInterludeOverlay/ChapterRule",
+		"ChapterInterludeOverlay/ChapterTitle",
 		"QuickMenuOverlay",
 		"SceneSelectOverlay",
 		"MenuButton",
@@ -38,6 +45,9 @@ func _run() -> void:
 		"ChapterFxLayer/G3GlareOverlay",
 		"ChapterFxLayer/G3TransitionOverlay",
 		"ChapterFxLayer/G3EvidenceOverlay",
+		"ChapterFxLayer/G5TransitionTexture",
+		"ChapterFxLayer/G5LinksPlaceholder",
+		"ChapterFxLayer/G5TransitionOverlay",
 		"G3EvidenceTimer",
 	]
 	for node_name in required:
@@ -63,8 +73,11 @@ func _run() -> void:
 		or int(selector_story.get("unit_index")) != 6
 		or selector_director == null
 		or int(selector_director.get("chapter_number")) != 2
+		or not bool(scene.get("chapter_interlude_active"))
+		or not (scene.get_node("ChapterInterludeOverlay") as Control).visible
+		or (scene.get_node("ChapterInterludeOverlay/ChapterTitle") as Label).text != "最后一次迂回"
 	):
-		push_error("Scene selector did not jump directly to G2-01.")
+		push_error("Scene selector did not enter G2-01 through its chapter interlude.")
 		quit(1)
 		return
 
@@ -638,6 +651,10 @@ func _run() -> void:
 		push_error("G4-04 did not begin on the accepted Shenzhen garage departure master.")
 		quit(1)
 		return
+	if not is_equal_approx(float(scene.call("_current_auto_wait_seconds")), 5.27):
+		push_error("G4-04 did not apply its chapter-specific auto-play breathing room.")
+		quit(1)
+		return
 	story.call("start_at", 21, 2)
 	await process_frame
 	if (
@@ -690,6 +707,166 @@ func _run() -> void:
 		quit(1)
 		return
 
+	scene.call("_advance_story")
+	await process_frame
+	var chapter_interlude := scene.get_node("ChapterInterludeOverlay") as Control
+	var chapter_number := scene.get_node(
+		"ChapterInterludeOverlay/ChapterNumber"
+	) as Label
+	var chapter_title := scene.get_node(
+		"ChapterInterludeOverlay/ChapterTitle"
+	) as Label
+	var chapter_backdrop := scene.get_node(
+		"ChapterInterludeOverlay/Backdrop"
+	) as TextureRect
+	if (
+		not bool(scene.get("chapter_interlude_active"))
+		or not chapter_interlude.visible
+		or chapter_number.text != "第五章"
+		or chapter_title.text != "主动失去"
+		or chapter_backdrop.texture == null
+		or (scene.get_node("DialoguePanel") as Control).visible
+		or (scene.get_node("CenterLine") as Control).visible
+	):
+		push_error("G4 to G5 did not stage the designed chapter interlude over the night road.")
+		quit(1)
+		return
+	scene.call("_finish_chapter_interlude")
+	await process_frame
+	var chapter_five_director := scene.get("active_chapter_director") as RefCounted
+	if (
+		chapter_five_director == null
+		or int(chapter_five_director.get("chapter_number")) != 5
+		or str(chapter_five_director.get("current_shot_id")) != "SHOT-17"
+		or str(chapter_five_director.get("current_variant_id")) != "fog"
+		or master_texture.texture == null
+		or asset_placeholder.visible
+	):
+		push_error("G5-01 did not begin on the selected Huangzaoding fog state.")
+		quit(1)
+		return
+	story.call("start_at", 23, 3)
+	await process_frame
+	if str(chapter_five_director.get("current_variant_id")) != "fog":
+		push_error("G5-01 did not hold the expanded opening across four fog lines.")
+		quit(1)
+		return
+	story.call("start_at", 23, 4)
+	await process_frame
+	if str(chapter_five_director.get("current_variant_id")) != "wide":
+		push_error("G5-01 did not advance from fog to the turbine wide state.")
+		quit(1)
+		return
+	story.call("start_at", 23, 8)
+	await process_frame
+	if str(chapter_five_director.get("current_variant_id")) != "sunrise_back":
+		push_error("G5-01 did not enter the merged sunrise-back state.")
+		quit(1)
+		return
+	story.call("start_at", 23, 12)
+	await process_frame
+	if str(chapter_five_director.get("current_variant_id")) != "sunrise_back":
+		push_error("G5-01 did not finish on the merged sunrise-back state.")
+		quit(1)
+		return
+
+	story.call("start_at", 24, 0)
+	await process_frame
+	var links_placeholder := scene.get_node("ChapterFxLayer/G5LinksPlaceholder") as Control
+	if (
+		str(chapter_five_director.get("current_shot_id")) != "SHOT-18"
+		or master_texture.texture == null
+		or links_placeholder.visible
+		or asset_placeholder.visible
+		or (scene.get_node("DialoguePanel") as Control).visible
+		or not center_line.visible
+	):
+		push_error("G5-02 did not begin on the sofa-and-snow-screen master.")
+		quit(1)
+		return
+	if not is_equal_approx(float(scene.call("_current_auto_wait_seconds")), 5.95):
+		push_error("G5-02 did not apply its reflective auto-play breathing room.")
+		quit(1)
+		return
+	story.call("start_at", 24, 2)
+	await process_frame
+	if (
+		str(chapter_five_director.get("current_shot_id")) != "SHOT-70"
+		or str(chapter_five_director.get("current_variant_id")) != "wide"
+		or master_texture.texture == null
+		or links_placeholder.visible
+		or asset_placeholder.visible
+	):
+		push_error("G5-02 did not cut from borrowed imagery to the ruin wide state.")
+		quit(1)
+		return
+	story.call("start_at", 24, 3)
+	await process_frame
+	if (
+		str(chapter_five_director.get("current_shot_id")) != "SHOT-70"
+		or str(chapter_five_director.get("current_variant_id")) != "glass"
+		or master_texture.texture == null
+	):
+		push_error("G5-02 did not switch to the broken-glass reflection state.")
+		quit(1)
+		return
+
+	story.call("start_at", 25, 0)
+	await process_frame
+	if str(chapter_five_director.get("current_shot_id")) != "SHOT-71" or master_texture.texture == null:
+		push_error("G5-03 did not begin on the selected desert recovery master.")
+		quit(1)
+		return
+	story.call("start_at", 25, 2)
+	await process_frame
+	if str(chapter_five_director.get("current_shot_id")) != "SHOT-72" or master_texture.texture == null:
+		push_error("G5-03 did not switch to the integrated damage assessment master.")
+		quit(1)
+		return
+	story.call("start_at", 25, 3)
+	await process_frame
+	if str(chapter_five_director.get("current_shot_id")) != "SHOT-75" or master_texture.texture == null:
+		push_error("G5-03 did not switch to the adverse-weather Huangzaoding road master.")
+		quit(1)
+		return
+	story.call("start_at", 25, 4)
+	await process_frame
+	if (
+		str(chapter_five_director.get("current_shot_id")) != "SHOT-76"
+		or master_texture.texture == null
+		or asset_placeholder.visible
+	):
+		push_error("G5-03 did not enter the selected H-LOOK-01 sinkhole master.")
+		quit(1)
+		return
+
+	story.call("start_at", 26, 0)
+	await process_frame
+	if str(chapter_five_director.get("current_shot_id")) != "SHOT-73" or master_texture.texture == null:
+		push_error("G5-04 did not begin on the selected beach-and-lighthouse master.")
+		quit(1)
+		return
+	story.call("start_at", 26, 2)
+	await process_frame
+	if (
+		str(chapter_five_director.get("current_shot_id")) != "SHOT-74"
+		or str(chapter_five_director.get("current_variant_id")) != "lantern"
+		or master_texture.texture == null
+	):
+		push_error("G5-04 did not enter the moon, green beacon and probing-lantern state.")
+		quit(1)
+		return
+	story.call("start_at", 27, 2)
+	await process_frame
+	if (
+		str(chapter_five_director.get("current_variant_id")) != "empty"
+		or master_texture.texture == null
+		or not center_line.visible
+	):
+		push_error("G5-05 did not dissolve to the clean lighthouse plate for central text.")
+		quit(1)
+		return
+
 	var longest := _find_longest_bubble(story.get("units") as Array)
 	story.call(
 		"start_at",
@@ -725,16 +902,30 @@ func _run() -> void:
 		quit(1)
 		return
 
-	var units := story.get("units") as Array
-	var last_unit_index := units.size() - 1
-	var last_unit := units[last_unit_index] as Dictionary
-	var last_lines := last_unit.get("lines", []) as Array
-	story.call("start_at", last_unit_index, last_lines.size() - 1)
+	story.call("start_at", 27, 3)
 	await process_frame
-	story.call("advance")
+	scene.call("_finish_typing")
+	scene.call("_advance_story")
+	await process_frame
+	chapter_five_director = scene.get("active_chapter_director") as RefCounted
+	if (
+		chapter_five_director == null
+		or not bool(chapter_five_director.get("final_hold_active"))
+		or str(chapter_five_director.get("current_variant_id")) != "empty"
+		or center_line.visible
+		or (scene.get_node("EndingOverlay") as Control).visible
+	):
+		push_error("G5 did not insert the silent, textless lighthouse hold after the final line.")
+		quit(1)
+		return
+	chapter_five_director.set(
+		"final_hold_started_at_msec",
+		Time.get_ticks_msec() - 3000,
+	)
+	scene.call("_advance_story")
 	await process_frame
 	if not (scene.get_node("EndingOverlay") as Control).visible:
-		push_error("Story did not reach the ending from its final current-script line.")
+		push_error("Story did not reach the ending after the final lighthouse hold.")
 		quit(1)
 		return
 
@@ -743,6 +934,7 @@ func _run() -> void:
 		+ "sixteen G2 trial masters with line-level shot switching, semantic dialogue beats, shot variants, "
 		+ "fourteen G3 masters with an independent opening, safe Ousia staging and timed evidence placeholder, "
 		+ "twenty-six G4 runtime masters, one semantic placeholder, staged sky phases and silent descent, "
+		+ "thirteen G5 runtime states across nine packages, designed chapter interludes, staged final imagery and a silent lighthouse hold, "
 		+ "reverse split, core UI, and ending flow."
 	)
 	quit(0)

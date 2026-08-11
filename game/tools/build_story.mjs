@@ -20,16 +20,16 @@ const voiceoverUnits = new Set([
   "G4-03",
   "G4-04",
   "G4-05",
+  "G5-01",
+  "G5-02",
+  "G5-03",
+  "G5-04",
   "G5-05",
 ]);
 const sceneMonologueUnits = new Set([
   "G1-06",
   "G2-01",
   "G2-02",
-  "G5-01",
-  "G5-02",
-  "G5-03",
-  "G5-04",
 ]);
 const narrationSpeakers = new Set([
   "我",
@@ -182,6 +182,19 @@ const shotVariants = {
     stars: "res://assets/shots/shot-16/stars.webp",
     moonrise: "res://assets/shots/shot-16/moonrise.webp",
   },
+  "SHOT-17": {
+    fog: "res://assets/shots/shot-17/fog.webp",
+    wide: "res://assets/shots/shot-17/wide.webp",
+    sunrise_back: "res://assets/shots/shot-17/sunrise-back.webp",
+  },
+  "SHOT-70": {
+    wide: "res://assets/shots/shot-70/master.webp",
+    glass: "res://assets/shots/shot-70/glass.webp",
+  },
+  "SHOT-74": {
+    lantern: "res://assets/shots/shot-74/master.webp",
+    empty: "res://assets/shots/shot-74/empty.webp",
+  },
 };
 const shotMasters = {
   "SHOT-01": "res://assets/shots/shot-01/g0-wake.webp",
@@ -208,8 +221,8 @@ for (const match of assetSource.matchAll(
   };
 }
 
-if (Object.keys(shots).length !== 64) {
-  throw new Error(`Expected 64 shot packages, got ${Object.keys(shots).length}`);
+if (Object.keys(shots).length !== 71) {
+  throw new Error(`Expected 71 shot packages, got ${Object.keys(shots).length}`);
 }
 
 fs.mkdirSync(contentDir, { recursive: true });

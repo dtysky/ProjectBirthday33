@@ -27,6 +27,13 @@ var speaker_label: Label
 var body_label: Label
 var bubble_next_mark: Label
 var center_line_label: Label
+var chapter_interlude_overlay: Control
+var chapter_interlude_backdrop: TextureRect
+var chapter_interlude_wash: ColorRect
+var chapter_interlude_vignette: ColorRect
+var chapter_interlude_kicker: Label
+var chapter_interlude_rule: ColorRect
+var chapter_interlude_title: Label
 var menu_button: Button
 var quick_menu_overlay: ColorRect
 var auto_button: Button
@@ -62,6 +69,7 @@ func build(
 	_build_debug_meta()
 	_build_dialogue()
 	_build_center_line()
+	_build_chapter_interlude()
 	_build_quick_menu()
 	_build_title_screen()
 	_build_scene_selector()
@@ -275,6 +283,212 @@ func _build_center_line() -> void:
 	center_line_label.visible = false
 	center_line_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	host.add_child(center_line_label)
+
+
+func _build_chapter_interlude() -> void:
+	chapter_interlude_overlay = Control.new()
+	chapter_interlude_overlay.name = "ChapterInterludeOverlay"
+	chapter_interlude_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	chapter_interlude_overlay.clip_contents = true
+	chapter_interlude_overlay.visible = false
+	_set_full_rect(chapter_interlude_overlay)
+	host.add_child(chapter_interlude_overlay)
+
+	chapter_interlude_backdrop = TextureRect.new()
+	chapter_interlude_backdrop.name = "Backdrop"
+	chapter_interlude_backdrop.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	chapter_interlude_backdrop.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	chapter_interlude_backdrop.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	chapter_interlude_backdrop.material = _chapter_backdrop_material()
+	_set_full_rect(chapter_interlude_backdrop)
+	chapter_interlude_overlay.add_child(chapter_interlude_backdrop)
+
+	chapter_interlude_wash = ColorRect.new()
+	chapter_interlude_wash.name = "AtmosphereWash"
+	chapter_interlude_wash.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_set_full_rect(chapter_interlude_wash)
+	chapter_interlude_overlay.add_child(chapter_interlude_wash)
+
+	chapter_interlude_vignette = ColorRect.new()
+	chapter_interlude_vignette.name = "OrganicVignette"
+	chapter_interlude_vignette.color = Color.WHITE
+	chapter_interlude_vignette.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	chapter_interlude_vignette.material = _chapter_vignette_material()
+	_set_full_rect(chapter_interlude_vignette)
+	chapter_interlude_overlay.add_child(chapter_interlude_vignette)
+
+	chapter_interlude_kicker = Label.new()
+	chapter_interlude_kicker.name = "ChapterNumber"
+	chapter_interlude_kicker.add_theme_font_size_override("font_size", 23)
+	chapter_interlude_kicker.add_theme_constant_override("letter_spacing", 5)
+	chapter_interlude_kicker.add_theme_color_override(
+		"font_shadow_color",
+		Color(0.0, 0.0, 0.0, 0.52),
+	)
+	chapter_interlude_kicker.add_theme_constant_override("shadow_offset_y", 2)
+	chapter_interlude_kicker.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	chapter_interlude_overlay.add_child(chapter_interlude_kicker)
+
+	chapter_interlude_rule = ColorRect.new()
+	chapter_interlude_rule.name = "ChapterRule"
+	chapter_interlude_rule.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	chapter_interlude_overlay.add_child(chapter_interlude_rule)
+
+	chapter_interlude_title = Label.new()
+	chapter_interlude_title.name = "ChapterTitle"
+	chapter_interlude_title.add_theme_font_size_override("font_size", 74)
+	chapter_interlude_title.add_theme_constant_override("letter_spacing", 7)
+	chapter_interlude_title.add_theme_color_override(
+		"font_shadow_color",
+		Color(0.0, 0.0, 0.0, 0.62),
+	)
+	chapter_interlude_title.add_theme_constant_override("shadow_offset_x", 2)
+	chapter_interlude_title.add_theme_constant_override("shadow_offset_y", 3)
+	chapter_interlude_title.add_theme_constant_override("shadow_outline_size", 2)
+	chapter_interlude_title.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	chapter_interlude_overlay.add_child(chapter_interlude_title)
+
+
+func configure_chapter_interlude(spec: Dictionary, texture: Texture2D) -> void:
+	var title_rect: Rect2 = spec.get(
+		"title_rect",
+		Rect2(160.0, 300.0, 760.0, 260.0),
+	) as Rect2
+	var alignment := int(spec.get("alignment", HORIZONTAL_ALIGNMENT_LEFT))
+	var title_color: Color = spec.get("title_color", Color("#e7e2d9")) as Color
+	var accent_color: Color = spec.get("accent_color", title_color) as Color
+	var wash_color: Color = spec.get(
+		"wash_color",
+		Color(0.035, 0.045, 0.055, 0.34),
+	) as Color
+
+	chapter_interlude_backdrop.texture = texture
+	chapter_interlude_backdrop.visible = texture != null
+	chapter_interlude_backdrop.pivot_offset = Vector2(960.0, 540.0)
+	chapter_interlude_backdrop.scale = Vector2.ONE
+	chapter_interlude_backdrop.modulate = Color.WHITE
+	var backdrop_material := chapter_interlude_backdrop.material as ShaderMaterial
+	backdrop_material.set_shader_parameter(
+		"desaturation",
+		float(spec.get("desaturation", 0.26)),
+	)
+	backdrop_material.set_shader_parameter(
+		"grade",
+		spec.get("grade", Color(0.03, 0.045, 0.06, 0.10)),
+	)
+
+	chapter_interlude_wash.color = wash_color
+	chapter_interlude_wash.modulate.a = 0.0
+	var vignette_material := chapter_interlude_vignette.material as ShaderMaterial
+	vignette_material.set_shader_parameter(
+		"veil_color",
+		spec.get("veil_color", Color(0.02, 0.025, 0.03, 1.0)),
+	)
+	vignette_material.set_shader_parameter(
+		"strength",
+		float(spec.get("veil_strength", 0.58)),
+	)
+	vignette_material.set_shader_parameter(
+		"focus",
+		spec.get("focus", Vector2(0.5, 0.46)),
+	)
+	chapter_interlude_vignette.modulate.a = 0.0
+
+	chapter_interlude_kicker.text = str(spec.get("number", ""))
+	chapter_interlude_kicker.position = title_rect.position
+	chapter_interlude_kicker.size = Vector2(title_rect.size.x, 40.0)
+	chapter_interlude_kicker.horizontal_alignment = alignment
+	chapter_interlude_kicker.add_theme_color_override("font_color", accent_color)
+	chapter_interlude_kicker.modulate.a = 0.0
+
+	var rule_width := float(spec.get("rule_width", 104.0))
+	var rule_x := title_rect.position.x
+	if alignment == HORIZONTAL_ALIGNMENT_CENTER:
+		rule_x += (title_rect.size.x - rule_width) * 0.5
+	elif alignment == HORIZONTAL_ALIGNMENT_RIGHT:
+		rule_x += title_rect.size.x - rule_width
+	chapter_interlude_rule.position = Vector2(rule_x, title_rect.position.y + 49.0)
+	chapter_interlude_rule.size = Vector2(rule_width, 2.0)
+	var rule_pivot_x := 0.0
+	if alignment == HORIZONTAL_ALIGNMENT_CENTER:
+		rule_pivot_x = rule_width * 0.5
+	elif alignment == HORIZONTAL_ALIGNMENT_RIGHT:
+		rule_pivot_x = rule_width
+	chapter_interlude_rule.pivot_offset = Vector2(
+		rule_pivot_x,
+		1.0,
+	)
+	chapter_interlude_rule.color = accent_color
+	chapter_interlude_rule.scale = Vector2(0.0, 1.0)
+	chapter_interlude_rule.modulate.a = 0.0
+
+	chapter_interlude_title.text = str(spec.get("title", ""))
+	chapter_interlude_title.position = title_rect.position + Vector2(0.0, 74.0)
+	chapter_interlude_title.size = Vector2(title_rect.size.x, title_rect.size.y - 74.0)
+	chapter_interlude_title.horizontal_alignment = alignment
+	chapter_interlude_title.vertical_alignment = VERTICAL_ALIGNMENT_TOP
+	chapter_interlude_title.add_theme_font_size_override(
+		"font_size",
+		int(spec.get("title_size", 74)),
+	)
+	chapter_interlude_title.add_theme_color_override("font_color", title_color)
+	chapter_interlude_title.rotation_degrees = float(spec.get("title_rotation", 0.0))
+	chapter_interlude_title.modulate.a = 0.0
+
+	chapter_interlude_overlay.modulate = Color.WHITE
+	chapter_interlude_overlay.visible = true
+
+
+func hide_chapter_interlude() -> void:
+	chapter_interlude_overlay.visible = false
+	chapter_interlude_overlay.modulate = Color.WHITE
+	chapter_interlude_backdrop.scale = Vector2.ONE
+	chapter_interlude_kicker.modulate.a = 0.0
+	chapter_interlude_title.modulate.a = 0.0
+	chapter_interlude_rule.modulate.a = 0.0
+
+
+func _chapter_backdrop_material() -> ShaderMaterial:
+	var shader := Shader.new()
+	shader.code = """
+shader_type canvas_item;
+
+uniform float desaturation : hint_range(0.0, 1.0) = 0.26;
+uniform vec4 grade : source_color = vec4(0.03, 0.045, 0.06, 0.10);
+
+void fragment() {
+	vec4 source = texture(TEXTURE, UV);
+	float luminance = dot(source.rgb, vec3(0.299, 0.587, 0.114));
+	source.rgb = mix(source.rgb, vec3(luminance), desaturation);
+	source.rgb = mix(source.rgb, grade.rgb, grade.a);
+	COLOR = source;
+}
+"""
+	var material := ShaderMaterial.new()
+	material.shader = shader
+	return material
+
+
+func _chapter_vignette_material() -> ShaderMaterial:
+	var shader := Shader.new()
+	shader.code = """
+shader_type canvas_item;
+
+uniform vec4 veil_color : source_color = vec4(0.02, 0.025, 0.03, 1.0);
+uniform float strength : hint_range(0.0, 1.0) = 0.58;
+uniform vec2 focus = vec2(0.5, 0.46);
+
+void fragment() {
+	vec2 distance_from_focus = (UV - focus) * vec2(1.0, 1.18);
+	float edge = smoothstep(0.18, 0.82, length(distance_from_focus));
+	float lower_weight = smoothstep(0.18, 1.0, UV.y) * 0.12;
+	float veil = clamp(0.22 + edge * 0.66 + lower_weight, 0.0, 1.0);
+	COLOR = vec4(veil_color.rgb, veil_color.a * strength * veil);
+}
+"""
+	var material := ShaderMaterial.new()
+	material.shader = shader
+	return material
 
 
 func _build_quick_menu() -> void:

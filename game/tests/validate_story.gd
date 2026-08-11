@@ -67,8 +67,8 @@ func _init() -> void:
 	for delivery in delivery_counts:
 		if int(delivery_counts[delivery]) == 0:
 			failures.append("Story has no %s lines." % delivery)
-	if (manifest.get("shots", {}) as Dictionary).size() != 64:
-		failures.append("Expected 64 shot packages.")
+	if (manifest.get("shots", {}) as Dictionary).size() != 71:
+		failures.append("Expected 71 shot packages.")
 	var shot_one := (manifest.get("shots", {}) as Dictionary).get("SHOT-01", {}) as Dictionary
 	var opening_variants := shot_one.get("variants", {}) as Dictionary
 	for variant_id in ["wake", "wash", "cats", "board", "drive", "arrive"]:
@@ -153,6 +153,49 @@ func _init() -> void:
 		var asset_path := str(shot.get("master", ""))
 		if not asset_path.is_empty() and ResourceLoader.exists(asset_path):
 			failures.append("%s should still be an explicit G4 placeholder." % shot_id)
+	var g5_masters := [
+		"SHOT-17", "SHOT-18", "SHOT-70", "SHOT-71",
+		"SHOT-72", "SHOT-73", "SHOT-74", "SHOT-75", "SHOT-76",
+	]
+	for shot_id in g5_masters:
+		var shot := (manifest.get("shots", {}) as Dictionary).get(shot_id, {}) as Dictionary
+		var asset_path := str(shot.get("master", ""))
+		if asset_path.is_empty() or not ResourceLoader.exists(asset_path):
+			failures.append("%s is missing its selected G5 runtime master." % shot_id)
+			continue
+		var texture := ResourceLoader.load(asset_path) as Texture2D
+		if texture == null or texture.get_width() != 3840 or texture.get_height() != 2160:
+			failures.append("%s/master is not a 3840x2160 texture." % shot_id)
+	var shot_seventeen := (manifest.get("shots", {}) as Dictionary).get("SHOT-17", {}) as Dictionary
+	var shot_seventeen_variants := shot_seventeen.get("variants", {}) as Dictionary
+	for variant_id in ["fog", "wide", "sunrise_back"]:
+		var variant_path := str(shot_seventeen_variants.get(variant_id, ""))
+		if variant_path.is_empty() or not ResourceLoader.exists(variant_path):
+			failures.append("SHOT-17 is missing G5 phase %s." % variant_id)
+			continue
+		var variant_texture := ResourceLoader.load(variant_path) as Texture2D
+		if variant_texture == null or variant_texture.get_width() != 3840 or variant_texture.get_height() != 2160:
+			failures.append("SHOT-17/%s is not a 3840x2160 texture." % variant_id)
+	var shot_seventy := (manifest.get("shots", {}) as Dictionary).get("SHOT-70", {}) as Dictionary
+	var shot_seventy_variants := shot_seventy.get("variants", {}) as Dictionary
+	for variant_id in ["wide", "glass"]:
+		var variant_path := str(shot_seventy_variants.get(variant_id, ""))
+		if variant_path.is_empty() or not ResourceLoader.exists(variant_path):
+			failures.append("SHOT-70 is missing G5 ruin state %s." % variant_id)
+			continue
+		var variant_texture := ResourceLoader.load(variant_path) as Texture2D
+		if variant_texture == null or variant_texture.get_width() != 3840 or variant_texture.get_height() != 2160:
+			failures.append("SHOT-70/%s is not a 3840x2160 texture." % variant_id)
+	var shot_seventy_four := (manifest.get("shots", {}) as Dictionary).get("SHOT-74", {}) as Dictionary
+	var shot_seventy_four_variants := shot_seventy_four.get("variants", {}) as Dictionary
+	for variant_id in ["lantern", "empty"]:
+		var variant_path := str(shot_seventy_four_variants.get(variant_id, ""))
+		if variant_path.is_empty() or not ResourceLoader.exists(variant_path):
+			failures.append("SHOT-74 is missing G5 ending state %s." % variant_id)
+			continue
+		var variant_texture := ResourceLoader.load(variant_path) as Texture2D
+		if variant_texture == null or variant_texture.get_width() != 3840 or variant_texture.get_height() != 2160:
+			failures.append("SHOT-74/%s is not a 3840x2160 texture." % variant_id)
 	if int(ProjectSettings.get_setting("display/window/size/viewport_width", 0)) != 1920:
 		failures.append("Expected a 1920-wide logical viewport.")
 	if int(ProjectSettings.get_setting("display/window/size/viewport_height", 0)) != 1080:
@@ -166,8 +209,9 @@ func _init() -> void:
 		print(
 			(
 				"Validation passed: 28 units, %d lines, balanced delivery, "
-				+ "64 planned shots, six G0 CGs, seven G1 CGs, sixteen G2 trial masters, "
-				+ "fourteen G3 masters, twenty-six G4 runtime masters, one G4 placeholder, 4K output."
+				+ "71 planned shots, six G0 CGs, seven G1 CGs, sixteen G2 trial masters, "
+				+ "fourteen G3 masters, twenty-six G4 runtime masters, one G4 placeholder, "
+				+ "thirteen G5 runtime states across nine packages, no G5 placeholder, 4K output."
 			) % line_count
 		)
 		quit(0)

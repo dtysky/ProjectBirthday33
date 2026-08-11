@@ -164,20 +164,24 @@
       }
     },
     "SHOT-17": {
-      "units": "G5-01、G5-02",
-      "composition": "家中工作桌侧背面",
-      "characters": "CHAR-H／OUTFIT-H-HOME",
-      "deliverables": "母帧、干净背景、看屏幕姿态、看摄影包差分、屏幕层、摄影包层",
-      "motion": "呼吸、一次视线切换、屏幕微光",
+      "units": "G5-01",
+      "composition": "黄凿顶同一次抵达的浓雾、风机群，以及以 back 为主构图、sunrise 为太阳与光线的合并日出背影三状态",
+      "characters": "CHAR-H／H-LOOK-01；破晓",
+      "deliverables": "[fog](../game/assets/shots/shot-17/fog.webp)、[wide](../game/assets/shots/shot-17/wide.webp)、[sunrise-back](../game/assets/shots/shot-17/sunrise-back.webp) 三张当前使用的 4K 状态母帧；旧 sunrise／back 文件保留不再调用",
+      "motion": "雾、车灯雾束、风机慢转、草叶与晨光",
       "master": "res://assets/shots/shot-17/master.webp",
-      "variants": {}
+      "variants": {
+        "fog": "res://assets/shots/shot-17/fog.webp",
+        "wide": "res://assets/shots/shot-17/wide.webp",
+        "sunrise_back": "res://assets/shots/shot-17/sunrise-back.webp"
+      }
     },
     "SHOT-18": {
-      "units": "G5-03、G5-04、G5-05",
-      "composition": "山地道路上的静止背影与最终空镜",
-      "characters": "CHAR-H／OUTFIT-H-OUTDOOR",
-      "deliverables": "像素母帧、近写实 CG、背影层、干净空镜、风雪层",
-      "motion": "衣角、风雪、像素退去",
+      "units": "G5-02",
+      "composition": "黑暗客厅中我坐在沙发上观看大电视；电视画面为用户提供的冷蓝风雪湿地与远行人物",
+      "characters": "CHAR-H 仅作观看者剪影，服装与面部不可读",
+      "deliverables": "[风雪画中屏幕 4K 母帧](../game/assets/shots/shot-18/master.webp)",
+      "motion": "屏幕风雪、冷光投射、极轻呼吸",
       "master": "res://assets/shots/shot-18/master.webp",
       "variants": {}
     },
@@ -596,6 +600,75 @@
       "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-69/master.webp)",
       "motion": "雨线、低云、衣摆与真实身体动作",
       "master": "res://assets/shots/shot-69/master.webp",
+      "variants": {}
+    },
+    "SHOT-70": {
+      "units": "G5-02",
+      "composition": "废弃圆厅广角先建立文明残骸，随后同地点切到手持碎玻璃、玻璃同时倒映圆厅与自己的脸",
+      "characters": "CHAR-H／H-LOOK-05",
+      "deliverables": "[广角 4K 母帧](../game/assets/shots/shot-70/master.webp)、[碎玻璃倒影 4K 状态](../game/assets/shots/shot-70/glass.webp)",
+      "motion": "积水反光、植物轻摆、极慢推近、玻璃边缘冷光",
+      "master": "res://assets/shots/shot-70/master.webp",
+      "variants": {
+        "wide": "res://assets/shots/shot-70/master.webp",
+        "glass": "res://assets/shots/shot-70/glass.webp"
+      }
+    },
+    "SHOT-71": {
+      "units": "G5-03",
+      "composition": "破晓在沙中深陷，人物在夜间车灯与尾灯下挖沙",
+      "characters": "CHAR-H／H-LOOK-06；破晓",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-71/master.webp)",
+      "motion": "风沙、灯光、有限姿态变化",
+      "master": "res://assets/shots/shot-71/master.webp",
+      "variants": {}
+    },
+    "SHOT-72": {
+      "units": "G5-03",
+      "composition": "狭窄山路上主角、摩托车主与交警围绕破晓右前保险杠进行事后定损",
+      "characters": "CHAR-H／H-LOOK-06；摩托车主与交警匿名化",
+      "deliverables": "[单张整合定损 4K 母帧](../game/assets/shots/shot-72/master.webp)；无车牌、警号、文件文字与可识别人脸",
+      "motion": "树影、交警拍照／记录、极慢推近",
+      "master": "res://assets/shots/shot-72/master.webp",
+      "variants": {}
+    },
+    "SHOT-73": {
+      "units": "G5-04",
+      "composition": "穿长外套站在湿沙滩上，隔着开阔海面远望终末灯塔；原片只参考人物站姿",
+      "characters": "CHAR-H／H-LOOK-08；栗棕色大块角状分组发束",
+      "deliverables": "[沙滩远望 4K 母帧](../game/assets/shots/shot-73/master.webp)",
+      "motion": "斜向浪线、湿沙反光、衣摆、极慢推近",
+      "master": "res://assets/shots/shot-73/master.webp",
+      "variants": {}
+    },
+    "SHOT-74": {
+      "units": "G5-04、G5-05",
+      "composition": "满月夜终末灯塔前人物直视灯塔，站姿挺直并将提灯手向前伸出，随后离场并留下同机位空镜",
+      "characters": "CHAR-H／H-LOOK-08；提灯参考 SRC-26；栗棕色大块角状分组发束",
+      "deliverables": "[提灯人物 4K 母帧](../game/assets/shots/shot-74/master.webp)、[同机位 4K 空镜](../game/assets/shots/shot-74/empty.webp)",
+      "motion": "月光海面、绿灯低频闪烁、提灯微光、人物态向空镜慢溶",
+      "master": "res://assets/shots/shot-74/master.webp",
+      "variants": {
+        "lantern": "res://assets/shots/shot-74/master.webp",
+        "empty": "res://assets/shots/shot-74/empty.webp"
+      }
+    },
+    "SHOT-75": {
+      "units": "G5-03",
+      "composition": "保留实拍中的黄凿顶山脊道路、破晓、风机与输电塔层次，把晴暖天气改为恶劣阴天、低云和湿路",
+      "characters": "无可读人物；破晓",
+      "deliverables": "[恶劣阴天山路 4K 母帧](../game/assets/shots/shot-75/master.webp)",
+      "motion": "低云横移、风机极慢转动、湿路微光",
+      "master": "res://assets/shots/shot-75/master.webp",
+      "variants": {}
+    },
+    "SHOT-76": {
+      "units": "G5-03",
+      "composition": "严格沿用 SRC-32 的侧向洞内机位：巨大蚀刻洞壁压住左侧与中央，强天光留在右上边缘，人物坐在从右侧伸向深渊的岩脊端部；仅适度拉近，SRC-33 只补洞壁层台与谷底植被",
+      "characters": "CHAR-H／H-LOOK-01；红色长外套、米白高领衫；左手搭屈膝、右腿沿岩脊向前放平",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-76/master.webp)",
+      "motion": "右上强天光、雾尘、叶片、极慢靠近",
+      "master": "res://assets/shots/shot-76/master.webp",
       "variants": {}
     }
   }

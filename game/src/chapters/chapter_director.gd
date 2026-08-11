@@ -41,6 +41,10 @@ func paginate_dialogue(_line: Dictionary) -> Array[String]:
 	return []
 
 
+func auto_wait_multiplier(_line: Dictionary, _unit: Dictionary) -> float:
+	return 1.0
+
+
 func uses_speaker_label() -> bool:
 	return false
 

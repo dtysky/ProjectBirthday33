@@ -2,7 +2,7 @@
   "version": 2,
   "title": "三十三",
   "unit_count": 28,
-  "line_count": 281,
+  "line_count": 293,
   "units": [
     {
       "id": "G1-01",
@@ -2425,72 +2425,113 @@
       "title": "回来",
       "shot": "SHOT-17",
       "assets": [
-        "SHOT-17"
+        "SHOT-17",
+        "SRC-24"
       ],
-      "production": "新制镜头包",
+      "production": "黄凿顶 `fog／wide／sunrise-back` 三状态按 4／4／5 句推进；车灯与风声承接 G4 雪夜下山",
       "lines": [
         {
           "id": "G5-01-01",
           "speaker": "我",
-          "text": "我总想着再多攒一点。",
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
+          "text": "以前，我总是想着，再多攒一点，给以后一个更厚的安全垫。",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-17"
         },
         {
           "id": "G5-01-02",
           "speaker": "我",
-          "text": "但每当我出去，再累也没事。",
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
+          "text": "毕竟做我这行，一旦离开，就很难再回来了，尤其是年龄和职级摆在这里。",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-17"
         },
         {
           "id": "G5-01-03",
           "speaker": "我",
-          "text": "一回来，即便只是在摸鱼，我也会重新焦虑、生病。",
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
+          "text": "但越是像在继续干着，越是休息不好，即便只是在摸鱼，也会反复焦虑失眠，感冒生病。",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-17"
         },
         {
           "id": "G5-01-04",
           "speaker": "我",
-          "text": "这趟旅途没有替我做出决定。",
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
+          "text": "就像是一种幻痛，不是出于肉体，而是精神的切割和创伤。",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-17"
         },
         {
           "id": "G5-01-05",
           "speaker": "我",
-          "text": "它只是把那个早已存在的选择，重新照亮。",
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
+          "text": "而每当我出去翻山越岭，即便再累，路况再恶劣，睡眠时间再短，却感觉神清气爽。",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-17"
         },
         {
           "id": "G5-01-06",
           "speaker": "我",
-          "text": "我从小就知道，自己要走另一条人生。",
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
+          "text": "如此反复，我就觉察到，可能是一种命运的推动：",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-17"
         },
         {
           "id": "G5-01-07",
           "speaker": "我",
-          "text": "三十三岁，不是突然转向，而是停止延期。",
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
+          "text": "这些旅途和创作，并不是在我做出决定。",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-17"
         },
         {
           "id": "G5-01-08",
           "speaker": "我",
+          "text": "它们只是把我很久以前，那个早已存在的选择，重新照亮。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-17"
+        },
+        {
+          "id": "G5-01-09",
+          "speaker": "我",
+          "text": "正如我一度作为座右铭的那句，克尔凯廓尔的名言——",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-17"
+        },
+        {
+          "id": "G5-01-10",
+          "speaker": "我",
+          "text": "「寻找一个对我而言是真理的真理，寻找一个我愿意为它而活、为它而死的理念。」",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-17"
+        },
+        {
+          "id": "G5-01-11",
+          "speaker": "我",
+          "text": "我从小就知道，自己要走的，或许不是随着社会节律的那种人生。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-17"
+        },
+        {
+          "id": "G5-01-12",
+          "speaker": "我",
+          "text": "三十三岁，不是突然转向，而是停止延期。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-17"
+        },
+        {
+          "id": "G5-01-13",
+          "speaker": "我",
           "text": "不是决定去哪里，而是决定不再绕路。",
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-17"
         }
       ]
@@ -2499,36 +2540,56 @@
       "id": "G5-02",
       "chapter": 5,
       "title": "另一条人生",
-      "shot": "SHOT-17",
+      "shot": "SHOT-18",
       "assets": [
-        "SHOT-17",
-        "FX-SCREEN"
+        "SHOT-18",
+        "SHOT-70",
+        "SRC-25",
+        "SRC-26",
+        "SRC-30",
+        "FX-EVIDENCE"
       ],
-      "production": "复用母帧，屏幕内容进入道路透视",
+      "production": "前两句沙发观看风雪画中屏幕；第三句进入废墟广角；后两句切到同地点碎玻璃倒影",
       "lines": [
         {
           "id": "G5-02-01",
           "speaker": "我",
-          "text": "有时候，我以为，另一条人生里，有风，有草原，有冰川，有荒漠。",
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
-          "shot": "SHOT-17"
+          "text": "在我还将“看世界”当做未知憧憬的美好时，我真的天真得以为。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-18"
         },
         {
           "id": "G5-02-02",
           "speaker": "我",
-          "text": "有无人抵达的道路，也有文明留下的残骸。",
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
-          "shot": "SHOT-17"
+          "text": "在他们所表现的另一条人生里，有温柔风，有辽阔的草原，有冷峻的冰川，有苍凉的荒漠。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-18"
         },
         {
           "id": "G5-02-03",
           "speaker": "我",
-          "text": "那里没有虚伪的笑脸，没有煞有介事的表演，也没有谁替我解释，什么才算正确。",
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
-          "shot": "SHOT-17"
+          "text": "在人迹罕至的道路上探险，去品味那些文明和岁月所留下的残骸。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-70"
+        },
+        {
+          "id": "G5-02-04",
+          "speaker": "我",
+          "text": "那里没有虚伪的笑脸，没有煞有介事的表演。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-70"
+        },
+        {
+          "id": "G5-02-05",
+          "speaker": "我",
+          "text": "也没有谁替我解释，什么才算正确。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-70"
         }
       ]
     },
@@ -2536,35 +2597,83 @@
       "id": "G5-03",
       "chapter": 5,
       "title": "同样有风雪",
-      "shot": "SHOT-18",
+      "shot": "SHOT-71",
       "assets": [
-        "SHOT-18"
+        "SHOT-71",
+        "SHOT-72",
+        "SHOT-75",
+        "SHOT-76",
+        "SRC-27",
+        "SRC-28",
+        "SRC-31",
+        "SRC-32",
+        "SRC-33"
       ],
-      "production": "新制镜头包",
+      "production": "前两句沙漠陷车，第三句事故事后定损，第四句黄凿顶阴天山路，后四句地下天坑坐姿沉思",
       "lines": [
         {
           "id": "G5-03-01",
           "speaker": "我",
-          "text": "后来我知道，那里同样有风雪、迷路、故障和徒劳。",
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
-          "shot": "SHOT-18"
+          "text": "后来，我真的出发了，才知道路上不仅仅有愉悦和美景。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-71"
         },
         {
           "id": "G5-03-02",
           "speaker": "我",
-          "text": "我想要的从来不是一个更轻松、更纯洁的世界。",
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
-          "shot": "SHOT-18"
+          "text": "在沙漠中陷车，独自等待救援到深夜，大晚上费力挖着沙子。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-71"
         },
         {
           "id": "G5-03-03",
           "speaker": "我",
+          "text": "在乡道上被本地摩托撞，还被本地交警和稀泥，无法得到合法的权益。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-72"
+        },
+        {
+          "id": "G5-03-04",
+          "speaker": "我",
+          "text": "几百公里高速和国道，各种烂路窄路上山，却因为突然飘来的云，什么都没拍到。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-75"
+        },
+        {
+          "id": "G5-03-05",
+          "speaker": "我",
+          "text": "不错，路上除了美景，还有风雪、迷雾、故障和徒劳。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-76"
+        },
+        {
+          "id": "G5-03-06",
+          "speaker": "我",
+          "text": "但面对这些问题，我并未恐惧和失望，而是越发期待。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-76"
+        },
+        {
+          "id": "G5-03-07",
+          "speaker": "我",
+          "text": "我便真的明白，我想要的从来不是一个更轻松、更纯洁的世界。",
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-76"
+        },
+        {
+          "id": "G5-03-08",
+          "speaker": "我",
           "text": "而是一种可以由我自己选择、也由我自己承担的失败。",
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
-          "shot": "SHOT-18"
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-76"
         }
       ]
     },
@@ -2572,61 +2681,62 @@
       "id": "G5-04",
       "chapter": 5,
       "title": "下定决心",
-      "shot": "SHOT-18",
+      "shot": "SHOT-73",
       "assets": [
-        "SHOT-18",
-        "SRC-09",
-        "FX-PIXEL"
+        "SHOT-73",
+        "SHOT-74",
+        "SRC-29",
+        "SRC-26"
       ],
-      "production": "像素母帧过渡到同构图近写实 CG",
+      "production": "前两句沙滩远望；第三句起切到满月夜绿色信号灯与前探提灯状态",
       "lines": [
         {
           "id": "G5-04-01",
           "speaker": "我",
           "text": "我知道，我可能迎来世俗意义上失败的终结。",
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
-          "shot": "SHOT-18"
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-73"
         },
         {
           "id": "G5-04-02",
           "speaker": "我",
           "text": "但比起这些，我更不愿接受自己的理想尚未真正开始，就已经失败。",
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
-          "shot": "SHOT-18"
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-73"
         },
         {
           "id": "G5-04-03",
           "speaker": "我",
           "text": "三十三岁，我终于下定了决心。",
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
-          "shot": "SHOT-18"
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-74"
         },
         {
           "id": "G5-04-04",
           "speaker": "我",
           "text": "人类的赞歌，就是勇气的赞歌。",
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
-          "shot": "SHOT-18"
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-74"
         },
         {
           "id": "G5-04-05",
           "speaker": "我",
           "text": "我没有那么伟大，也没有多少才能。",
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
-          "shot": "SHOT-18"
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-74"
         },
         {
           "id": "G5-04-06",
           "speaker": "我",
           "text": "但至少，我有一种憧憬。",
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
-          "shot": "SHOT-18"
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-74"
         }
       ]
     },
@@ -2634,11 +2744,11 @@
       "id": "G5-05",
       "chapter": 5,
       "title": "第二段人生",
-      "shot": "SHOT-18",
+      "shot": "SHOT-74",
       "assets": [
-        "SHOT-18"
+        "SHOT-74"
       ],
-      "production": "复用近写实干净空镜",
+      "production": "当前提灯人物态慢溶到同机位灯塔空镜，最后进入中央文字与无文字停驻",
       "lines": [
         {
           "id": "G5-05-01",
@@ -2646,7 +2756,7 @@
           "text": "真正的勇气，从来不是沿着顺遂的道路继续苟延残喘。",
           "delivery": "voiceover",
           "presentation": "caption",
-          "shot": "SHOT-18"
+          "shot": "SHOT-74"
         },
         {
           "id": "G5-05-02",
@@ -2654,7 +2764,7 @@
           "text": "真正的勇气，是为了更珍贵的东西，做出选择，并坦然接受失去。",
           "delivery": "voiceover",
           "presentation": "caption",
-          "shot": "SHOT-18"
+          "shot": "SHOT-74"
         },
         {
           "id": "G5-05-03",
@@ -2662,7 +2772,7 @@
           "text": "我是瞬光。",
           "delivery": "screen_text",
           "presentation": "center",
-          "shot": "SHOT-18"
+          "shot": "SHOT-74"
         },
         {
           "id": "G5-05-04",
@@ -2670,7 +2780,7 @@
           "text": "我的第二段人生，即将开始。",
           "delivery": "screen_text",
           "presentation": "center",
-          "shot": "SHOT-18"
+          "shot": "SHOT-74"
         }
       ]
     }

@@ -5,6 +5,15 @@ const DESCENT_TRIGGER_LINE := "G4-05-05"
 const DESCENT_SHOT_ID := "SHOT-61"
 const DESCENT_HOLD := 4.8
 
+# Preserve the user's auto-wait preference while restoring each scene's scripted dwell range.
+const AUTO_WAIT_MULTIPLIERS := {
+	"G4-01": 1.25,
+	"G4-02": 1.35,
+	"G4-03": 1.40,
+	"G4-04": 1.55,
+	"G4-05": 1.40,
+}
+
 const CAPTION_RECTS := {
 	"SHOT-12": Rect2(100.0, 742.0, 900.0, 226.0),
 	"SHOT-13": Rect2(1060.0, 94.0, 760.0, 220.0),
@@ -191,6 +200,10 @@ func position_caption(label: Label, _presentation: String) -> bool:
 
 func uses_speaker_label() -> bool:
 	return false
+
+
+func auto_wait_multiplier(_line: Dictionary, unit: Dictionary) -> float:
+	return float(AUTO_WAIT_MULTIPLIERS.get(str(unit.get("id", "")), 1.0))
 
 
 func resume() -> bool:
