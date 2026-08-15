@@ -54,7 +54,7 @@
       "units": "G2-01",
       "composition": "转岗前夜，在旧公司工位从纪录片计划转向游戏机会",
       "characters": "CHAR-H／H-LOOK-04",
-      "deliverables": "[试制母帧](../game/assets/shots/shot-05/master.webp)；`plan`、`accepted` 差分待实机审查后决定",
+      "deliverables": "[试制母帧](../game/assets/shots/shot-05/master.webp)；屏幕改为低精度内部转岗岗位信息，`accepted` 差分待实机审查后决定",
       "motion": "光标、手部移动、确认状态",
       "master": "res://assets/shots/shot-05/master.webp",
       "variants": {}
@@ -115,12 +115,17 @@
     },
     "SHOT-12": {
       "units": "G4-01",
-      "composition": "三十一岁作品的记忆重演",
-      "characters": "CHAR-H／OUTFIT-H-ARCHIVE",
-      "deliverables": "两张原片抽帧重绘、纸面边界、投影光层",
-      "motion": "数字推拉、原声音轨",
-      "master": "res://assets/shots/shot-12/master.webp",
-      "variants": {}
+      "composition": "三十一岁作品的四幕记忆重演：空礼堂向光而行、高山草甸上行、落日海岸迎风、城市夜色返程",
+      "characters": "CHAR-H／H-LOOK-08、H-LOOK-06、H-LOOK-01、H-LOOK-03",
+      "deliverables": "[向外求索](../game/assets/shots/shot-12/outward.webp)、[山川湖海](../game/assets/shots/shot-12/mountains.webp)、[享乐任务](../game/assets/shots/shot-12/pleasure.webp)、[夜间返程](../game/assets/shots/shot-12/return.webp) 四态 4K 运行时 CG；SRC-04 原声音轨待补",
+      "motion": "纸面边界退场、短溶接、极慢缓推、海风与窗外城市视差",
+      "master": "res://assets/shots/shot-12/outward.webp",
+      "variants": {
+        "outward": "res://assets/shots/shot-12/outward.webp",
+        "mountains": "res://assets/shots/shot-12/mountains.webp",
+        "pleasure": "res://assets/shots/shot-12/pleasure.webp",
+        "return": "res://assets/shots/shot-12/return.webp"
+      }
     },
     "SHOT-13": {
       "units": "G4-02",
@@ -237,7 +242,7 @@
       "units": "G2-03",
       "composition": "项目后来终于上线，但已经与我无关",
       "characters": "CHAR-H／H-LOOK-08",
-      "deliverables": "[试制母帧](../game/assets/shots/shot-24/master.webp)；上线页面已烘焙",
+      "deliverables": "[试制母帧](../game/assets/shots/shot-24/master.webp)；屏幕改为发布上线后的指标看板",
       "motion": "屏幕滚动、缓推",
       "master": "res://assets/shots/shot-24/master.webp",
       "variants": {}
@@ -280,8 +285,8 @@
     },
     "SHOT-29": {
       "units": "G2-05",
-      "composition": "深圳竞聘结束后会议室中与某 HR 两人谈话",
-      "characters": "CHAR-H／H-LOOK-04、低细节某 HR",
+      "composition": "深圳竞聘结束后会议室中与男性 HR 大佬两人谈话",
+      "characters": "CHAR-H／H-LOOK-04、男性 HR／正式西装",
       "deliverables": "[试制母帧](../game/assets/shots/shot-29/master.webp)；结果页轻度失焦",
       "motion": "翻页、抬眼、缓推",
       "master": "res://assets/shots/shot-29/master.webp",
@@ -290,7 +295,7 @@
     "SHOT-30": {
       "units": "G2-05",
       "composition": "两周后我与甲、乙、丙共同看到职责再次调整",
-      "characters": "CHAR-H／H-LOOK-04、CHAR-TEAM（甲／乙／丙）",
+      "characters": "CHAR-H／H-LOOK-04 白衬衫、CHAR-TEAM（甲／乙／丙）",
       "deliverables": "[试制母帧](../game/assets/shots/shot-30/master.webp)；职责通知已烘焙",
       "motion": "通知滚动、耸肩",
       "master": "res://assets/shots/shot-30/master.webp",
@@ -569,7 +574,7 @@
     "SHOT-63": {
       "units": "G4-02",
       "composition": "腾格里独处一夜后的日出，主角站在破晓车顶唱歌；身体直立、头部基本平视，一只手在腰侧自然摊开，另一只手放松垂下，表情是克制的自然微笑",
-      "characters": "CHAR-H／H-LOOK-06、破晓；双手空着，禁止麦克风、耳麦、线缆及任何手持物；禁止仰头、张开双臂等舞台化姿态；车牌必须是无字、无号码、不可识别的虚构像素道具牌",
+      "characters": "CHAR-H／H-LOOK-06、破晓；成年人比例与克制神态，双手空着，禁止麦克风、耳麦、线缆及任何手持物；禁止仰头、张开双臂等舞台化姿态；车牌必须是无字、无号码、不可识别的虚构像素道具牌",
       "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-63/master.webp)",
       "motion": "晨风、衣摆、低频天光变化",
       "master": "res://assets/shots/shot-63/master.webp",
@@ -586,7 +591,7 @@
     },
     "SHOT-68": {
       "units": "G4-02",
-      "composition": "以原始现场照片锁定金字塔层次、交叉手势、三张卡牌及嘴角轻微上扬的自然微笑，按 16:9 重新构图为原生像素 CG",
+      "composition": "以原始现场照片锁定金字塔层次、交叉手势、三张卡牌及嘴角轻微上扬的自然微笑；空手掌背加入令咒，按 16:9 重新构图为原生像素 CG",
       "characters": "CHAR-H／H-LOOK-05；身份、脸型、发型、眼镜与比例只取正式人设；禁止中性严肃脸和夸张大笑",
       "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-68/master.webp)",
       "motion": "仅允许极慢缓推，不生成肢体差分",

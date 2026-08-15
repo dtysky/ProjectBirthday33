@@ -15,6 +15,8 @@
 - [g4-asset-plan-20260804.md](g4-asset-plan-20260804.md)：G4 具体旅途、摄影工序与子梅垭口过程的独立镜头边界、参考路由和生成前约束。
 - [g4-cg-manifest-20260806.md](g4-cg-manifest-20260806.md)：G4 已接入的十九张 4K 母帧、八个语义占位与当前演出规则。
 - [character-h-reference-catalog.md](character-h-reference-catalog.md)：我的服装套系、姿态与原文件索引。
+- [问题图片审查表](review/problem-image-and-dialogue-review-20260813.xlsx)：2026-08-13 收到的十张问题图片，以及“图像本身”“文本演出”两个空白审查栏。
+- [全游戏场景断句列表](../design/dialogue-line-break-review-20260813.md)：按当前 Godot 演出导出的全游戏台词分页与屏内换行，供直接修改。
 - [char-h-look-04-sheet-v1.png](characters/char-h/outfits/char-h-look-04-sheet-v1.png)：`H-LOOK-04`，同时作为 `CHAR-H` 人物身份基准。
 - [char-h-look-09-sheet-v1.png](characters/char-h/outfits/char-h-look-09-sheet-v1.png)：`H-LOOK-09` 浅灰蓝睡衣待审核人设。
 - [char-cats-sheet-v1.png](characters/cats/char-cats-sheet-v1.png)：两只猫当前保留的人设版本，后续仍需调整。

@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "sequences": [
+    {
+      "id": "G4-01-THIRTY-ONE",
+      "unit_id": "G4-01",
+      "stream": "res://assets/audio/voice/g4-01-thirty-one.ogg",
+      "bus": "Voice",
+      "soundtrack": true,
+      "duration": 110.7,
+      "handoff_at": 56.5,
+      "cues": [
+        { "line_id": "G4-01-01", "at": 3.0 },
+        { "line_id": "G4-01-02", "at": 6.48 },
+        { "line_id": "G4-01-03", "at": 12.48 },
+        { "line_id": "G4-01-04", "at": 19.58 },
+        { "line_id": "G4-01-05", "at": 27.48 },
+        { "line_id": "G4-01-06", "at": 32.1 },
+        { "line_id": "G4-01-07", "at": 40.11 },
+        { "line_id": "G4-01-08", "at": 45.63 },
+        { "line_id": "G4-01-09", "at": 52.13 }
+      ]
+    }
+  ]
+}

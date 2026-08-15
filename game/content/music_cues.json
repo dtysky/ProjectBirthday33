@@ -1,0 +1,115 @@
+{
+  "version": 2,
+  "music_bed_db": -3.0,
+  "default_fade_in_seconds": 1.5,
+  "default_fade_out_seconds": 2.2,
+  "default_crossfade_seconds": 2.0,
+  "cues": [
+    {
+      "id": "MUS-01",
+      "stream": "res://assets/audio/music/mus-01-dream-residue.ogg",
+      "start_line": "G1-01-01",
+      "end_line": "G1-01-01",
+      "loop": true,
+      "stop_mode": "hard"
+    },
+    {
+      "id": "MUS-03B",
+      "stream": "res://assets/audio/music/mus-03b-road-still-works.ogg",
+      "ranges": [
+        {
+          "start_line": "G1-01-02",
+          "end_line": "G1-01-24"
+        },
+        {
+          "start_line": "G1-05-01",
+          "end_line": "G1-06-06"
+        }
+      ],
+      "loop": true,
+      "fade_out_seconds": 2.8
+    },
+    {
+      "id": "MUS-02",
+      "stream": "res://assets/audio/music/mus-02-performance-echo.ogg",
+      "start_line": "G1-02-01",
+      "end_line": "G1-04-06",
+      "loop": true,
+      "fade_out_seconds": 2.8
+    },
+    {
+      "id": "MUS-04",
+      "stream": "res://assets/audio/music/mus-04-named-companions.ogg",
+      "start_line": "G2-01-01",
+      "end_line": "G2-06-15",
+      "loop": true,
+      "fade_out_seconds": 2.8
+    },
+    {
+      "id": "MUS-06B",
+      "stream": "res://assets/audio/music/mus-06b-beginning.ogg",
+      "start_line": "G3-01-01",
+      "end_line": "G3-03-04",
+      "loop": true
+    },
+    {
+      "id": "MUS-05A",
+      "stream": "res://assets/audio/music/mus-05a-search.ogg",
+      "start_line": "G3-03-04",
+      "end_line": "G3-03-04",
+      "loop": false,
+      "crossfade_seconds": 1.8,
+      "trigger_mode": "custom",
+      "custom_start": "g3_evidence"
+    },
+    {
+      "id": "MUS-05B",
+      "stream": "res://assets/audio/music/mus-05b-recognition.ogg",
+      "start_line": "G3-03-05",
+      "end_line": "G3-06-07",
+      "loop": true,
+      "crossfade_seconds": 1.8
+    },
+    {
+      "id": "MUS-07B",
+      "stream": "res://assets/audio/music/mus-07b-distant-roads.ogg",
+      "start_line": "G4-02-01",
+      "end_line": "G4-03-11",
+      "loop": true
+    },
+    {
+      "id": "MUS-08B",
+      "stream": "res://assets/audio/music/mus-08b-image-exists.ogg",
+      "start_line": "G4-04-01",
+      "end_line": "G4-05-05",
+      "loop": true,
+      "crossfade_seconds": 2.4,
+      "fade_out_seconds": 3.2
+    },
+    {
+      "id": "MUS-09A",
+      "stream": "res://assets/audio/music/mus-09a-choice-already-exists.ogg",
+      "start_line": "G5-01-01",
+      "end_line": "G5-02-05",
+      "loop": true
+    },
+    {
+      "id": "MUS-09B",
+      "stream": "res://assets/audio/music/mus-09b-chosen-failure.ogg",
+      "start_line": "G5-03-01",
+      "end_line": "G5-04-02",
+      "loop": true,
+      "crossfade_seconds": 2.4
+    },
+    {
+      "id": "MUS-09C",
+      "stream": "res://assets/audio/music/mus-09c-walk-to-lighthouse.ogg",
+      "start_line": "G5-04-03",
+      "end_line": "G5-05-04",
+      "loop": true,
+      "crossfade_seconds": 2.4,
+      "fade_out_seconds": 2.4,
+      "custom_stop": "g5_final_hold"
+    }
+  ]
+}

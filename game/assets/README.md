@@ -19,3 +19,7 @@ G1 当前的审核候选已导入 `shot-02`、`shot-03`、`shot-04` 与 `shot-19
 - `fonts/`：游戏内字体及其授权说明。
 
 原始照片、视频和录屏放在 `../../art/references-local/`，PSD 等工程文件放在 `../../art/workfiles/`，AI 候选稿放在 `../../art/generated/`。
+
+`audio/music/` 只存放 Godot 直接加载的成品 Ogg、导入元数据与构建报告。AI 平台原始 MP3 和 24-bit WAV 母版不重复放入运行时目录；它们保存在 `/Users/dtysky/Downloads/b33/music/` 及其 `runtime-masters/` 子目录，可由 `game/tools/build_music.mjs` 重建。
+
+`audio/voice/` 存放会由台词时间轴直接播放的配音或原片声音。当前 `g4-01-thirty-one.ogg` 来自三十一岁旧作的正式视频：前 56.5 秒保留提问与原始配乐，之后只保留分离后的人声外配乐直到自然收束，总长 110.7 秒。九个字幕入点和跨场交接点记录在 `game/content/voice_sequences.json`；后续配音沿用同一数据结构，不把时间码写死在章节脚本中。

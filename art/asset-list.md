@@ -140,14 +140,14 @@
 | SHOT-02 | G1-02 | 园区散步途中，主角位于五人松散讨论圈中央 | CHAR-H／H-LOOK-02、TEAM-02（既定四名下属） | [完整 CG](../game/assets/shots/shot-02/master.webp) | 极慢缓推、园区视差、轻微重心变化 | 已接入，已审核 |
 | SHOT-03 | G1-04 | 山地风景前的创作表演 | CHAR-H／H-LOOK-05、Shimoda 三脚架摄影包 | [指景 CG](../game/assets/shots/shot-03/point.webp)、[手持自拍 CG](../game/assets/shots/shot-03/thumb.webp) | 第三方机位切手持自拍、云与衣角 | 已接入，待审核 |
 | SHOT-04 | G1-06 | 两种表演融合后的正面特写 | CHAR-H；衣服与肩线沉入黑场 | [闭眼 CG](../game/assets/shots/shot-04/closed.webp)、[睁眼 CG](../game/assets/shots/shot-04/open.webp) | 呼吸、最后一句睁眼 | 已接入，待审核 |
-| SHOT-05 | G2-01 | 转岗前夜，在旧公司工位从纪录片计划转向游戏机会 | CHAR-H／H-LOOK-04 | [试制母帧](../game/assets/shots/shot-05/master.webp)；`plan`、`accepted` 差分待实机审查后决定 | 光标、手部移动、确认状态 | 已接入试制，待审核 |
+| SHOT-05 | G2-01 | 转岗前夜，在旧公司工位从纪录片计划转向游戏机会 | CHAR-H／H-LOOK-04 | [试制母帧](../game/assets/shots/shot-05/master.webp)；屏幕改为低精度内部转岗岗位信息，`accepted` 差分待实机审查后决定 | 光标、手部移动、确认状态 | 2026-08-13 按审查表修正接入 |
 | SHOT-06 | G2-02 | 白天同一组工位从一个人增加到五个人 | CHAR-H／H-LOOK-03、CHAR-TEAM（我／丁／乙／丙／甲） | [试制母帧](../game/assets/shots/shot-06/master.webp)；成员进入差分待实机审查后决定 | 成员依次进入、办公底噪增加 | 已接入试制，待审核 |
 | SHOT-07 | G2-03 | 公司食堂小火锅桌前，五人围着蓝色蛋糕庆祝即将上线 | CHAR-H／H-LOOK-08、CHAR-TEAM（我／丁／乙／丙／甲） | [试制母帧](../game/assets/shots/shot-07/master.webp)；切蛋糕与递盘差分待定 | 轻微说笑、递盘 | 已接入试制，待审核 |
 | SHOT-08 | G2-04 | 项目被拆后五人在原工位讨论去留 | CHAR-H／H-LOOK-02、CHAR-TEAM（我／丁／乙／丙／甲） | [试制母帧](../game/assets/shots/shot-08/master.webp)；视线与坐姿差分待定 | 轻微重心变化 | 已接入试制，待审核 |
 | SHOT-09 | G3-02 | 我和 Ousia 并坐在纯白花海空地，聊天设备低位放在两人之间 | CHAR-H／H-LOOK-04、CHAR-OUSIA／OUTFIT-OUSIA | [4K 运行时母帧](../game/assets/shots/shot-09/master.webp)、SRC-01 屏幕层待替换 | 屏幕刷新、视线交换、花影风动 | 已审核接入；SRC-01 待提供 |
 | SHOT-10 | G3-03 | 深夜普通卧室中，躺在床上的第一人称视线直视开着的圆形吸顶灯，周围保留天花板和房间边缘 | 无可见人物 | [4K 运行时母帧](../game/assets/shots/shot-10/master.webp)、SRC-03 全屏证据切片待替换 | 灯芯与视野边缘曝光呼吸、完整二十秒检索切入 | 已审核接入；SRC-03 当前使用二十秒明确占位 |
 | SHOT-11 | G3-06 | 花海俯斜手部近景，Ousia 在空白页旁放下笔，我伸手接近 | CHAR-H／H-LOOK-04、CHAR-OUSIA／OUTFIT-OUSIA | [4K 运行时母帧](../game/assets/shots/shot-11/master.webp)、G4 旧作投影层待补 | 落笔、手靠近、纸面投影与推近 | 已审核接入；旧作投影仍待 G4 抽帧 |
-| SHOT-12 | G4-01 | 三十一岁作品的记忆重演 | CHAR-H／OUTFIT-H-ARCHIVE | 两张原片抽帧重绘、纸面边界、投影光层 | 数字推拉、原声音轨 | 语义占位已接入，待补图与原声音轨 |
+| SHOT-12 | G4-01 | 三十一岁作品的四幕记忆重演：空礼堂向光而行、高山草甸上行、落日海岸迎风、城市夜色返程 | CHAR-H／H-LOOK-08、H-LOOK-06、H-LOOK-01、H-LOOK-03 | [向外求索](../game/assets/shots/shot-12/outward.webp)、[山川湖海](../game/assets/shots/shot-12/mountains.webp)、[享乐任务](../game/assets/shots/shot-12/pleasure.webp)、[夜间返程](../game/assets/shots/shot-12/return.webp) 四态 4K 运行时 CG；SRC-04 原片声音已接入 | 纸面边界退场、短溶接、极慢缓推、海风与窗外城市视差；56.5 秒后尾奏跨场 | 四态已按用户选片接入；110.7 秒原片声音保留完整音乐收束，后半旧旁白已分离 |
 | SHOT-13 | G4-02 | 从旧作最后一步匹配切入真实练车，表现对驾驶恐惧的具体处理 | CHAR-H／练车实穿服装待确认 | [4K 运行时母帧](../game/assets/shots/shot-13/master.webp) | 后视镜光、道路视差、手部轻微紧张 | 已审核接入 |
 | SHOT-14 | G4-03 | 出发前在真实家中工作桌完成选题、路线、光线、银河与机位规划，持续承载本段前四句 | CHAR-H／H-LOOK-03 | [4K 运行时母帧](../game/assets/shots/shot-14/master.webp)、出发前计划屏幕层 | 路线与光线信息低频刷新、极慢缓推 | 已审核接入 |
 | SHOT-15 | G4-04 | 深圳清晨，四个人在家中地库围绕破晓与摄影装备装车出发 | CHAR-H／H-LOOK-01、三名独立同行者、破晓 | [4K 运行时母帧](../game/assets/shots/shot-15/master.webp) | 地库冷光、车灯、装载动作与轻微环境视差 | 深圳家中地库修正版已审核接入 |
@@ -159,13 +159,13 @@
 | SHOT-21 | G2-06 | 木质坡顶、深绿墙面餐厅中的组员丙送别宴 | CHAR-H／H-LOOK-03、CHAR-TEAM（丙／甲／乙） | [试制母帧](../game/assets/shots/shot-21/master.webp)；`after-banquet` 待实机审查后决定 | 夹菜、放杯、缓推、饭后空桌 | 已接入试制，待审核 |
 | SHOT-22 | G2-02 | 凌晨两点五人在办公室排查最后一个内存问题 | CHAR-H／H-LOOK-03、CHAR-TEAM（我／丁／乙／丙／甲） | [试制母帧](../game/assets/shots/shot-22/master.webp)；当前为 `memory-high` 状态 | 数值刷新、奶茶落桌、缓推 | 已接入试制，待审核 |
 | SHOT-23 | G2-03 | 科兴科学园雨后沿街步道散步时收到再次延期的消息 | CHAR-H／H-LOOK-08、CHAR-TEAM（我／丁／乙／丙／甲） | [试制母帧](../game/assets/shots/shot-23/master.webp)；消息屏幕已烘焙 | 停步、回头、屏幕亮起 | 已接入试制，待审核 |
-| SHOT-24 | G2-03 | 项目后来终于上线，但已经与我无关 | CHAR-H／H-LOOK-08 | [试制母帧](../game/assets/shots/shot-24/master.webp)；上线页面已烘焙 | 屏幕滚动、缓推 | 已接入试制，待审核 |
+| SHOT-24 | G2-03 | 项目后来终于上线，但已经与我无关 | CHAR-H／H-LOOK-08 | [试制母帧](../game/assets/shots/shot-24/master.webp)；屏幕改为发布上线后的指标看板 | 屏幕滚动、缓推 | 2026-08-13 按审查表修正接入 |
 | SHOT-25 | G2-04 | 工位上查看两次五星、T11 与团队高绩效证据 | CHAR-H／H-LOOK-02 | [试制母帧](../game/assets/shots/shot-25/master.webp)；绩效页面已烘焙 | 三条证据依次出现 | 已接入试制，待审核 |
 | SHOT-26 | G2-04 | 小会议室中填写不可能完成的数据预测 | CHAR-H／H-LOOK-02、低细节同事 | [试制母帧](../game/assets/shots/shot-26/master.webp)；数据表已烘焙 | 数字填写、翻页 | 已接入试制，待审核 |
 | SHOT-27 | G2-04 | 原工位前与准备去网易的组员丁告别 | CHAR-H／H-LOOK-02、CHAR-TEAM 组员丁 | [试制母帧](../game/assets/shots/shot-27/master.webp)；背包与暗屏状态已烘焙 | 背包、点头、脚步 | 已接入试制，待审核 |
 | SHOT-28 | G2-05 | 第一次竞聘后任务重新落回我身上 | CHAR-H／H-LOOK-05 | [试制母帧](../game/assets/shots/shot-28/master.webp)；任务回流页面已烘焙 | 任务回流、提示刷新 | 已接入试制，待审核 |
-| SHOT-29 | G2-05 | 深圳竞聘结束后会议室中与某 HR 两人谈话 | CHAR-H／H-LOOK-04、低细节某 HR | [试制母帧](../game/assets/shots/shot-29/master.webp)；结果页轻度失焦 | 翻页、抬眼、缓推 | 已接入试制，待审核 |
-| SHOT-30 | G2-05 | 两周后我与甲、乙、丙共同看到职责再次调整 | CHAR-H／H-LOOK-04、CHAR-TEAM（甲／乙／丙） | [试制母帧](../game/assets/shots/shot-30/master.webp)；职责通知已烘焙 | 通知滚动、耸肩 | 已接入试制，待审核 |
+| SHOT-29 | G2-05 | 深圳竞聘结束后会议室中与男性 HR 大佬两人谈话 | CHAR-H／H-LOOK-04、男性 HR／正式西装 | [试制母帧](../game/assets/shots/shot-29/master.webp)；结果页轻度失焦 | 翻页、抬眼、缓推 | 2026-08-13 按审查表修正接入 |
+| SHOT-30 | G2-05 | 两周后我与甲、乙、丙共同看到职责再次调整 | CHAR-H／H-LOOK-04 白衬衫、CHAR-TEAM（甲／乙／丙） | [试制母帧](../game/assets/shots/shot-30/master.webp)；职责通知已烘焙 | 通知滚动、耸肩 | 2026-08-13 按审查表修正接入 |
 | SHOT-31 | G2-05 | 远程会议中指出决策儿戏并触发第二次竞聘 | CHAR-H／H-LOOK-05、低细节参会者 | [试制母帧](../game/assets/shots/shot-31/master.webp)；重新竞聘通知已烘焙 | 会议刷新、通知出现 | 已接入试制，待审核 |
 | SHOT-32 | G3-01 | Poros 在真实家中把离职后的生活换成月度跑道，我坐在旅行装备旁听他说明 | AGENT-POROS `v2`、CHAR-H／H-LOOK-04、CHAR-CATS `v1` | [4K 运行时母帧](../game/assets/shots/shot-32/master.webp)、墙屏跑道与警戒线前后状态 | 点选、视线移动、红线后退 | 母帧已审核接入；正式数字由 Godot 后加 |
 | SHOT-33 | G3-01 | Ariadne 与我并肩穿过植物园，在真实岔路前区分“正常”和“同行” | AGENT-ARIADNE `v2`、CHAR-H／H-LOOK-04 | [4K 运行时母帧](../game/assets/shots/shot-33/master.webp)、手机证据层、Godot 路牌标签 | 同行、停顿、回头、花叶风动 | 母帧已审核接入；证据文字待制作 |
@@ -196,9 +196,9 @@
 | SHOT-60 | G4-04 | 只有主角一人的返程车内以空副驾、减少的行李和道路建立独自折返 | 破晓蓝白座舱；CHAR-H／H-LOOK-01 车内侧后轮廓 | [4K 运行时母帧](../game/assets/shots/shot-60/master.webp) | 仪表微光、道路视差、导航低频刷新 | 已审核接入 |
 | SHOT-61 | G4-05 | 拍摄结束后的夜间下山道路，以道路为主并保留边缘驾驶者关系 | 破晓蓝白座舱；CHAR-H／H-LOOK-06 画面边缘轮廓 | [4K 运行时母帧](../game/assets/shots/shot-61/master.webp) | 车灯、道路反光、远处微光 | 已审核接入 |
 | SHOT-62 | G4-02 | 坦克 500 完成黄色黑灰改装并被命名为“破晓” | CHAR-H／H-LOOK-03、破晓 | [4K 运行时母帧](../game/assets/shots/shot-62/master.webp) | 车身反光、轻微缓推 | 已审核接入 |
-| SHOT-63 | G4-02 | 腾格里独处一夜后的日出，主角站在破晓车顶唱歌；身体直立、头部基本平视，一只手在腰侧自然摊开，另一只手放松垂下，表情是克制的自然微笑 | CHAR-H／H-LOOK-06、破晓；双手空着，禁止麦克风、耳麦、线缆及任何手持物；禁止仰头、张开双臂等舞台化姿态；车牌必须是无字、无号码、不可识别的虚构像素道具牌 | [4K 运行时母帧](../game/assets/shots/shot-63/master.webp) | 晨风、衣摆、低频天光变化 | 已审核接入 |
+| SHOT-63 | G4-02 | 腾格里独处一夜后的日出，主角站在破晓车顶唱歌；身体直立、头部基本平视，一只手在腰侧自然摊开，另一只手放松垂下，表情是克制的自然微笑 | CHAR-H／H-LOOK-06、破晓；成年人比例与克制神态，双手空着，禁止麦克风、耳麦、线缆及任何手持物；禁止仰头、张开双臂等舞台化姿态；车牌必须是无字、无号码、不可识别的虚构像素道具牌 | [4K 运行时母帧](../game/assets/shots/shot-63/master.webp) | 晨风、衣摆、低频天光变化 | 2026-08-13 按审查表修正接入 |
 | SHOT-66 | G4-02 | 埃及戈壁、荒漠与湛蓝红海同框，真实租赁的深蓝灰 Subaru XV 停在原卡车所在道路位置，镜头拉近 | CHAR-H／H-LOOK-04、原合照中的同行朋友与真实租赁车，三者同时出现；照片不承担 CHAR-H 身份 | [4K 运行时母帧](../game/assets/shots/shot-66/master.webp) | 热浪、海面微光、极慢缓推 | 已审核接入 |
-| SHOT-68 | G4-02 | 以原始现场照片锁定金字塔层次、交叉手势、三张卡牌及嘴角轻微上扬的自然微笑，按 16:9 重新构图为原生像素 CG | CHAR-H／H-LOOK-05；身份、脸型、发型、眼镜与比例只取正式人设；禁止中性严肃脸和夸张大笑 | [4K 运行时母帧](../game/assets/shots/shot-68/master.webp) | 仅允许极慢缓推，不生成肢体差分 | 已审核接入 |
+| SHOT-68 | G4-02 | 以原始现场照片锁定金字塔层次、交叉手势、三张卡牌及嘴角轻微上扬的自然微笑；空手掌背加入令咒，按 16:9 重新构图为原生像素 CG | CHAR-H／H-LOOK-05；身份、脸型、发型、眼镜与比例只取正式人设；禁止中性严肃脸和夸张大笑 | [4K 运行时母帧](../game/assets/shots/shot-68/master.webp) | 仅允许极慢缓推，不生成肢体差分 | 2026-08-13 按审查表修正接入 |
 | SHOT-69 | G4-02 | 意外骤雨、清晨风暴中起舞与自由由同一张 CG 承载 | CHAR-H／新西兰实穿服装待确认、车辆或设备远景 | [4K 运行时母帧](../game/assets/shots/shot-69/master.webp) | 雨线、低云、衣摆与真实身体动作 | 已审核接入 |
 | SHOT-70 | G5-02 | 废弃圆厅广角先建立文明残骸，随后同地点切到手持碎玻璃、玻璃同时倒映圆厅与自己的脸 | CHAR-H／H-LOOK-05 | [广角 4K 母帧](../game/assets/shots/shot-70/master.webp)、[碎玻璃倒影 4K 状态](../game/assets/shots/shot-70/glass.webp) | 积水反光、植物轻摆、极慢推近、玻璃边缘冷光 | 用户已确认 glass 新稿并接入演出；原广角保留 |
 | SHOT-71 | G5-03 | 破晓在沙中深陷，人物在夜间车灯与尾灯下挖沙 | CHAR-H／H-LOOK-06；破晓 | [4K 运行时母帧](../game/assets/shots/shot-71/master.webp) | 风沙、灯光、有限姿态变化 | 用户已确认并接入演出；严格时间关系可后补 |
@@ -230,7 +230,7 @@
 | G3-04 | SHOT-39、FX-TEXT | Ousia 从花中递回旧文纸页 |
 | G3-05 | SHOT-40、FX-TEXT | Ousia 合上属于女主的旧装订稿 |
 | G3-06 | SHOT-11、SHOT-41 | 空白纸、怀中哭泣、落笔与纸面推近分别使用独立构图 |
-| G4-01 | SHOT-12、SRC-04 | 根据旧作抽帧重绘，保留原声音轨 |
+| G4-01 | SHOT-12、SRC-04 | 四幕按 2／2／2／3 句推进：礼堂向光、山地上行、海岸迎风、城市夜间返程；SRC-04 原片声音已接入，尾奏跨入 G4-02 后自然收束 |
 | G4-02 | SHOT-13、SHOT-43、SHOT-44、SHOT-45、SHOT-46、SHOT-47、SHOT-48、SHOT-49、SHOT-50、SHOT-51、SHOT-52、SHOT-62、SHOT-63、SHOT-66、SHOT-68、SHOT-69、SRC-05A、SRC-05B、SRC-05C、SRC-05D、SRC-05E、SRC-05F、SRC-05G、SRC-05I、SRC-05J、SRC-05K、SRC-05L、SRC-05M、SRC-05N、SRC-05O、SRC-05P、SRC-05Q | 十六张经台本确认的独立母帧；格聂两句共用 SHOT-46，G219／怒江由怒江铁索桥实景锚定，埃及戈壁／红海、骤雨／清晨起舞分别按一张 CG 处理，不再增拆 |
 | G4-03 | SHOT-14、SHOT-53、SHOT-54、SHOT-55、SRC-06A、SRC-06B、SRC-06C、SRC-06D | 规划、同场完整拍摄过程、素材组织、完成作品／证明入口四段；分别持续承载 4／2／2／3 句旁白 |
 | G4-04 | SHOT-15、SHOT-56、SHOT-58、SHOT-60、SRC-07A、SRC-07B、SRC-07C、SRC-07D | 共同出发、第一次上山直到落空、放晴后的告别、独自折返四段；分别持续承载 2／2／2／2 句旁白 |

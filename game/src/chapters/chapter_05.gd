@@ -84,6 +84,7 @@ var story: RefCounted
 var asset_registry: RefCounted
 var ui
 var auto_timer: Timer
+var music_director: Node
 
 var transition_texture: TextureRect
 var transition_overlay: ColorRect
@@ -122,6 +123,7 @@ func setup(director_context: Dictionary) -> void:
 	asset_registry = context.get("asset_registry") as RefCounted
 	ui = context.get("ui")
 	auto_timer = context.get("auto_timer") as Timer
+	music_director = context.get("music_director") as Node
 	_build_chapter_effects()
 
 
@@ -614,6 +616,8 @@ func _can_start_final_hold() -> bool:
 func _start_final_hold() -> void:
 	final_hold_active = true
 	final_hold_started_at_msec = Time.get_ticks_msec()
+	if music_director != null:
+		music_director.call("fade_out", 2.4, "MUS-09C")
 	dialogue_panel.visible = false
 	dialogue_tail.visible = false
 	center_line_label.visible = false
@@ -635,7 +639,7 @@ func _start_final_hold() -> void:
 func _finish_final_hold() -> void:
 	final_hold_active = false
 	auto_timer.stop()
-	story.call("advance")
+	request_story_advance()
 
 
 func _kill_tweens() -> void:

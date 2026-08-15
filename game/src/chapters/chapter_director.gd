@@ -17,8 +17,34 @@ func on_line_changed(_line: Dictionary, _unit: Dictionary) -> bool:
 	return false
 
 
+func begin_timed_sequence(_unit_id: String, _line_id: String) -> void:
+	pass
+
+
+func begin_voice_handoff(_unit_id: String) -> bool:
+	return false
+
+
+func blocks_input() -> bool:
+	return false
+
+
 func handles_custom_reveal() -> bool:
 	return false
+
+
+func tick_reveal(_delta: float, _text_speed: float) -> bool:
+	return false
+
+
+func request_story_advance() -> void:
+	var callback: Callable = context.get("advance_story", Callable())
+	if callback.is_valid():
+		callback.call()
+		return
+	var story_ref = context.get("story")
+	if story_ref != null:
+		story_ref.call("advance")
 
 
 func advance() -> bool:

@@ -6,106 +6,6 @@ const VLOG_UNIT_ID := "G1-04"
 const REVERSE_UNIT_ID := "G1-05"
 const CLOSEUP_UNIT_ID := "G1-06"
 const VISUAL_VARIANTS := ["wake", "wash", "cats", "board", "drive", "arrive"]
-const CAPTION_BREAK_PUNCTUATION := "，。！？；：、—"
-const CAPTION_BREAK_MARKERS := {
-	"G1-01-02": ["日。", "一天。"],
-	"G1-01-03": ["清晰，"],
-	"G1-01-04": ["清晰，"],
-	"G1-01-05": ["印象，", "开始，"],
-	"G1-01-06": ["一次重复，"],
-	"G1-01-07": ["往常一样，"],
-	"G1-01-08": ["洗脸，"],
-	"G1-01-09": ["没变，"],
-	"G1-01-10": ["今天，"],
-	"G1-01-11": ["变得"],
-	"G1-01-12": ["和", "相关，"],
-	"G1-01-13": ["受不了", "城市，"],
-	"G1-01-14": ["主人，", "心态"],
-	"G1-01-15": ["上车，"],
-	"G1-01-16": ["破晓，"],
-	"G1-01-17": ["改变，", "帅，"],
-	"G1-01-18": ["赚钱，", "好好过日子，", "有时间"],
-	"G1-01-19": ["公司，", "职级，"],
-	"G1-01-20": ["下去。"],
-	"G1-01-22": ["是啊，", "十二年了，"],
-	"G1-01-23": ["很多事，"],
-	"G1-01-24": ["明白。"],
-}
-const G1_DIALOGUE_SEGMENTS := {
-	"G1-02-01": [
-		"这块我看过了，技术上没啥本质问题，\n说白了技术他就不太重要。",
-	],
-	"G1-02-02": [
-		"老板上次说的其实\n已经点到本质了。",
-		"她看的是业务全局，\n我们手里这些数据，只能说明局部。",
-	],
-	"G1-02-03": [
-		"现在结果不太好，\n不代表老板的方向错了。",
-		"更可能是我们的方案\n还没跟上。",
-	],
-	"G1-02-04": [
-		"方向已经定了，这时候再纠结对不对，\n其实意义不大。",
-	],
-	"G1-02-05": [
-		"今天加班出个方案吧，\n明早开会和她对一对。",
-	],
-	"G1-03-01": [
-		"不是突然不做了，只是优先级调低。\n毕竟老板也有她的考量。",
-	],
-	"G1-03-02": [
-		"这样吧，这个方案先归档。",
-		"今晚我们再努努力\n出下一个方案。",
-	],
-	"G1-03-03": [
-		"然后也争取有个Demo可以演示。",
-		"不行就加班吧，\n也没办法。",
-	],
-	"G1-03-04": [
-		"后面真有偏差，\n完整的决策过程也都在。",
-		"没问题，\n我来推。",
-	],
-	"G1-04-01": [
-		"大家好！\n我是瞬光！",
-	],
-	"G1-04-02": [
-		"哇，这个地方真的好美啊！\n就像是仙境一样。",
-	],
-	"G1-04-03": [
-		"你们看后面，太阳出来以后，\n整个山一下就亮了。",
-		"随手拍都特别好看！",
-	],
-	"G1-04-04": [
-		"还有这个云海，\n就像是仙境一样。",
-		"仙人的住所也不过如此！",
-	],
-	"G1-04-05": [
-		"真的，照片根本拍不出来。",
-		"你们有机会的话，一定要自己来一次。\n我用人格保证！",
-	],
-	"G1-04-06": [
-		"今天就先带你们看到这里啦。\n我们下一个地方见。",
-	],
-	"G1-06-01": [
-		"装明白也好，装糊涂也好，\n本质都是一码事。",
-	],
-	"G1-06-02": [
-		"顺着他们，我会更安全，\n也会更轻松。",
-	],
-	"G1-06-03": [
-		"而那种安全，\n恰恰是我从小最缺失，",
-		"也花了十几年\n才得到的东西。",
-	],
-	"G1-06-04": [
-		"但是，我总是学不会装糊涂，\n总想把东西搞明白。",
-	],
-	"G1-06-05": [
-		"逐渐，我理解了一切，\n理解他们为什么要那么做。",
-		"但理解\n并不代表明白。",
-	],
-	"G1-06-06": [
-		"我想，既然不明白，\n那就放弃吧。",
-	],
-}
 
 var host: Control
 var story: RefCounted
@@ -134,6 +34,7 @@ var visual_tween: Tween
 var waiting := false
 var transitioning := false
 var revealing := false
+var type_progress := 0.0
 var sequence_token := 0
 
 
@@ -232,7 +133,11 @@ func on_line_changed(line: Dictionary, _unit: Dictionary) -> bool:
 			return false
 
 	_cancel_line_state()
-	current_beats = _beats_for_line(current_line_id, str(line.get("text", "")))
+	current_beats = _beats_for_line(
+		current_line_id,
+		str(line.get("text", "")),
+		line.get("segments", []) as Array,
+	)
 	current_beat_index = 0
 
 	var first_beat := current_beats[0]
@@ -246,6 +151,15 @@ func on_line_changed(line: Dictionary, _unit: Dictionary) -> bool:
 
 func handles_custom_reveal() -> bool:
 	return current_unit_id == OPENING_UNIT_ID
+
+
+func tick_reveal(delta: float, text_speed: float) -> bool:
+	if not handles_custom_reveal() or not revealing:
+		return false
+	type_progress += delta * text_speed
+	var visible_count := mini(int(type_progress), center_line_label.text.length())
+	center_line_label.visible_characters = visible_count
+	return visible_count >= center_line_label.text.length()
 
 
 func advance() -> bool:
@@ -271,6 +185,7 @@ func finish_reveal() -> bool:
 		text_tween.kill()
 	center_line_label.visible_characters = -1
 	center_line_label.modulate.a = 1.0
+	type_progress = 0.0
 	revealing = false
 	_schedule_auto_advance(_hold_seconds())
 	return true
@@ -302,13 +217,6 @@ func position_caption(label: Label, _presentation: String) -> bool:
 		label.add_theme_constant_override("line_spacing", 14)
 		return true
 	return handles_custom_reveal()
-
-
-func paginate_dialogue(line: Dictionary) -> Array[String]:
-	var result: Array[String] = []
-	for segment in G1_DIALOGUE_SEGMENTS.get(str(line.get("id", "")), []):
-		result.append(str(segment))
-	return result
 
 
 func position_bubble(
@@ -369,33 +277,38 @@ func leave() -> void:
 		center_line_label.visible_characters = -1
 
 
-func _beats_for_line(line_id: String, text: String) -> Array[Dictionary]:
+func _beats_for_line(line_id: String, text: String, segments: Array) -> Array[Dictionary]:
 	var line_number := line_id.get_slice("-", 2).to_int()
+	var visual := "placeholder"
+	var prelude := ""
 	if line_number == 1:
-		return [{
-			"text": text,
-			"visual": "black",
-			"prelude": "梦境画面\n（占位）",
-		}]
-	if line_number <= 6:
-		return [{"text": text, "visual": "wake"}]
-	if line_number <= 10:
-		return [{"text": text, "visual": "wash"}]
-	if line_number <= 14:
-		return [{"text": text, "visual": "cats"}]
-	if line_number <= 17:
-		return [{"text": text, "visual": "board"}]
-	if line_number <= 20:
-		return [{"text": text, "visual": "drive"}]
-	if line_number == 21:
-		return [{
-			"text": text,
-			"visual": "black",
-			"prelude": "drive",
-		}]
-	if line_number <= 24:
-		return [{"text": text, "visual": "arrive"}]
-	return [{"text": text, "visual": "placeholder"}]
+		visual = "black"
+		prelude = "梦境画面\n（占位）"
+	elif line_number <= 6:
+		visual = "wake"
+	elif line_number <= 10:
+		visual = "wash"
+	elif line_number <= 14:
+		visual = "cats"
+	elif line_number <= 17:
+		visual = "board"
+	elif line_number <= 20:
+		visual = "drive"
+	elif line_number == 21:
+		# “我不明白”直接切黑并出字；不再插入一个必须手动跳过的无字驾车停留。
+		visual = "black"
+	elif line_number <= 24:
+		visual = "arrive"
+
+	var reviewed_segments := segments
+	if reviewed_segments.is_empty():
+		reviewed_segments = [text]
+	var beats: Array[Dictionary] = []
+	for segment in reviewed_segments:
+		beats.append({"text": str(segment), "visual": visual})
+	if not prelude.is_empty():
+		beats[0]["prelude"] = prelude
+	return beats
 
 
 func _start_prelude(prelude: String) -> void:
@@ -429,78 +342,15 @@ func _show_caption(text: String) -> void:
 	dialogue_panel.visible = false
 	dialogue_tail.visible = false
 	center_line_label.visible = not text.is_empty()
-	center_line_label.text = _format_caption(text)
-	center_line_label.visible_characters = -1
+	center_line_label.text = text
+	center_line_label.visible_characters = 0
 	_position_opening_caption()
-	center_line_label.modulate = Color(0.97, 0.97, 0.94, 0.0)
+	center_line_label.modulate = Color(0.97, 0.97, 0.94, 1.0)
+	type_progress = 0.0
 	revealing = true
 
 	if text_tween != null and text_tween.is_valid():
 		text_tween.kill()
-	text_tween = host.create_tween()
-	text_tween.set_trans(Tween.TRANS_QUAD)
-	text_tween.set_ease(Tween.EASE_OUT)
-	text_tween.tween_property(center_line_label, "modulate:a", 1.0, 0.18)
-	text_tween.finished.connect(_finish_caption_fade)
-
-
-func _format_caption(text: String) -> String:
-	var markers := CAPTION_BREAK_MARKERS.get(current_line_id, []) as Array
-	if not markers.is_empty():
-		var marked_text := _break_after_markers(text, markers)
-		if not marked_text.is_empty():
-			return marked_text
-
-	var max_chars := _caption_line_width()
-	var lines: Array[String] = []
-	var remaining := text.strip_edges()
-	while remaining.length() > max_chars:
-		var cut := -1
-		var back_limit := maxi(6, max_chars - 5)
-		for index in range(max_chars, back_limit - 1, -1):
-			if CAPTION_BREAK_PUNCTUATION.contains(remaining.substr(index - 1, 1)):
-				cut = index
-				break
-		if cut < 0:
-			var forward_limit := mini(remaining.length(), max_chars + 2)
-			for index in range(max_chars, forward_limit):
-				if CAPTION_BREAK_PUNCTUATION.contains(remaining.substr(index, 1)):
-					cut = index + 1
-					break
-		if cut < 0:
-			cut = max_chars
-		lines.append(remaining.substr(0, cut).strip_edges())
-		remaining = remaining.substr(cut).strip_edges()
-	if not remaining.is_empty():
-		lines.append(remaining)
-	return "\n".join(lines)
-
-
-func _break_after_markers(text: String, markers: Array) -> String:
-	var lines: Array[String] = []
-	var search_from := 0
-	for marker_variant in markers:
-		var marker := str(marker_variant)
-		var marker_index := text.find(marker, search_from)
-		if marker_index < 0:
-			return ""
-		var cut := marker_index + marker.length()
-		lines.append(text.substr(search_from, cut - search_from).strip_edges())
-		search_from = cut
-	var remaining := text.substr(search_from).strip_edges()
-	if not remaining.is_empty():
-		lines.append(remaining)
-	return "\n".join(lines)
-
-
-func _caption_line_width() -> int:
-	match current_visual_id:
-		"black":
-			return 20
-		"wake":
-			return 16
-		_:
-			return 13
 
 
 func _position_opening_caption() -> void:
@@ -553,7 +403,7 @@ func _position_opening_caption() -> void:
 			center_line_label.anchor_bottom = 0.88
 		"drive":
 			center_line_label.add_theme_font_size_override("font_size", 34)
-			center_line_label.anchor_left = 0.70
+			center_line_label.anchor_left = 0.58
 			center_line_label.anchor_top = 0.48
 			center_line_label.anchor_right = 0.96
 			center_line_label.anchor_bottom = 0.92
@@ -569,14 +419,6 @@ func _position_opening_caption() -> void:
 			center_line_label.anchor_top = 0.56
 			center_line_label.anchor_right = 0.94
 			center_line_label.anchor_bottom = 0.90
-
-
-func _finish_caption_fade() -> void:
-	if not handles_custom_reveal():
-		return
-	center_line_label.modulate.a = 1.0
-	revealing = false
-	_schedule_auto_advance(_hold_seconds())
 
 
 func _hold_seconds() -> float:
@@ -613,7 +455,7 @@ func _advance_opening() -> void:
 		return
 
 	transitioning = false
-	story.call("advance")
+	request_story_advance()
 
 
 func _fade_out_caption() -> void:
@@ -827,6 +669,7 @@ func _cancel_line_state() -> void:
 	waiting = false
 	transitioning = false
 	revealing = false
+	type_progress = 0.0
 	auto_timer.stop()
 	if text_tween != null and text_tween.is_valid():
 		text_tween.kill()

@@ -6,10 +6,16 @@ const toolDir = path.dirname(fileURLToPath(import.meta.url));
 const gameDir = path.resolve(toolDir, "..");
 const projectDir = path.resolve(gameDir, "..");
 const scenePath = path.join(projectDir, "design", "game-scenes.md");
+const dialoguePacingPath = path.join(
+  projectDir,
+  "design",
+  "dialogue-line-break-review-20260813.md",
+);
 const assetPath = path.join(projectDir, "art", "asset-list.md");
 const contentDir = path.join(gameDir, "content");
 
 const sceneSource = fs.readFileSync(scenePath, "utf8");
+const dialoguePacingSource = fs.readFileSync(dialoguePacingPath, "utf8");
 const assetSource = fs.readFileSync(assetPath, "utf8");
 
 const voiceoverUnits = new Set([
@@ -75,6 +81,44 @@ function presentationFor(delivery) {
   return "bubble";
 }
 
+function parseDialoguePacing(source) {
+  const pacing = new Map();
+  let currentLineId = "";
+
+  for (const sourceLine of source.split(/\r?\n/)) {
+    const lineHeader = sourceLine.match(
+      /^- \[[ x]\] `(G[1-5]-\d{2}-\d{2})`/,
+    );
+    if (lineHeader) {
+      currentLineId = lineHeader[1];
+      continue;
+    }
+
+    const revised = sourceLine.match(/^  - 修改后断句：(.*)$/);
+    if (!revised) {
+      continue;
+    }
+    if (!currentLineId) {
+      throw new Error("Dialogue pacing entry has no line id.");
+    }
+    if (pacing.has(currentLineId)) {
+      throw new Error(`Duplicate dialogue pacing entry for ${currentLineId}`);
+    }
+
+    const segments = revised[1]
+      .split(/\s*◆\s*/)
+      .map((page) => page.replace(/\s*↵\s*/g, "\n"));
+    if (segments.length === 0 || segments.some((page) => page.length === 0)) {
+      throw new Error(`Dialogue pacing entry ${currentLineId} has an empty page.`);
+    }
+    pacing.set(currentLineId, segments);
+  }
+
+  return pacing;
+}
+
+const dialoguePacing = parseDialoguePacing(dialoguePacingSource);
+
 function parseSceneLines(section, unitId, defaultShot) {
   const lines = [];
   let currentShot = defaultShot;
@@ -93,10 +137,25 @@ function parseSceneLines(section, unitId, defaultShot) {
 
     const speaker = dialogue[1].trim();
     const delivery = deliveryForShot(unitId, speaker, currentShot);
+    const id = `${unitId}-${String(lines.length + 1).padStart(2, "0")}`;
+    const text = dialogue[2].trim();
+    const segments = dialoguePacing.get(id);
+    if (!segments) {
+      throw new Error(`Missing reviewed dialogue pacing for ${id}`);
+    }
+    const reconstructedText = segments.join("").replaceAll("\n", "");
+    if (reconstructedText !== text) {
+      throw new Error(
+        `Dialogue pacing text mismatch for ${id}:\n` +
+          `script: ${text}\n` +
+          `review: ${reconstructedText}`,
+      );
+    }
     lines.push({
-      id: `${unitId}-${String(lines.length + 1).padStart(2, "0")}`,
+      id,
       speaker,
-      text: dialogue[2].trim(),
+      text,
+      segments,
       delivery,
       presentation: presentationFor(delivery),
       shot: currentShot,
@@ -154,6 +213,11 @@ if (units.length !== 28) {
 if (lineCount === 0) {
   throw new Error("Story has no dialogue lines.");
 }
+if (dialoguePacing.size !== lineCount) {
+  throw new Error(
+    `Dialogue pacing has ${dialoguePacing.size} entries for ${lineCount} lines.`,
+  );
+}
 
 const shotVariants = {
   "SHOT-01": {
@@ -182,6 +246,12 @@ const shotVariants = {
     stars: "res://assets/shots/shot-16/stars.webp",
     moonrise: "res://assets/shots/shot-16/moonrise.webp",
   },
+  "SHOT-12": {
+    outward: "res://assets/shots/shot-12/outward.webp",
+    mountains: "res://assets/shots/shot-12/mountains.webp",
+    pleasure: "res://assets/shots/shot-12/pleasure.webp",
+    return: "res://assets/shots/shot-12/return.webp",
+  },
   "SHOT-17": {
     fog: "res://assets/shots/shot-17/fog.webp",
     wide: "res://assets/shots/shot-17/wide.webp",
@@ -201,6 +271,7 @@ const shotMasters = {
   "SHOT-03": "res://assets/shots/shot-03/point.webp",
   "SHOT-04": "res://assets/shots/shot-04/closed.webp",
   "SHOT-19": "res://assets/shots/shot-19/base.webp",
+  "SHOT-12": "res://assets/shots/shot-12/outward.webp",
 };
 
 const shots = {};
@@ -230,7 +301,7 @@ fs.writeFileSync(
   path.join(contentDir, "story.json"),
   `${JSON.stringify(
     {
-      version: 2,
+      version: 3,
       title: "三十三",
       unit_count: units.length,
       line_count: lineCount,

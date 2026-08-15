@@ -8,6 +8,7 @@ const CHAPTER_COLORS := {
 	4: Color("#293025"),
 	5: Color("#302c28"),
 }
+const CJK_FONT := preload("res://assets/fonts/NotoSansSC-b33.otf")
 
 var host: Control
 var callbacks: Dictionary
@@ -65,6 +66,10 @@ func build(
 ) -> void:
 	host = parent
 	callbacks = ui_callbacks
+	# 随游戏内置当前完整台本所需的简体中文字形，避免系统字体回退差异造成缺字框。
+	var cjk_theme := Theme.new()
+	cjk_theme.default_font = CJK_FONT
+	host.theme = cjk_theme
 	_build_stage()
 	_build_debug_meta()
 	_build_dialogue()

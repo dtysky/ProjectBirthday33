@@ -19,6 +19,7 @@ var current_presentation := "bubble"
 var current_speaker := ""
 var current_segments: Array[String] = []
 var current_segment_index := 0
+var current_segments_are_scripted := false
 var type_progress := 0.0
 var is_typing := false
 var is_screen_line := false
@@ -45,7 +46,10 @@ func start_line(line: Dictionary, director = null) -> void:
 	current_speaker = str(line.get("speaker", ""))
 	caption_director = director
 	current_segments = []
-	if caption_director != null:
+	for segment in line.get("segments", []) as Array:
+		current_segments.append(str(segment))
+	current_segments_are_scripted = not current_segments.is_empty()
+	if current_segments.is_empty() and caption_director != null:
 		current_segments = caption_director.paginate_dialogue(line)
 	if current_segments.is_empty():
 		current_segments = paginate_text(
@@ -134,11 +138,11 @@ func _show_current_segment() -> void:
 	)
 
 	if is_screen_line:
-		current_text = _format_screen_text(segment_text)
+		current_text = segment_text if current_segments_are_scripted else _format_screen_text(segment_text)
 		center_line_label.text = current_text
 		_position_caption()
 	else:
-		current_text = _format_bubble_text(segment_text)
+		current_text = segment_text if current_segments_are_scripted else _format_bubble_text(segment_text)
 		body_label.text = current_text
 		_position_bubble()
 
@@ -198,8 +202,8 @@ func _position_bubble() -> void:
 	var longest_line_chars := 1
 	for line in lines:
 		longest_line_chars = maxi(longest_line_chars, line.length())
-	var bubble_width := clampf(72.0 + longest_line_chars * 31.0, 410.0, 650.0)
-	var bubble_height := 120.0 if line_count == 1 else 158.0
+	var bubble_width := clampf(72.0 + longest_line_chars * 31.0, 410.0, 900.0)
+	var bubble_height := 120.0 + maxi(line_count - 1, 0) * 38.0
 	var bubble_position := Vector2(600.0, 140.0)
 	var tail_ratio := 0.5
 
