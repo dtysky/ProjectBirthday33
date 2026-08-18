@@ -87,11 +87,36 @@ func _run() -> void:
 	):
 		_fail("The commute ambience did not start as a loop.")
 		return
+	var city_drive_state := (
+		director.ambience_states[director.active_ambience_player_index]
+		as Dictionary
+	)
+	if not is_equal_approx(
+		float(city_drive_state.get("target_gain", 0.0)),
+		db_to_linear(-9.0),
+	):
+		_fail("The commute ambience is no longer held behind narration.")
+		return
 
 	director.sync_to_line("G1-01-21")
 	await create_timer(0.32).timeout
 	if _any_ambience_is_playing(director):
 		_fail("The commute ambience did not clear during the black-screen cut.")
+		return
+
+	director.sync_to_line("G1-03-01")
+	var office_state := (
+		director.ambience_states[director.active_ambience_player_index]
+		as Dictionary
+	)
+	if (
+		not director.is_ambience_active("office")
+		or not is_equal_approx(
+			float(office_state.get("target_gain", 0.0)),
+			db_to_linear(-10.0),
+		)
+	):
+		_fail("The keyboard ambience is no longer held behind narration.")
 		return
 
 	director.sync_to_line("G5-05-04")

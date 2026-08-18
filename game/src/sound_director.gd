@@ -9,11 +9,11 @@ const SFX_BUS := "SFX"
 const AMBIENCE_CUES := {
 	"city_drive": {
 		"stream": "res://assets/audio/ambience/amb-g1-city-drive.ogg",
-		"volume_db": -3.0,
+		"volume_db": -9.0,
 	},
 	"office": {
 		"stream": "res://assets/audio/ambience/amb-g1-office.ogg",
-		"volume_db": -2.0,
+		"volume_db": -10.0,
 	},
 	"creative_wind": {
 		"stream": "res://assets/audio/ambience/amb-g0-rooftop-wind-v2.ogg",

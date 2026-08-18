@@ -269,7 +269,7 @@ func _on_player_finished() -> void:
 
 
 func _playback_bus(sequence: Dictionary) -> String:
-	# G4-01 carries its original mixed soundtrack and must remain untouched.
+	# G4-01 keeps its original mixed soundtrack route; only sequence gain is adjusted.
 	# Every current non-soundtrack sequence is the protagonist's narration.
 	if bool(sequence.get("soundtrack", false)):
 		return str(sequence.get("bus", "Voice"))

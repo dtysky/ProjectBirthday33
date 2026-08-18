@@ -227,7 +227,7 @@
 | SHOT-71 | G5-03 | 破晓在沙中深陷，人物在夜间车灯与尾灯下挖沙 | CHAR-H／H-LOOK-06；破晓 | [4K 运行时母帧](../game/assets/shots/shot-71/master.webp) | 风沙、灯光、有限姿态变化 | 用户已确认并接入演出；严格时间关系可后补 |
 | SHOT-72 | G5-03 | 狭窄山路上主角、摩托车主与交警围绕破晓右前保险杠进行事后定损 | CHAR-H／H-LOOK-06；摩托车主与交警匿名化 | [单张整合定损 4K 母帧](../game/assets/shots/shot-72/master.webp)；无车牌、警号、文件文字与可识别人脸 | 树影、交警拍照／记录、极慢推近 | 用户已确认并接入演出；`assessment v2` 取代两张 `v1` |
 | SHOT-73 | G5-04 | 穿长外套站在湿沙滩上，隔着开阔海面远望终末灯塔；原片只参考人物站姿 | CHAR-H／H-LOOK-08；栗棕色大块角状分组发束 | [沙滩远望 4K 母帧](../game/assets/shots/shot-73/master.webp) | 斜向浪线、湿沙反光、衣摆、极慢推近 | 用户已确认并接入演出；原生像素 `beach v5` 取代 `v1–v4` |
-| SHOT-74 | G5-04、G5-05 | 满月夜终末灯塔宽景先承载前探提灯；随后以三张不同位置和步态的完整 CG 淡化表现走向灯塔，最终停在低机位广角半脸回望构图 | CHAR-H／H-LOOK-08；浅灰长外套、白色运动鞋、栗棕色大块角状分组发束、细框眼镜；提灯参考 SRC-26 | [步行起始 4K](../game/assets/shots/shot-74/master.webp)、[步行中段 4K](../game/assets/shots/shot-74/walk-step-02.png)、[步行远段 4K](../game/assets/shots/shot-74/walk-step-03.png)、[半脸回望 4K 身份帧](../game/assets/shots/shot-74/identity-close.png) | 三帧完整 CG 淡化；最终帧海浪与月光异步、绿灯低频闪烁、衣摆自由端／发梢阵风 | 用户确认 `identity v9`；旧透明人物平移、回宽景离场和空镜收束均已取消 |
+| SHOT-74 | G5-04、G5-05 | 满月夜终末灯塔宽景先承载前探提灯；随后以三张不同位置和步态的完整 CG 淡化表现走向灯塔，最终停在低机位广角半脸回望构图 | CHAR-H／H-LOOK-08；浅灰长外套、白色运动鞋、栗棕色大块角状分组发束、细框眼镜；提灯参考 SRC-26 | [步行起始 4K](../game/assets/shots/shot-74/master.webp)、[步行中段 4K](../game/assets/shots/shot-74/walk-step-02.png)、[步行远段 4K](../game/assets/shots/shot-74/walk-step-03.png)、[半脸回望 4K 身份帧](../game/assets/shots/shot-74/identity-close.png)、[发梢先动帧](../game/assets/shots/shot-74/identity-wind-hair-lead.webp)、[阵风上升帧](../game/assets/shots/shot-74/identity-wind-mid.webp)、[峰值阵风帧](../game/assets/shots/shot-74/identity-wind-peak.webp)、[衣摆滞后帧](../game/assets/shots/shot-74/identity-wind-coat-lag.webp)、[回落帧](../game/assets/shots/shot-74/identity-wind-fall.webp) | 三帧完整 CG 淡化；最终身份帧以六张独立 CG 组成强／弱／发梢轻动三种非等距逐帧阵风；海面浪峰与反光持续推进；绿色航标明确亮灭 | 用户确认 `identity v9`；旧透明人物平移、回宽景离场、空镜收束和人物区域 shader 扭曲均已取消 |
 | SHOT-75 | G5-03 | 保留实拍中的黄凿顶山脊道路、破晓、风机与输电塔层次，把晴暖天气改为恶劣阴天、低云和湿路 | 无可读人物；破晓 | [恶劣阴天山路 4K 母帧](../game/assets/shots/shot-75/master.webp) | 低云横移、风机极慢转动、湿路微光 | 用户已确认 `v1` 并接入演出；源图水印、车牌与文字已移除 |
 | SHOT-76 | G5-03 | 严格沿用 SRC-32 的侧向洞内机位：巨大蚀刻洞壁压住左侧与中央，强天光留在右上边缘，人物坐在从右侧伸向深渊的岩脊端部；仅适度拉近，SRC-33 只补洞壁层台与谷底植被 | CHAR-H／H-LOOK-01；红色长外套、米白高领衫；左手搭屈膝、右腿沿岩脊向前放平 | [4K 运行时母帧](../game/assets/shots/shot-76/master.webp) | 右上强天光、雾尘、叶片、极慢靠近 | 用户否决偏离参考的 `v1`；严格回到 SRC-32 构图的原生像素 `v2` 已接入，待实机审查 |
 
@@ -262,7 +262,7 @@
 | G5-02 | SHOT-18、SHOT-70、SRC-25、SRC-26、SRC-30、FX-EVIDENCE | 前两句沙发观看风雪画中屏幕；第三句进入废墟广角；后两句切到同地点碎玻璃倒影 |
 | G5-03 | SHOT-71、SHOT-72、SHOT-75、SHOT-76、SRC-27、SRC-28、SRC-31、SRC-32、SRC-33 | 前两句沙漠陷车，第三句事故事后定损，第四句黄凿顶阴天山路，后四句地下天坑坐姿沉思 |
 | G5-04 | SHOT-73、SHOT-74、SRC-29、SRC-26 | 前两句沙滩远望；第三句起切到满月夜绿色信号灯与前探提灯状态 |
-| G5-05 | SHOT-74 | 活宽景承载两句旁白；三张不同距离／步态的完整 CG 以淡化切换表现约五秒步行，随后停留在半脸回望身份帧完成聚合配音，并以动态海浪、风衣、发梢、绿色航标和海声收束 |
+| G5-05 | SHOT-74 | 活宽景承载两句旁白；三张不同距离／步态的完整 CG 以淡化切换表现约五秒步行，随后永久停留在半脸回望身份帧完成聚合配音；动态海浪、约一至两秒间隔的不规则风衣／发梢阵风、明确亮灭的绿色航标和海声持续运行，不出现结束卡 |
 
 ## 来源素材
 

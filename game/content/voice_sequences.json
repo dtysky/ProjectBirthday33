@@ -7,6 +7,7 @@
       "stream": "res://assets/audio/voice/g4-01-thirty-one.ogg",
       "bus": "Voice",
       "soundtrack": true,
+      "volume_db": -4,
       "duration": 110.7,
       "handoff_at": 56.5,
       "cues": [
@@ -1672,7 +1673,7 @@
       "advance_on_finish": false,
       "emit_cues": false,
       "volume_db": -2,
-      "duration": 6.030208,
+      "duration": 6.024,
       "cues": [
         {
           "line_id": "G4-02-17",
@@ -2464,7 +2465,7 @@
       "advance_on_finish": false,
       "emit_cues": false,
       "volume_db": -2,
-      "duration": 8.60075,
+      "duration": 9.24,
       "cues": [
         {
           "line_id": "G5-01-03",
@@ -2924,12 +2925,12 @@
       "soundtrack": false,
       "advance_on_finish": false,
       "emit_cues": false,
-      "volume_db": -2.0,
-      "duration": 2.856958,
+      "volume_db": -2,
+      "duration": 2.909833,
       "cues": [
         {
           "line_id": "G5-04-03",
-          "at": 0.0
+          "at": 0
         }
       ]
     },
@@ -2941,12 +2942,12 @@
       "soundtrack": false,
       "advance_on_finish": false,
       "emit_cues": false,
-      "volume_db": -2.0,
-      "duration": 3.067083,
+      "volume_db": -2,
+      "duration": 2.757917,
       "cues": [
         {
           "line_id": "G5-04-04",
-          "at": 0.0
+          "at": 0
         }
       ]
     },
@@ -2958,12 +2959,12 @@
       "soundtrack": false,
       "advance_on_finish": false,
       "emit_cues": false,
-      "volume_db": -2.0,
-      "duration": 3.022125,
+      "volume_db": -2,
+      "duration": 2.752167,
       "cues": [
         {
           "line_id": "G5-04-05",
-          "at": 0.0
+          "at": 0
         }
       ]
     },
@@ -2975,12 +2976,12 @@
       "soundtrack": false,
       "advance_on_finish": false,
       "emit_cues": false,
-      "volume_db": -2.0,
-      "duration": 2.327125,
+      "volume_db": -2,
+      "duration": 2.320542,
       "cues": [
         {
           "line_id": "G5-04-06",
-          "at": 0.0
+          "at": 0
         }
       ]
     },
@@ -2992,12 +2993,12 @@
       "soundtrack": false,
       "advance_on_finish": false,
       "emit_cues": false,
-      "volume_db": -2.0,
-      "duration": 5.30025,
+      "volume_db": -2,
+      "duration": 4.58575,
       "cues": [
         {
           "line_id": "G5-05-01",
-          "at": 0.0
+          "at": 0
         }
       ]
     },
@@ -3009,12 +3010,12 @@
       "soundtrack": false,
       "advance_on_finish": false,
       "emit_cues": false,
-      "volume_db": -2.0,
-      "duration": 6.122958,
+      "volume_db": -2,
+      "duration": 4.680292,
       "cues": [
         {
           "line_id": "G5-05-02",
-          "at": 0.0
+          "at": 0
         }
       ]
     },
@@ -3026,9 +3027,9 @@
       "soundtrack": false,
       "advance_on_finish": true,
       "emit_cues": true,
-      "volume_db": -2.0,
-      "duration": 10.078167,
-      "handoff_at": 9.278167,
+      "volume_db": -2,
+      "duration": 10.336833,
+      "handoff_at": 9.536833,
       "cues": [
         {
           "line_id": "G5-05-03",
@@ -3036,7 +3037,7 @@
         },
         {
           "line_id": "G5-05-04",
-          "at": 6.615084
+          "at": 6.746333
         }
       ]
     },

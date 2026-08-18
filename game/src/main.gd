@@ -17,6 +17,7 @@ const ChapterFiveDirectorClass := preload("res://src/chapters/chapter_05.gd")
 const CHAPTER_MUSIC_FADE_SECONDS := 2.2
 const CHAPTER_INTERLUDE_SECONDS := 5.2
 const RECORDING_END_HOLD_SECONDS := 6.0
+const VOICED_AUTO_WAIT_RATIO := 0.24
 
 const CHAPTER_INTERLUDES := {
 	"G1-02": {
@@ -548,7 +549,7 @@ func _on_voice_sequence_finished(
 ) -> void:
 	if not advance_on_finish:
 		if is_auto and not _is_text_revealing():
-			_start_auto_wait()
+			_start_auto_wait(_current_voiced_auto_wait_seconds())
 		return
 	if handed_off:
 		if not story.units.is_empty():
@@ -666,11 +667,23 @@ func _is_text_revealing() -> bool:
 	return dialogue_presenter.is_typing
 
 
-func _start_auto_wait() -> void:
-	auto_timer.start(_current_auto_wait_seconds())
+func _start_auto_wait(wait_seconds: float = -1.0) -> void:
+	auto_timer.start(
+		_current_auto_wait_seconds()
+		if wait_seconds < 0.0
+		else wait_seconds
+	)
 
 
 func _current_auto_wait_seconds() -> float:
+	return auto_delay * _current_auto_wait_multiplier()
+
+
+func _current_voiced_auto_wait_seconds() -> float:
+	return auto_delay * VOICED_AUTO_WAIT_RATIO * _current_auto_wait_multiplier()
+
+
+func _current_auto_wait_multiplier() -> float:
 	var multiplier := 1.0
 	if active_chapter_director != null and not story.units.is_empty():
 		multiplier = maxf(
@@ -680,7 +693,7 @@ func _current_auto_wait_seconds() -> float:
 				story.get_current_unit(),
 			)),
 		)
-	return auto_delay * multiplier
+	return multiplier
 
 
 func _show_history() -> void:

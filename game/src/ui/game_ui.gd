@@ -969,11 +969,6 @@ func _build_ending() -> void:
 	box.custom_minimum_size.x = 340
 	box.add_theme_constant_override("separation", 30)
 	center.add_child(box)
-	var label := Label.new()
-	label.text = "终"
-	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.add_theme_font_size_override("font_size", 72)
-	box.add_child(label)
 	box.add_child(_make_button("返回标题", callbacks["return_to_title"], 340))
 
 

@@ -111,6 +111,15 @@ func _run() -> void:
 		push_error("F9 recording auto-play did not start from the current game line.")
 		quit(1)
 		return
+	scene.call("_on_voice_sequence_finished", "", false, false)
+	var recording_auto_timer := scene.get("auto_timer") as Timer
+	if (
+		recording_auto_timer.is_stopped()
+		or not is_equal_approx(recording_auto_timer.wait_time, 0.816)
+	):
+		push_error("Recording auto-play did not use the shortened post-voice pause.")
+		quit(1)
+		return
 	scene.call("_toggle_recording_auto_mode")
 	await process_frame
 	if (
@@ -771,9 +780,16 @@ func _run() -> void:
 		quit(1)
 		return
 
+	# Let the real SHOT-38 -> SHOT-09 transition finish before crossing the
+	# script-only G3-02 -> G3-03 boundary. Both units use SHOT-09, so the latter
+	# boundary must not generate a second, meaningless black flash.
+	await create_timer(0.70).timeout
 	story.call("start_at", 14, 0)
 	await process_frame
 	var glare_overlay := scene.get_node("ChapterFxLayer/G3GlareOverlay") as ColorRect
+	var g3_transition_overlay := scene.get_node(
+		"ChapterFxLayer/G3TransitionOverlay"
+	) as ColorRect
 	var g3_03_bubble_position := Vector2(
 		minf(1300.0, 1880.0 - dialogue_panel.size.x),
 		40.0,
@@ -783,10 +799,11 @@ func _run() -> void:
 		or master_texture.texture == null
 		or asset_placeholder.visible
 		or glare_overlay.visible
+		or g3_transition_overlay.visible
 		or not dialogue_panel.visible
 		or not dialogue_panel.position.is_equal_approx(g3_03_bubble_position)
 	):
-		push_error("G3-03 did not keep its opening probability dialogue in the flower sea.")
+		push_error("G3-03 did not keep its opening dialogue continuously in the flower sea.")
 		quit(1)
 		return
 
@@ -1155,6 +1172,10 @@ func _run() -> void:
 		push_error("G4-04 did not apply its chapter-specific auto-play breathing room.")
 		quit(1)
 		return
+	if not is_equal_approx(float(scene.call("_current_voiced_auto_wait_seconds")), 1.2648):
+		push_error("G4-04 still leaves an excessive gap after voiced lines.")
+		quit(1)
+		return
 	story.call("start_at", 21, 2)
 	await process_frame
 	if (
@@ -1309,6 +1330,10 @@ func _run() -> void:
 		push_error("G5-02 did not apply its reflective auto-play breathing room.")
 		quit(1)
 		return
+	if not is_equal_approx(float(scene.call("_current_voiced_auto_wait_seconds")), 1.428):
+		push_error("G5-02 still leaves an excessive gap after voiced lines.")
+		quit(1)
+		return
 	story.call("start_at", 24, 2)
 	await process_frame
 	if (
@@ -1371,10 +1396,26 @@ func _run() -> void:
 	await process_frame
 	if (
 		str(chapter_five_director.get("current_shot_id")) != "SHOT-74"
-		or str(chapter_five_director.get("current_variant_id")) != "lantern"
+		or str(chapter_five_director.get("current_variant_id")) != "threshold"
 		or master_texture.texture == null
+		or not bool(chapter_five_director.get("finale_threshold_active"))
+		or not (scene.get_node("ChapterFxLayer/G5TransitionOverlay") as Control).visible
+		or not (scene.get_node("ChapterFxLayer/G5TransitionTexture") as Control).visible
+		or not center_line.visible
+		or not bool(voice_sequence_player.call("is_active"))
 	):
-		push_error("G5-04 did not enter the moon, green beacon and probing-lantern state.")
+		push_error("G5-04 did not begin its finale threshold with the decision line.")
+		quit(1)
+		return
+	chapter_five_director.call("_finish_finale_threshold")
+	await process_frame
+	if (
+		bool(chapter_five_director.get("finale_threshold_active"))
+		or str(chapter_five_director.get("current_variant_id")) != "lantern"
+		or (scene.get_node("ChapterFxLayer/G5TransitionOverlay") as Control).visible
+		or (scene.get_node("ChapterFxLayer/G5TransitionTexture") as Control).visible
+	):
+		push_error("G5-04 finale threshold did not settle on the lantern state.")
 		quit(1)
 		return
 
@@ -1451,6 +1492,46 @@ func _run() -> void:
 		push_error("G5-05 did not reveal the voiced identity line on the close cutaway.")
 		quit(1)
 		return
+	var identity_ocean := scene.get_node("ChapterFxLayer/G5EndingOcean") as TextureRect
+	if (chapter_five_director.get("ending_identity_frames") as Array).size() != 6:
+		push_error("G5-05 did not load the independent identity wind cels.")
+		quit(1)
+		return
+	chapter_five_director.call("tick", 1.06)
+	if not identity_ocean.texture.resource_path.ends_with("identity-wind-hair-lead.webp"):
+		push_error("G5-05 did not let the hair lead the hand-drawn gust.")
+		quit(1)
+		return
+	chapter_five_director.call("tick", 0.17)
+	if not identity_ocean.texture.resource_path.ends_with("identity-wind-mid.webp"):
+		push_error("G5-05 did not advance from hair lead to the rising coat cel.")
+		quit(1)
+		return
+	chapter_five_director.call("tick", 0.21)
+	if not identity_ocean.texture.resource_path.ends_with("identity-wind-peak.webp"):
+		push_error("G5-05 did not advance from the wind in-between to the peak gust cel.")
+		quit(1)
+		return
+	var beacon_material := identity_ocean.material as ShaderMaterial
+	chapter_five_director.call("_reset_ending_beacon_cycle")
+	chapter_five_director.call("tick", 0.73)
+	if (
+		bool(chapter_five_director.get("ending_beacon_on"))
+		or (scene.get_node("ChapterFxLayer/G5EndingBeaconGlow") as Control).visible
+		or float(beacon_material.get_shader_parameter("beacon_on")) != 0.0
+	):
+		push_error("G5-05 beacon did not switch fully off after its lit interval.")
+		quit(1)
+		return
+	chapter_five_director.call("tick", 2.66)
+	if (
+		not bool(chapter_five_director.get("ending_beacon_on"))
+		or not (scene.get_node("ChapterFxLayer/G5EndingBeaconGlow") as Control).visible
+		or float(beacon_material.get_shader_parameter("beacon_on")) != 1.0
+	):
+		push_error("G5-05 beacon did not switch fully on after its dark interval.")
+		quit(1)
+		return
 
 	voice_sequence_player.call("seek", 10.25)
 	await process_frame
@@ -1468,10 +1549,18 @@ func _run() -> void:
 		push_error("G5 did not hold the animated identity frame after the final voice line.")
 		quit(1)
 		return
-	chapter_five_director.call("_finish_ending_sequence")
+	chapter_five_director.call("tick", 30.0)
+	chapter_five_director.call("on_auto_timeout")
+	chapter_five_director.call("advance")
 	await process_frame
-	if not (scene.get_node("EndingOverlay") as Control).visible:
-		push_error("Story did not reach the ending after the animated identity hold.")
+	if (
+		not bool(chapter_five_director.get("ending_final_hold_active"))
+		or not bool(chapter_five_director.get("ending_sequence_active"))
+		or str(chapter_five_director.get("current_variant_id")) != "identity-close"
+		or (scene.get_node("EndingOverlay") as Control).visible
+		or not (scene.get_node("ChapterFxLayer/G5EndingOcean") as Control).visible
+	):
+		push_error("G5 left the permanent animated ending frame or displayed an ending card.")
 		quit(1)
 		return
 
@@ -1480,7 +1569,7 @@ func _run() -> void:
 		+ "sixteen G2 trial masters with line-level shot switching, semantic dialogue beats, shot variants, "
 		+ "fourteen G3 masters with an independent opening, safe Ousia staging and a staged memory-search field, "
 		+ "twenty-seven G4 runtime packages, paper-revealed timed G4-01 voiceover, four staged SHOT-12 phases, staged sky phases and scored descent, "
-		+ "sixteen G5 runtime states across nine packages, chapter interludes with music pre-fades and simultaneous scene/BGM entries, three-frame final walk, voiced identity close-up and a wind-and-sea hold, "
+		+ "twenty-one G5 runtime states across nine packages, chapter interludes with music pre-fades and simultaneous scene/BGM entries, three-frame final walk, voiced identity close-up and a permanent asynchronous hand-drawn cel wind-and-sea hold without an ending card, "
 		+ "timed soundtrack fades, age-jump handoffs, reverse split, core UI, and ending flow."
 	)
 	quit(0)

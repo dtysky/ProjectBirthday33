@@ -58,8 +58,11 @@ func _run() -> void:
 		push_error("G4-01 timed soundtrack could not start.")
 		quit(1)
 		return
-	if str(timeline.player.bus) != "Voice":
-		push_error("G4-01 original soundtrack was routed through narration processing.")
+	if (
+		str(timeline.player.bus) != "Voice"
+		or not is_equal_approx(timeline.player.volume_db, -4.0)
+	):
+		push_error("G4-01 original soundtrack routing or reviewed gain is incorrect.")
 		quit(1)
 		return
 	timeline.seek(12.50)

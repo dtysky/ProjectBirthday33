@@ -90,6 +90,17 @@ func _init() -> void:
 				line_count,
 			]
 		)
+	var reviewed_text := {
+		"G2-04-04": "我准备去竞选另一个项目，先活下来再说吧。",
+		"G2-04-21": "还是想做一次3A，网易那边是燕云，做引擎。",
+		"G2-05-02": "作为团队里最懂AI的人，组员也对AI有着极大热情。所以我也真的觉得，我们有机会把这件事做成。",
+		"G2-05-05": "回到深圳以后，我又去现场参加了最终竞聘。已经预期到的结局，但还是选择由自己见证。",
+		"G4-02-17": "年少的我从未想过，有一天能靠自己完成这样一场特别的「圣地巡礼」。",
+		"G5-01-03": "但越是想继续干下去，就越是休息不好。即便只是在摸鱼，也会反复焦虑、失眠，甚至频繁感冒。",
+	}
+	for line_id in reviewed_text:
+		if str((lines_by_id.get(line_id, {}) as Dictionary).get("text", "")) != reviewed_text[line_id]:
+			failures.append("%s does not contain its corrected reviewed sentence." % line_id)
 	for delivery in delivery_counts:
 		if int(delivery_counts[delivery]) == 0:
 			failures.append("Story has no %s lines." % delivery)
@@ -229,6 +240,11 @@ func _init() -> void:
 		"walk-step-02",
 		"walk-step-03",
 		"identity-close",
+		"identity-wind-hair-lead",
+		"identity-wind-mid",
+		"identity-wind-peak",
+		"identity-wind-coat-lag",
+		"identity-wind-fall",
 	]:
 		var variant_path := str(shot_seventy_four_variants.get(variant_id, ""))
 		if variant_path.is_empty() or not ResourceLoader.exists(variant_path):
@@ -265,6 +281,11 @@ func _init() -> void:
 			if stream == null or absf(stream.get_length() - duration) > 0.3:
 				failures.append("Timed voice sequence duration does not match its runtime stream.")
 		var is_soundtrack := bool(sequence.get("soundtrack", false))
+		if (
+			str(sequence.get("id", "")) == "G4-01-THIRTY-ONE"
+			and not is_equal_approx(float(sequence.get("volume_db", 0.0)), -4.0)
+		):
+			failures.append("G4-01 original soundtrack is no longer at its reviewed gain.")
 		if handoff_at >= 0.0 and (handoff_at <= 0.0 or handoff_at >= duration):
 			failures.append("Timed voice handoff must occur before its natural audio ending.")
 		if is_soundtrack and handoff_at < 0.0:
@@ -412,7 +433,7 @@ func _init() -> void:
 				"Validation passed: 28 units, %d lines, balanced delivery, "
 				+ "71 planned shots, ten G0 dream states plus six reality CGs, seven G1 CGs, sixteen G2 trial masters, "
 				+ "fourteen G3 masters, twenty-seven G4 runtime packages with four SHOT-12 phases, "
-				+ "sixteen G5 runtime states across nine packages, nine active music states, "
+				+ "twenty-one G5 runtime states across nine packages, nine active music states, "
 				+ "eight looping states, nine timed soundtrack lines and eight intentionally unscored G1 lines, "
 				+ "no G5 placeholder, 4K output."
 			) % line_count

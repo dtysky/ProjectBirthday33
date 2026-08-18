@@ -660,8 +660,8 @@
       "units": "G5-04、G5-05",
       "composition": "满月夜终末灯塔宽景先承载前探提灯；随后以三张不同位置和步态的完整 CG 淡化表现走向灯塔，最终停在低机位广角半脸回望构图",
       "characters": "CHAR-H／H-LOOK-08；浅灰长外套、白色运动鞋、栗棕色大块角状分组发束、细框眼镜；提灯参考 SRC-26",
-      "deliverables": "[步行起始 4K](../game/assets/shots/shot-74/master.webp)、[步行中段 4K](../game/assets/shots/shot-74/walk-step-02.png)、[步行远段 4K](../game/assets/shots/shot-74/walk-step-03.png)、[半脸回望 4K 身份帧](../game/assets/shots/shot-74/identity-close.png)",
-      "motion": "三帧完整 CG 淡化；最终帧海浪与月光异步、绿灯低频闪烁、衣摆自由端／发梢阵风",
+      "deliverables": "[步行起始 4K](../game/assets/shots/shot-74/master.webp)、[步行中段 4K](../game/assets/shots/shot-74/walk-step-02.png)、[步行远段 4K](../game/assets/shots/shot-74/walk-step-03.png)、[半脸回望 4K 身份帧](../game/assets/shots/shot-74/identity-close.png)、[发梢先动帧](../game/assets/shots/shot-74/identity-wind-hair-lead.webp)、[阵风上升帧](../game/assets/shots/shot-74/identity-wind-mid.webp)、[峰值阵风帧](../game/assets/shots/shot-74/identity-wind-peak.webp)、[衣摆滞后帧](../game/assets/shots/shot-74/identity-wind-coat-lag.webp)、[回落帧](../game/assets/shots/shot-74/identity-wind-fall.webp)",
+      "motion": "三帧完整 CG 淡化；最终身份帧以六张独立 CG 组成强／弱／发梢轻动三种非等距逐帧阵风；海面浪峰与反光持续推进；绿色航标明确亮灭",
       "master": "res://assets/shots/shot-74/master.webp",
       "variants": {
         "lantern": "res://assets/shots/shot-74/master.webp",
@@ -669,7 +669,12 @@
         "walk-step-01": "res://assets/shots/shot-74/master.webp",
         "walk-step-02": "res://assets/shots/shot-74/walk-step-02.png",
         "walk-step-03": "res://assets/shots/shot-74/walk-step-03.png",
-        "identity-close": "res://assets/shots/shot-74/identity-close.png"
+        "identity-close": "res://assets/shots/shot-74/identity-close.png",
+        "identity-wind-hair-lead": "res://assets/shots/shot-74/identity-wind-hair-lead.webp",
+        "identity-wind-mid": "res://assets/shots/shot-74/identity-wind-mid.webp",
+        "identity-wind-peak": "res://assets/shots/shot-74/identity-wind-peak.webp",
+        "identity-wind-coat-lag": "res://assets/shots/shot-74/identity-wind-coat-lag.webp",
+        "identity-wind-fall": "res://assets/shots/shot-74/identity-wind-fall.webp"
       }
     },
     "SHOT-75": {

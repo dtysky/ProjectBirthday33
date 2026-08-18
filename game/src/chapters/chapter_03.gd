@@ -126,11 +126,16 @@ func setup(director_context: Dictionary) -> void:
 
 func on_unit_changed(unit: Dictionary) -> void:
 	_hide_evidence()
+	var previous_shot_id := current_shot_id
 	current_unit_id = str(unit.get("id", ""))
 	current_line_id = ""
 	current_shot_id = str(unit.get("shot", ""))
 	evidence_consumed = false
-	_flash_for_shot(current_shot_id, true)
+	# G3-02 and G3-03 are separate script units but intentionally remain in
+	# the same SHOT-09 flower-sea composition. A unit boundary alone must not
+	# create a black flash when the camera has not changed.
+	if previous_shot_id.is_empty() or current_shot_id != previous_shot_id:
+		_flash_for_shot(current_shot_id, true)
 	_update_glare()
 
 

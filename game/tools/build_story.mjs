@@ -330,6 +330,11 @@ const shotVariants = {
     "walk-step-02": "res://assets/shots/shot-74/walk-step-02.png",
     "walk-step-03": "res://assets/shots/shot-74/walk-step-03.png",
     "identity-close": "res://assets/shots/shot-74/identity-close.png",
+    "identity-wind-hair-lead": "res://assets/shots/shot-74/identity-wind-hair-lead.webp",
+    "identity-wind-mid": "res://assets/shots/shot-74/identity-wind-mid.webp",
+    "identity-wind-peak": "res://assets/shots/shot-74/identity-wind-peak.webp",
+    "identity-wind-coat-lag": "res://assets/shots/shot-74/identity-wind-coat-lag.webp",
+    "identity-wind-fall": "res://assets/shots/shot-74/identity-wind-fall.webp",
   },
 };
 const shotMasters = {
