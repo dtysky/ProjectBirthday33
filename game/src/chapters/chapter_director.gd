@@ -9,11 +9,19 @@ func setup(director_context: Dictionary) -> void:
 	context = director_context
 
 
+func tick(_delta: float) -> void:
+	pass
+
+
 func on_unit_changed(_unit: Dictionary) -> void:
 	pass
 
 
 func on_line_changed(_line: Dictionary, _unit: Dictionary) -> bool:
+	return false
+
+
+func defers_music_for_line(_line_id: String) -> bool:
 	return false
 
 
@@ -25,11 +33,19 @@ func begin_voice_handoff(_unit_id: String) -> bool:
 	return false
 
 
+func show_timed_segment(_line_id: String, _segment_index: int) -> bool:
+	return false
+
+
 func blocks_input() -> bool:
 	return false
 
 
 func handles_custom_reveal() -> bool:
+	return false
+
+
+func is_revealing() -> bool:
 	return false
 
 

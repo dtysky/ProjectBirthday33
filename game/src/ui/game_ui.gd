@@ -9,6 +9,9 @@ const CHAPTER_COLORS := {
 	5: Color("#302c28"),
 }
 const CJK_FONT := preload("res://assets/fonts/NotoSansSC-b33.otf")
+const TITLE_WIND_PATH := "res://assets/audio/ambience/amb-title-sea-wind-v2.ogg"
+const TITLE_VIDEO_PATH := "res://assets/ui/title/title-background-loop-v1.ogv"
+const TITLE_SPARE_OVERLAY_PATH := "res://assets/ui/title/title-vehicle-spare-overlay-v1.png"
 
 var host: Control
 var callbacks: Dictionary
@@ -35,11 +38,13 @@ var chapter_interlude_vignette: ColorRect
 var chapter_interlude_kicker: Label
 var chapter_interlude_rule: ColorRect
 var chapter_interlude_title: Label
-var menu_button: Button
 var quick_menu_overlay: ColorRect
 var auto_button: Button
 var continue_button: Button
 var title_overlay: ColorRect
+var title_video_player: VideoStreamPlayer
+var title_wind_player: AudioStreamPlayer
+var title_wind_tween: Tween
 var history_overlay: ColorRect
 var history_text: RichTextLabel
 var settings_overlay: ColorRect
@@ -109,6 +114,50 @@ func show_toast(message: String) -> void:
 	toast_label.text = message
 	toast_label.visible = true
 	toast_timer.start()
+
+
+func show_title_screen() -> void:
+	title_overlay.visible = true
+	if (
+		title_video_player != null
+		and title_video_player.stream != null
+		and not title_video_player.is_playing()
+	):
+		title_video_player.play()
+	if title_wind_player == null or title_wind_player.stream == null:
+		return
+	_stop_title_wind_tween()
+	title_wind_player.bus = "Ambience"
+	if not title_wind_player.playing:
+		title_wind_player.volume_db = -80.0
+		title_wind_player.play()
+	title_wind_tween = host.create_tween()
+	title_wind_tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	title_wind_tween.tween_property(title_wind_player, "volume_db", -7.5, 2.2)
+
+
+func hide_title_screen(fade_seconds := 1.35) -> void:
+	title_overlay.visible = false
+	if title_video_player != null and title_video_player.is_playing():
+		title_video_player.stop()
+	if title_wind_player == null or not title_wind_player.playing:
+		return
+	_stop_title_wind_tween()
+	title_wind_tween = host.create_tween()
+	title_wind_tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	title_wind_tween.tween_property(
+		title_wind_player,
+		"volume_db",
+		-80.0,
+		maxf(fade_seconds, 0.05),
+	)
+	title_wind_tween.tween_callback(title_wind_player.stop)
+
+
+func _stop_title_wind_tween() -> void:
+	if title_wind_tween != null and title_wind_tween.is_valid():
+		title_wind_tween.kill()
+	title_wind_tween = null
 
 
 func set_scene_units(units: Array) -> void:
@@ -497,27 +546,6 @@ void fragment() {
 
 
 func _build_quick_menu() -> void:
-	menu_button = _make_button("···", callbacks["show_quick_menu"])
-	menu_button.name = "MenuButton"
-	menu_button.anchor_left = 0.944
-	menu_button.anchor_top = 0.914
-	menu_button.anchor_right = 0.982
-	menu_button.anchor_bottom = 0.968
-	menu_button.offset_left = 0.0
-	menu_button.offset_top = 0.0
-	menu_button.offset_right = 0.0
-	menu_button.offset_bottom = 0.0
-	menu_button.add_theme_font_size_override("font_size", 24)
-	menu_button.add_theme_stylebox_override(
-		"normal",
-		_rounded_style(Color(0.02, 0.02, 0.02, 0.38), 20),
-	)
-	menu_button.add_theme_stylebox_override(
-		"hover",
-		_rounded_style(Color(0.02, 0.02, 0.02, 0.72), 20),
-	)
-	host.add_child(menu_button)
-
 	quick_menu_overlay = ColorRect.new()
 	quick_menu_overlay.name = "QuickMenuOverlay"
 	quick_menu_overlay.color = Color(0.0, 0.0, 0.0, 0.64)
@@ -555,7 +583,7 @@ func _build_quick_menu() -> void:
 	gap.custom_minimum_size.y = 12
 	box.add_child(gap)
 	box.add_child(_make_button("历史", callbacks["show_history"]))
-	auto_button = _make_button("自动", callbacks["toggle_auto"])
+	auto_button = _make_button("自动播放", callbacks["toggle_auto"])
 	box.add_child(auto_button)
 	box.add_child(_make_button("保存", callbacks["save_game"]))
 	box.add_child(_make_button("读取", callbacks["load_game"]))
@@ -572,43 +600,107 @@ func _build_quick_menu() -> void:
 func _build_title_screen() -> void:
 	title_overlay = ColorRect.new()
 	title_overlay.name = "TitleOverlay"
-	title_overlay.color = Color("#0d1011")
+	title_overlay.color = Color("#080b10")
 	title_overlay.mouse_filter = Control.MOUSE_FILTER_STOP
 	_set_full_rect(title_overlay)
 	host.add_child(title_overlay)
 
-	var center := CenterContainer.new()
-	_set_full_rect(center)
-	title_overlay.add_child(center)
+	var backdrop := TextureRect.new()
+	backdrop.name = "TitleBackdrop"
+	backdrop.texture = load("res://assets/ui/title/title-background-v5.webp")
+	backdrop.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	backdrop.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	backdrop.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_set_full_rect(backdrop)
+	title_overlay.add_child(backdrop)
+
+	title_video_player = VideoStreamPlayer.new()
+	title_video_player.name = "TitleBackdropVideo"
+	title_video_player.stream = load(TITLE_VIDEO_PATH) as VideoStream
+	title_video_player.autoplay = true
+	title_video_player.loop = true
+	title_video_player.expand = true
+	title_video_player.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_set_full_rect(title_video_player)
+	title_overlay.add_child(title_video_player)
+
+	var spare_overlay := TextureRect.new()
+	spare_overlay.name = "TitleVehicleSpareOverlay"
+	spare_overlay.texture = load(TITLE_SPARE_OVERLAY_PATH)
+	spare_overlay.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	spare_overlay.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	spare_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_set_full_rect(spare_overlay)
+	title_overlay.add_child(spare_overlay)
 
 	var box := VBoxContainer.new()
-	box.custom_minimum_size.x = 360
-	box.add_theme_constant_override("separation", 12)
-	center.add_child(box)
+	box.name = "TitleContent"
+	box.anchor_left = 0.075
+	box.anchor_top = 0.095
+	box.anchor_right = 0.49
+	box.anchor_bottom = 0.92
+	box.add_theme_constant_override("separation", 10)
+	title_overlay.add_child(box)
+
+	var kicker := Label.new()
+	kicker.name = "TitleKicker"
+	kicker.text = "PROJECT BIRTHDAY 33  /  2026"
+	kicker.add_theme_font_size_override("font_size", 16)
+	kicker.add_theme_constant_override("letter_spacing", 3)
+	kicker.add_theme_color_override("font_color", Color(0.74, 0.80, 0.80, 0.72))
+	box.add_child(kicker)
 
 	var title := Label.new()
-	title.text = "三十三"
-	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	title.add_theme_font_size_override("font_size", 92)
+	title.name = "TitleName"
+	title.text = "三十三岁的勇气，\n是坦然的失去"
+	title.custom_minimum_size.y = 160.0
+	title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	title.add_theme_font_size_override("font_size", 60)
+	title.add_theme_constant_override("line_spacing", 12)
+	title.add_theme_color_override("font_color", Color(0.96, 0.95, 0.90, 1.0))
+	title.add_theme_color_override("font_shadow_color", Color(0.0, 0.0, 0.0, 0.72))
+	title.add_theme_constant_override("shadow_offset_x", 4)
+	title.add_theme_constant_override("shadow_offset_y", 5)
 	box.add_child(title)
 
-	var subtitle := Label.new()
-	subtitle.text = "我的第二段人生，即将开始"
-	subtitle.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	subtitle.add_theme_font_size_override("font_size", 21)
-	subtitle.modulate = Color(1.0, 1.0, 1.0, 0.62)
-	box.add_child(subtitle)
+	var rule := ColorRect.new()
+	rule.custom_minimum_size = Vector2(0.0, 1.0)
+	rule.color = Color(0.82, 0.65, 0.43, 0.64)
+	rule.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	box.add_child(rule)
 
 	var gap := Control.new()
-	gap.custom_minimum_size.y = 42
+	gap.custom_minimum_size.y = 48
 	box.add_child(gap)
 
-	box.add_child(_make_button("开始", callbacks["start_new_game"], 360))
-	continue_button = _make_button("继续", callbacks["load_game"], 360)
+	var start_button := _make_title_button("开始", callbacks["start_new_game"])
+	box.add_child(start_button)
+	continue_button = _make_title_button("继续", callbacks["load_game"])
 	box.add_child(continue_button)
-	box.add_child(_make_button("场景选择", callbacks["show_scene_select"], 360))
-	box.add_child(_make_button("设置", callbacks["show_settings"], 360))
-	box.add_child(_make_button("退出", callbacks["quit_game"], 360))
+	box.add_child(_make_title_button("场景选择", callbacks["show_scene_select"]))
+	box.add_child(_make_title_button("设置", callbacks["show_settings"]))
+	box.add_child(_make_title_button("退出", callbacks["quit_game"]))
+
+	var flexible_gap := Control.new()
+	flexible_gap.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	box.add_child(flexible_gap)
+
+	var footer := Label.new()
+	footer.text = "ENTER  确认    ·    ESC  返回"
+	footer.add_theme_font_size_override("font_size", 14)
+	footer.add_theme_constant_override("letter_spacing", 2)
+	footer.add_theme_color_override("font_color", Color(0.68, 0.72, 0.72, 0.38))
+	box.add_child(footer)
+
+	title_wind_player = AudioStreamPlayer.new()
+	title_wind_player.name = "TitleSeaWind"
+	title_wind_player.volume_db = -80.0
+	var title_wind_stream := ResourceLoader.load(TITLE_WIND_PATH) as AudioStream
+	if title_wind_stream is AudioStreamOggVorbis:
+		(title_wind_stream as AudioStreamOggVorbis).loop = true
+	title_wind_player.stream = title_wind_stream
+	host.add_child(title_wind_player)
+	start_button.call_deferred("grab_focus")
 
 
 func _build_scene_selector() -> void:
@@ -903,6 +995,59 @@ func _build_toast() -> void:
 	toast_timer.wait_time = 2.0
 	toast_timer.timeout.connect(func() -> void: toast_label.visible = false)
 	host.add_child(toast_timer)
+
+
+func _make_title_button(label_text: String, callback: Callable) -> Button:
+	var button := Button.new()
+	button.text = label_text
+	button.custom_minimum_size = Vector2(420.0, 46.0)
+	button.focus_mode = Control.FOCUS_ALL
+	button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	button.add_theme_font_size_override("font_size", 19)
+	button.add_theme_constant_override("outline_size", 0)
+	button.add_theme_color_override("font_color", Color(0.84, 0.86, 0.84, 0.68))
+	button.add_theme_color_override("font_hover_color", Color(0.98, 0.95, 0.87, 1.0))
+	button.add_theme_color_override("font_focus_color", Color(0.98, 0.95, 0.87, 1.0))
+	button.add_theme_color_override("font_pressed_color", Color(0.92, 0.73, 0.50, 1.0))
+	button.add_theme_color_override("font_disabled_color", Color(0.62, 0.65, 0.64, 0.28))
+	button.add_theme_stylebox_override(
+		"normal",
+		_title_button_style(Color(0.03, 0.04, 0.05, 0.0), Color(0.58, 0.63, 0.62, 0.20), 2),
+	)
+	button.add_theme_stylebox_override(
+		"hover",
+		_title_button_style(Color(0.66, 0.49, 0.31, 0.08), Color(0.85, 0.66, 0.43, 0.90), 4),
+	)
+	button.add_theme_stylebox_override(
+		"focus",
+		_title_button_style(Color(0.66, 0.49, 0.31, 0.08), Color(0.85, 0.66, 0.43, 0.90), 4),
+	)
+	button.add_theme_stylebox_override(
+		"pressed",
+		_title_button_style(Color(0.66, 0.49, 0.31, 0.14), Color(0.91, 0.72, 0.48, 1.0), 4),
+	)
+	button.add_theme_stylebox_override(
+		"disabled",
+		_title_button_style(Color(0.03, 0.04, 0.05, 0.0), Color(0.50, 0.54, 0.53, 0.10), 2),
+	)
+	button.pressed.connect(callback)
+	return button
+
+
+func _title_button_style(
+	background: Color,
+	accent: Color,
+	accent_width: int,
+) -> StyleBoxFlat:
+	var style := StyleBoxFlat.new()
+	style.bg_color = background
+	style.border_color = accent
+	style.border_width_left = accent_width
+	style.content_margin_left = 18.0
+	style.content_margin_right = 14.0
+	style.content_margin_top = 8.0
+	style.content_margin_bottom = 8.0
+	return style
 
 
 func _make_button(label_text: String, callback: Callable, min_width: float = 0.0) -> Button:

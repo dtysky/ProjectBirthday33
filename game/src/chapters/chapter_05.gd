@@ -4,6 +4,127 @@ const DEFAULT_CAPTION_RECT := Rect2(70.0, 70.0, 820.0, 220.0)
 const FINAL_LINE_ID := "G5-05-04"
 const FINAL_HOLD_SECONDS := 6.5
 const FINAL_MANUAL_MINIMUM_MSEC := 2500
+const ENDING_STEP_TWO_AT := 1.35
+const ENDING_STEP_THREE_AT := 2.90
+const ENDING_IDENTITY_AT := 4.45
+const ENDING_LANTERN_CROP_POSITION := Vector2(850.0, 540.0)
+const ENDING_LANTERN_CROP_SIZE := Vector2(250.0, 310.0)
+const ENDING_PERSON_PIVOT := Vector2(1260.0, 978.0)
+const ENDING_LIVE_BEACON_POSITION := Vector2(604.0, 176.0)
+const ENDING_LIVE_BEACON_SIZE := Vector2(62.0, 62.0)
+const ENDING_IDENTITY_BEACON_POSITION := Vector2(986.0, 294.0)
+const ENDING_IDENTITY_BEACON_SIZE := Vector2(78.0, 78.0)
+
+const ENDING_OCEAN_SHADER := """
+shader_type canvas_item;
+
+uniform float identity_mode = 0.0;
+
+float band(float value, float start_value, float end_value, float softness) {
+	return smoothstep(start_value, start_value + softness, value)
+		* (1.0 - smoothstep(end_value - softness, end_value, value));
+}
+
+float box_mask(vec2 uv, vec2 minimum, vec2 maximum, float softness) {
+	vec2 enter = smoothstep(minimum, minimum + vec2(softness), uv);
+	vec2 leave = 1.0 - smoothstep(maximum - vec2(softness), maximum, uv);
+	return enter.x * enter.y * leave.x * leave.y;
+}
+
+void fragment() {
+	vec2 uv = UV;
+	vec4 base = texture(TEXTURE, uv);
+	float sea = band(uv.y, 0.32, 0.79, 0.045);
+	float left_water = 1.0 - smoothstep(0.30, 0.54, uv.x);
+	float right_water = smoothstep(0.48, 0.67, uv.x);
+	float live_water = sea * max(left_water, right_water);
+	float identity_open_sea = band(uv.y, 0.38, 0.79, 0.055)
+		* (1.0 - smoothstep(0.47, 0.70, uv.x));
+	float identity_path_water = band(uv.x, 0.25, 0.61, 0.055)
+		* band(uv.y, 0.48, 0.95, 0.055);
+	float identity_person_guard = 1.0 - box_mask(
+		uv,
+		vec2(0.50, 0.21),
+		vec2(0.69, 0.88),
+		0.035
+	);
+	float identity_water = max(identity_open_sea, identity_path_water)
+		* identity_person_guard;
+	float water_mask = mix(live_water, identity_water, identity_mode);
+	float phase = sin(uv.y * 315.0 + TIME * 1.55 + sin(uv.x * 28.0) * 1.8);
+	float cross_phase = sin(uv.x * 95.0 - TIME * 0.72 + uv.y * 31.0);
+	vec2 shifted_uv = uv + vec2(
+		(phase * 0.00082 + cross_phase * 0.00034) * water_mask,
+		cross_phase * 0.00022 * water_mask
+	);
+	vec4 shifted = texture(TEXTURE, shifted_uv);
+	float moon_path = mix(
+		band(uv.x, 0.58, 0.93, 0.09) * band(uv.y, 0.32, 0.69, 0.06),
+		band(uv.x, 0.16, 0.55, 0.10) * band(uv.y, 0.40, 0.86, 0.08),
+		identity_mode
+	);
+	float shimmer = 0.5 + 0.5 * sin(uv.y * 520.0 - TIME * 1.8 + uv.x * 19.0);
+	vec3 lift = vec3(0.018, 0.024, 0.032) * moon_path * shimmer * water_mask;
+	vec4 animated = vec4(shifted.rgb + lift, base.a);
+	vec4 color = mix(base, animated, water_mask * 0.78);
+
+	// Only the loose tips move. Shifting the full opaque silhouette exposes
+	// the original person beneath it and reads as a translucent duplicate.
+	float hair = box_mask(uv, vec2(0.585, 0.20), vec2(0.635, 0.34), 0.012);
+	float coat = box_mask(uv, vec2(0.625, 0.46), vec2(0.705, 0.69), 0.018)
+		* smoothstep(0.46, 0.64, uv.y);
+	float gust = sin(TIME * 0.82) * 0.64 + sin(TIME * 1.73 + 1.1) * 0.36;
+	float wind_offset = gust * (hair * 0.0012 + coat * 0.0018) * identity_mode;
+	vec4 wind_sample = texture(TEXTURE, uv - vec2(wind_offset, 0.0));
+	float wind_mask = clamp((hair + coat) * identity_mode, 0.0, 1.0);
+	COLOR = mix(color, wind_sample, wind_mask * 0.74);
+}
+"""
+
+const ENDING_PERSON_SHADER := """
+shader_type canvas_item;
+
+uniform float wind_strength = 1.0;
+uniform float walk_amount = 0.0;
+
+float box_mask(vec2 uv, vec2 minimum, vec2 maximum, float softness) {
+	vec2 enter = smoothstep(minimum, minimum + vec2(softness), uv);
+	vec2 leave = 1.0 - smoothstep(maximum - vec2(softness), maximum, uv);
+	return enter.x * enter.y * leave.x * leave.y;
+}
+
+void fragment() {
+	float hair = box_mask(UV, vec2(0.605, 0.425), vec2(0.675, 0.545), 0.018);
+	float coat = box_mask(UV, vec2(0.565, 0.515), vec2(0.705, 0.805), 0.028)
+		* smoothstep(0.56, 0.80, UV.y);
+	float left_leg = box_mask(UV, vec2(0.620, 0.735), vec2(0.650, 0.925), 0.010);
+	float right_leg = box_mask(UV, vec2(0.646, 0.735), vec2(0.682, 0.925), 0.010);
+	float gust = sin(TIME * 0.86) * 0.62 + sin(TIME * 1.91 + 1.4) * 0.38;
+	float step_phase = sin(TIME * 5.25);
+	float offset = gust * wind_strength * (hair * 0.0018 + coat * 0.00125)
+		+ step_phase * walk_amount * (left_leg - right_leg) * 0.0022;
+	vec4 sample_color = texture(TEXTURE, UV - vec2(offset, 0.0));
+	COLOR = sample_color;
+}
+"""
+
+const ENDING_GLOW_SHADER := """
+shader_type canvas_item;
+
+uniform vec4 glow_color : source_color = vec4(1.0, 1.0, 1.0, 0.5);
+uniform float speed = 1.0;
+uniform float phase = 0.0;
+uniform float pulse_floor = 0.72;
+uniform float pulse_sharpness = 1.0;
+
+void fragment() {
+	float distance_to_center = length(UV - vec2(0.5));
+	float radial = 1.0 - smoothstep(0.02, 0.5, distance_to_center);
+	float wave = 0.5 + 0.5 * sin(TIME * speed + phase);
+	float pulse = mix(pulse_floor, 1.0, pow(wave, pulse_sharpness));
+	COLOR = vec4(glow_color.rgb, glow_color.a * radial * radial * pulse);
+}
+"""
 
 const AUTO_WAIT_MULTIPLIERS := {
 	"G5-01": 1.50,
@@ -70,6 +191,8 @@ const CAPTION_RECTS := {
 	"G5-04-06": Rect2(650.0, 70.0, 780.0, 220.0),
 	"G5-05-01": Rect2(650.0, 70.0, 800.0, 220.0),
 	"G5-05-02": Rect2(650.0, 70.0, 800.0, 220.0),
+	"G5-05-03": Rect2(90.0, 790.0, 720.0, 170.0),
+	"G5-05-04": Rect2(90.0, 790.0, 920.0, 170.0),
 }
 
 const PLACEHOLDER_COPY := {}
@@ -91,12 +214,21 @@ var transition_overlay: ColorRect
 var ambient_overlay: ColorRect
 var projection_card: PanelContainer
 var projection_label: Label
+var ending_ocean_layer: TextureRect
+var ending_beacon_glow: ColorRect
+var ending_walk_anchor: Control
+var ending_walk_bob: Control
+var ending_person_layer: TextureRect
+var ending_lantern_layer: TextureRect
+var ending_lantern_glow: ColorRect
 
 var texture_tween: Tween
 var transition_tween: Tween
 var ambient_tween: Tween
 var camera_tween: Tween
 var projection_tween: Tween
+var ending_timeline_tween: Tween
+var ending_hold_tween: Tween
 
 var current_unit_id := ""
 var current_line_id := ""
@@ -105,6 +237,11 @@ var current_variant_id := ""
 var displayed_texture: Texture2D
 var final_hold_active := false
 var final_hold_started_at_msec := 0
+var ending_environment_active := false
+var ending_sequence_active := false
+var ending_identity_ready := false
+var ending_final_hold_active := false
+var ending_motion_clock := 0.0
 
 
 func _init() -> void:
@@ -125,6 +262,19 @@ func setup(director_context: Dictionary) -> void:
 	auto_timer = context.get("auto_timer") as Timer
 	music_director = context.get("music_director") as Node
 	_build_chapter_effects()
+
+
+func tick(delta: float) -> void:
+	if not ending_environment_active:
+		return
+	ending_motion_clock += delta
+	if ending_walk_anchor.visible:
+		var cadence := 5.25 if ending_sequence_active else 1.35
+		var amplitude := 1.85 if ending_sequence_active else 0.55
+		ending_walk_bob.position = Vector2(
+			sin(ending_motion_clock * 0.82) * 0.45,
+			sin(ending_motion_clock * cadence) * amplitude,
+		)
 
 
 func on_unit_changed(unit: Dictionary) -> void:
@@ -148,7 +298,7 @@ func on_unit_changed(unit: Dictionary) -> void:
 		ui.call("show_line_shot", "SHOT-74", displayed_texture)
 		_set_projection_state(false)
 		_apply_ambient(_ambient_for_shot("SHOT-74"))
-		_start_camera_motion(displayed_texture)
+		_activate_ending_live_wide()
 		return
 
 	_show_shot(current_shot_id, previous_shot_id, true)
@@ -177,14 +327,18 @@ func on_line_changed(line: Dictionary, unit: Dictionary) -> bool:
 		return false
 
 	if current_unit_id == "G5-05":
-		var ending_variant_id := (
-			"empty" if ["G5-05-03", "G5-05-04"].has(current_line_id) else "lantern"
-		)
-		if current_shot_id != "SHOT-74" or current_variant_id != ending_variant_id:
-			_show_variant("SHOT-74", ending_variant_id, current_shot_id, false)
-		else:
+		if ["G5-05-01", "G5-05-02"].has(current_line_id):
+			_activate_ending_live_wide()
 			_apply_line_state()
-		return false
+			return false
+		if current_line_id == "G5-05-03":
+			if not ending_identity_ready:
+				return true
+			_show_ending_identity_close()
+			return false
+		if current_line_id == "G5-05-04":
+			_show_ending_identity_close()
+			return false
 
 	if next_shot_id != current_shot_id:
 		var previous_shot_id := current_shot_id
@@ -195,6 +349,8 @@ func on_line_changed(line: Dictionary, unit: Dictionary) -> bool:
 
 
 func advance() -> bool:
+	if ending_sequence_active:
+		return true
 	if final_hold_active:
 		var elapsed := Time.get_ticks_msec() - final_hold_started_at_msec
 		if elapsed < FINAL_MANUAL_MINIMUM_MSEC:
@@ -208,6 +364,8 @@ func advance() -> bool:
 
 
 func on_auto_timeout() -> bool:
+	if ending_sequence_active:
+		return true
 	if final_hold_active:
 		_finish_final_hold()
 		return true
@@ -263,6 +421,22 @@ func uses_speaker_label() -> bool:
 	return false
 
 
+func blocks_input() -> bool:
+	return ending_sequence_active
+
+
+func begin_timed_sequence(unit_id: String, line_id: String) -> void:
+	if unit_id == "G5-05" and line_id == "G5-05-03":
+		_start_ending_walk()
+
+
+func begin_voice_handoff(unit_id: String) -> bool:
+	if unit_id != "G5-05":
+		return false
+	_start_ending_identity_hold()
+	return true
+
+
 func auto_wait_multiplier(line: Dictionary, unit: Dictionary) -> float:
 	if str(line.get("id", "")) == FINAL_LINE_ID:
 		return 1.85
@@ -278,6 +452,7 @@ func resume() -> bool:
 
 func leave() -> void:
 	_kill_tweens()
+	_reset_ending_effects()
 	transition_texture.visible = false
 	transition_texture.texture = null
 	transition_overlay.visible = false
@@ -297,15 +472,22 @@ func leave() -> void:
 	displayed_texture = null
 	final_hold_active = false
 	final_hold_started_at_msec = 0
+	ending_sequence_active = false
+	ending_identity_ready = false
+	ending_final_hold_active = false
+	ending_motion_clock = 0.0
 
 
 func _build_chapter_effects() -> void:
+	_build_ending_effects()
+
 	transition_texture = TextureRect.new()
 	transition_texture.name = "G5TransitionTexture"
 	transition_texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	transition_texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	transition_texture.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	transition_texture.visible = false
+	transition_texture.z_index = 20
 	_set_full_rect(transition_texture)
 	fx_layer.add_child(transition_texture)
 
@@ -314,6 +496,7 @@ func _build_chapter_effects() -> void:
 	ambient_overlay.color = Color.TRANSPARENT
 	ambient_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	ambient_overlay.visible = false
+	ambient_overlay.z_index = 30
 	_set_full_rect(ambient_overlay)
 	fx_layer.add_child(ambient_overlay)
 
@@ -323,6 +506,7 @@ func _build_chapter_effects() -> void:
 	projection_card.size = Vector2(1100.0, 560.0)
 	projection_card.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	projection_card.visible = false
+	projection_card.z_index = 40
 	var projection_style := StyleBoxFlat.new()
 	projection_style.bg_color = Color(0.025, 0.045, 0.065, 0.94)
 	projection_style.border_color = Color(0.54, 0.72, 0.78, 0.46)
@@ -351,8 +535,116 @@ func _build_chapter_effects() -> void:
 	transition_overlay.modulate.a = 0.0
 	transition_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	transition_overlay.visible = false
+	transition_overlay.z_index = 100
 	_set_full_rect(transition_overlay)
 	fx_layer.add_child(transition_overlay)
+
+
+func _build_ending_effects() -> void:
+	ending_ocean_layer = TextureRect.new()
+	ending_ocean_layer.name = "G5EndingOcean"
+	ending_ocean_layer.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	ending_ocean_layer.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	ending_ocean_layer.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	ending_ocean_layer.visible = false
+	# Keep the animated full-frame CG in the ordinary picture plane. CenterLine
+	# is created after ChapterFxLayer, so an equal z-index lets captions draw on
+	# top while the dedicated transition overlays (z 20+) can still veil both.
+	ending_ocean_layer.z_index = 0
+	_set_full_rect(ending_ocean_layer)
+	var ocean_shader := Shader.new()
+	ocean_shader.code = ENDING_OCEAN_SHADER
+	var ocean_material := ShaderMaterial.new()
+	ocean_material.shader = ocean_shader
+	ending_ocean_layer.material = ocean_material
+	fx_layer.add_child(ending_ocean_layer)
+
+	ending_beacon_glow = _make_ending_glow(
+		"G5EndingBeaconGlow",
+		Vector2(604.0, 176.0),
+		Vector2(62.0, 62.0),
+		Color(0.24, 1.0, 0.48, 0.48),
+		1.55,
+		0.8,
+	)
+	ending_beacon_glow.z_index = 3
+	ending_beacon_glow.visible = false
+	fx_layer.add_child(ending_beacon_glow)
+
+	ending_walk_anchor = Control.new()
+	ending_walk_anchor.name = "G5EndingWalkAnchor"
+	ending_walk_anchor.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	ending_walk_anchor.visible = false
+	ending_walk_anchor.z_index = 2
+	ending_walk_anchor.pivot_offset = ENDING_PERSON_PIVOT
+	_set_full_rect(ending_walk_anchor)
+	fx_layer.add_child(ending_walk_anchor)
+
+	ending_walk_bob = Control.new()
+	ending_walk_bob.name = "G5EndingWalkBob"
+	ending_walk_bob.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_set_full_rect(ending_walk_bob)
+	ending_walk_anchor.add_child(ending_walk_bob)
+
+	ending_person_layer = TextureRect.new()
+	ending_person_layer.name = "G5EndingPerson"
+	ending_person_layer.texture = load("res://assets/shots/shot-74/person-layer.png") as Texture2D
+	ending_person_layer.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	ending_person_layer.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	ending_person_layer.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_set_full_rect(ending_person_layer)
+	var person_shader := Shader.new()
+	person_shader.code = ENDING_PERSON_SHADER
+	var person_material := ShaderMaterial.new()
+	person_material.shader = person_shader
+	ending_person_layer.material = person_material
+	ending_walk_bob.add_child(ending_person_layer)
+
+	ending_lantern_layer = TextureRect.new()
+	ending_lantern_layer.name = "G5EndingLantern"
+	ending_lantern_layer.texture = load("res://assets/shots/shot-74/lantern-layer.png") as Texture2D
+	ending_lantern_layer.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	ending_lantern_layer.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	ending_lantern_layer.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	ending_lantern_layer.position = ENDING_LANTERN_CROP_POSITION
+	ending_lantern_layer.size = ENDING_LANTERN_CROP_SIZE
+	ending_walk_bob.add_child(ending_lantern_layer)
+
+	ending_lantern_glow = _make_ending_glow(
+		"G5EndingLanternGlow",
+		Vector2(982.0, 648.0),
+		Vector2(104.0, 104.0),
+		Color(1.0, 0.56, 0.20, 0.30),
+		1.18,
+		2.1,
+	)
+	ending_lantern_glow.z_index = 1
+	ending_walk_bob.add_child(ending_lantern_glow)
+
+
+func _make_ending_glow(
+	name_value: String,
+	position_value: Vector2,
+	size_value: Vector2,
+	color_value: Color,
+	speed: float,
+	phase: float,
+) -> ColorRect:
+	var glow := ColorRect.new()
+	glow.name = name_value
+	glow.position = position_value
+	glow.size = size_value
+	glow.color = Color.WHITE
+	glow.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var glow_shader := Shader.new()
+	glow_shader.code = ENDING_GLOW_SHADER
+	var glow_material := ShaderMaterial.new()
+	glow_material.shader = glow_shader
+	glow_material.set_shader_parameter("glow_color", color_value)
+	glow_material.set_shader_parameter("speed", speed)
+	glow_material.set_shader_parameter("phase", phase)
+	glow.material = glow_material
+	return glow
 
 
 func _show_shot(shot_id: String, previous_shot_id: String, unit_entry: bool) -> void:
@@ -411,6 +703,175 @@ func _present_texture(
 		_flash_from_black(0.82 if unit_entry else 0.46, 0.68 if unit_entry else 0.36)
 
 	displayed_texture = texture
+
+
+func _activate_ending_live_wide() -> void:
+	if current_unit_id != "G5-05" or ending_final_hold_active:
+		return
+	var live_texture: Texture2D = asset_registry.call(
+		"load_variant",
+		"SHOT-74",
+		"walk-step-01",
+	) as Texture2D
+	if live_texture == null:
+		return
+	ending_environment_active = true
+	# The opening now uses the same complete CG as the first walk beat. The old
+	# empty plate + cut-out person + cut-out lantern stack caused a visible bob
+	# and a light pop when the three-frame walk took over.
+	ending_ocean_layer.texture = live_texture
+	ending_ocean_layer.visible = true
+	(ending_ocean_layer.material as ShaderMaterial).set_shader_parameter(
+		"identity_mode",
+		0.0,
+	)
+	# Both lamps remain baked into the complete CG until the final identity
+	# frame, where the lighthouse beacon receives its deliberate live pulse.
+	ending_beacon_glow.visible = false
+	ending_walk_anchor.visible = false
+	ending_walk_anchor.position = Vector2.ZERO
+	ending_walk_anchor.scale = Vector2.ONE
+	ending_walk_anchor.modulate = Color.WHITE
+	ending_walk_bob.position = Vector2.ZERO
+	ending_person_layer.visible = false
+	ending_lantern_layer.visible = false
+	ending_lantern_glow.visible = false
+	master_texture.scale = Vector2.ONE
+	master_texture.pivot_offset = Vector2.ZERO
+	ui.call("show_line_shot", "SHOT-74", live_texture)
+	current_shot_id = "SHOT-74"
+	current_variant_id = "live"
+	displayed_texture = live_texture
+
+
+func _start_ending_walk() -> void:
+	if ending_sequence_active:
+		return
+	ending_sequence_active = true
+	ending_identity_ready = false
+	ending_final_hold_active = false
+	ending_motion_clock = 0.0
+	dialogue_panel.visible = false
+	dialogue_tail.visible = false
+	center_line_label.visible = false
+	_show_ending_walk_step("walk-step-01", 0.28)
+
+	if ending_timeline_tween != null and ending_timeline_tween.is_valid():
+		ending_timeline_tween.kill()
+	ending_timeline_tween = host.create_tween()
+	ending_timeline_tween.tween_interval(ENDING_STEP_TWO_AT)
+	ending_timeline_tween.tween_callback(
+		func() -> void: _show_ending_walk_step("walk-step-02", 0.58)
+	)
+	ending_timeline_tween.tween_interval(ENDING_STEP_THREE_AT - ENDING_STEP_TWO_AT)
+	ending_timeline_tween.tween_callback(
+		func() -> void: _show_ending_walk_step("walk-step-03", 0.58)
+	)
+	ending_timeline_tween.tween_interval(ENDING_IDENTITY_AT - ENDING_STEP_THREE_AT)
+	ending_timeline_tween.tween_callback(_show_ending_identity_close)
+
+
+func _show_ending_walk_step(variant_id: String, fade_seconds: float) -> void:
+	var texture: Texture2D = asset_registry.call(
+		"load_variant",
+		"SHOT-74",
+		variant_id,
+	) as Texture2D
+	if texture == null:
+		return
+	ending_environment_active = true
+	ending_ocean_layer.visible = false
+	ending_beacon_glow.visible = false
+	ending_walk_anchor.visible = false
+	current_shot_id = "SHOT-74"
+	current_variant_id = variant_id
+	_present_texture("SHOT-74", texture, fade_seconds, false, false)
+	master_texture.scale = Vector2.ONE
+	master_texture.pivot_offset = Vector2.ZERO
+
+
+func _show_ending_identity_close() -> void:
+	ending_identity_ready = true
+	if current_variant_id == "identity-close":
+		ending_ocean_layer.visible = true
+		ending_beacon_glow.visible = true
+		return
+	var close_texture: Texture2D = asset_registry.call(
+		"load_variant",
+		"SHOT-74",
+		"identity-close",
+	) as Texture2D
+	if close_texture == null:
+		return
+	ending_walk_anchor.visible = false
+	ending_ocean_layer.visible = false
+	ending_beacon_glow.visible = false
+	current_shot_id = "SHOT-74"
+	current_variant_id = "identity-close"
+	_present_texture("SHOT-74", close_texture, 0.0, true, false)
+	# This is a deliberate cut to the final camera, veiled by a short fade. From this
+	# point onward the full accepted frame remains on screen; only local wind, water
+	# and beacon motion are applied.
+	_flash_from_black(0.66, 0.50)
+	ending_ocean_layer.texture = close_texture
+	(ending_ocean_layer.material as ShaderMaterial).set_shader_parameter(
+		"identity_mode",
+		1.0,
+	)
+	ending_ocean_layer.visible = true
+	ending_beacon_glow.position = ENDING_IDENTITY_BEACON_POSITION
+	ending_beacon_glow.size = ENDING_IDENTITY_BEACON_SIZE
+	var beacon_material := ending_beacon_glow.material as ShaderMaterial
+	beacon_material.set_shader_parameter("pulse_floor", 0.12)
+	beacon_material.set_shader_parameter("pulse_sharpness", 8.0)
+	ending_beacon_glow.visible = true
+	master_texture.pivot_offset = Vector2.ZERO
+	master_texture.scale = Vector2.ONE
+	if camera_tween != null and camera_tween.is_valid():
+		camera_tween.kill()
+
+
+func _start_ending_identity_hold() -> void:
+	if ending_final_hold_active:
+		return
+	ending_final_hold_active = true
+	ending_sequence_active = true
+	dialogue_panel.visible = false
+	dialogue_tail.visible = false
+	center_line_label.visible = false
+	if music_director != null:
+		music_director.call("fade_out", 4.2, "MUS-09C")
+	_show_ending_identity_close()
+
+	if ending_hold_tween != null and ending_hold_tween.is_valid():
+		ending_hold_tween.kill()
+	ending_hold_tween = host.create_tween()
+	ending_hold_tween.tween_interval(FINAL_HOLD_SECONDS)
+	ending_hold_tween.tween_callback(_finish_ending_sequence)
+
+
+func _finish_ending_sequence() -> void:
+	ending_sequence_active = false
+	ending_final_hold_active = false
+	final_hold_active = false
+	ending_walk_anchor.visible = false
+	request_story_advance()
+
+
+func _reset_ending_effects() -> void:
+	ending_environment_active = false
+	if ending_ocean_layer != null:
+		ending_ocean_layer.visible = false
+		ending_ocean_layer.texture = null
+	if ending_beacon_glow != null:
+		ending_beacon_glow.visible = false
+	if ending_walk_anchor != null:
+		ending_walk_anchor.visible = false
+		ending_walk_anchor.position = Vector2.ZERO
+		ending_walk_anchor.scale = Vector2.ONE
+		ending_walk_anchor.modulate = Color.WHITE
+	if ending_walk_bob != null:
+		ending_walk_bob.position = Vector2.ZERO
 
 
 func _set_placeholder_copy(shot_id: String) -> void:
@@ -621,14 +1082,7 @@ func _start_final_hold() -> void:
 	dialogue_panel.visible = false
 	dialogue_tail.visible = false
 	center_line_label.visible = false
-	var empty_texture: Texture2D = asset_registry.call(
-		"load_variant",
-		"SHOT-74",
-		"empty",
-	) as Texture2D
-	if empty_texture != null and displayed_texture != empty_texture:
-		current_variant_id = "empty"
-		_present_texture("SHOT-74", empty_texture, 0.8, false, false)
+	_show_ending_identity_close()
 	master_texture.scale = Vector2.ONE
 	if camera_tween != null and camera_tween.is_valid():
 		camera_tween.kill()
@@ -643,7 +1097,15 @@ func _finish_final_hold() -> void:
 
 
 func _kill_tweens() -> void:
-	for tween in [texture_tween, transition_tween, ambient_tween, camera_tween, projection_tween]:
+	for tween in [
+		texture_tween,
+		transition_tween,
+		ambient_tween,
+		camera_tween,
+		projection_tween,
+		ending_timeline_tween,
+		ending_hold_tween,
+	]:
 		if tween != null and tween.is_valid():
 			tween.kill()
 

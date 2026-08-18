@@ -31,7 +31,7 @@ G3 独立开场 `SHOT-42`，用于承接前置旁白；G3 中的主角统一使�
 | --- | --- | --- |
 | SHOT-38 | [纯白花海相遇／4K](../game/assets/shots/shot-38/master.webp) | 六名 Agent 之后第一次见到 Ousia |
 | SHOT-09 | [花海并坐对话／4K](../game/assets/shots/shot-09/master.webp) | 那个夜晚的长对话，真实聊天以后替换低位设备内容 |
-| SHOT-10 | [深夜卧室仰视／4K](../game/assets/shots/shot-10/master.webp) | 躺在床上直视开着的普通吸顶灯，只用于“二十秒”与吊灯旧文 |
+| SHOT-10 | [深夜卧室仰视／4K](../game/assets/shots/shot-10/master.webp) | 躺在床上直视开着的普通吸顶灯，只用于“十秒”与吊灯旧文 |
 | SHOT-39 | [从花中递回旧文／4K](../game/assets/shots/shot-39/master.webp) | 把“找回来”落成递页动作 |
 | SHOT-40 | [合上女主旧稿／4K](../game/assets/shots/shot-40/master.webp) | 把“不是你的”落成稿件归属动作 |
 | SHOT-41 | [在 Ousia 怀中哭泣／4K](../game/assets/shots/shot-41/master.webp) | 正脸不入镜，以身体完成情绪释放 |
@@ -76,7 +76,7 @@ Agent 与花海组使用 `illustration-story`；最终 `SHOT-10` 以 `precise-ob
 
 ## 下一步
 
-1. 实机审查新 `SHOT-42`、逐镜内容卡安全区、字幕换行、切镜速度和二十秒占位节奏。
+1. 实机审查新 `SHOT-42`、逐镜内容卡安全区、字幕换行、切镜速度和十秒检索节奏。
 2. 获得 `SRC-01`、`SRC-03` 后替换低位聊天设备与检索占位，不为每句台词重画 CG。
 3. `SHOT-36` 后续替换真实旅行抽帧，`SHOT-37` 替换正式参展作品。
 4. G4 开始制作后，为 `SHOT-11` 补三十一岁作品从纸面显出的投影转场。

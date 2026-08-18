@@ -15,6 +15,10 @@ func _run() -> void:
 	var story: RefCounted = scene.get("story")
 	var music_director := scene.get("music_director") as Node
 	scene.call("_start_new_game")
+	# Establish the outgoing G1 cue explicitly before jumping to the intentionally
+	# unscored final unit, so this test measures the chapter pre-fade itself.
+	story.call("start_at", 0, 1)
+	await process_frame
 	story.call("start_at", 5, 5)
 	await process_frame
 	scene.call("_finish_typing")
@@ -43,24 +47,15 @@ func _run() -> void:
 	await create_timer(5.25).timeout
 	if (
 		bool(scene.get("chapter_interlude_active"))
-		or not bool(scene.get("chapter_music_delay_active"))
-		or not str(music_director.get("active_cue_id")).is_empty()
-	):
-		_fail("The G2 scene did not appear before its delayed BGM entry.")
-		return
-
-	await create_timer(1.00).timeout
-	if (
-		bool(scene.get("chapter_music_delay_active"))
 		or not bool(music_director.call("is_cue_active", "MUS-04"))
 		or not _any_player_is_playing(music_director)
 	):
-		_fail("The G2 BGM did not fade in after the post-scene delay.")
+		_fail("The G2 BGM did not enter together with the revealed scene.")
 		return
 
 	print(
 		"Chapter transition audio test passed: 2.2s pre-fade, 5.2s card, "
-		+ "scene reveal, and 0.9s delayed BGM entry."
+		+ "then simultaneous scene and BGM entry."
 	)
 	music_director.call("hard_stop")
 	scene.free()

@@ -3,12 +3,22 @@
   "shots": {
     "SHOT-01": {
       "units": "G1-01",
-      "composition": "G0 梦境占位、清晨日常、家中地库、车内与公司地库序列",
-      "characters": "CHAR-H／H-LOOK-09、H-LOOK-03，CHAR-CATS，破晓",
-      "deliverables": "六张现实段 CG、梦境占位、黑屏",
-      "motion": "同画面连续旁白、跨画面淡入、黑屏回声",
+      "composition": "G0 黄昏天台梦境、清晨日常、家中地库、车内与公司地库序列",
+      "characters": "梦中成年 CHAR-H／少年 H 的 G0 专属服装；现实 CHAR-H／H-LOOK-09、H-LOOK-03；CHAR-CATS；破晓",
+      "deliverables": "十张 4K 梦境 CG、六张现实段 CG、终场白光与黑屏",
+      "motion": "黑屏风声、主观睁眼、匹配溶接、旧句回忆抽离、极慢漂移、少年显形、列车到站、径向门光；现实段连续旁白",
       "master": "res://assets/shots/shot-01/g0-wake.webp",
       "variants": {
+        "dream_pov_wake": "res://assets/shots/shot-01/dream-pov-wake-restyled.webp",
+        "dream_wake": "res://assets/shots/shot-01/dream-wake-restyled.webp",
+        "dream_loss": "res://assets/shots/shot-01/dream-loss-restyled.webp",
+        "dream_shadow": "res://assets/shots/shot-01/dream-shadow-restyled.webp",
+        "dream_reveal": "res://assets/shots/shot-01/dream-reveal-restyled.webp",
+        "dream_youth_close": "res://assets/shots/shot-01/dream-youth-close-restyled.webp",
+        "dream_adult_reaction": "res://assets/shots/shot-01/dream-adult-reaction-restyled.webp",
+        "dream_confrontation": "res://assets/shots/shot-01/dream-confrontation-restyled.webp",
+        "dream_train_approach": "res://assets/shots/shot-01/dream-train-approach-restyled.webp",
+        "dream_train_stop": "res://assets/shots/shot-01/dream-train-stop-restyled.webp",
         "wake": "res://assets/shots/shot-01/g0-wake.webp",
         "wash": "res://assets/shots/shot-01/g0-wash.webp",
         "cats": "res://assets/shots/shot-01/g0-cats-goodbye.webp",
@@ -100,7 +110,7 @@
       "composition": "深夜普通卧室中，躺在床上的第一人称视线直视开着的圆形吸顶灯，周围保留天花板和房间边缘",
       "characters": "无可见人物",
       "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-10/master.webp)、SRC-03 全屏证据切片待替换",
-      "motion": "灯芯与视野边缘曝光呼吸、完整二十秒检索切入",
+      "motion": "灯芯与视野边缘曝光呼吸、完整十秒检索切入",
       "master": "res://assets/shots/shot-10/master.webp",
       "variants": {}
     },
@@ -117,8 +127,8 @@
       "units": "G4-01",
       "composition": "三十一岁作品的四幕记忆重演：空礼堂向光而行、高山草甸上行、落日海岸迎风、城市夜色返程",
       "characters": "CHAR-H／H-LOOK-08、H-LOOK-06、H-LOOK-01、H-LOOK-03",
-      "deliverables": "[向外求索](../game/assets/shots/shot-12/outward.webp)、[山川湖海](../game/assets/shots/shot-12/mountains.webp)、[享乐任务](../game/assets/shots/shot-12/pleasure.webp)、[夜间返程](../game/assets/shots/shot-12/return.webp) 四态 4K 运行时 CG；SRC-04 原声音轨待补",
-      "motion": "纸面边界退场、短溶接、极慢缓推、海风与窗外城市视差",
+      "deliverables": "[向外求索](../game/assets/shots/shot-12/outward.webp)、[山川湖海](../game/assets/shots/shot-12/mountains.webp)、[享乐任务](../game/assets/shots/shot-12/pleasure.webp)、[夜间返程](../game/assets/shots/shot-12/return.webp) 四态 4K 运行时 CG；SRC-04 原片声音已接入",
+      "motion": "纸面边界退场、短溶接、极慢缓推、海风与窗外城市视差；56.5 秒后尾奏跨场",
       "master": "res://assets/shots/shot-12/outward.webp",
       "variants": {
         "outward": "res://assets/shots/shot-12/outward.webp",
@@ -285,10 +295,10 @@
     },
     "SHOT-29": {
       "units": "G2-05",
-      "composition": "深圳竞聘结束后会议室中与男性 HR 大佬两人谈话",
-      "characters": "CHAR-H／H-LOOK-04、男性 HR／正式西装",
-      "deliverables": "[试制母帧](../game/assets/shots/shot-29/master.webp)；结果页轻度失焦",
-      "motion": "翻页、抬眼、缓推",
+      "composition": "深圳竞聘结束后，空旷阶梯会议室里只剩我与男性 HR 并排坐在最前排正中间谈话，向后升高的空座与台阶必须清楚可辨",
+      "characters": "CHAR-H／H-LOOK-04、短黑发细框眼镜男性 HR／深色正式西装；全场严格只有两人",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-29/master.webp)",
+      "motion": "视线移动、极慢缓推",
       "master": "res://assets/shots/shot-29/master.webp",
       "variants": {}
     },
@@ -305,7 +315,7 @@
       "units": "G2-05",
       "composition": "远程会议中指出决策儿戏并触发第二次竞聘",
       "characters": "CHAR-H／H-LOOK-05、低细节参会者",
-      "deliverables": "[试制母帧](../game/assets/shots/shot-31/master.webp)；重新竞聘通知已烘焙",
+      "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-31/master.webp)；重新竞聘通知已烘焙",
       "motion": "会议刷新、通知出现",
       "master": "res://assets/shots/shot-31/master.webp",
       "variants": {}
@@ -573,8 +583,8 @@
     },
     "SHOT-63": {
       "units": "G4-02",
-      "composition": "腾格里独处一夜后的日出，主角站在破晓车顶唱歌；身体直立、头部基本平视，一只手在腰侧自然摊开，另一只手放松垂下，表情是克制的自然微笑",
-      "characters": "CHAR-H／H-LOOK-06、破晓；成年人比例与克制神态，双手空着，禁止麦克风、耳麦、线缆及任何手持物；禁止仰头、张开双臂等舞台化姿态；车牌必须是无字、无号码、不可识别的虚构像素道具牌",
+      "composition": "按腾格里真实原片的道路、日出、车位与车顶站位重绘；主角站在破晓车顶唱歌，身体直立、头部基本平视，一只手在腰侧自然摊开，另一只手放松垂下，表情克制自然",
+      "characters": "CHAR-H／H-LOOK-06、破晓；黄黑车身，侧面白灰“破晓”字样与黑黄机械图形，前机舱盖中央的独立徽记为深红／朱红色；双手空着，禁止麦克风、耳麦、线缆、仰头或舞台化张臂；车牌必须无字无号码",
       "deliverables": "[4K 运行时母帧](../game/assets/shots/shot-63/master.webp)",
       "motion": "晨风、衣摆、低频天光变化",
       "master": "res://assets/shots/shot-63/master.webp",
@@ -648,14 +658,18 @@
     },
     "SHOT-74": {
       "units": "G5-04、G5-05",
-      "composition": "满月夜终末灯塔前人物直视灯塔，站姿挺直并将提灯手向前伸出，随后离场并留下同机位空镜",
-      "characters": "CHAR-H／H-LOOK-08；提灯参考 SRC-26；栗棕色大块角状分组发束",
-      "deliverables": "[提灯人物 4K 母帧](../game/assets/shots/shot-74/master.webp)、[同机位 4K 空镜](../game/assets/shots/shot-74/empty.webp)",
-      "motion": "月光海面、绿灯低频闪烁、提灯微光、人物态向空镜慢溶",
+      "composition": "满月夜终末灯塔宽景先承载前探提灯；随后以三张不同位置和步态的完整 CG 淡化表现走向灯塔，最终停在低机位广角半脸回望构图",
+      "characters": "CHAR-H／H-LOOK-08；浅灰长外套、白色运动鞋、栗棕色大块角状分组发束、细框眼镜；提灯参考 SRC-26",
+      "deliverables": "[步行起始 4K](../game/assets/shots/shot-74/master.webp)、[步行中段 4K](../game/assets/shots/shot-74/walk-step-02.png)、[步行远段 4K](../game/assets/shots/shot-74/walk-step-03.png)、[半脸回望 4K 身份帧](../game/assets/shots/shot-74/identity-close.png)",
+      "motion": "三帧完整 CG 淡化；最终帧海浪与月光异步、绿灯低频闪烁、衣摆自由端／发梢阵风",
       "master": "res://assets/shots/shot-74/master.webp",
       "variants": {
         "lantern": "res://assets/shots/shot-74/master.webp",
-        "empty": "res://assets/shots/shot-74/empty.webp"
+        "empty": "res://assets/shots/shot-74/empty.webp",
+        "walk-step-01": "res://assets/shots/shot-74/master.webp",
+        "walk-step-02": "res://assets/shots/shot-74/walk-step-02.png",
+        "walk-step-03": "res://assets/shots/shot-74/walk-step-03.png",
+        "identity-close": "res://assets/shots/shot-74/identity-close.png"
       }
     },
     "SHOT-75": {

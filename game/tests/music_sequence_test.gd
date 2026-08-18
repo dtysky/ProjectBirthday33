@@ -16,9 +16,11 @@ func _run() -> void:
 	var director := scene.get("music_director") as Node
 	scene.call("_start_new_game")
 	await create_timer(0.10).timeout
-	_assert_music(director, "MUS-01", true, "opening")
+	_assert_music(director, "", false, "wind-only opening")
+	await create_timer(5.20).timeout
+	_assert_music(director, "MUS-03C", true, "rooftop dialogue after eye opening")
 
-	story.call("start_at", 0, 1)
+	story.call("start_at", 0, 18)
 	await process_frame
 	_assert_music(director, "MUS-03B", true, "G0 after the dream")
 
@@ -27,31 +29,16 @@ func _run() -> void:
 	_assert_music(director, "MUS-02", true, "G1 through scene 04")
 
 	story.call("start_at", 4, 0)
-	await create_timer(2.10).timeout
-	_assert_music(director, "MUS-03B", true, "G1 scenes 05 and 06")
-	var active_index := int(director.get("active_player_index"))
-	var states := director.get("channel_states") as Array
-	var active_player := (director.get("players") as Array)[active_index] as AudioStreamPlayer
-	var music_bus_index := AudioServer.get_bus_index("Music")
-	if (
-		active_index < 0
-		or float((states[active_index] as Dictionary).get("gain", 0.0)) < 0.95
-		or active_player.volume_db < -4.0
-		or music_bus_index < 0
-		or AudioServer.is_bus_mute(music_bus_index)
-		or AudioServer.get_bus_volume_db(music_bus_index) < -0.1
-		or AudioServer.is_bus_mute(0)
-		or AudioServer.get_bus_volume_db(0) < -2.1
-	):
-		push_error("MUS-03B was not audible in the G1 closing scenes.")
-		quit(1)
-		return
+	await create_timer(0.10).timeout
+	_assert_music(director, "", true, "G1 replay fade")
+	await create_timer(2.80).timeout
+	_assert_music(director, "", false, "G1 closing silence")
 
 	story.call("start_at", 6, 0)
 	await create_timer(2.10).timeout
 	_assert_music(director, "MUS-04", true, "G2 long-form state")
 
-	print("Music sequence test passed: G0/G1 remapping and G2 long state are active.")
+	print("Music sequence test passed: wind-only G0 opening, G1 replay fade and G2 long state are active.")
 	director.call("hard_stop")
 	scene.free()
 	quit(0)

@@ -21,8 +21,8 @@ function run(command, args) {
   return result;
 }
 
-if (report.version !== 1 || report.cues.length !== 16) {
-  throw new Error("Expected sixteen cues in music build report version 1.");
+if (report.version !== 2 || report.cues.length !== 16) {
+  throw new Error("Expected sixteen cues in music build report version 2.");
 }
 
 let loopCount = 0;
@@ -36,6 +36,14 @@ for (const cue of report.cues) {
   }
   if (Math.abs(cue.measured_lufs - cue.target_lufs) > 0.25) {
     throw new Error(`${cue.id} missed its loudness target.`);
+  }
+  if (
+    cue.source_start_seconds !== 0 ||
+    cue.crossfade_seconds !== 0 ||
+    cue.temporal_edit !== "none" ||
+    Math.abs(cue.runtime_duration_seconds - cue.source_end_seconds) > 0.08
+  ) {
+    throw new Error(`${cue.id} is not a full-length, untrimmed source.`);
   }
   if (!cue.loop) {
     continue;
@@ -63,6 +71,6 @@ if (loopCount !== 15) {
 }
 
 console.log(
-  "Music verification passed: sixteen normalized assets, fifteen loops decoded " +
-    "for five consecutive rounds, and one fixed one-shot layer."
+  "Music verification passed: sixteen full-length untrimmed normalized assets, " +
+    "fifteen loops decoded for five consecutive rounds, and one one-shot layer."
 );

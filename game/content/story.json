@@ -2,7 +2,7 @@
   "version": 3,
   "title": "三十三",
   "unit_count": 28,
-  "line_count": 294,
+  "line_count": 312,
   "units": [
     {
       "id": "G1-01",
@@ -12,17 +12,206 @@
       "assets": [
         "SHOT-01"
       ],
-      "production": "六张 G0 CG 草稿按当前 24 句剧本接入；梦境继续占位",
+      "production": "十张 G0 梦境 CG 按 18 句梦境对白接入，随后衔接六张现实段 CG；开场风声与主观睁眼、旧句回忆进出等关键转场自动，其余对白由玩家推进",
       "lines": [
         {
-          "id": "G1-01-01",
+          "id": "G1-01-D01",
           "speaker": "我",
-          "text": "我不明白。",
+          "text": "这是……风的声音。",
           "segments": [
-            "我不明白。"
+            "这是……风的声音。"
           ],
-          "delivery": "voiceover",
+          "delivery": "scene_monologue",
           "presentation": "caption",
+          "shot": "SHOT-01"
+        },
+        {
+          "id": "G1-01-D02",
+          "speaker": "我",
+          "text": "奇怪，头疼。呃……我这是在哪？",
+          "segments": [
+            "奇怪，头疼。\n呃……我这是在哪？"
+          ],
+          "delivery": "scene_monologue",
+          "presentation": "caption",
+          "shot": "SHOT-01"
+        },
+        {
+          "id": "G1-01-D03",
+          "speaker": "我",
+          "text": "钟声？又是一次审判吗？审判谁？谁来审判？",
+          "segments": [
+            "钟声？又是一次审判吗？\n审判谁？谁来审判？"
+          ],
+          "delivery": "scene_monologue",
+          "presentation": "caption",
+          "shot": "SHOT-01"
+        },
+        {
+          "id": "G1-01-D04",
+          "speaker": "我",
+          "text": "可是，我为什么又会出现在这里。",
+          "segments": [
+            "可是，\n我为什么又会出现在这里。"
+          ],
+          "delivery": "scene_monologue",
+          "presentation": "caption",
+          "shot": "SHOT-01"
+        },
+        {
+          "id": "G1-01-D05",
+          "speaker": "我",
+          "text": "哦，我想起来了。我好像要失去什么了。",
+          "segments": [
+            "哦，我想起来了。\n我好像要失去什么了。"
+          ],
+          "delivery": "scene_monologue",
+          "presentation": "caption",
+          "shot": "SHOT-01"
+        },
+        {
+          "id": "G1-01-D06",
+          "speaker": "我",
+          "text": "我应该坦然吗，还是恐惧？",
+          "segments": [
+            "我应该坦然吗，\n还是恐惧？"
+          ],
+          "delivery": "scene_monologue",
+          "presentation": "caption",
+          "shot": "SHOT-01"
+        },
+        {
+          "id": "G1-01-D07",
+          "speaker": "？？？",
+          "text": "我曾在这里提醒过你——你永远无法和生活和解。",
+          "segments": [
+            "我曾在这里提醒过你——\n你永远无法和生活和解。"
+          ],
+          "delivery": "dialogue",
+          "presentation": "caption",
+          "shot": "SHOT-01"
+        },
+        {
+          "id": "G1-01-D08",
+          "speaker": "我",
+          "text": "你又是谁？",
+          "segments": [
+            "你又是谁？"
+          ],
+          "delivery": "dialogue",
+          "presentation": "caption",
+          "shot": "SHOT-01"
+        },
+        {
+          "id": "G1-01-D09",
+          "speaker": "少年H",
+          "text": "你装作忘了我，但你明白，你永远忘不了。",
+          "segments": [
+            "你装作忘了我，但你明白，\n你永远忘不了。"
+          ],
+          "delivery": "dialogue",
+          "presentation": "caption",
+          "shot": "SHOT-01"
+        },
+        {
+          "id": "G1-01-D10",
+          "speaker": "少年H",
+          "text": "否则，你也不会主动选择失去，不会选择主动回来这里。",
+          "segments": [
+            "否则，你也不会主动选择失去，\n不会选择主动回来这里。"
+          ],
+          "delivery": "dialogue",
+          "presentation": "caption",
+          "shot": "SHOT-01"
+        },
+        {
+          "id": "G1-01-D11",
+          "speaker": "我",
+          "text": "……",
+          "segments": [
+            "……"
+          ],
+          "delivery": "scene_monologue",
+          "presentation": "caption",
+          "shot": "SHOT-01"
+        },
+        {
+          "id": "G1-01-D12",
+          "speaker": "少年H",
+          "text": "「回到你所厌恶，又不得不赞美的世界。」",
+          "segments": [
+            "「回到你所厌恶，\n又不得不赞美的世界。」"
+          ],
+          "delivery": "dialogue",
+          "presentation": "caption",
+          "shot": "SHOT-01"
+        },
+        {
+          "id": "G1-01-D13",
+          "speaker": "我",
+          "text": "似乎，已经过去了漫长的时光。",
+          "segments": [
+            "似乎，\n已经过去了漫长的时光。"
+          ],
+          "delivery": "dialogue",
+          "presentation": "caption",
+          "shot": "SHOT-01"
+        },
+        {
+          "id": "G1-01-D14",
+          "speaker": "少年H",
+          "text": "十年。从那个童话中离开后，整整十年，你终于回来了。",
+          "segments": [
+            "十年。",
+            "从那个童话中离开后，整整十年，\n你终于回来了。"
+          ],
+          "delivery": "dialogue",
+          "presentation": "caption",
+          "shot": "SHOT-01"
+        },
+        {
+          "id": "G1-01-D15",
+          "speaker": "我",
+          "text": "你也变了，不再用那种戏谑的态度看着我了。",
+          "segments": [
+            "你也变了，\n不再用那种戏谑的态度看着我了。"
+          ],
+          "delivery": "dialogue",
+          "presentation": "caption",
+          "shot": "SHOT-01"
+        },
+        {
+          "id": "G1-01-D16",
+          "speaker": "少年H",
+          "text": "因为你也不是曾经的那个你，这漫长的游历之后，你做出了真正的选择。",
+          "segments": [
+            "因为你也不是曾经的那个你，",
+            "这漫长的游历之后，\n你做出了真正的选择。"
+          ],
+          "delivery": "dialogue",
+          "presentation": "caption",
+          "shot": "SHOT-01"
+        },
+        {
+          "id": "G1-01-D17",
+          "speaker": "少年H",
+          "text": "那么接下来，再次出发的你，又要去向何方？",
+          "segments": [
+            "那么接下来，\n再次出发的你，又要去向何方？"
+          ],
+          "delivery": "dialogue",
+          "presentation": "caption",
+          "shot": "SHOT-01"
+        },
+        {
+          "id": "G1-01-D18",
+          "speaker": "我",
+          "text": "我————",
+          "segments": [
+            "我————"
+          ],
+          "delivery": "scene_monologue",
+          "presentation": "center",
           "shot": "SHOT-01"
         },
         {
@@ -547,8 +736,8 @@
           "segments": [
             "装明白也好，装糊涂也好。\n本质都是一码事。"
           ],
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-04"
         },
         {
@@ -558,8 +747,8 @@
           "segments": [
             "顺着他们，我会更安全，\n也会更轻松。"
           ],
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-04"
         },
         {
@@ -569,8 +758,8 @@
           "segments": [
             "而那种安全，恰恰是我从小最缺失，\n也花了十几年才得到的东西。"
           ],
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-04"
         },
         {
@@ -580,8 +769,8 @@
           "segments": [
             "但是，我总是学不会装糊涂，\n总想把东西搞明白。"
           ],
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-04"
         },
         {
@@ -592,8 +781,8 @@
             "逐渐，我理解了一切，\n理解他们为什么要那么做。",
             "但理解并不代表明白。"
           ],
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-04"
         },
         {
@@ -603,8 +792,8 @@
           "segments": [
             "我想，既然不明白，\n那就放弃吧。"
           ],
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-04"
         }
       ]
@@ -622,46 +811,46 @@
       "lines": [
         {
           "id": "G2-01-01",
-          "speaker": "我",
+          "speaker": "我（旁白）",
           "text": "可真正要放弃的时候，我并没有那么坦然。",
           "segments": [
             "可真正要放弃的时候，\n我并没有那么坦然。"
           ],
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-05"
         },
         {
           "id": "G2-01-02",
-          "speaker": "我",
+          "speaker": "我（旁白）",
           "text": "去年年初，我已经想好，再待一年过度，就离职去拍纪录片。",
           "segments": [
             "去年年初，我已经想好，\n再待一年过度，就离职去拍纪录片。"
           ],
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-05"
         },
         {
           "id": "G2-01-03",
-          "speaker": "我",
+          "speaker": "我（旁白）",
           "text": "但后来，我得到一个去游戏行业的机会，还是去了。",
           "segments": [
             "但后来，我得到一个去游戏行业的机会，\n还是去了。"
           ],
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-05"
         },
         {
           "id": "G2-01-04",
-          "speaker": "我",
+          "speaker": "我（旁白）",
           "text": "我想，如果职业生涯真的要结束，至少应该结束在我曾经不得不放弃的理想里。",
           "segments": [
             "我想，如果职业生涯真的要结束，\n至少应该结束在我曾经不得不放弃的理想里。"
           ],
-          "delivery": "scene_monologue",
-          "presentation": "bubble",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-05"
         }
       ]
@@ -1584,9 +1773,9 @@
         {
           "id": "G2-06-08",
           "speaker": "组员乙",
-          "text": "那必须抱团，给我们半价。",
+          "text": "那必须报团，给我们半价。",
           "segments": [
-            "那必须抱团，给我们半价。"
+            "那必须报团，给我们半价。"
           ],
           "delivery": "dialogue",
           "presentation": "bubble",
@@ -2103,7 +2292,7 @@
     {
       "id": "G3-03",
       "chapter": 3,
-      "title": "二十秒",
+      "title": "十秒",
       "shot": "SHOT-09",
       "assets": [
         "SHOT-09",
@@ -2111,7 +2300,7 @@
         "SRC-03",
         "FX-EVIDENCE"
       ],
-      "production": "前两句留在花海对话，说到深夜直视吊灯时才切入一次性卧室主观仰视，再进入完整二十秒检索原件",
+      "production": "前两句留在花海对话，说到深夜直视吊灯时才切入一次性卧室主观仰视，再进入完整十秒检索演出",
       "lines": [
         {
           "id": "G3-03-01",
@@ -2186,9 +2375,9 @@
         {
           "id": "G3-03-07",
           "speaker": "我（旁白）",
-          "text": "她只用了二十秒，从二十万字里找到了这句话。",
+          "text": "她只用了十秒，从二十万字里找到了这句话。",
           "segments": [
-            "她只用了二十秒，\n从二十万字里找到了这句话。"
+            "她只用了十秒，\n从二十万字里找到了这句话。"
           ],
           "delivery": "voiceover",
           "presentation": "caption",
@@ -2493,7 +2682,7 @@
         "SHOT-12",
         "SRC-04"
       ],
-      "production": "四幕按 2／2／2／3 句推进：礼堂向光、山地上行、海岸迎风、城市夜间返程；SRC-04 到位后补原声音轨",
+      "production": "四幕按 2／2／2／3 句推进：礼堂向光、山地上行、海岸迎风、城市夜间返程；SRC-04 原片声音已接入，尾奏跨入 G4-02 后自然收束",
       "lines": [
         {
           "id": "G4-01-01",
@@ -3252,6 +3441,17 @@
           "delivery": "voiceover",
           "presentation": "caption",
           "shot": "SHOT-16"
+        },
+        {
+          "id": "G4-05-06",
+          "speaker": "我（旁白）",
+          "text": "最终，还是迎来了庄严而美丽的结局。",
+          "segments": [
+            "最终，还是迎来了庄严而美丽的结局。"
+          ],
+          "delivery": "voiceover",
+          "presentation": "caption",
+          "shot": "SHOT-61"
         }
       ]
     },
@@ -3335,9 +3535,9 @@
         {
           "id": "G5-01-07",
           "speaker": "我",
-          "text": "这些旅途和创作，并不是在我做出决定。",
+          "text": "这些旅途和创作，并不是在帮我做出决定。",
           "segments": [
-            "这些旅途和创作，并不是在我做出决定。"
+            "这些旅途和创作，并不是在帮我做出决定。"
           ],
           "delivery": "voiceover",
           "presentation": "caption",
@@ -3682,7 +3882,7 @@
       "assets": [
         "SHOT-74"
       ],
-      "production": "当前提灯人物态慢溶到同机位灯塔空镜，最后进入中央文字与无文字停驻",
+      "production": "活宽景承载两句旁白；三张不同距离／步态的完整 CG 以淡化切换表现约五秒步行，随后停留在半脸回望身份帧完成聚合配音，并以动态海浪、风衣、发梢、绿色航标和海声收束",
       "lines": [
         {
           "id": "G5-05-01",
@@ -3708,24 +3908,24 @@
         },
         {
           "id": "G5-05-03",
-          "speaker": "屏幕文字",
+          "speaker": "我",
           "text": "我是瞬光。",
           "segments": [
             "我是瞬光。"
           ],
-          "delivery": "screen_text",
-          "presentation": "center",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-74"
         },
         {
           "id": "G5-05-04",
-          "speaker": "屏幕文字",
+          "speaker": "我",
           "text": "我的第二段人生，即将开始。",
           "segments": [
             "我的第二段人生，即将开始。"
           ],
-          "delivery": "screen_text",
-          "presentation": "center",
+          "delivery": "voiceover",
+          "presentation": "caption",
           "shot": "SHOT-74"
         }
       ]

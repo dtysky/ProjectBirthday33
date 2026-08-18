@@ -1,12 +1,16 @@
 extends ChapterDirector
 
 const DEFAULT_CAPTION_RECT := Rect2(100.0, 748.0, 860.0, 220.0)
-const DESCENT_TRIGGER_LINE := "G4-05-05"
-const DESCENT_SHOT_ID := "SHOT-61"
-const DESCENT_HOLD := 4.8
 const THIRTY_ONE_FADE_DURATION := 1.6
 const AGE_JUMP_BLACK_HOLD := 0.32
 const THIRTY_THREE_REVEAL_DURATION := 1.25
+const THIRTY_ONE_HANDOFF_AT := 56.5
+const REPLAY_UNIT := "G4-01"
+const REPLAY_TRACK_LEFT := 96.0
+const REPLAY_TRACK_WIDTH := 1728.0
+const REPLAY_SHOT_FADE_OUT := 0.34
+const REPLAY_SHOT_BLACK_HOLD := 0.08
+const REPLAY_SHOT_FADE_IN := 0.46
 
 # Preserve the user's auto-wait preference while restoring each scene's scripted dwell range.
 const AUTO_WAIT_MULTIPLIERS := {
@@ -30,15 +34,15 @@ const SHOT_12_PHASES := {
 }
 
 const CAPTION_RECTS := {
-	"G4-01-01": Rect2(70.0, 742.0, 760.0, 226.0),
-	"G4-01-02": Rect2(70.0, 742.0, 760.0, 226.0),
-	"G4-01-03": Rect2(70.0, 742.0, 820.0, 226.0),
-	"G4-01-04": Rect2(70.0, 742.0, 820.0, 226.0),
-	"G4-01-05": Rect2(70.0, 742.0, 800.0, 226.0),
-	"G4-01-06": Rect2(70.0, 742.0, 800.0, 226.0),
-	"G4-01-07": Rect2(70.0, 72.0, 780.0, 226.0),
-	"G4-01-08": Rect2(70.0, 72.0, 780.0, 226.0),
-	"G4-01-09": Rect2(70.0, 72.0, 780.0, 226.0),
+	"G4-01-01": Rect2(90.0, 742.0, 760.0, 226.0),
+	"G4-01-02": Rect2(90.0, 742.0, 760.0, 226.0),
+	"G4-01-03": Rect2(90.0, 742.0, 820.0, 226.0),
+	"G4-01-04": Rect2(90.0, 742.0, 820.0, 226.0),
+	"G4-01-05": Rect2(90.0, 742.0, 800.0, 226.0),
+	"G4-01-06": Rect2(90.0, 742.0, 800.0, 226.0),
+	"G4-01-07": Rect2(90.0, 72.0, 780.0, 226.0),
+	"G4-01-08": Rect2(90.0, 72.0, 780.0, 226.0),
+	"G4-01-09": Rect2(90.0, 72.0, 780.0, 226.0),
 	"SHOT-13": Rect2(1060.0, 94.0, 760.0, 220.0),
 	"SHOT-43": Rect2(90.0, 744.0, 830.0, 220.0),
 	"SHOT-44": Rect2(80.0, 70.0, 820.0, 220.0),
@@ -65,6 +69,7 @@ const CAPTION_RECTS := {
 	"SHOT-55": Rect2(90.0, 742.0, 900.0, 226.0),
 	"SHOT-58": Rect2(1040.0, 70.0, 800.0, 220.0),
 	"SHOT-60": Rect2(90.0, 742.0, 900.0, 226.0),
+	"SHOT-61": Rect2(1040.0, 70.0, 800.0, 220.0),
 }
 
 const PLACEHOLDER_COPY := {
@@ -123,12 +128,17 @@ var paper_frame: ColorRect
 var paper_signature: Label
 var time_marker: PanelContainer
 var time_marker_label: Label
+var replay_frame: Control
+var replay_header_label: Label
+var replay_progress_fill: ColorRect
+var replay_playhead: ColorRect
 var ambient_overlay: ColorRect
 var transition_tween: Tween
 var texture_tween: Tween
 var paper_tween: Tween
 var signature_tween: Tween
 var marker_tween: Tween
+var replay_tween: Tween
 var ambient_tween: Tween
 var camera_tween: Tween
 
@@ -137,7 +147,6 @@ var current_line_id := ""
 var current_shot_id := ""
 var current_variant_id := ""
 var displayed_texture: Texture2D
-var descent_active := false
 var age_jump_active := false
 
 
@@ -161,11 +170,27 @@ func setup(director_context: Dictionary) -> void:
 	_build_chapter_effects()
 
 
+func tick(_delta: float) -> void:
+	if (
+		current_unit_id != REPLAY_UNIT
+		or not replay_frame.visible
+		or voice_sequence_player == null
+		or not bool(voice_sequence_player.call("is_active"))
+	):
+		return
+	var playback_position := float(voice_sequence_player.call("get_position"))
+	_set_replay_progress(playback_position / THIRTY_ONE_HANDOFF_AT)
+
+
 func on_unit_changed(unit: Dictionary) -> void:
 	var previous_shot_id := current_shot_id
 	current_unit_id = str(unit.get("id", ""))
 	current_line_id = ""
-	descent_active = false
+	if current_unit_id == REPLAY_UNIT:
+		_show_replay_frame(true)
+		_set_replay_progress(0.0)
+	else:
+		_hide_replay_frame(true)
 	if current_unit_id != "G4-01" and paper_frame.visible:
 		_hide_paper_frame(true)
 	if current_unit_id == "G4-01":
@@ -174,7 +199,7 @@ func on_unit_changed(unit: Dictionary) -> void:
 		_hide_time_marker(true)
 		return
 	if current_unit_id == "G4-02":
-		_show_time_marker("2026 / 三十三岁", true)
+		_hide_time_marker(true)
 		if age_jump_active:
 			current_variant_id = ""
 			current_shot_id = str(unit.get("shot", ""))
@@ -196,13 +221,13 @@ func on_line_changed(line: Dictionary, unit: Dictionary) -> bool:
 	if SHOT_12_PHASES.has(current_line_id):
 		var next_variant_id := str(SHOT_12_PHASES[current_line_id])
 		if current_shot_id != "SHOT-12" or current_variant_id != next_variant_id:
-			_show_shot_12_variant(next_variant_id, current_shot_id, false)
+			if current_shot_id == "SHOT-12" and not current_variant_id.is_empty():
+				_fade_between_shot_12_variants(next_variant_id)
+			else:
+				_show_shot_12_variant(next_variant_id, current_shot_id, false)
 		else:
 			_apply_line_state()
 		return false
-
-	if current_line_id == "G4-02-02":
-		_hide_time_marker(false)
 
 	if SKY_PHASES.has(current_line_id):
 		var previous_shot_id := current_shot_id
@@ -256,27 +281,11 @@ func blocks_input() -> bool:
 
 
 func advance() -> bool:
-	if age_jump_active:
-		return true
-	if descent_active:
-		_finish_descent()
-		return true
-	if _can_start_descent():
-		_start_descent()
-		return true
-	return false
+	return age_jump_active
 
 
 func on_auto_timeout() -> bool:
-	if age_jump_active:
-		return true
-	if descent_active:
-		_finish_descent()
-		return true
-	if _can_start_descent():
-		_start_descent()
-		return true
-	return false
+	return age_jump_active
 
 
 func position_caption(label: Label, _presentation: String) -> bool:
@@ -314,9 +323,6 @@ func auto_wait_multiplier(_line: Dictionary, unit: Dictionary) -> float:
 
 
 func resume() -> bool:
-	if descent_active and bool(host.get("is_auto")):
-		auto_timer.start(DESCENT_HOLD)
-		return true
 	return false
 
 
@@ -330,6 +336,8 @@ func leave() -> void:
 		signature_tween.kill()
 	if marker_tween != null and marker_tween.is_valid():
 		marker_tween.kill()
+	if replay_tween != null and replay_tween.is_valid():
+		replay_tween.kill()
 	if ambient_tween != null and ambient_tween.is_valid():
 		ambient_tween.kill()
 	if camera_tween != null and camera_tween.is_valid():
@@ -338,6 +346,7 @@ func leave() -> void:
 	paper_frame.visible = false
 	paper_signature.visible = false
 	time_marker.visible = false
+	replay_frame.visible = false
 	ambient_overlay.visible = false
 	master_texture.scale = Vector2.ONE
 	master_texture.pivot_offset = Vector2.ZERO
@@ -351,7 +360,6 @@ func leave() -> void:
 	current_shot_id = ""
 	current_variant_id = ""
 	displayed_texture = null
-	descent_active = false
 	age_jump_active = false
 
 
@@ -437,6 +445,98 @@ void fragment() {
 	)
 	time_marker_label.add_theme_constant_override("shadow_outline_size", 4)
 	time_marker.add_child(time_marker_label)
+
+	replay_frame = Control.new()
+	replay_frame.name = "G4ReplayFrame"
+	replay_frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	replay_frame.visible = false
+	_set_full_rect(replay_frame)
+	fx_layer.add_child(replay_frame)
+
+	var replay_matte_specs := [
+		Rect2(0.0, 0.0, 1920.0, 48.0),
+		Rect2(0.0, 1016.0, 1920.0, 64.0),
+		Rect2(0.0, 48.0, 64.0, 968.0),
+		Rect2(1856.0, 48.0, 64.0, 968.0),
+	]
+	for index in range(replay_matte_specs.size()):
+		var matte_rect := replay_matte_specs[index] as Rect2
+		var matte := ColorRect.new()
+		matte.name = "ReplayMatte%02d" % index
+		matte.position = matte_rect.position
+		matte.size = matte_rect.size
+		matte.color = Color(0.012, 0.016, 0.022, 0.66)
+		matte.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		replay_frame.add_child(matte)
+
+	var replay_border := Panel.new()
+	replay_border.name = "ReplayBorder"
+	replay_border.position = Vector2(64.0, 48.0)
+	replay_border.size = Vector2(1792.0, 968.0)
+	replay_border.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var replay_border_style := StyleBoxFlat.new()
+	replay_border_style.bg_color = Color.TRANSPARENT
+	replay_border_style.border_color = Color(0.80, 0.87, 0.90, 0.62)
+	replay_border_style.set_border_width_all(2)
+	replay_border_style.corner_radius_top_left = 3
+	replay_border_style.corner_radius_top_right = 3
+	replay_border_style.corner_radius_bottom_left = 3
+	replay_border_style.corner_radius_bottom_right = 3
+	replay_border.add_theme_stylebox_override("panel", replay_border_style)
+	replay_frame.add_child(replay_border)
+
+	replay_header_label = Label.new()
+	replay_header_label.name = "ReplayHeader"
+	replay_header_label.position = Vector2(86.0, 3.0)
+	replay_header_label.size = Vector2(780.0, 42.0)
+	replay_header_label.text = "来自三十一岁的质问"
+	replay_header_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	replay_header_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	replay_header_label.add_theme_font_size_override("font_size", 26)
+	replay_header_label.add_theme_color_override(
+		"font_color",
+		Color(0.88, 0.92, 0.92, 0.92),
+	)
+	replay_frame.add_child(replay_header_label)
+
+	var replay_state_label := Label.new()
+	replay_state_label.name = "ReplayState"
+	replay_state_label.position = Vector2(1590.0, 5.0)
+	replay_state_label.size = Vector2(240.0, 38.0)
+	replay_state_label.text = "▶  PLAYBACK"
+	replay_state_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	replay_state_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	replay_state_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	replay_state_label.add_theme_font_size_override("font_size", 17)
+	replay_state_label.add_theme_color_override(
+		"font_color",
+		Color(0.78, 0.87, 0.90, 0.78),
+	)
+	replay_frame.add_child(replay_state_label)
+
+	var replay_progress_track := ColorRect.new()
+	replay_progress_track.name = "ReplayProgressTrack"
+	replay_progress_track.position = Vector2(REPLAY_TRACK_LEFT, 1042.0)
+	replay_progress_track.size = Vector2(REPLAY_TRACK_WIDTH, 2.0)
+	replay_progress_track.color = Color(0.54, 0.61, 0.64, 0.42)
+	replay_progress_track.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	replay_frame.add_child(replay_progress_track)
+
+	replay_progress_fill = ColorRect.new()
+	replay_progress_fill.name = "ReplayProgressFill"
+	replay_progress_fill.position = replay_progress_track.position
+	replay_progress_fill.size = Vector2(0.0, 2.0)
+	replay_progress_fill.color = Color(0.88, 0.92, 0.92, 0.88)
+	replay_progress_fill.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	replay_frame.add_child(replay_progress_fill)
+
+	replay_playhead = ColorRect.new()
+	replay_playhead.name = "ReplayPlayhead"
+	replay_playhead.position = Vector2(REPLAY_TRACK_LEFT - 2.0, 1038.0)
+	replay_playhead.size = Vector2(4.0, 10.0)
+	replay_playhead.color = Color(0.94, 0.96, 0.95, 0.96)
+	replay_playhead.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	replay_frame.add_child(replay_playhead)
 
 	transition_overlay = ColorRect.new()
 	transition_overlay.name = "G4TransitionOverlay"
@@ -530,6 +630,52 @@ func _show_shot_12_variant(
 	else:
 		_stop_transition_texture()
 		_flash_for_shot(previous_shot_id, "SHOT-12", unit_entry)
+	displayed_texture = texture
+
+
+func _fade_between_shot_12_variants(variant_id: String) -> void:
+	if transition_tween != null and transition_tween.is_valid():
+		transition_tween.kill()
+	current_shot_id = "SHOT-12"
+	current_variant_id = variant_id
+	transition_overlay.color = Color(0.008, 0.011, 0.016, 1.0)
+	transition_overlay.modulate.a = 0.0
+	transition_overlay.visible = true
+	transition_tween = host.create_tween()
+	transition_tween.tween_property(
+		transition_overlay,
+		"modulate:a",
+		0.88,
+		REPLAY_SHOT_FADE_OUT,
+	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	transition_tween.tween_callback(
+		func() -> void: _commit_shot_12_variant(variant_id)
+	)
+	transition_tween.tween_interval(REPLAY_SHOT_BLACK_HOLD)
+	transition_tween.tween_property(
+		transition_overlay,
+		"modulate:a",
+		0.0,
+		REPLAY_SHOT_FADE_IN,
+	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	transition_tween.finished.connect(func() -> void:
+		transition_overlay.visible = false
+		transition_overlay.modulate.a = 0.0
+	)
+
+
+func _commit_shot_12_variant(variant_id: String) -> void:
+	var texture: Texture2D = asset_registry.call(
+		"load_variant",
+		"SHOT-12",
+		variant_id,
+	) as Texture2D
+	if texture == null:
+		texture = asset_registry.call("load_master", "SHOT-12") as Texture2D
+	ui.call("show_line_shot", "SHOT-12", texture)
+	_set_placeholder_copy("SHOT-12", "")
+	_apply_ambient(Color.TRANSPARENT)
+	_start_camera_motion(texture)
 	displayed_texture = texture
 
 
@@ -766,6 +912,51 @@ func _hide_time_marker(immediate: bool) -> void:
 	marker_tween.finished.connect(func() -> void: time_marker.visible = false)
 
 
+func _show_replay_frame(animate_entry: bool) -> void:
+	if replay_tween != null and replay_tween.is_valid():
+		replay_tween.kill()
+	if replay_frame.visible:
+		replay_frame.modulate.a = 1.0
+		return
+	replay_frame.modulate.a = 0.0 if animate_entry else 1.0
+	replay_frame.visible = true
+	if not animate_entry:
+		return
+	replay_tween = host.create_tween()
+	replay_tween.tween_property(
+		replay_frame,
+		"modulate:a",
+		1.0,
+		0.72,
+	).set_delay(0.20).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
+
+func _hide_replay_frame(immediate: bool) -> void:
+	if replay_tween != null and replay_tween.is_valid():
+		replay_tween.kill()
+	if immediate:
+		replay_frame.visible = false
+		replay_frame.modulate.a = 1.0
+		return
+	if not replay_frame.visible:
+		return
+	replay_tween = host.create_tween()
+	replay_tween.tween_property(
+		replay_frame,
+		"modulate:a",
+		0.0,
+		0.42,
+	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	replay_tween.finished.connect(func() -> void: replay_frame.visible = false)
+
+
+func _set_replay_progress(progress: float) -> void:
+	var normalized := clampf(progress, 0.0, 1.0)
+	var target_width := REPLAY_TRACK_WIDTH * normalized
+	replay_progress_fill.size.x = target_width
+	replay_playhead.position.x = REPLAY_TRACK_LEFT - 2.0 + target_width
+
+
 func _flash_for_shot(previous_shot_id: String, shot_id: String, unit_entry: bool) -> void:
 	if transition_tween != null and transition_tween.is_valid():
 		transition_tween.kill()
@@ -809,33 +1000,6 @@ func _light_wash_for_step_match() -> void:
 	transition_tween.finished.connect(
 		func() -> void: transition_overlay.visible = false
 	)
-
-
-func _can_start_descent() -> bool:
-	return (
-		current_line_id == DESCENT_TRIGGER_LINE
-		and not descent_active
-		and center_line_label.visible
-		and center_line_label.visible_characters == -1
-	)
-
-
-func _start_descent() -> void:
-	descent_active = true
-	dialogue_panel.visible = false
-	dialogue_tail.visible = false
-	center_line_label.visible = false
-	var previous_shot_id := current_shot_id
-	current_shot_id = DESCENT_SHOT_ID
-	_show_shot(current_shot_id, previous_shot_id, false)
-	if bool(host.get("is_auto")):
-		auto_timer.start(DESCENT_HOLD)
-
-
-func _finish_descent() -> void:
-	descent_active = false
-	auto_timer.stop()
-	request_story_advance()
 
 
 func _set_full_rect(control: Control) -> void:

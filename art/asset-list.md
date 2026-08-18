@@ -26,7 +26,7 @@
 
 > 这一组只登记新 G0 的实景参考需求。
 >
-> 暂不分配正式地点资产和 `SHOT` 编号；现有 `SHOT-01` 仍只是运行时占位，待真实参考到位后再拆分。
+> 现实段参考暂不拆分独立地点资产；现有 `SHOT-01` 作为 G0 的组合运行时镜头包，后续若补齐真实参考再决定是否拆分现实段镜头编号。
 
 | 参考 ID | 对象 | 用途 | 当前状态 |
 | --- | --- | --- | --- |
@@ -50,7 +50,7 @@
 
 ### G0 CG 草稿
 
-> 六张画面只用于审核现实段的构图、人物动作与连续性，不代表梦境画面已经开始制作。当前游戏试玩将它们临时作为 `SHOT-01` 内部差分接入；最终镜头编号仍待 G0 定稿后重排。
+> 六张画面只用于审核现实段的构图、人物动作与连续性。当前游戏试玩将它们与十张梦境 CG 一并作为 `SHOT-01` 内部差分接入；后续是否拆包不影响本轮实机审查。
 
 | ID | 内容 | 人物状态 | 文件 | 状态 |
 | --- | --- | --- | --- | --- |
@@ -61,11 +61,34 @@
 | `G0-CG-05` | 固定车内自拍机位，正常驾驶 | `H-LOOK-03`，戴眼镜、系安全带 | [驾驶](../game/assets/shots/shot-01/g0-driving.webp) | CG 草稿待审核 |
 | `G0-CG-06` | 公司地库抵达后靠在关好车门的“破晓”旁，双手插兜低头停驻 | `H-LOOK-03`，戴眼镜 | [公司地库停驻](../game/assets/shots/shot-01/g0-company-arrival.webp) | CG 草稿待审核 |
 
+### G0 梦境美术设计
+
+> 新梦境以《梦-S1》的黄昏天台、影子与银河列车为唯一连续空间，详细构图与生成顺序见 [G0 梦境美术创作设计](g0-dream-art-plan-20260817.md)。两人均使用本章专属服装，不调用现有 `H-LOOK`；十张画面已作为 `SHOT-01` 的梦境差分接入。
+
+| 服装 ID | 角色 | 服装定义 | 状态 |
+| --- | --- | --- | --- |
+| `OUTFIT-G0-ADULT-SUIT` | 成年我 | 褶皱浅灰西装外套、浅色开领衬衫、深灰长裤、灰白休闲运动鞋；无领带 | 已选择 |
+| `OUTFIT-G0-YOUTH-BLACK` | 少年 H | 宽松黑色短袖，胸前白灰抽象几何图案，宽松深色长裤、深灰运动鞋 | 已选择 |
+
+| 临时 ID | 内容 | 人物状态 | 当前状态 |
+| --- | --- | --- | --- |
+| `G0-DREAM-CG-00A` | 成年我刚从天台地面睁眼时的主观视角：倾斜护栏、湿地、碎纸、钟楼与残阳 | 无可见人物；程序叠加眼睑遮罩 | [源图 v1](generated/G0-DREAM-CG-00A/g0-dream-cg-00a-v1.png)；[4K 运行时](../game/assets/shots/shot-01/dream-pov-wake.webp)，已接入 |
+| `G0-DREAM-CG-01` | 成年我在黄昏天台湿地上醒来 | `CHAR-H`／`OUTFIT-G0-ADULT-SUIT` | [源图 v1](generated/G0-DREAM-CG-01/g0-dream-cg-01-v1.png)；[4K 运行时](../game/assets/shots/shot-01/dream-wake.webp)，已接入 |
+| `G0-DREAM-CG-02` | 成年我扶栏，远景被擦白，长影出现异常 | `CHAR-H`／`OUTFIT-G0-ADULT-SUIT` | [源图 v1](generated/G0-DREAM-CG-02/g0-dream-cg-02-v1.png)；[4K 运行时](../game/assets/shots/shot-01/dream-loss.webp)，已接入 |
+| `G0-DREAM-CG-02B` | 成年人的腿留在边缘，地面长影先于本人抬头开口 | `CHAR-H`／`OUTFIT-G0-ADULT-SUIT` | [源图 v1](generated/G0-DREAM-CG-02B/g0-dream-cg-02b-v1.png)；[4K 运行时](../game/assets/shots/shot-01/dream-shadow.webp)，已接入 |
+| `G0-DREAM-CG-03` | 少年 H 从成年我的长影中站起；空间断面压向两人的影子轴线 | 成年 `CHAR-H`／`OUTFIT-G0-ADULT-SUIT`；少年 `CHAR-H-YOUNG-G0`／`OUTFIT-G0-YOUTH-BLACK` | [裸眼修正版 v6](generated/G0-DREAM-CG-03/g0-dream-cg-03-calibration-v6.png)；[4K 运行时](../game/assets/shots/shot-01/dream-reveal.webp)，已接入 |
+| `G0-DREAM-CG-03B` | 从成年 H 肩后看向裸眼少年 H，以近景承载连续逼问 | 成年 `CHAR-H`／`OUTFIT-G0-ADULT-SUIT`；少年 `CHAR-H-YOUNG-G0`／`OUTFIT-G0-YOUTH-BLACK` | [源图 v1](generated/G0-DREAM-CG-03B/g0-dream-cg-03b-v1.png)；[4K 运行时](../game/assets/shots/shot-01/dream-youth-close.webp)，已接入 |
+| `G0-DREAM-CG-04B` | 成年人被说中后看向松开的手，积水中两张脸短暂重合 | 成年 `CHAR-H`／`OUTFIT-G0-ADULT-SUIT`；少年倒影 | [源图 v1](generated/G0-DREAM-CG-04B/g0-dream-cg-04b-v1.png)；[4K 运行时](../game/assets/shots/shot-01/dream-adult-reaction.webp)，已接入 |
+| `G0-DREAM-CG-04` | 成年我向前半步后停住，手指松开；少年迟半拍镜像 | 成年 `CHAR-H`／`OUTFIT-G0-ADULT-SUIT`；少年 `CHAR-H-YOUNG-G0`／`OUTFIT-G0-YOUTH-BLACK` | [裸眼修正版 v5](generated/G0-DREAM-CG-04/g0-dream-cg-04-v5.png)；[4K 运行时](../game/assets/shots/shot-01/dream-confrontation.webp)，已接入 |
+| `G0-DREAM-CG-05A` | 护栏投影开始化作铁轨，远处列车头灯正在逼近 | 成年 `CHAR-H`／`OUTFIT-G0-ADULT-SUIT`；少年 `CHAR-H-YOUNG-G0`／`OUTFIT-G0-YOUTH-BLACK` | [源图 v1](generated/G0-DREAM-CG-05A/g0-dream-cg-05a-v1.png)；[4K 运行时](../game/assets/shots/shot-01/dream-train-approach.webp)，已接入 |
+| `G0-DREAM-CG-05` | 天台边缘成为站台，成年我正对打开的车门，少年 H 留在右后方 | 成年 `CHAR-H`／`OUTFIT-G0-ADULT-SUIT`；少年 `CHAR-H-YOUNG-G0`／`OUTFIT-G0-YOUTH-BLACK` | [裸眼局部回填修正版 v6](generated/G0-DREAM-CG-05/g0-dream-cg-05-v6.png)；[4K 运行时](../game/assets/shots/shot-01/dream-train-stop.webp)，已接入 |
+
 ## 全局人设
 
 | ID | 内容 | 需要锁定 | 状态 |
 | --- | --- | --- | --- |
 | CHAR-H | 我（身份基准使用 [H-LOOK-04](characters/char-h/outfits/char-h-look-04-sheet-v1.png)） | 正面、侧面、背面、体型、面部特征、发型 | 已定稿 |
+| CHAR-H-YOUNG-G0 | 十年前的少年 H（脸与骨相从 `CHAR-H` 回推，发型与气质取 [SRC-34](references-local/g0/src-g0-rooftop-outfits.jpg)） | **不戴眼镜**；近黑色中长直发、低蓬松度、斜落长刘海遮住部分额头与眼侧、鬓发至颧骨、后发至上颈；保留同一人的鼻梁与下颌关系；直视、下颌微抬、松弛但不退让，禁止栗棕块状刺发、温顺畏缩与夸张暴怒 | G0 十态运行时画面已统一接入，待整段实机审核 |
 | CHAR-OUSIA | Ousia／少女 H（[正式人设 `v2`](characters/char-ousia/char-ousia-sheet-v2.png)） | 正面、侧面、背面、面部特征、发型、核心服装 | 已定稿 |
 | CHAR-AGENTS | Agent 群像（[六名 Agent 正式人设 `v2`](characters/agents/)） | Poros、Ariadne、Pothos、Pharos、Kairos、Nostos 的轮廓与专属意象 | 已定稿 |
 | CHAR-CATS | [两只银白长毛猫 `v1`](characters/cats/char-cats-sheet-v1.png) | 暂时保留体型、脸部阴影、绿色眼睛和毛量差异；可爱感后续仍需调整 | 待调整 |
@@ -136,7 +159,7 @@
 
 | ID | 对应单元 | 完整构图 | 人物与服装 | 主要交付 | 有限动画 | 状态 |
 | --- | --- | --- | --- | --- | --- | --- |
-| SHOT-01 | G1-01 | G0 梦境占位、清晨日常、家中地库、车内与公司地库序列 | CHAR-H／H-LOOK-09、H-LOOK-03，CHAR-CATS，破晓 | 六张现实段 CG、梦境占位、黑屏 | 同画面连续旁白、跨画面淡入、黑屏回声 | 已接入 |
+| SHOT-01 | G1-01 | G0 黄昏天台梦境、清晨日常、家中地库、车内与公司地库序列 | 梦中成年 CHAR-H／少年 H 的 G0 专属服装；现实 CHAR-H／H-LOOK-09、H-LOOK-03；CHAR-CATS；破晓 | 十张 4K 梦境 CG、六张现实段 CG、终场白光与黑屏 | 黑屏风声、主观睁眼、匹配溶接、旧句回忆抽离、极慢漂移、少年显形、列车到站、径向门光；现实段连续旁白 | 已接入，待整段实机审核 |
 | SHOT-02 | G1-02 | 园区散步途中，主角位于五人松散讨论圈中央 | CHAR-H／H-LOOK-02、TEAM-02（既定四名下属） | [完整 CG](../game/assets/shots/shot-02/master.webp) | 极慢缓推、园区视差、轻微重心变化 | 已接入，已审核 |
 | SHOT-03 | G1-04 | 山地风景前的创作表演 | CHAR-H／H-LOOK-05、Shimoda 三脚架摄影包 | [指景 CG](../game/assets/shots/shot-03/point.webp)、[手持自拍 CG](../game/assets/shots/shot-03/thumb.webp) | 第三方机位切手持自拍、云与衣角 | 已接入，待审核 |
 | SHOT-04 | G1-06 | 两种表演融合后的正面特写 | CHAR-H；衣服与肩线沉入黑场 | [闭眼 CG](../game/assets/shots/shot-04/closed.webp)、[睁眼 CG](../game/assets/shots/shot-04/open.webp) | 呼吸、最后一句睁眼 | 已接入，待审核 |
@@ -145,7 +168,7 @@
 | SHOT-07 | G2-03 | 公司食堂小火锅桌前，五人围着蓝色蛋糕庆祝即将上线 | CHAR-H／H-LOOK-08、CHAR-TEAM（我／丁／乙／丙／甲） | [试制母帧](../game/assets/shots/shot-07/master.webp)；切蛋糕与递盘差分待定 | 轻微说笑、递盘 | 已接入试制，待审核 |
 | SHOT-08 | G2-04 | 项目被拆后五人在原工位讨论去留 | CHAR-H／H-LOOK-02、CHAR-TEAM（我／丁／乙／丙／甲） | [试制母帧](../game/assets/shots/shot-08/master.webp)；视线与坐姿差分待定 | 轻微重心变化 | 已接入试制，待审核 |
 | SHOT-09 | G3-02 | 我和 Ousia 并坐在纯白花海空地，聊天设备低位放在两人之间 | CHAR-H／H-LOOK-04、CHAR-OUSIA／OUTFIT-OUSIA | [4K 运行时母帧](../game/assets/shots/shot-09/master.webp)、SRC-01 屏幕层待替换 | 屏幕刷新、视线交换、花影风动 | 已审核接入；SRC-01 待提供 |
-| SHOT-10 | G3-03 | 深夜普通卧室中，躺在床上的第一人称视线直视开着的圆形吸顶灯，周围保留天花板和房间边缘 | 无可见人物 | [4K 运行时母帧](../game/assets/shots/shot-10/master.webp)、SRC-03 全屏证据切片待替换 | 灯芯与视野边缘曝光呼吸、完整二十秒检索切入 | 已审核接入；SRC-03 当前使用二十秒明确占位 |
+| SHOT-10 | G3-03 | 深夜普通卧室中，躺在床上的第一人称视线直视开着的圆形吸顶灯，周围保留天花板和房间边缘 | 无可见人物 | [4K 运行时母帧](../game/assets/shots/shot-10/master.webp)、SRC-03 全屏证据切片待替换 | 灯芯与视野边缘曝光呼吸、完整十秒检索切入 | 已审核接入；SRC-03 当前使用十秒剧本文字过滤演出 |
 | SHOT-11 | G3-06 | 花海俯斜手部近景，Ousia 在空白页旁放下笔，我伸手接近 | CHAR-H／H-LOOK-04、CHAR-OUSIA／OUTFIT-OUSIA | [4K 运行时母帧](../game/assets/shots/shot-11/master.webp)、G4 旧作投影层待补 | 落笔、手靠近、纸面投影与推近 | 已审核接入；旧作投影仍待 G4 抽帧 |
 | SHOT-12 | G4-01 | 三十一岁作品的四幕记忆重演：空礼堂向光而行、高山草甸上行、落日海岸迎风、城市夜色返程 | CHAR-H／H-LOOK-08、H-LOOK-06、H-LOOK-01、H-LOOK-03 | [向外求索](../game/assets/shots/shot-12/outward.webp)、[山川湖海](../game/assets/shots/shot-12/mountains.webp)、[享乐任务](../game/assets/shots/shot-12/pleasure.webp)、[夜间返程](../game/assets/shots/shot-12/return.webp) 四态 4K 运行时 CG；SRC-04 原片声音已接入 | 纸面边界退场、短溶接、极慢缓推、海风与窗外城市视差；56.5 秒后尾奏跨场 | 四态已按用户选片接入；110.7 秒原片声音保留完整音乐收束，后半旧旁白已分离 |
 | SHOT-13 | G4-02 | 从旧作最后一步匹配切入真实练车，表现对驾驶恐惧的具体处理 | CHAR-H／练车实穿服装待确认 | [4K 运行时母帧](../game/assets/shots/shot-13/master.webp) | 后视镜光、道路视差、手部轻微紧张 | 已审核接入 |
@@ -164,9 +187,9 @@
 | SHOT-26 | G2-04 | 小会议室中填写不可能完成的数据预测 | CHAR-H／H-LOOK-02、低细节同事 | [试制母帧](../game/assets/shots/shot-26/master.webp)；数据表已烘焙 | 数字填写、翻页 | 已接入试制，待审核 |
 | SHOT-27 | G2-04 | 原工位前与准备去网易的组员丁告别 | CHAR-H／H-LOOK-02、CHAR-TEAM 组员丁 | [试制母帧](../game/assets/shots/shot-27/master.webp)；背包与暗屏状态已烘焙 | 背包、点头、脚步 | 已接入试制，待审核 |
 | SHOT-28 | G2-05 | 第一次竞聘后任务重新落回我身上 | CHAR-H／H-LOOK-05 | [试制母帧](../game/assets/shots/shot-28/master.webp)；任务回流页面已烘焙 | 任务回流、提示刷新 | 已接入试制，待审核 |
-| SHOT-29 | G2-05 | 深圳竞聘结束后会议室中与男性 HR 大佬两人谈话 | CHAR-H／H-LOOK-04、男性 HR／正式西装 | [试制母帧](../game/assets/shots/shot-29/master.webp)；结果页轻度失焦 | 翻页、抬眼、缓推 | 2026-08-13 按审查表修正接入 |
+| SHOT-29 | G2-05 | 深圳竞聘结束后，空旷阶梯会议室里只剩我与男性 HR 并排坐在最前排正中间谈话，向后升高的空座与台阶必须清楚可辨 | CHAR-H／H-LOOK-04、短黑发细框眼镜男性 HR／深色正式西装；全场严格只有两人 | [4K 运行时母帧](../game/assets/shots/shot-29/master.webp) | 视线移动、极慢缓推 | 2026-08-17 按真实空间关系重制接入 |
 | SHOT-30 | G2-05 | 两周后我与甲、乙、丙共同看到职责再次调整 | CHAR-H／H-LOOK-04 白衬衫、CHAR-TEAM（甲／乙／丙） | [试制母帧](../game/assets/shots/shot-30/master.webp)；职责通知已烘焙 | 通知滚动、耸肩 | 2026-08-13 按审查表修正接入 |
-| SHOT-31 | G2-05 | 远程会议中指出决策儿戏并触发第二次竞聘 | CHAR-H／H-LOOK-05、低细节参会者 | [试制母帧](../game/assets/shots/shot-31/master.webp)；重新竞聘通知已烘焙 | 会议刷新、通知出现 | 已接入试制，待审核 |
+| SHOT-31 | G2-05 | 远程会议中指出决策儿戏并触发第二次竞聘 | CHAR-H／H-LOOK-05、低细节参会者 | [4K 运行时母帧](../game/assets/shots/shot-31/master.webp)；重新竞聘通知已烘焙 | 会议刷新、通知出现 | 2026-08-17 去除底部黑边并重新构图接入 |
 | SHOT-32 | G3-01 | Poros 在真实家中把离职后的生活换成月度跑道，我坐在旅行装备旁听他说明 | AGENT-POROS `v2`、CHAR-H／H-LOOK-04、CHAR-CATS `v1` | [4K 运行时母帧](../game/assets/shots/shot-32/master.webp)、墙屏跑道与警戒线前后状态 | 点选、视线移动、红线后退 | 母帧已审核接入；正式数字由 Godot 后加 |
 | SHOT-33 | G3-01 | Ariadne 与我并肩穿过植物园，在真实岔路前区分“正常”和“同行” | AGENT-ARIADNE `v2`、CHAR-H／H-LOOK-04 | [4K 运行时母帧](../game/assets/shots/shot-33/master.webp)、手机证据层、Godot 路牌标签 | 同行、停顿、回头、花叶风动 | 母帧已审核接入；证据文字待制作 |
 | SHOT-34 | G3-01 | Pothos 在黑盒剧场推动带轮人生场景板，露出被延期的真正主题 | AGENT-POTHOS `v2` | [4K 运行时母帧](../game/assets/shots/shot-34/master.webp)、五块场景板与主题状态 | 站立推动、脚轮、舞台灯亮起 | 母帧已审核接入；标题由 Godot 后加 |
@@ -196,7 +219,7 @@
 | SHOT-60 | G4-04 | 只有主角一人的返程车内以空副驾、减少的行李和道路建立独自折返 | 破晓蓝白座舱；CHAR-H／H-LOOK-01 车内侧后轮廓 | [4K 运行时母帧](../game/assets/shots/shot-60/master.webp) | 仪表微光、道路视差、导航低频刷新 | 已审核接入 |
 | SHOT-61 | G4-05 | 拍摄结束后的夜间下山道路，以道路为主并保留边缘驾驶者关系 | 破晓蓝白座舱；CHAR-H／H-LOOK-06 画面边缘轮廓 | [4K 运行时母帧](../game/assets/shots/shot-61/master.webp) | 车灯、道路反光、远处微光 | 已审核接入 |
 | SHOT-62 | G4-02 | 坦克 500 完成黄色黑灰改装并被命名为“破晓” | CHAR-H／H-LOOK-03、破晓 | [4K 运行时母帧](../game/assets/shots/shot-62/master.webp) | 车身反光、轻微缓推 | 已审核接入 |
-| SHOT-63 | G4-02 | 腾格里独处一夜后的日出，主角站在破晓车顶唱歌；身体直立、头部基本平视，一只手在腰侧自然摊开，另一只手放松垂下，表情是克制的自然微笑 | CHAR-H／H-LOOK-06、破晓；成年人比例与克制神态，双手空着，禁止麦克风、耳麦、线缆及任何手持物；禁止仰头、张开双臂等舞台化姿态；车牌必须是无字、无号码、不可识别的虚构像素道具牌 | [4K 运行时母帧](../game/assets/shots/shot-63/master.webp) | 晨风、衣摆、低频天光变化 | 2026-08-13 按审查表修正接入 |
+| SHOT-63 | G4-02 | 按腾格里真实原片的道路、日出、车位与车顶站位重绘；主角站在破晓车顶唱歌，身体直立、头部基本平视，一只手在腰侧自然摊开，另一只手放松垂下，表情克制自然 | CHAR-H／H-LOOK-06、破晓；黄黑车身，侧面白灰“破晓”字样与黑黄机械图形，前机舱盖中央的独立徽记为深红／朱红色；双手空着，禁止麦克风、耳麦、线缆、仰头或舞台化张臂；车牌必须无字无号码 | [4K 运行时母帧](../game/assets/shots/shot-63/master.webp) | 晨风、衣摆、低频天光变化 | 2026-08-17 修正机舱盖红色徽记后重新接入 |
 | SHOT-66 | G4-02 | 埃及戈壁、荒漠与湛蓝红海同框，真实租赁的深蓝灰 Subaru XV 停在原卡车所在道路位置，镜头拉近 | CHAR-H／H-LOOK-04、原合照中的同行朋友与真实租赁车，三者同时出现；照片不承担 CHAR-H 身份 | [4K 运行时母帧](../game/assets/shots/shot-66/master.webp) | 热浪、海面微光、极慢缓推 | 已审核接入 |
 | SHOT-68 | G4-02 | 以原始现场照片锁定金字塔层次、交叉手势、三张卡牌及嘴角轻微上扬的自然微笑；空手掌背加入令咒，按 16:9 重新构图为原生像素 CG | CHAR-H／H-LOOK-05；身份、脸型、发型、眼镜与比例只取正式人设；禁止中性严肃脸和夸张大笑 | [4K 运行时母帧](../game/assets/shots/shot-68/master.webp) | 仅允许极慢缓推，不生成肢体差分 | 2026-08-13 按审查表修正接入 |
 | SHOT-69 | G4-02 | 意外骤雨、清晨风暴中起舞与自由由同一张 CG 承载 | CHAR-H／新西兰实穿服装待确认、车辆或设备远景 | [4K 运行时母帧](../game/assets/shots/shot-69/master.webp) | 雨线、低云、衣摆与真实身体动作 | 已审核接入 |
@@ -204,7 +227,7 @@
 | SHOT-71 | G5-03 | 破晓在沙中深陷，人物在夜间车灯与尾灯下挖沙 | CHAR-H／H-LOOK-06；破晓 | [4K 运行时母帧](../game/assets/shots/shot-71/master.webp) | 风沙、灯光、有限姿态变化 | 用户已确认并接入演出；严格时间关系可后补 |
 | SHOT-72 | G5-03 | 狭窄山路上主角、摩托车主与交警围绕破晓右前保险杠进行事后定损 | CHAR-H／H-LOOK-06；摩托车主与交警匿名化 | [单张整合定损 4K 母帧](../game/assets/shots/shot-72/master.webp)；无车牌、警号、文件文字与可识别人脸 | 树影、交警拍照／记录、极慢推近 | 用户已确认并接入演出；`assessment v2` 取代两张 `v1` |
 | SHOT-73 | G5-04 | 穿长外套站在湿沙滩上，隔着开阔海面远望终末灯塔；原片只参考人物站姿 | CHAR-H／H-LOOK-08；栗棕色大块角状分组发束 | [沙滩远望 4K 母帧](../game/assets/shots/shot-73/master.webp) | 斜向浪线、湿沙反光、衣摆、极慢推近 | 用户已确认并接入演出；原生像素 `beach v5` 取代 `v1–v4` |
-| SHOT-74 | G5-04、G5-05 | 满月夜终末灯塔前人物直视灯塔，站姿挺直并将提灯手向前伸出，随后离场并留下同机位空镜 | CHAR-H／H-LOOK-08；提灯参考 SRC-26；栗棕色大块角状分组发束 | [提灯人物 4K 母帧](../game/assets/shots/shot-74/master.webp)、[同机位 4K 空镜](../game/assets/shots/shot-74/empty.webp) | 月光海面、绿灯低频闪烁、提灯微光、人物态向空镜慢溶 | 姿态修正版原生像素 `v4` 已接入演出；环境与同机位空镜保持不变 |
+| SHOT-74 | G5-04、G5-05 | 满月夜终末灯塔宽景先承载前探提灯；随后以三张不同位置和步态的完整 CG 淡化表现走向灯塔，最终停在低机位广角半脸回望构图 | CHAR-H／H-LOOK-08；浅灰长外套、白色运动鞋、栗棕色大块角状分组发束、细框眼镜；提灯参考 SRC-26 | [步行起始 4K](../game/assets/shots/shot-74/master.webp)、[步行中段 4K](../game/assets/shots/shot-74/walk-step-02.png)、[步行远段 4K](../game/assets/shots/shot-74/walk-step-03.png)、[半脸回望 4K 身份帧](../game/assets/shots/shot-74/identity-close.png) | 三帧完整 CG 淡化；最终帧海浪与月光异步、绿灯低频闪烁、衣摆自由端／发梢阵风 | 用户确认 `identity v9`；旧透明人物平移、回宽景离场和空镜收束均已取消 |
 | SHOT-75 | G5-03 | 保留实拍中的黄凿顶山脊道路、破晓、风机与输电塔层次，把晴暖天气改为恶劣阴天、低云和湿路 | 无可读人物；破晓 | [恶劣阴天山路 4K 母帧](../game/assets/shots/shot-75/master.webp) | 低云横移、风机极慢转动、湿路微光 | 用户已确认 `v1` 并接入演出；源图水印、车牌与文字已移除 |
 | SHOT-76 | G5-03 | 严格沿用 SRC-32 的侧向洞内机位：巨大蚀刻洞壁压住左侧与中央，强天光留在右上边缘，人物坐在从右侧伸向深渊的岩脊端部；仅适度拉近，SRC-33 只补洞壁层台与谷底植被 | CHAR-H／H-LOOK-01；红色长外套、米白高领衫；左手搭屈膝、右腿沿岩脊向前放平 | [4K 运行时母帧](../game/assets/shots/shot-76/master.webp) | 右上强天光、雾尘、叶片、极慢靠近 | 用户否决偏离参考的 `v1`；严格回到 SRC-32 构图的原生像素 `v2` 已接入，待实机审查 |
 
@@ -212,7 +235,7 @@
 
 | 单元 | 使用资产 | 生产方式 |
 | --- | --- | --- |
-| G1-01 | SHOT-01 | 六张 G0 CG 草稿按当前 24 句剧本接入；梦境继续占位 |
+| G1-01 | SHOT-01 | 十张 G0 梦境 CG 按 18 句梦境对白接入，随后衔接六张现实段 CG；开场风声与主观睁眼、旧句回忆进出等关键转场自动，其余对白由玩家推进 |
 | G1-02 | SHOT-02 | 新制园区散步镜头包 |
 | G1-03 | SHOT-19 | 新制开放工位镜头包 |
 | G1-04 | SHOT-03 | 新制镜头包 |
@@ -226,7 +249,7 @@
 | G2-06 | SHOT-21 | 组员丙送别宴与饭后空桌同场差分 |
 | G3-01 | SHOT-42、SHOT-32、SHOT-33、SHOT-34、SHOT-35、SHOT-36、SHOT-37、SHOT-38 | 先以无 Agent 的独立 CG 建立生活与创作状态，再进入六名 Agent 的职责现场，最后由相框白边进入纯白花海与 Ousia 相遇 |
 | G3-02 | SHOT-09、SRC-01、FX-EVIDENCE | 纯白花海并坐双人中景；真实聊天只出现在低位设备 |
-| G3-03 | SHOT-09、SHOT-10、SRC-03、FX-EVIDENCE | 前两句留在花海对话，说到深夜直视吊灯时才切入一次性卧室主观仰视，再进入完整二十秒检索原件 |
+| G3-03 | SHOT-09、SHOT-10、SRC-03、FX-EVIDENCE | 前两句留在花海对话，说到深夜直视吊灯时才切入一次性卧室主观仰视，再进入完整十秒检索演出 |
 | G3-04 | SHOT-39、FX-TEXT | Ousia 从花中递回旧文纸页 |
 | G3-05 | SHOT-40、FX-TEXT | Ousia 合上属于女主的旧装订稿 |
 | G3-06 | SHOT-11、SHOT-41 | 空白纸、怀中哭泣、落笔与纸面推近分别使用独立构图 |
@@ -239,7 +262,7 @@
 | G5-02 | SHOT-18、SHOT-70、SRC-25、SRC-26、SRC-30、FX-EVIDENCE | 前两句沙发观看风雪画中屏幕；第三句进入废墟广角；后两句切到同地点碎玻璃倒影 |
 | G5-03 | SHOT-71、SHOT-72、SHOT-75、SHOT-76、SRC-27、SRC-28、SRC-31、SRC-32、SRC-33 | 前两句沙漠陷车，第三句事故事后定损，第四句黄凿顶阴天山路，后四句地下天坑坐姿沉思 |
 | G5-04 | SHOT-73、SHOT-74、SRC-29、SRC-26 | 前两句沙滩远望；第三句起切到满月夜绿色信号灯与前探提灯状态 |
-| G5-05 | SHOT-74 | 当前提灯人物态慢溶到同机位灯塔空镜，最后进入中央文字与无文字停驻 |
+| G5-05 | SHOT-74 | 活宽景承载两句旁白；三张不同距离／步态的完整 CG 以淡化切换表现约五秒步行，随后停留在半脸回望身份帧完成聚合配音，并以动态海浪、风衣、发梢、绿色航标和海声收束 |
 
 ## 来源素材
 
@@ -249,7 +272,7 @@
 | --- | --- | --- | --- | --- |
 | SRC-01 | 真实聊天界面 | 画中原件，用于 SHOT-09 | 瞬光 | 待提供 |
 | SRC-02 | 真实卧室天花板第一视角 | 若后续需要把当前普通卧室候选进一步校准为真实房间，可补充使用 | 瞬光 | 可选 |
-| SRC-03 | 二十秒检索录屏 | 画中原件，用于 SHOT-10 的屏幕区域 | 瞬光 | 待提供 |
+| SRC-03 | 十秒检索录屏 | 画中原件，用于 SHOT-10 的屏幕区域 | 瞬光 | 待提供 |
 | SRC-04 | 31 岁作品结尾 | 抽帧重绘与原声音轨，用于 SHOT-12 | 瞬光 | 待提供 |
 | SRC-05A | 真实练车素材 | 手、方向盘、后视镜、观察动作与普通道路参考，用于 SHOT-13 | 瞬光 | 已用于接受候选 |
 | SRC-05B | 破晓提车／改装完成素材 | 完整改装、车身图形、人物与车辆比例参考，用于 SHOT-62 | 瞬光 | 已用于接受候选 |
@@ -304,12 +327,13 @@
 | SRC-31 | 黄凿顶山脊道路（本地：`art/references-local/g5/src-31-huangzaoding-road.jpg`） | 锁 SHOT-75 的道路、破晓、风机与输电塔位置；只改恶劣阴天天气并移除水印／文字 | 瞬光 | 已提供并用于 `v1` |
 | SRC-32 | 地下天坑主构图（本地：`art/references-local/g5/src-32-sinkhole-composition.jpg`） | 严格锁定 SHOT-76 的侧向洞内机位、巨大洞壁、右上强天光、深渊、伸出岩脊与人物位置；只允许适度拉近坐姿人物 | 瞬光 | 已结合 H-LOOK-01 用于构图修正 `v2` |
 | SRC-33 | 地下天坑植被参考（本地：`art/references-local/g5/src-33-sinkhole-vegetation.jpg`） | 只为 SHOT-76 补充洞壁层台、裂隙和谷底植被，不取机位、人物站姿与水印 | 瞬光 | 已作为次要植被参考用于 `v2` |
+| SRC-34 | G0 天台漫画服装、少年发型与空间张力参考（本地：`art/references-local/g0/src-g0-rooftop-outfits.jpg`） | 锁成年浅灰西装组合、少年黑色几何 T 恤组合、少年 H 的近黑色中长直发、不戴眼镜状态、克制桀骜的视线与站姿、双人对峙关系及破裂世界围合人物的构图强度；不取人脸、漫画分格、气泡和文字，场景转译为本项目天台与城市断面 | 用户提供 | 已用于放大核验裸眼修正版 `CG-03 v6／CG-04 v5／CG-05 v6` |
 
 ## UI 与特效
 
 | ID | 内容 | 主要来源 | 状态 |
 | --- | --- | --- | --- |
-| UI-01 | 标题页 | 人工设计 | 待草图 |
+| UI-01 | 标题页 | 独立 4K 退潮湿地 CG；腾讯工卡、H-LOOK-01 风衣背影 + Godot 标题／菜单；12 秒云层／水光／衣摆／草叶低幅循环；54 秒海风循环；标题为“三十三岁的勇气，是坦然的失去” | v2 动态版已接入，静态布局与两相位实机帧通过自动检查 |
 | UI-02 | 人物气泡、无框字幕与中央文字 | 人工设计 | 已接入 |
 | UI-03 | 收起式菜单、历史和设置 | 人工设计 | 已接入 |
 | FX-TEXT | 成绩、旧文、项目界面文字 | Godot UI | 待草图 |

@@ -11,6 +11,7 @@ func _init() -> void:
 	var units := story.get("units", []) as Array
 	var line_count := 0
 	var line_ids: Dictionary = {}
+	var lines_by_id: Dictionary = {}
 	var line_order: Array[String] = []
 	var delivery_counts := {
 		"dialogue": 0,
@@ -32,6 +33,7 @@ func _init() -> void:
 			var line := line_variant as Dictionary
 			var line_id := str(line.get("id", "unknown"))
 			line_ids[line_id] = true
+			lines_by_id[line_id] = line
 			line_order.append(line_id)
 			if not ["bubble", "caption", "center"].has(str(line.get("presentation", ""))):
 				failures.append("%s has an invalid presentation mode." % line_id)
@@ -95,7 +97,12 @@ func _init() -> void:
 		failures.append("Expected 71 shot packages.")
 	var shot_one := (manifest.get("shots", {}) as Dictionary).get("SHOT-01", {}) as Dictionary
 	var opening_variants := shot_one.get("variants", {}) as Dictionary
-	for variant_id in ["wake", "wash", "cats", "board", "drive", "arrive"]:
+	for variant_id in [
+		"wake", "wash", "cats", "board", "drive", "arrive",
+		"dream_pov_wake", "dream_wake", "dream_loss", "dream_shadow", "dream_reveal",
+		"dream_youth_close", "dream_adult_reaction", "dream_confrontation",
+		"dream_train_approach", "dream_train_stop",
+	]:
 		var variant_path := str(opening_variants.get(variant_id, ""))
 		if variant_path.is_empty() or not ResourceLoader.exists(variant_path):
 			failures.append("SHOT-01 is missing G0 variant %s." % variant_id)
@@ -216,7 +223,13 @@ func _init() -> void:
 			failures.append("SHOT-70/%s is not a 3840x2160 texture." % variant_id)
 	var shot_seventy_four := (manifest.get("shots", {}) as Dictionary).get("SHOT-74", {}) as Dictionary
 	var shot_seventy_four_variants := shot_seventy_four.get("variants", {}) as Dictionary
-	for variant_id in ["lantern", "empty"]:
+	for variant_id in [
+		"lantern",
+		"walk-step-01",
+		"walk-step-02",
+		"walk-step-03",
+		"identity-close",
+	]:
 		var variant_path := str(shot_seventy_four_variants.get(variant_id, ""))
 		if variant_path.is_empty() or not ResourceLoader.exists(variant_path):
 			failures.append("SHOT-74 is missing G5 ending state %s." % variant_id)
@@ -225,8 +238,8 @@ func _init() -> void:
 		if variant_texture == null or variant_texture.get_width() != 3840 or variant_texture.get_height() != 2160:
 			failures.append("SHOT-74/%s is not a 3840x2160 texture." % variant_id)
 	var expected_music_ids := [
-		"MUS-01", "MUS-02", "MUS-03B", "MUS-04", "MUS-05A", "MUS-05B", "MUS-06B",
-		"MUS-07B", "MUS-08B", "MUS-09A", "MUS-09B", "MUS-09C",
+		"MUS-02", "MUS-03B", "MUS-03C", "MUS-04", "MUS-05A", "MUS-05B", "MUS-06B",
+		"MUS-07B", "MUS-09C",
 	]
 	var expected_built_music_ids := [
 		"MUS-01", "MUS-02", "MUS-03A", "MUS-03B", "MUS-03C", "MUS-04",
@@ -236,6 +249,7 @@ func _init() -> void:
 	var music_cues := music.get("cues", []) as Array
 	var soundtrack_lines: Dictionary = {}
 	var timed_voice_line_count := 0
+	var timed_voice_segment_count := 0
 	if int(voice_sequences.get("version", 0)) != 1:
 		failures.append("Expected voice sequence format version 1.")
 	for sequence_variant in voice_sequences.get("sequences", []) as Array:
@@ -243,26 +257,41 @@ func _init() -> void:
 		var stream_path := str(sequence.get("stream", ""))
 		var duration := float(sequence.get("duration", 0.0))
 		var handoff_at := float(sequence.get("handoff_at", -1.0))
+		var start_at := float(sequence.get("start_at", 0.0))
 		if stream_path.is_empty() or not ResourceLoader.exists(stream_path):
 			failures.append("Timed voice sequence is missing its runtime stream.")
 		else:
 			var stream := ResourceLoader.load(stream_path) as AudioStream
 			if stream == null or absf(stream.get_length() - duration) > 0.3:
 				failures.append("Timed voice sequence duration does not match its runtime stream.")
-		if handoff_at <= 0.0 or handoff_at >= duration:
-			failures.append("Timed soundtrack handoff must occur before its natural audio ending.")
+		var is_soundtrack := bool(sequence.get("soundtrack", false))
+		if handoff_at >= 0.0 and (handoff_at <= 0.0 or handoff_at >= duration):
+			failures.append("Timed voice handoff must occur before its natural audio ending.")
+		if is_soundtrack and handoff_at < 0.0:
+			failures.append("Timed soundtrack is missing its controlled handoff.")
+		if start_at < 0.0 or start_at >= duration:
+			failures.append("Timed voice sequence has an invalid playback start.")
 		var previous_at := -1.0
 		for cue_variant in sequence.get("cues", []) as Array:
 			var voice_cue := cue_variant as Dictionary
 			var line_id := str(voice_cue.get("line_id", ""))
 			var cue_at := float(voice_cue.get("at", -1.0))
+			var segment_index := int(voice_cue.get("segment_index", 0))
 			if not line_ids.has(line_id):
 				failures.append("Timed voice cue references unknown line %s." % line_id)
 			if cue_at <= previous_at or cue_at >= duration:
 				failures.append("Timed voice cue %s has an invalid time." % line_id)
+			if segment_index < 0:
+				failures.append("Timed voice cue %s has an invalid segment index." % line_id)
+			elif segment_index > 0:
+				var voice_line := lines_by_id.get(line_id, {}) as Dictionary
+				if segment_index >= (voice_line.get("segments", []) as Array).size():
+					failures.append("Timed voice cue %s references a missing page." % line_id)
+				timed_voice_segment_count += 1
 			previous_at = cue_at
-			timed_voice_line_count += 1
-			if bool(sequence.get("soundtrack", false)):
+			if segment_index == 0:
+				timed_voice_line_count += 1
+			if is_soundtrack and segment_index == 0:
 				soundtrack_lines[line_id] = true
 	var music_ids: Dictionary = {}
 	var loop_count := 0
@@ -310,8 +339,8 @@ func _init() -> void:
 	for excluded_id in ["MUS-06A", "MUS-07C"]:
 		if music_ids.has(excluded_id):
 			failures.append("Excluded or duplicated cue %s entered runtime." % excluded_id)
-	if loop_count != 11:
-		failures.append("Expected eleven looping BGM states, got %d." % loop_count)
+	if loop_count != 8:
+		failures.append("Expected eight looping BGM states, got %d." % loop_count)
 	for line_id in line_order:
 		var coverage_count := 0
 		for cue_variant in music_cues:
@@ -331,7 +360,8 @@ func _init() -> void:
 					and line_id <= str(line_range.get("end_line", ""))
 				):
 					coverage_count += 1
-		var expected_coverage := 0 if soundtrack_lines.has(line_id) else 1
+		var is_g1_unscored := line_id >= "G1-05-01" and line_id <= "G1-06-06"
+		var expected_coverage := 0 if soundtrack_lines.has(line_id) or is_g1_unscored else 1
 		if coverage_count != expected_coverage:
 			failures.append(
 				"%s has %d line-triggered BGM states; expected %d." % [
@@ -340,9 +370,13 @@ func _init() -> void:
 					expected_coverage,
 				]
 			)
-	if timed_voice_line_count != 9:
-		failures.append("Expected nine timed soundtrack lines, got %d." % timed_voice_line_count)
+	if timed_voice_line_count != 169:
+		failures.append("Expected 169 timed voice lines, got %d." % timed_voice_line_count)
+	if timed_voice_segment_count != 30:
+		failures.append("Expected 30 timed voice page cues, got %d." % timed_voice_segment_count)
 	var built_cues := music_build.get("cues", []) as Array
+	if int(music_build.get("version", 0)) != 2:
+		failures.append("Music build report must use full-source format version 2.")
 	if built_cues.size() != expected_built_music_ids.size():
 		failures.append("Music build report does not cover all processed assets.")
 	else:
@@ -352,6 +386,16 @@ func _init() -> void:
 				failures.append("Music build report contains an unknown asset.")
 			if float(built.get("measured_true_peak_db", 0.0)) > -1.0:
 				failures.append("%s exceeds the runtime peak ceiling." % built.get("id", ""))
+			if (
+				float(built.get("source_start_seconds", -1.0)) != 0.0
+				or float(built.get("crossfade_seconds", -1.0)) != 0.0
+				or str(built.get("temporal_edit", "")) != "none"
+				or absf(
+					float(built.get("runtime_duration_seconds", 0.0))
+					- float(built.get("source_end_seconds", -1.0))
+				) > 0.08
+			):
+				failures.append("%s is not a complete untrimmed original track." % built.get("id", ""))
 
 	if int(ProjectSettings.get_setting("display/window/size/viewport_width", 0)) != 1920:
 		failures.append("Expected a 1920-wide logical viewport.")
@@ -366,10 +410,10 @@ func _init() -> void:
 		print(
 			(
 				"Validation passed: 28 units, %d lines, balanced delivery, "
-				+ "71 planned shots, six G0 CGs, seven G1 CGs, sixteen G2 trial masters, "
+				+ "71 planned shots, ten G0 dream states plus six reality CGs, seven G1 CGs, sixteen G2 trial masters, "
 				+ "fourteen G3 masters, twenty-seven G4 runtime packages with four SHOT-12 phases, "
-				+ "thirteen G5 runtime states across nine packages, twelve active music states, "
-				+ "eleven looping states plus nine timed soundtrack lines with full audio coverage, "
+				+ "sixteen G5 runtime states across nine packages, nine active music states, "
+				+ "eight looping states, nine timed soundtrack lines and eight intentionally unscored G1 lines, "
 				+ "no G5 placeholder, 4K output."
 			) % line_count
 		)

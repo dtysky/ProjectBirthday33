@@ -16,13 +16,13 @@ func _run() -> void:
 		quit(1)
 		return
 
-	for bus_name in ["Voice", "Ambience", "SFX", "Music"]:
+	for bus_name in ["Voice", "Narration", "Ambience", "SFX", "Music"]:
 		if AudioServer.get_bus_index(bus_name) < 0:
 			push_error("Runtime audio bus was not created: %s." % bus_name)
 			quit(1)
 			return
-	if str(director.cue_for_line("G1-01-01").get("id", "")) != "MUS-01":
-		push_error("MUS-01 start boundary did not resolve.")
+	if str(director.cue_for_line("G1-01-D01").get("id", "")) != "MUS-03C":
+		push_error("MUS-03C start boundary did not resolve.")
 		quit(1)
 		return
 	if str(director.cue_for_line("G1-01-02").get("id", "")) != "MUS-03B":
@@ -33,37 +33,62 @@ func _run() -> void:
 		push_error("MUS-02 did not remain active through G1-04.")
 		quit(1)
 		return
-	if str(director.cue_for_line("G1-05-01").get("id", "")) != "MUS-03B":
-		push_error("MUS-03B did not resume for G1-05 and G1-06.")
+	if not director.cue_for_line("G1-05-01").is_empty():
+		push_error("G1 replay must begin the intentional music fade.")
 		quit(1)
 		return
-	if str(director.cue_for_line("G4-05-02").get("id", "")) != "MUS-08B":
-		push_error("MUS-08B did not cover the G4 closing section.")
+	if not director.cue_for_line("G1-06-06").is_empty():
+		push_error("G1 closing narration must remain intentionally unscored.")
 		quit(1)
 		return
-	if str(director.cue_for_line("G5-04-03").get("id", "")) != "MUS-09C":
-		push_error("MUS-09B to MUS-09C boundary did not resolve.")
+	if str(director.cue_for_line("G4-05-02").get("id", "")) != "MUS-07B":
+		push_error("MUS-07B did not cover the full regular G4 section.")
+		quit(1)
+		return
+	if str(director.cue_for_line("G5-01-01").get("id", "")) != "MUS-09C":
+		push_error("MUS-09C did not begin with G5.")
+		quit(1)
+		return
+	if str(director.cue_for_line("G5-05-04").get("id", "")) != "MUS-09C":
+		push_error("MUS-09C did not cover all of G5.")
 		quit(1)
 		return
 
-	director.sync_to_line("G1-01-01")
+	director.sync_to_line("G1-01-D01")
 	await create_timer(0.05).timeout
 	var dream_stream := (
 		director.players[director.active_player_index].stream as AudioStreamOggVorbis
 	)
 	if (
-		not director.is_cue_active("MUS-01")
+		not director.is_cue_active("MUS-03C")
 		or not _any_player_is_playing(director)
 		or dream_stream == null
 		or not dream_stream.loop
 	):
-		push_error("MUS-01 did not start on its first line.")
+		push_error("MUS-03C did not start on its first line.")
 		quit(1)
 		return
 	director.sync_to_line("G1-01-02")
 	await create_timer(0.05).timeout
 	if not director.is_cue_active("MUS-03B") or _playing_player_count(director) != 2:
-		push_error("MUS-01 did not crossfade into MUS-03B after the dream line.")
+		push_error("MUS-03C did not crossfade into MUS-03B after the dream line.")
+		quit(1)
+		return
+	director.sync_to_line("G1-02-01")
+	await create_timer(0.05).timeout
+	if not director.is_cue_active("MUS-02") or not _any_player_is_playing(director):
+		push_error("MUS-02 did not begin for the G1 performance scenes.")
+		quit(1)
+		return
+	director.sync_to_line("G1-05-01")
+	await create_timer(0.05).timeout
+	if not director.active_cue_id.is_empty() or not _any_player_is_playing(director):
+		push_error("MUS-02 did not begin fading at the G1 replay.")
+		quit(1)
+		return
+	await create_timer(2.85).timeout
+	if _any_player_is_playing(director):
+		push_error("MUS-02 did not finish fading during the G1 replay.")
 		quit(1)
 		return
 
@@ -99,8 +124,8 @@ func _run() -> void:
 		return
 
 	print(
-		"Music director test passed: discontiguous cue ranges, crossfades, "
-		+ "dual players and fade-out."
+		"Music director test passed: cue boundaries, crossfades, dual players "
+		+ "and the G1 replay fade-out."
 	)
 	director.hard_stop()
 	director.cues.clear()

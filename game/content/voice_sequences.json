@@ -10,15 +10,3290 @@
       "duration": 110.7,
       "handoff_at": 56.5,
       "cues": [
-        { "line_id": "G4-01-01", "at": 3.0 },
-        { "line_id": "G4-01-02", "at": 6.48 },
-        { "line_id": "G4-01-03", "at": 12.48 },
-        { "line_id": "G4-01-04", "at": 19.58 },
-        { "line_id": "G4-01-05", "at": 27.48 },
-        { "line_id": "G4-01-06", "at": 32.1 },
-        { "line_id": "G4-01-07", "at": 40.11 },
-        { "line_id": "G4-01-08", "at": 45.63 },
-        { "line_id": "G4-01-09", "at": 52.13 }
+        {
+          "line_id": "G4-01-01",
+          "at": 3
+        },
+        {
+          "line_id": "G4-01-02",
+          "at": 6.48
+        },
+        {
+          "line_id": "G4-01-03",
+          "at": 12.48
+        },
+        {
+          "line_id": "G4-01-04",
+          "at": 19.58
+        },
+        {
+          "line_id": "G4-01-05",
+          "at": 27.48
+        },
+        {
+          "line_id": "G4-01-06",
+          "at": 32.1
+        },
+        {
+          "line_id": "G4-01-07",
+          "at": 40.11
+        },
+        {
+          "line_id": "G4-01-08",
+          "at": 45.63
+        },
+        {
+          "line_id": "G4-01-09",
+          "at": 52.13
+        }
+      ]
+    },
+    {
+      "id": "VO-TEST-G1-01-02-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-test-g1-01-02-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 2.121188,
+      "cues": [
+        {
+          "line_id": "G1-01-02",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-TEST-G1-01-02-P1",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-test-g1-01-02-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.001604,
+      "cues": [
+        {
+          "line_id": "G1-01-02",
+          "segment_index": 1,
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-TEST-G1-01-03-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-test-g1-01-03-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.824396,
+      "cues": [
+        {
+          "line_id": "G1-01-03",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-TEST-G1-01-04-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-test-g1-01-04-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.086979,
+      "cues": [
+        {
+          "line_id": "G1-01-04",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-TEST-G1-01-05-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-test-g1-01-05-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.258563,
+      "cues": [
+        {
+          "line_id": "G1-01-05",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-TEST-G1-01-06-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-test-g1-01-06-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.95625,
+      "cues": [
+        {
+          "line_id": "G1-01-06",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-01-07-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-g1-01-07-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.905333,
+      "cues": [
+        {
+          "line_id": "G1-01-07",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-01-08-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-g1-01-08-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.758417,
+      "cues": [
+        {
+          "line_id": "G1-01-08",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-01-09-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-g1-01-09-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.2815,
+      "cues": [
+        {
+          "line_id": "G1-01-09",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-01-10-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-g1-01-10-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.135667,
+      "cues": [
+        {
+          "line_id": "G1-01-10",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-01-11-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-g1-01-11-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.572167,
+      "cues": [
+        {
+          "line_id": "G1-01-11",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-01-12-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-g1-01-12-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.517583,
+      "cues": [
+        {
+          "line_id": "G1-01-12",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-01-13-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-g1-01-13-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.721375,
+      "cues": [
+        {
+          "line_id": "G1-01-13",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-01-14-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-g1-01-14-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.593417,
+      "cues": [
+        {
+          "line_id": "G1-01-14",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-01-15-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-g1-01-15-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 2.96225,
+      "cues": [
+        {
+          "line_id": "G1-01-15",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-01-16-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-g1-01-16-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.491125,
+      "cues": [
+        {
+          "line_id": "G1-01-16",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-01-17-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-g1-01-17-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 2.958583,
+      "cues": [
+        {
+          "line_id": "G1-01-17",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-01-17-P1",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-g1-01-17-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 2.095333,
+      "cues": [
+        {
+          "line_id": "G1-01-17",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-01-18-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-g1-01-18-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.308375,
+      "cues": [
+        {
+          "line_id": "G1-01-18",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-01-20-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-g1-01-20-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 2.007958,
+      "cues": [
+        {
+          "line_id": "G1-01-20",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-01-20-P1",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-g1-01-20-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 2.54,
+      "cues": [
+        {
+          "line_id": "G1-01-20",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-01-21-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-g1-01-21-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 1.18,
+      "cues": [
+        {
+          "line_id": "G1-01-21",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-01-22-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-g1-01-22-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.34,
+      "cues": [
+        {
+          "line_id": "G1-01-22",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-01-23-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-g1-01-23-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 2.995917,
+      "cues": [
+        {
+          "line_id": "G1-01-23",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-01-24-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-g1-01-24-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 2.425125,
+      "cues": [
+        {
+          "line_id": "G1-01-24",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-01-24-P1",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-g1-01-24-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 1.836875,
+      "cues": [
+        {
+          "line_id": "G1-01-24",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-02-01-P0",
+      "unit_id": "G2-02",
+      "stream": "res://assets/audio/voice/vo-g2-02-01-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 2.838375,
+      "cues": [
+        {
+          "line_id": "G2-02-01",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-02-01-P1",
+      "unit_id": "G2-02",
+      "stream": "res://assets/audio/voice/vo-g2-02-01-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.897917,
+      "cues": [
+        {
+          "line_id": "G2-02-01",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-02-02-P0",
+      "unit_id": "G2-02",
+      "stream": "res://assets/audio/voice/vo-g2-02-02-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.031208,
+      "cues": [
+        {
+          "line_id": "G2-02-02",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-02-03-P0",
+      "unit_id": "G2-02",
+      "stream": "res://assets/audio/voice/vo-g2-02-03-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.369417,
+      "cues": [
+        {
+          "line_id": "G2-02-03",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-02-03-P1",
+      "unit_id": "G2-02",
+      "stream": "res://assets/audio/voice/vo-g2-02-03-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.686375,
+      "cues": [
+        {
+          "line_id": "G2-02-03",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-02-13-P0",
+      "unit_id": "G2-02",
+      "stream": "res://assets/audio/voice/vo-g2-02-13-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.806042,
+      "cues": [
+        {
+          "line_id": "G2-02-13",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-02-13-P1",
+      "unit_id": "G2-02",
+      "stream": "res://assets/audio/voice/vo-g2-02-13-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 1.084958,
+      "cues": [
+        {
+          "line_id": "G2-02-13",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-03-01-P0",
+      "unit_id": "G2-03",
+      "stream": "res://assets/audio/voice/vo-g2-03-01-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 2.951042,
+      "cues": [
+        {
+          "line_id": "G2-03-01",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-03-01-P1",
+      "unit_id": "G2-03",
+      "stream": "res://assets/audio/voice/vo-g2-03-01-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.196417,
+      "cues": [
+        {
+          "line_id": "G2-03-01",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-03-11-P0",
+      "unit_id": "G2-03",
+      "stream": "res://assets/audio/voice/vo-g2-03-11-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.846125,
+      "cues": [
+        {
+          "line_id": "G2-03-11",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-03-12-P0",
+      "unit_id": "G2-03",
+      "stream": "res://assets/audio/voice/vo-g2-03-12-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.53925,
+      "cues": [
+        {
+          "line_id": "G2-03-12",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-04-01-P0",
+      "unit_id": "G2-04",
+      "stream": "res://assets/audio/voice/vo-g2-04-01-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 2.154917,
+      "cues": [
+        {
+          "line_id": "G2-04-01",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-04-01-P1",
+      "unit_id": "G2-04",
+      "stream": "res://assets/audio/voice/vo-g2-04-01-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.324375,
+      "cues": [
+        {
+          "line_id": "G2-04-01",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-04-02-P0",
+      "unit_id": "G2-04",
+      "stream": "res://assets/audio/voice/vo-g2-04-02-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.224083,
+      "cues": [
+        {
+          "line_id": "G2-04-02",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-04-08-P0",
+      "unit_id": "G2-04",
+      "stream": "res://assets/audio/voice/vo-g2-04-08-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.909458,
+      "cues": [
+        {
+          "line_id": "G2-04-08",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-04-09-P0",
+      "unit_id": "G2-04",
+      "stream": "res://assets/audio/voice/vo-g2-04-09-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.3015,
+      "cues": [
+        {
+          "line_id": "G2-04-09",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-04-10-P0",
+      "unit_id": "G2-04",
+      "stream": "res://assets/audio/voice/vo-g2-04-10-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 8.570292,
+      "cues": [
+        {
+          "line_id": "G2-04-10",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-04-16-P0",
+      "unit_id": "G2-04",
+      "stream": "res://assets/audio/voice/vo-g2-04-16-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.54975,
+      "cues": [
+        {
+          "line_id": "G2-04-16",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-04-17-P0",
+      "unit_id": "G2-04",
+      "stream": "res://assets/audio/voice/vo-g2-04-17-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.794292,
+      "cues": [
+        {
+          "line_id": "G2-04-17",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-04-24-P0",
+      "unit_id": "G2-04",
+      "stream": "res://assets/audio/voice/vo-g2-04-24-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 7.882833,
+      "cues": [
+        {
+          "line_id": "G2-04-24",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-05-01-P0",
+      "unit_id": "G2-05",
+      "stream": "res://assets/audio/voice/vo-g2-05-01-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.309083,
+      "cues": [
+        {
+          "line_id": "G2-05-01",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-05-01-P1",
+      "unit_id": "G2-05",
+      "stream": "res://assets/audio/voice/vo-g2-05-01-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.265833,
+      "cues": [
+        {
+          "line_id": "G2-05-01",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-05-02-P0",
+      "unit_id": "G2-05",
+      "stream": "res://assets/audio/voice/vo-g2-05-02-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.751667,
+      "cues": [
+        {
+          "line_id": "G2-05-02",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-05-02-P1",
+      "unit_id": "G2-05",
+      "stream": "res://assets/audio/voice/vo-g2-05-02-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.49,
+      "cues": [
+        {
+          "line_id": "G2-05-02",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-05-03-P0",
+      "unit_id": "G2-05",
+      "stream": "res://assets/audio/voice/vo-g2-05-03-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.22,
+      "cues": [
+        {
+          "line_id": "G2-05-03",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-05-04-P0",
+      "unit_id": "G2-05",
+      "stream": "res://assets/audio/voice/vo-g2-05-04-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.46425,
+      "cues": [
+        {
+          "line_id": "G2-05-04",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-05-05-P0",
+      "unit_id": "G2-05",
+      "stream": "res://assets/audio/voice/vo-g2-05-05-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.043083,
+      "cues": [
+        {
+          "line_id": "G2-05-05",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-05-05-P1",
+      "unit_id": "G2-05",
+      "stream": "res://assets/audio/voice/vo-g2-05-05-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.935917,
+      "cues": [
+        {
+          "line_id": "G2-05-05",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-05-12-P0",
+      "unit_id": "G2-05",
+      "stream": "res://assets/audio/voice/vo-g2-05-12-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 7.044625,
+      "cues": [
+        {
+          "line_id": "G2-05-12",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-05-13-P0",
+      "unit_id": "G2-05",
+      "stream": "res://assets/audio/voice/vo-g2-05-13-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.298417,
+      "cues": [
+        {
+          "line_id": "G2-05-13",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-05-18-P0",
+      "unit_id": "G2-05",
+      "stream": "res://assets/audio/voice/vo-g2-05-18-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.273625,
+      "cues": [
+        {
+          "line_id": "G2-05-18",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-05-19-P0",
+      "unit_id": "G2-05",
+      "stream": "res://assets/audio/voice/vo-g2-05-19-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.68,
+      "cues": [
+        {
+          "line_id": "G2-05-19",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-05-20-P0",
+      "unit_id": "G2-05",
+      "stream": "res://assets/audio/voice/vo-g2-05-20-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.62,
+      "cues": [
+        {
+          "line_id": "G2-05-20",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-06-01-P0",
+      "unit_id": "G2-06",
+      "stream": "res://assets/audio/voice/vo-g2-06-01-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.265542,
+      "cues": [
+        {
+          "line_id": "G2-06-01",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-06-02-P0",
+      "unit_id": "G2-06",
+      "stream": "res://assets/audio/voice/vo-g2-06-02-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 7.613583,
+      "cues": [
+        {
+          "line_id": "G2-06-02",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-06-10-P0",
+      "unit_id": "G2-06",
+      "stream": "res://assets/audio/voice/vo-g2-06-10-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 2.678708,
+      "cues": [
+        {
+          "line_id": "G2-06-10",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-06-11-P0",
+      "unit_id": "G2-06",
+      "stream": "res://assets/audio/voice/vo-g2-06-11-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 1.439875,
+      "cues": [
+        {
+          "line_id": "G2-06-11",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-06-12-P0",
+      "unit_id": "G2-06",
+      "stream": "res://assets/audio/voice/vo-g2-06-12-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.267917,
+      "cues": [
+        {
+          "line_id": "G2-06-12",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-06-13-P0",
+      "unit_id": "G2-06",
+      "stream": "res://assets/audio/voice/vo-g2-06-13-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.4875,
+      "cues": [
+        {
+          "line_id": "G2-06-13",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-06-13-P1",
+      "unit_id": "G2-06",
+      "stream": "res://assets/audio/voice/vo-g2-06-13-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.183208,
+      "cues": [
+        {
+          "line_id": "G2-06-13",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-06-14-P0",
+      "unit_id": "G2-06",
+      "stream": "res://assets/audio/voice/vo-g2-06-14-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.53875,
+      "cues": [
+        {
+          "line_id": "G2-06-14",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-06-15-P0",
+      "unit_id": "G2-06",
+      "stream": "res://assets/audio/voice/vo-g2-06-15-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 1.885958,
+      "cues": [
+        {
+          "line_id": "G2-06-15",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G3-01-01-P0",
+      "unit_id": "G3-01",
+      "stream": "res://assets/audio/voice/vo-g3-01-01-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.832583,
+      "cues": [
+        {
+          "line_id": "G3-01-01",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G3-01-02-P0",
+      "unit_id": "G3-01",
+      "stream": "res://assets/audio/voice/vo-g3-01-02-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.665125,
+      "cues": [
+        {
+          "line_id": "G3-01-02",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G3-01-02-P1",
+      "unit_id": "G3-01",
+      "stream": "res://assets/audio/voice/vo-g3-01-02-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.511875,
+      "cues": [
+        {
+          "line_id": "G3-01-02",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G3-02-01-P0",
+      "unit_id": "G3-02",
+      "stream": "res://assets/audio/voice/vo-g3-02-01-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.155292,
+      "cues": [
+        {
+          "line_id": "G3-02-01",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G3-02-01-P1",
+      "unit_id": "G3-02",
+      "stream": "res://assets/audio/voice/vo-g3-02-01-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.352125,
+      "cues": [
+        {
+          "line_id": "G3-02-01",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G3-02-02-P0",
+      "unit_id": "G3-02",
+      "stream": "res://assets/audio/voice/vo-g3-02-02-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.458625,
+      "cues": [
+        {
+          "line_id": "G3-02-02",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G3-03-07-P0",
+      "unit_id": "G3-03",
+      "stream": "res://assets/audio/voice/vo-g3-03-07-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.206542,
+      "cues": [
+        {
+          "line_id": "G3-03-07",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G3-03-08-P0",
+      "unit_id": "G3-03",
+      "stream": "res://assets/audio/voice/vo-g3-03-08-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 2.919917,
+      "cues": [
+        {
+          "line_id": "G3-03-08",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G3-03-08-P1",
+      "unit_id": "G3-03",
+      "stream": "res://assets/audio/voice/vo-g3-03-08-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.357458,
+      "cues": [
+        {
+          "line_id": "G3-03-08",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-01-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-01-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 2.788833,
+      "cues": [
+        {
+          "line_id": "G4-02-01",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-02-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-02-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.345792,
+      "cues": [
+        {
+          "line_id": "G4-02-02",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-03-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-03-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.12175,
+      "cues": [
+        {
+          "line_id": "G4-02-03",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-04-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-04-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.886667,
+      "cues": [
+        {
+          "line_id": "G4-02-04",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-05-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-05-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.7,
+      "cues": [
+        {
+          "line_id": "G4-02-05",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-05-P1",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-05-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.06,
+      "cues": [
+        {
+          "line_id": "G4-02-05",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-06-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-06-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.410583,
+      "cues": [
+        {
+          "line_id": "G4-02-06",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-07-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-07-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.26175,
+      "cues": [
+        {
+          "line_id": "G4-02-07",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-08-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-08-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.243875,
+      "cues": [
+        {
+          "line_id": "G4-02-08",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-09-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-09-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.284708,
+      "cues": [
+        {
+          "line_id": "G4-02-09",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-10-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-10-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.60525,
+      "cues": [
+        {
+          "line_id": "G4-02-10",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-11-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-11-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.651667,
+      "cues": [
+        {
+          "line_id": "G4-02-11",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-12-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-12-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.339167,
+      "cues": [
+        {
+          "line_id": "G4-02-12",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-13-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-13-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.204583,
+      "cues": [
+        {
+          "line_id": "G4-02-13",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-14-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-14-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.647125,
+      "cues": [
+        {
+          "line_id": "G4-02-14",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-15-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-15-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.526792,
+      "cues": [
+        {
+          "line_id": "G4-02-15",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-16-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-16-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.227333,
+      "cues": [
+        {
+          "line_id": "G4-02-16",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-17-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-17-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.030208,
+      "cues": [
+        {
+          "line_id": "G4-02-17",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-18-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-18-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 7.229083,
+      "cues": [
+        {
+          "line_id": "G4-02-18",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-19-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-19-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.037625,
+      "cues": [
+        {
+          "line_id": "G4-02-19",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-19-P1",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-19-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.965083,
+      "cues": [
+        {
+          "line_id": "G4-02-19",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-20-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-20-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.363333,
+      "cues": [
+        {
+          "line_id": "G4-02-20",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-21-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-21-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 7.1885,
+      "cues": [
+        {
+          "line_id": "G4-02-21",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-22-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-22-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.670792,
+      "cues": [
+        {
+          "line_id": "G4-02-22",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-23-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-23-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.453958,
+      "cues": [
+        {
+          "line_id": "G4-02-23",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-24-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-24-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.845958,
+      "cues": [
+        {
+          "line_id": "G4-02-24",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-25-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-25-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.398417,
+      "cues": [
+        {
+          "line_id": "G4-02-25",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-02-26-P0",
+      "unit_id": "G4-02",
+      "stream": "res://assets/audio/voice/vo-g4-02-26-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.650583,
+      "cues": [
+        {
+          "line_id": "G4-02-26",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-03-01-P0",
+      "unit_id": "G4-03",
+      "stream": "res://assets/audio/voice/vo-g4-03-01-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.1085,
+      "cues": [
+        {
+          "line_id": "G4-03-01",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-03-01-P1",
+      "unit_id": "G4-03",
+      "stream": "res://assets/audio/voice/vo-g4-03-01-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.627333,
+      "cues": [
+        {
+          "line_id": "G4-03-01",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-03-02-P0",
+      "unit_id": "G4-03",
+      "stream": "res://assets/audio/voice/vo-g4-03-02-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 7.070833,
+      "cues": [
+        {
+          "line_id": "G4-03-02",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-03-03-P0",
+      "unit_id": "G4-03",
+      "stream": "res://assets/audio/voice/vo-g4-03-03-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 8.277042,
+      "cues": [
+        {
+          "line_id": "G4-03-03",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-03-04-P0",
+      "unit_id": "G4-03",
+      "stream": "res://assets/audio/voice/vo-g4-03-04-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.781958,
+      "cues": [
+        {
+          "line_id": "G4-03-04",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-03-05-P0",
+      "unit_id": "G4-03",
+      "stream": "res://assets/audio/voice/vo-g4-03-05-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.595792,
+      "cues": [
+        {
+          "line_id": "G4-03-05",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-03-06-P0",
+      "unit_id": "G4-03",
+      "stream": "res://assets/audio/voice/vo-g4-03-06-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 7.245417,
+      "cues": [
+        {
+          "line_id": "G4-03-06",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-03-07-P0",
+      "unit_id": "G4-03",
+      "stream": "res://assets/audio/voice/vo-g4-03-07-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 7.90275,
+      "cues": [
+        {
+          "line_id": "G4-03-07",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-03-08-P0",
+      "unit_id": "G4-03",
+      "stream": "res://assets/audio/voice/vo-g4-03-08-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.924333,
+      "cues": [
+        {
+          "line_id": "G4-03-08",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-03-08-P1",
+      "unit_id": "G4-03",
+      "stream": "res://assets/audio/voice/vo-g4-03-08-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.730833,
+      "cues": [
+        {
+          "line_id": "G4-03-08",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-03-09-P0",
+      "unit_id": "G4-03",
+      "stream": "res://assets/audio/voice/vo-g4-03-09-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 2.629958,
+      "cues": [
+        {
+          "line_id": "G4-03-09",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-03-09-P1",
+      "unit_id": "G4-03",
+      "stream": "res://assets/audio/voice/vo-g4-03-09-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.42525,
+      "cues": [
+        {
+          "line_id": "G4-03-09",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-03-10-P0",
+      "unit_id": "G4-03",
+      "stream": "res://assets/audio/voice/vo-g4-03-10-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.841667,
+      "cues": [
+        {
+          "line_id": "G4-03-10",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-03-10-P1",
+      "unit_id": "G4-03",
+      "stream": "res://assets/audio/voice/vo-g4-03-10-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 2.4,
+      "cues": [
+        {
+          "line_id": "G4-03-10",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-03-11-P0",
+      "unit_id": "G4-03",
+      "stream": "res://assets/audio/voice/vo-g4-03-11-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.610083,
+      "cues": [
+        {
+          "line_id": "G4-03-11",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-04-01-P0",
+      "unit_id": "G4-04",
+      "stream": "res://assets/audio/voice/vo-g4-04-01-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 2.474125,
+      "cues": [
+        {
+          "line_id": "G4-04-01",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-04-02-P0",
+      "unit_id": "G4-04",
+      "stream": "res://assets/audio/voice/vo-g4-04-02-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.358667,
+      "cues": [
+        {
+          "line_id": "G4-04-02",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-04-02-P1",
+      "unit_id": "G4-04",
+      "stream": "res://assets/audio/voice/vo-g4-04-02-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.42125,
+      "cues": [
+        {
+          "line_id": "G4-04-02",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-04-03-P0",
+      "unit_id": "G4-04",
+      "stream": "res://assets/audio/voice/vo-g4-04-03-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.0355,
+      "cues": [
+        {
+          "line_id": "G4-04-03",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-04-03-P1",
+      "unit_id": "G4-04",
+      "stream": "res://assets/audio/voice/vo-g4-04-03-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.663875,
+      "cues": [
+        {
+          "line_id": "G4-04-03",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-04-04-P0",
+      "unit_id": "G4-04",
+      "stream": "res://assets/audio/voice/vo-g4-04-04-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.498917,
+      "cues": [
+        {
+          "line_id": "G4-04-04",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-04-05-P0",
+      "unit_id": "G4-04",
+      "stream": "res://assets/audio/voice/vo-g4-04-05-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.148667,
+      "cues": [
+        {
+          "line_id": "G4-04-05",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-04-06-P0",
+      "unit_id": "G4-04",
+      "stream": "res://assets/audio/voice/vo-g4-04-06-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 1.835458,
+      "cues": [
+        {
+          "line_id": "G4-04-06",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-04-06-P1",
+      "unit_id": "G4-04",
+      "stream": "res://assets/audio/voice/vo-g4-04-06-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.397583,
+      "cues": [
+        {
+          "line_id": "G4-04-06",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-04-07-P0",
+      "unit_id": "G4-04",
+      "stream": "res://assets/audio/voice/vo-g4-04-07-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 2.109917,
+      "cues": [
+        {
+          "line_id": "G4-04-07",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-04-08-P0",
+      "unit_id": "G4-04",
+      "stream": "res://assets/audio/voice/vo-g4-04-08-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.424708,
+      "cues": [
+        {
+          "line_id": "G4-04-08",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-05-01-P0",
+      "unit_id": "G4-05",
+      "stream": "res://assets/audio/voice/vo-g4-05-01-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 7.169917,
+      "cues": [
+        {
+          "line_id": "G4-05-01",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-05-02-P0",
+      "unit_id": "G4-05",
+      "stream": "res://assets/audio/voice/vo-g4-05-02-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.25,
+      "cues": [
+        {
+          "line_id": "G4-05-02",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-05-03-P0",
+      "unit_id": "G4-05",
+      "stream": "res://assets/audio/voice/vo-g4-05-03-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.1,
+      "cues": [
+        {
+          "line_id": "G4-05-03",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-05-03-P1",
+      "unit_id": "G4-05",
+      "stream": "res://assets/audio/voice/vo-g4-05-03-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.737958,
+      "cues": [
+        {
+          "line_id": "G4-05-03",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-05-04-P0",
+      "unit_id": "G4-05",
+      "stream": "res://assets/audio/voice/vo-g4-05-04-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.901333,
+      "cues": [
+        {
+          "line_id": "G4-05-04",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-05-05-P0",
+      "unit_id": "G4-05",
+      "stream": "res://assets/audio/voice/vo-g4-05-05-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.203125,
+      "cues": [
+        {
+          "line_id": "G4-05-05",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-05-05-P1",
+      "unit_id": "G4-05",
+      "stream": "res://assets/audio/voice/vo-g4-05-05-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.039667,
+      "cues": [
+        {
+          "line_id": "G4-05-05",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-01-01-P0",
+      "unit_id": "G5-01",
+      "stream": "res://assets/audio/voice/vo-g5-01-01-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.243458,
+      "cues": [
+        {
+          "line_id": "G5-01-01",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-01-02-P0",
+      "unit_id": "G5-01",
+      "stream": "res://assets/audio/voice/vo-g5-01-02-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 7.559417,
+      "cues": [
+        {
+          "line_id": "G5-01-02",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-01-03-P0",
+      "unit_id": "G5-01",
+      "stream": "res://assets/audio/voice/vo-g5-01-03-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 8.60075,
+      "cues": [
+        {
+          "line_id": "G5-01-03",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-01-04-P0",
+      "unit_id": "G5-01",
+      "stream": "res://assets/audio/voice/vo-g5-01-04-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.624667,
+      "cues": [
+        {
+          "line_id": "G5-01-04",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-01-05-P0",
+      "unit_id": "G5-01",
+      "stream": "res://assets/audio/voice/vo-g5-01-05-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 8.47725,
+      "cues": [
+        {
+          "line_id": "G5-01-05",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-01-06-P0",
+      "unit_id": "G5-01",
+      "stream": "res://assets/audio/voice/vo-g5-01-06-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.216208,
+      "cues": [
+        {
+          "line_id": "G5-01-06",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-01-08-P0",
+      "unit_id": "G5-01",
+      "stream": "res://assets/audio/voice/vo-g5-01-08-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.888375,
+      "cues": [
+        {
+          "line_id": "G5-01-08",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-01-09-P0",
+      "unit_id": "G5-01",
+      "stream": "res://assets/audio/voice/vo-g5-01-09-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.453,
+      "cues": [
+        {
+          "line_id": "G5-01-09",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-01-10-P0",
+      "unit_id": "G5-01",
+      "stream": "res://assets/audio/voice/vo-g5-01-10-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 7.042417,
+      "cues": [
+        {
+          "line_id": "G5-01-10",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-01-11-P0",
+      "unit_id": "G5-01",
+      "stream": "res://assets/audio/voice/vo-g5-01-11-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.78975,
+      "cues": [
+        {
+          "line_id": "G5-01-11",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-01-12-P0",
+      "unit_id": "G5-01",
+      "stream": "res://assets/audio/voice/vo-g5-01-12-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.593042,
+      "cues": [
+        {
+          "line_id": "G5-01-12",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-01-13-P0",
+      "unit_id": "G5-01",
+      "stream": "res://assets/audio/voice/vo-g5-01-13-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.330083,
+      "cues": [
+        {
+          "line_id": "G5-01-13",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-02-01-P0",
+      "unit_id": "G5-02",
+      "stream": "res://assets/audio/voice/vo-g5-02-01-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.590292,
+      "cues": [
+        {
+          "line_id": "G5-02-01",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-02-02-P0",
+      "unit_id": "G5-02",
+      "stream": "res://assets/audio/voice/vo-g5-02-02-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 2.8,
+      "cues": [
+        {
+          "line_id": "G5-02-02",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-02-02-P1",
+      "unit_id": "G5-02",
+      "stream": "res://assets/audio/voice/vo-g5-02-02-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.22,
+      "cues": [
+        {
+          "line_id": "G5-02-02",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-02-02-P2",
+      "unit_id": "G5-02",
+      "stream": "res://assets/audio/voice/vo-g5-02-02-p2.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.169125,
+      "cues": [
+        {
+          "line_id": "G5-02-02",
+          "at": 0,
+          "segment_index": 2
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-02-03-P0",
+      "unit_id": "G5-02",
+      "stream": "res://assets/audio/voice/vo-g5-02-03-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.260208,
+      "cues": [
+        {
+          "line_id": "G5-02-03",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-02-04-P0",
+      "unit_id": "G5-02",
+      "stream": "res://assets/audio/voice/vo-g5-02-04-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.817292,
+      "cues": [
+        {
+          "line_id": "G5-02-04",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-02-05-P0",
+      "unit_id": "G5-02",
+      "stream": "res://assets/audio/voice/vo-g5-02-05-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.343375,
+      "cues": [
+        {
+          "line_id": "G5-02-05",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-03-01-P0",
+      "unit_id": "G5-03",
+      "stream": "res://assets/audio/voice/vo-g5-03-01-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.100583,
+      "cues": [
+        {
+          "line_id": "G5-03-01",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-03-02-P0",
+      "unit_id": "G5-03",
+      "stream": "res://assets/audio/voice/vo-g5-03-02-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.826292,
+      "cues": [
+        {
+          "line_id": "G5-03-02",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-03-03-P0",
+      "unit_id": "G5-03",
+      "stream": "res://assets/audio/voice/vo-g5-03-03-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.308542,
+      "cues": [
+        {
+          "line_id": "G5-03-03",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-03-04-P0",
+      "unit_id": "G5-03",
+      "stream": "res://assets/audio/voice/vo-g5-03-04-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 7.42,
+      "cues": [
+        {
+          "line_id": "G5-03-04",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-03-05-P0",
+      "unit_id": "G5-03",
+      "stream": "res://assets/audio/voice/vo-g5-03-05-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.99,
+      "cues": [
+        {
+          "line_id": "G5-03-05",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-03-06-P0",
+      "unit_id": "G5-03",
+      "stream": "res://assets/audio/voice/vo-g5-03-06-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.842958,
+      "cues": [
+        {
+          "line_id": "G5-03-06",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-03-07-P0",
+      "unit_id": "G5-03",
+      "stream": "res://assets/audio/voice/vo-g5-03-07-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.354542,
+      "cues": [
+        {
+          "line_id": "G5-03-07",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-03-08-P0",
+      "unit_id": "G5-03",
+      "stream": "res://assets/audio/voice/vo-g5-03-08-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.3855,
+      "cues": [
+        {
+          "line_id": "G5-03-08",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-04-01-P0",
+      "unit_id": "G5-04",
+      "stream": "res://assets/audio/voice/vo-g5-04-01-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.100625,
+      "cues": [
+        {
+          "line_id": "G5-04-01",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-04-02-P0",
+      "unit_id": "G5-04",
+      "stream": "res://assets/audio/voice/vo-g5-04-02-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.427417,
+      "cues": [
+        {
+          "line_id": "G5-04-02",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-04-03-P0",
+      "unit_id": "G5-04",
+      "stream": "res://assets/audio/voice/vo-g5-04-03-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2.0,
+      "duration": 2.856958,
+      "cues": [
+        {
+          "line_id": "G5-04-03",
+          "at": 0.0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-04-04-P0",
+      "unit_id": "G5-04",
+      "stream": "res://assets/audio/voice/vo-g5-04-04-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2.0,
+      "duration": 3.067083,
+      "cues": [
+        {
+          "line_id": "G5-04-04",
+          "at": 0.0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-04-05-P0",
+      "unit_id": "G5-04",
+      "stream": "res://assets/audio/voice/vo-g5-04-05-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2.0,
+      "duration": 3.022125,
+      "cues": [
+        {
+          "line_id": "G5-04-05",
+          "at": 0.0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-04-06-P0",
+      "unit_id": "G5-04",
+      "stream": "res://assets/audio/voice/vo-g5-04-06-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2.0,
+      "duration": 2.327125,
+      "cues": [
+        {
+          "line_id": "G5-04-06",
+          "at": 0.0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-05-01-P0",
+      "unit_id": "G5-05",
+      "stream": "res://assets/audio/voice/vo-g5-05-01-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2.0,
+      "duration": 5.30025,
+      "cues": [
+        {
+          "line_id": "G5-05-01",
+          "at": 0.0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-05-02-P0",
+      "unit_id": "G5-05",
+      "stream": "res://assets/audio/voice/vo-g5-05-02-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2.0,
+      "duration": 6.122958,
+      "cues": [
+        {
+          "line_id": "G5-05-02",
+          "at": 0.0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-05-ENDING-P0",
+      "unit_id": "G5-05",
+      "stream": "res://assets/audio/voice/vo-g5-05-ending-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": true,
+      "emit_cues": true,
+      "volume_db": -2.0,
+      "duration": 10.078167,
+      "handoff_at": 9.278167,
+      "cues": [
+        {
+          "line_id": "G5-05-03",
+          "at": 5.4
+        },
+        {
+          "line_id": "G5-05-04",
+          "at": 6.615084
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-06-01-P0",
+      "unit_id": "G1-06",
+      "stream": "res://assets/audio/voice/vo-g1-06-01-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.645458,
+      "cues": [
+        {
+          "line_id": "G1-06-01",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-06-02-P0",
+      "unit_id": "G1-06",
+      "stream": "res://assets/audio/voice/vo-g1-06-02-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.625875,
+      "cues": [
+        {
+          "line_id": "G1-06-02",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-06-03-P0",
+      "unit_id": "G1-06",
+      "stream": "res://assets/audio/voice/vo-g1-06-03-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.835625,
+      "cues": [
+        {
+          "line_id": "G1-06-03",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-06-04-P0",
+      "unit_id": "G1-06",
+      "stream": "res://assets/audio/voice/vo-g1-06-04-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.936458,
+      "cues": [
+        {
+          "line_id": "G1-06-04",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-06-05-P0",
+      "unit_id": "G1-06",
+      "stream": "res://assets/audio/voice/vo-g1-06-05-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.35675,
+      "cues": [
+        {
+          "line_id": "G1-06-05",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-06-05-P1",
+      "unit_id": "G1-06",
+      "stream": "res://assets/audio/voice/vo-g1-06-05-p1.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 2.035167,
+      "cues": [
+        {
+          "line_id": "G1-06-05",
+          "at": 0,
+          "segment_index": 1
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-06-06-P0",
+      "unit_id": "G1-06",
+      "stream": "res://assets/audio/voice/vo-g1-06-06-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 3.286375,
+      "cues": [
+        {
+          "line_id": "G1-06-06",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G1-01-19-P0",
+      "unit_id": "G1-01",
+      "stream": "res://assets/audio/voice/vo-g1-01-19-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.648,
+      "cues": [
+        {
+          "line_id": "G1-01-19",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-01-01-P0",
+      "unit_id": "G2-01",
+      "stream": "res://assets/audio/voice/vo-g2-01-01-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.032,
+      "cues": [
+        {
+          "line_id": "G2-01-01",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-01-02-P0",
+      "unit_id": "G2-01",
+      "stream": "res://assets/audio/voice/vo-g2-01-02-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.264,
+      "cues": [
+        {
+          "line_id": "G2-01-02",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-01-03-P0",
+      "unit_id": "G2-01",
+      "stream": "res://assets/audio/voice/vo-g2-01-03-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.232,
+      "cues": [
+        {
+          "line_id": "G2-01-03",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-01-04-P0",
+      "unit_id": "G2-01",
+      "stream": "res://assets/audio/voice/vo-g2-01-04-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 7.632,
+      "cues": [
+        {
+          "line_id": "G2-01-04",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G2-04-07-P0",
+      "unit_id": "G2-04",
+      "stream": "res://assets/audio/voice/vo-g2-04-07-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 6.048,
+      "cues": [
+        {
+          "line_id": "G2-04-07",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G4-05-06-P0",
+      "unit_id": "G4-05",
+      "stream": "res://assets/audio/voice/vo-g4-05-06-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 4.656,
+      "cues": [
+        {
+          "line_id": "G4-05-06",
+          "at": 0
+        }
+      ]
+    },
+    {
+      "id": "VO-G5-01-07-P0",
+      "unit_id": "G5-01",
+      "stream": "res://assets/audio/voice/vo-g5-01-07-p0.ogg",
+      "bus": "Voice",
+      "soundtrack": false,
+      "advance_on_finish": false,
+      "emit_cues": false,
+      "volume_db": -2,
+      "duration": 5.064,
+      "cues": [
+        {
+          "line_id": "G5-01-07",
+          "at": 0
+        }
       ]
     }
   ]

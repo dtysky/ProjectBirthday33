@@ -20,6 +20,7 @@ const assetSource = fs.readFileSync(assetPath, "utf8");
 
 const voiceoverUnits = new Set([
   "G1-01",
+  "G1-06",
   "G3-03",
   "G4-01",
   "G4-02",
@@ -33,7 +34,6 @@ const voiceoverUnits = new Set([
   "G5-05",
 ]);
 const sceneMonologueUnits = new Set([
-  "G1-06",
   "G2-01",
   "G2-02",
 ]);
@@ -42,6 +42,16 @@ const narrationSpeakers = new Set([
   "我／旅途记录",
   "少女 H",
   "三十一岁的我",
+]);
+const g0DreamSceneMonologueIds = new Set([
+  "G1-01-D01",
+  "G1-01-D02",
+  "G1-01-D03",
+  "G1-01-D04",
+  "G1-01-D05",
+  "G1-01-D06",
+  "G1-01-D11",
+  "G1-01-D18",
 ]);
 
 function deliveryFor(unitId, speaker) {
@@ -81,13 +91,32 @@ function presentationFor(delivery) {
   return "bubble";
 }
 
+function deliveryForLine(unitId, speaker, shotId, lineId) {
+  if (lineId.startsWith("G1-01-D")) {
+    return g0DreamSceneMonologueIds.has(lineId)
+      ? "scene_monologue"
+      : "dialogue";
+  }
+  return deliveryForShot(unitId, speaker, shotId);
+}
+
+function presentationForLine(lineId, delivery) {
+  if (lineId === "G1-01-D18") {
+    return "center";
+  }
+  if (lineId.startsWith("G1-01-D")) {
+    return "caption";
+  }
+  return presentationFor(delivery);
+}
+
 function parseDialoguePacing(source) {
   const pacing = new Map();
   let currentLineId = "";
 
   for (const sourceLine of source.split(/\r?\n/)) {
     const lineHeader = sourceLine.match(
-      /^- \[[ x]\] `(G[1-5]-\d{2}-\d{2})`/,
+      /^- \[[ x]\] `(G[1-5]-\d{2}-(?:D\d{2}|\d{2}))`/,
     );
     if (lineHeader) {
       currentLineId = lineHeader[1];
@@ -119,6 +148,29 @@ function parseDialoguePacing(source) {
 
 const dialoguePacing = parseDialoguePacing(dialoguePacingSource);
 
+const stableLineIds = {
+  "G1-01": [
+    ...Array.from({ length: 18 }, (_, index) =>
+      `G1-01-D${String(index + 1).padStart(2, "0")}`,
+    ),
+    ...Array.from({ length: 23 }, (_, index) =>
+      `G1-01-${String(index + 2).padStart(2, "0")}`,
+    ),
+  ],
+};
+
+function lineIdFor(unitId, lineIndex) {
+  const stableIds = stableLineIds[unitId];
+  if (stableIds) {
+    const id = stableIds[lineIndex];
+    if (!id) {
+      throw new Error(`Missing stable line id for ${unitId} line ${lineIndex + 1}`);
+    }
+    return id;
+  }
+  return `${unitId}-${String(lineIndex + 1).padStart(2, "0")}`;
+}
+
 function parseSceneLines(section, unitId, defaultShot) {
   const lines = [];
   let currentShot = defaultShot;
@@ -135,9 +187,9 @@ function parseSceneLines(section, unitId, defaultShot) {
       continue;
     }
 
+    const id = lineIdFor(unitId, lines.length);
     const speaker = dialogue[1].trim();
-    const delivery = deliveryForShot(unitId, speaker, currentShot);
-    const id = `${unitId}-${String(lines.length + 1).padStart(2, "0")}`;
+    const delivery = deliveryForLine(unitId, speaker, currentShot, id);
     const text = dialogue[2].trim();
     const segments = dialoguePacing.get(id);
     if (!segments) {
@@ -157,7 +209,7 @@ function parseSceneLines(section, unitId, defaultShot) {
       text,
       segments,
       delivery,
-      presentation: presentationFor(delivery),
+      presentation: presentationForLine(id, delivery),
       shot: currentShot,
     });
   }
@@ -221,6 +273,16 @@ if (dialoguePacing.size !== lineCount) {
 
 const shotVariants = {
   "SHOT-01": {
+    dream_pov_wake: "res://assets/shots/shot-01/dream-pov-wake-restyled.webp",
+    dream_wake: "res://assets/shots/shot-01/dream-wake-restyled.webp",
+    dream_loss: "res://assets/shots/shot-01/dream-loss-restyled.webp",
+    dream_shadow: "res://assets/shots/shot-01/dream-shadow-restyled.webp",
+    dream_reveal: "res://assets/shots/shot-01/dream-reveal-restyled.webp",
+    dream_youth_close: "res://assets/shots/shot-01/dream-youth-close-restyled.webp",
+    dream_adult_reaction: "res://assets/shots/shot-01/dream-adult-reaction-restyled.webp",
+    dream_confrontation: "res://assets/shots/shot-01/dream-confrontation-restyled.webp",
+    dream_train_approach: "res://assets/shots/shot-01/dream-train-approach-restyled.webp",
+    dream_train_stop: "res://assets/shots/shot-01/dream-train-stop-restyled.webp",
     wake: "res://assets/shots/shot-01/g0-wake.webp",
     wash: "res://assets/shots/shot-01/g0-wash.webp",
     cats: "res://assets/shots/shot-01/g0-cats-goodbye.webp",
@@ -264,6 +326,10 @@ const shotVariants = {
   "SHOT-74": {
     lantern: "res://assets/shots/shot-74/master.webp",
     empty: "res://assets/shots/shot-74/empty.webp",
+    "walk-step-01": "res://assets/shots/shot-74/master.webp",
+    "walk-step-02": "res://assets/shots/shot-74/walk-step-02.png",
+    "walk-step-03": "res://assets/shots/shot-74/walk-step-03.png",
+    "identity-close": "res://assets/shots/shot-74/identity-close.png",
   },
 };
 const shotMasters = {

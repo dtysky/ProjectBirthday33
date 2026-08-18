@@ -6,6 +6,7 @@ const SaveServiceClass := preload("res://src/save_service.gd")
 const GameUIClass := preload("res://src/ui/game_ui.gd")
 const DialoguePresenterClass := preload("res://src/ui/dialogue_presenter.gd")
 const MusicDirectorClass := preload("res://src/music_director.gd")
+const SoundDirectorClass := preload("res://src/sound_director.gd")
 const VoiceSequencePlayerClass := preload("res://src/voice_sequence_player.gd")
 const ChapterOneDirectorClass := preload("res://src/chapters/chapter_01.gd")
 const ChapterTwoDirectorClass := preload("res://src/chapters/chapter_02.gd")
@@ -15,7 +16,7 @@ const ChapterFiveDirectorClass := preload("res://src/chapters/chapter_05.gd")
 
 const CHAPTER_MUSIC_FADE_SECONDS := 2.2
 const CHAPTER_INTERLUDE_SECONDS := 5.2
-const CHAPTER_BGM_DELAY_SECONDS := 0.9
+const RECORDING_END_HOLD_SECONDS := 6.0
 
 const CHAPTER_INTERLUDES := {
 	"G1-02": {
@@ -56,7 +57,7 @@ const CHAPTER_INTERLUDES := {
 	},
 	"G3-01": {
 		"number": "第三章",
-		"title": "二十秒",
+		"title": "十秒",
 		"background_shot": "SHOT-21",
 		"title_rect": Rect2(570.0, 116.0, 780.0, 250.0),
 		"alignment": HORIZONTAL_ALIGNMENT_CENTER,
@@ -112,6 +113,7 @@ var asset_registry := AssetRegistryClass.new()
 var ui := GameUIClass.new()
 var dialogue_presenter := DialoguePresenterClass.new()
 var music_director := MusicDirectorClass.new()
+var sound_director := SoundDirectorClass.new()
 var voice_sequence_player := VoiceSequencePlayerClass.new()
 var auto_timer: Timer
 
@@ -119,22 +121,23 @@ var text_speed := 42.0
 var auto_delay := 3.4
 var master_volume := 0.8
 var is_auto := false
+var recording_auto_mode := false
 var history_entries: Array[String] = []
 var history_keys: Dictionary = {}
 var chapter_directors: Dictionary = {}
 var active_chapter_director
 var chapter_interlude_tween: Tween
 var chapter_music_fade_tween: Tween
-var chapter_music_delay_tween: Tween
+var sound_transition_tween: Tween
 var chapter_interlude_active := false
 var chapter_transition_pending := false
-var chapter_music_delay_active := false
+var sound_transition_pending := false
 var allow_next_chapter_interlude := false
 var pending_chapter_line: Dictionary = {}
 var pending_chapter_unit: Dictionary = {}
-var pending_chapter_music_line_id := ""
 var voice_cue_dispatch := false
 var pending_voice_resume_position := -1.0
+var suppress_next_sound_event := false
 
 
 func _ready() -> void:
@@ -150,11 +153,16 @@ func _ready() -> void:
 	add_child(music_director)
 	if not music_director.setup():
 		ui.show_toast("配乐配置加载失败")
+	sound_director.name = "SoundDirector"
+	add_child(sound_director)
+	if not sound_director.setup():
+		ui.show_toast("音效资源加载失败")
 	voice_sequence_player.name = "VoiceSequencePlayer"
 	add_child(voice_sequence_player)
 	if not voice_sequence_player.setup():
 		ui.show_toast("配音时间轴加载失败")
 	voice_sequence_player.cue_started.connect(_on_voice_cue_started)
+	voice_sequence_player.segment_cue_started.connect(_on_voice_segment_cue_started)
 	voice_sequence_player.handoff_reached.connect(_on_voice_handoff_reached)
 	voice_sequence_player.sequence_finished.connect(_on_voice_sequence_finished)
 	_set_master_volume(master_volume)
@@ -174,8 +182,7 @@ func _ready() -> void:
 	ui.continue_button.disabled = not SaveServiceClass.has_save()
 	ui.dialogue_panel.visible = false
 	ui.dialogue_tail.visible = false
-	ui.menu_button.visible = false
-	ui.title_overlay.visible = true
+	ui.show_title_screen()
 
 
 func _process(delta: float) -> void:
@@ -185,6 +192,14 @@ func _process(delta: float) -> void:
 		or ui.settings_overlay.visible
 		or ui.scene_select_overlay.visible
 	)
+	sound_director.set_paused(
+		ui.quick_menu_overlay.visible
+		or ui.history_overlay.visible
+		or ui.settings_overlay.visible
+		or ui.scene_select_overlay.visible
+	)
+	if active_chapter_director != null:
+		active_chapter_director.tick(delta)
 	if chapter_transition_pending or chapter_interlude_active:
 		return
 	if (
@@ -201,6 +216,15 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and event.keycode == KEY_F3:
 		ui.debug_meta.visible = not ui.debug_meta.visible
+		get_viewport().set_input_as_handled()
+		return
+	if (
+		event is InputEventKey
+		and event.pressed
+		and not event.echo
+		and event.keycode == KEY_F9
+	):
+		_toggle_recording_auto_mode()
 		get_viewport().set_input_as_handled()
 		return
 	if active_chapter_director != null and active_chapter_director.blocks_input():
@@ -298,36 +322,39 @@ func _setup_chapter_directors() -> void:
 		"center_line_label": ui.center_line_label,
 		"auto_timer": auto_timer,
 		"music_director": music_director,
+		"sound_director": sound_director,
 		"voice_sequence_player": voice_sequence_player,
 		"advance_story": _request_story_advance,
+		"play_voice_segment": _play_voice_segment,
 	}
 	for director in chapter_directors.values():
 		director.setup(director_context)
 
 
 func _start_new_game() -> void:
+	recording_auto_mode = false
+	_set_auto_enabled(false)
 	music_director.hard_stop()
+	sound_director.hard_stop()
 	voice_sequence_player.stop()
+	_cancel_sound_transition()
 	_cancel_chapter_interlude()
 	allow_next_chapter_interlude = false
+	suppress_next_sound_event = false
 	history_entries.clear()
 	history_keys.clear()
 	ui.history_text.text = ""
-	ui.title_overlay.visible = false
+	ui.hide_title_screen()
 	ui.ending_overlay.visible = false
 	ui.quick_menu_overlay.visible = false
 	ui.scene_select_overlay.visible = false
-	ui.menu_button.visible = true
+	ui.debug_meta.visible = false
 	story.start_at(0, 0)
 
 
 func _advance_story() -> void:
-	if (
-		voice_sequence_player.is_active()
-		and not story.units.is_empty()
-		and voice_sequence_player.has_sequence_for_line(
-			str((story.get_current_line() as Dictionary).get("id", ""))
-		)
+	if voice_sequence_player.is_active() and (
+		voice_sequence_player.advances_automatically() or is_auto
 	):
 		return
 	if active_chapter_director != null and active_chapter_director.advance():
@@ -337,6 +364,10 @@ func _advance_story() -> void:
 		return
 	auto_timer.stop()
 	if dialogue_presenter.advance_page():
+		_play_voice_segment(
+			str((story.get_current_line() as Dictionary).get("id", "")),
+			dialogue_presenter.current_segment_index,
+		)
 		if is_auto:
 			_start_auto_wait()
 		return
@@ -376,6 +407,11 @@ func _on_unit_changed(unit: Dictionary) -> void:
 func _on_line_changed(line: Dictionary, unit: Dictionary) -> void:
 	auto_timer.stop()
 	dialogue_presenter.cancel_reveal()
+	if (
+		voice_sequence_player.is_active()
+		and not voice_sequence_player.advances_automatically()
+	):
+		voice_sequence_player.stop()
 	var line_id := str(line.get("id", ""))
 	if chapter_interlude_active:
 		pending_chapter_line = line.duplicate(true)
@@ -384,6 +420,8 @@ func _on_line_changed(line: Dictionary, unit: Dictionary) -> void:
 		ui.dialogue_tail.visible = false
 		ui.center_line_label.visible = false
 		return
+	sound_director.sync_to_line(line_id, not suppress_next_sound_event)
+	suppress_next_sound_event = false
 	if voice_sequence_player.has_sequence_for_line(line_id):
 		if voice_cue_dispatch:
 			voice_cue_dispatch = false
@@ -391,9 +429,13 @@ func _on_line_changed(line: Dictionary, unit: Dictionary) -> void:
 		else:
 			_start_voiced_sequence(line, unit)
 		return
-	if chapter_music_delay_active:
-		pending_chapter_music_line_id = line_id
-	elif not voice_sequence_player.is_carrying_soundtrack():
+	if (
+		not voice_sequence_player.is_carrying_soundtrack()
+		and (
+			active_chapter_director == null
+			or not active_chapter_director.defers_music_for_line(line_id)
+		)
+	):
 		music_director.sync_to_line(line_id)
 	_present_story_line(line, unit)
 
@@ -412,25 +454,43 @@ func _present_story_line(line: Dictionary, unit: Dictionary) -> void:
 
 func _present_voiced_line(line: Dictionary, unit: Dictionary) -> void:
 	_present_story_line(line, unit)
-	dialogue_presenter.finish_reveal()
+	if active_chapter_director == null or not active_chapter_director.finish_reveal():
+		dialogue_presenter.finish_reveal()
 	ui.dialogue_panel.visible = false
 	ui.dialogue_tail.visible = false
 
 
 func _start_voiced_sequence(line: Dictionary, unit: Dictionary) -> void:
 	auto_timer.stop()
-	music_director.hard_stop()
-	ui.dialogue_panel.visible = false
-	ui.dialogue_tail.visible = false
-	ui.center_line_label.visible = false
 	var line_id := str(line.get("id", ""))
 	var unit_id := str(unit.get("id", ""))
+	var is_soundtrack := voice_sequence_player.is_soundtrack_line(line_id)
+	if is_soundtrack:
+		ui.dialogue_panel.visible = false
+		ui.dialogue_tail.visible = false
+		ui.center_line_label.visible = false
+		music_director.hard_stop()
+	else:
+		music_director.sync_to_line(line_id)
+	if not is_soundtrack:
+		_present_story_line(line, unit)
 	if active_chapter_director != null:
 		active_chapter_director.begin_timed_sequence(unit_id, line_id)
 	var resume_position := pending_voice_resume_position
 	pending_voice_resume_position = -1.0
 	if not voice_sequence_player.start_for_line(unit_id, line_id, resume_position):
-		_present_story_line(line, unit)
+		if is_soundtrack:
+			_present_story_line(line, unit)
+
+
+func _play_voice_segment(line_id: String, segment_index: int) -> void:
+	if story.units.is_empty():
+		return
+	var current_line_id := str((story.get_current_line() as Dictionary).get("id", ""))
+	if current_line_id != line_id:
+		return
+	var unit_id := str((story.get_current_unit() as Dictionary).get("id", ""))
+	voice_sequence_player.start_for_segment(unit_id, line_id, segment_index)
 
 
 func _on_voice_cue_started(line_id: String) -> void:
@@ -447,6 +507,28 @@ func _on_voice_cue_started(line_id: String) -> void:
 		voice_cue_dispatch = false
 
 
+func _on_voice_segment_cue_started(line_id: String, segment_index: int) -> void:
+	if story.units.is_empty():
+		return
+	var current_line_id := str((story.get_current_line() as Dictionary).get("id", ""))
+	if current_line_id != line_id:
+		push_warning(
+			"Timed voice segment cue %s/%d does not match current line %s."
+			% [line_id, segment_index, current_line_id]
+		)
+		return
+	if (
+		active_chapter_director != null
+		and active_chapter_director.show_timed_segment(line_id, segment_index)
+	):
+		return
+	if not dialogue_presenter.show_timed_segment(segment_index):
+		push_warning("Timed voice segment cue is outside the reviewed pages: %s/%d." % [
+			line_id,
+			segment_index,
+		])
+
+
 func _on_voice_handoff_reached(unit_id: String) -> void:
 	ui.dialogue_panel.visible = false
 	ui.dialogue_tail.visible = false
@@ -459,7 +541,15 @@ func _on_voice_handoff_reached(unit_id: String) -> void:
 	_request_story_advance()
 
 
-func _on_voice_sequence_finished(_unit_id: String, handed_off: bool) -> void:
+func _on_voice_sequence_finished(
+	_unit_id: String,
+	handed_off: bool,
+	advance_on_finish: bool,
+) -> void:
+	if not advance_on_finish:
+		if is_auto and not _is_text_revealing():
+			_start_auto_wait()
+		return
 	if handed_off:
 		if not story.units.is_empty():
 			music_director.sync_to_line(
@@ -473,6 +563,10 @@ func _on_voice_sequence_finished(_unit_id: String, handed_off: bool) -> void:
 
 
 func _on_story_finished() -> void:
+	var should_finalize_movie := (
+		recording_auto_mode
+		and not Engine.get_write_movie_path().is_empty()
+	)
 	music_director.fade_out(2.4)
 	voice_sequence_player.stop()
 	_cancel_chapter_interlude()
@@ -482,14 +576,20 @@ func _on_story_finished() -> void:
 	if active_chapter_director != null:
 		active_chapter_director.leave()
 		active_chapter_director = null
-	is_auto = false
-	ui.auto_button.text = "自动"
+	recording_auto_mode = false
+	_set_auto_enabled(false)
 	ui.dialogue_panel.visible = false
 	ui.dialogue_tail.visible = false
 	ui.center_line_label.visible = false
-	ui.menu_button.visible = false
 	ui.quick_menu_overlay.visible = false
 	ui.ending_overlay.visible = true
+	if should_finalize_movie:
+		_finalize_recorded_movie_after_hold()
+
+
+func _finalize_recorded_movie_after_hold() -> void:
+	await get_tree().create_timer(RECORDING_END_HOLD_SECONDS).timeout
+	get_tree().quit()
 
 
 func _finish_typing() -> void:
@@ -501,12 +601,35 @@ func _finish_typing() -> void:
 
 
 func _toggle_auto() -> void:
-	is_auto = not is_auto
-	ui.auto_button.text = "停止" if is_auto else "自动"
+	recording_auto_mode = false
+	_set_auto_enabled(not is_auto)
 	ui.quick_menu_overlay.visible = false
-	if is_auto and not dialogue_presenter.is_typing:
+	if is_auto and not _is_text_revealing():
 		_start_auto_wait()
-	else:
+
+
+func _toggle_recording_auto_mode() -> void:
+	if ui.title_overlay.visible or ui.ending_overlay.visible:
+		return
+	recording_auto_mode = not recording_auto_mode
+	_set_auto_enabled(recording_auto_mode)
+	ui.debug_meta.visible = false
+	ui.quick_menu_overlay.visible = false
+	voice_sequence_player.set_paused(false)
+	sound_director.set_paused(false)
+	if (
+		recording_auto_mode
+		and not _is_text_revealing()
+		and not voice_sequence_player.is_active()
+		and not _has_blocking_overlay()
+	):
+		_start_auto_wait()
+
+
+func _set_auto_enabled(enabled: bool) -> void:
+	is_auto = enabled
+	ui.auto_button.text = "停止自动" if is_auto else "自动播放"
+	if not is_auto:
 		auto_timer.stop()
 
 
@@ -530,8 +653,17 @@ func _close_quick_menu() -> void:
 	voice_sequence_player.set_paused(false)
 	if active_chapter_director != null and active_chapter_director.resume():
 		return
-	if is_auto and not dialogue_presenter.is_typing:
+	if is_auto and not _is_text_revealing():
 		_start_auto_wait()
+
+
+func _is_text_revealing() -> bool:
+	if (
+		active_chapter_director != null
+		and active_chapter_director.handles_custom_reveal()
+	):
+		return active_chapter_director.is_revealing()
+	return dialogue_presenter.is_typing
 
 
 func _start_auto_wait() -> void:
@@ -584,22 +716,23 @@ func _jump_to_scene(unit_index: int) -> void:
 		return
 	auto_timer.stop()
 	voice_sequence_player.stop()
+	sound_director.hard_stop()
+	_cancel_sound_transition()
 	_cancel_chapter_interlude()
 	allow_next_chapter_interlude = false
 	dialogue_presenter.cancel_reveal()
 	if active_chapter_director != null:
 		active_chapter_director.leave()
 		active_chapter_director = null
-	is_auto = false
-	ui.auto_button.text = "自动"
-	ui.title_overlay.visible = false
+	recording_auto_mode = false
+	_set_auto_enabled(false)
+	ui.hide_title_screen()
 	ui.ending_overlay.visible = false
 	ui.quick_menu_overlay.visible = false
 	ui.scene_select_overlay.visible = false
 	ui.dialogue_panel.visible = false
 	ui.dialogue_tail.visible = false
 	ui.center_line_label.visible = false
-	ui.menu_button.visible = true
 	history_entries.clear()
 	history_keys.clear()
 	ui.history_text.text = ""
@@ -633,9 +766,14 @@ func _load_game() -> void:
 	if state.is_empty():
 		ui.show_toast("没有可读取的存档")
 		return
+	recording_auto_mode = false
+	_set_auto_enabled(false)
 	_cancel_chapter_interlude()
 	voice_sequence_player.stop()
+	sound_director.hard_stop()
+	_cancel_sound_transition()
 	allow_next_chapter_interlude = false
+	suppress_next_sound_event = true
 
 	_apply_settings(state.get("settings", {}) as Dictionary)
 	var voice_state := state.get("voice_sequence", {}) as Dictionary
@@ -649,11 +787,10 @@ func _load_game() -> void:
 	else:
 		pending_voice_resume_position = voice_resume_position
 	_rebuild_history(int(state.get("unit_index", 0)), int(state.get("line_index", 0)))
-	ui.title_overlay.visible = false
+	ui.hide_title_screen()
 	ui.ending_overlay.visible = false
 	ui.quick_menu_overlay.visible = false
 	ui.scene_select_overlay.visible = false
-	ui.menu_button.visible = true
 	story.start_at(
 		int(state.get("unit_index", 0)),
 		int(state.get("line_index", 0)),
@@ -669,15 +806,17 @@ func _save_and_return_to_title() -> void:
 func _return_to_title() -> void:
 	auto_timer.stop()
 	music_director.hard_stop()
+	sound_director.hard_stop()
 	voice_sequence_player.stop()
+	_cancel_sound_transition()
 	_cancel_chapter_interlude()
 	allow_next_chapter_interlude = false
 	dialogue_presenter.cancel_reveal()
 	if active_chapter_director != null:
 		active_chapter_director.leave()
 		active_chapter_director = null
-	is_auto = false
-	ui.auto_button.text = "自动"
+	recording_auto_mode = false
+	_set_auto_enabled(false)
 	ui.history_overlay.visible = false
 	ui.settings_overlay.visible = false
 	ui.quick_menu_overlay.visible = false
@@ -685,8 +824,7 @@ func _return_to_title() -> void:
 	ui.dialogue_panel.visible = false
 	ui.dialogue_tail.visible = false
 	ui.center_line_label.visible = false
-	ui.menu_button.visible = false
-	ui.title_overlay.visible = true
+	ui.show_title_screen()
 	ui.continue_button.disabled = not SaveServiceClass.has_save()
 
 
@@ -746,6 +884,7 @@ func _set_fullscreen(enabled: bool) -> void:
 func _has_blocking_overlay() -> bool:
 	return (
 		chapter_transition_pending
+		or sound_transition_pending
 		or chapter_interlude_active
 		or ui.title_overlay.visible
 		or ui.ending_overlay.visible
@@ -757,12 +896,62 @@ func _has_blocking_overlay() -> bool:
 
 
 func _request_story_advance() -> void:
-	if chapter_transition_pending:
+	if chapter_transition_pending or sound_transition_pending:
 		return
 	if _next_unit_starts_chapter_interlude():
 		_begin_chapter_music_fade()
 		return
+	var next_line_id := _next_story_line_id()
+	var next_ambience_id := sound_director.ambience_for_line(next_line_id)
+	if (
+		not next_line_id.is_empty()
+		and not sound_director.active_ambience_id.is_empty()
+		and next_ambience_id != sound_director.active_ambience_id
+	):
+		_begin_sound_transition(next_line_id)
+		return
 	story.advance()
+
+
+func _next_story_line_id() -> String:
+	if story.units.is_empty():
+		return ""
+	var current_lines := story.get_current_unit().get("lines", []) as Array
+	if story.line_index + 1 < current_lines.size():
+		return str((current_lines[story.line_index + 1] as Dictionary).get("id", ""))
+	var next_unit_index := story.unit_index + 1
+	if next_unit_index >= story.units.size():
+		return ""
+	var next_unit := story.units[next_unit_index] as Dictionary
+	var next_lines := next_unit.get("lines", []) as Array
+	if next_lines.is_empty():
+		return ""
+	return str((next_lines[0] as Dictionary).get("id", ""))
+
+
+func _begin_sound_transition(next_line_id: String) -> void:
+	sound_transition_pending = true
+	auto_timer.stop()
+	var fade_seconds := 0.24 if next_line_id == "G1-01-21" else 0.65
+	sound_director.fade_out(fade_seconds)
+	sound_transition_tween = create_tween()
+	sound_transition_tween.tween_interval(fade_seconds)
+	sound_transition_tween.finished.connect(_finish_sound_transition)
+
+
+func _finish_sound_transition() -> void:
+	if not sound_transition_pending:
+		return
+	sound_transition_tween = null
+	sound_transition_pending = false
+	story.advance()
+
+
+func _cancel_sound_transition() -> void:
+	if sound_transition_tween != null and sound_transition_tween.is_valid():
+		sound_transition_tween.kill()
+	sound_transition_tween = null
+	sound_transition_pending = false
 
 
 func _next_unit_starts_chapter_interlude() -> bool:
@@ -785,8 +974,8 @@ func _begin_chapter_music_fade() -> void:
 	ui.dialogue_panel.visible = false
 	ui.dialogue_tail.visible = false
 	ui.center_line_label.visible = false
-	ui.menu_button.visible = false
 	music_director.fade_out(CHAPTER_MUSIC_FADE_SECONDS)
+	sound_director.fade_out(CHAPTER_MUSIC_FADE_SECONDS)
 	if chapter_music_fade_tween != null and chapter_music_fade_tween.is_valid():
 		chapter_music_fade_tween.kill()
 	chapter_music_fade_tween = create_tween()
@@ -802,31 +991,9 @@ func _finish_chapter_music_fade() -> void:
 	chapter_music_fade_tween = null
 	chapter_transition_pending = false
 	music_director.hard_stop()
+	sound_director.hard_stop()
 	allow_next_chapter_interlude = true
 	story.advance()
-
-
-func _schedule_chapter_music(line_id: String) -> void:
-	if chapter_music_delay_tween != null and chapter_music_delay_tween.is_valid():
-		chapter_music_delay_tween.kill()
-	chapter_music_delay_active = true
-	pending_chapter_music_line_id = line_id
-	chapter_music_delay_tween = create_tween()
-	chapter_music_delay_tween.tween_interval(CHAPTER_BGM_DELAY_SECONDS)
-	chapter_music_delay_tween.finished.connect(_finish_chapter_music_delay)
-
-
-func _finish_chapter_music_delay() -> void:
-	if not chapter_music_delay_active:
-		return
-	if chapter_music_delay_tween != null and chapter_music_delay_tween.is_valid():
-		chapter_music_delay_tween.kill()
-	chapter_music_delay_tween = null
-	chapter_music_delay_active = false
-	var line_id := pending_chapter_music_line_id
-	pending_chapter_music_line_id = ""
-	if not line_id.is_empty():
-		music_director.sync_to_line(line_id)
 
 
 func _start_chapter_interlude(spec: Dictionary) -> void:
@@ -836,7 +1003,6 @@ func _start_chapter_interlude(spec: Dictionary) -> void:
 	ui.dialogue_panel.visible = false
 	ui.dialogue_tail.visible = false
 	ui.center_line_label.visible = false
-	ui.menu_button.visible = false
 
 	var shot_id := str(spec.get("background_shot", ""))
 	var variant_id := str(spec.get("background_variant", ""))
@@ -948,17 +1114,19 @@ func _finish_chapter_interlude() -> void:
 	chapter_interlude_tween = null
 	chapter_interlude_active = false
 	ui.hide_chapter_interlude()
-	ui.menu_button.visible = true
 	if pending_chapter_line.is_empty():
 		return
 	var line := pending_chapter_line.duplicate(true)
 	var unit := pending_chapter_unit.duplicate(true)
 	pending_chapter_line.clear()
 	pending_chapter_unit.clear()
-	if voice_sequence_player.has_sequence_for_line(str(line.get("id", ""))):
+	var line_id := str(line.get("id", ""))
+	sound_director.sync_to_line(line_id)
+	if voice_sequence_player.has_sequence_for_line(line_id):
 		_start_voiced_sequence(line, unit)
 		return
-	_schedule_chapter_music(str(line.get("id", "")))
+	if not voice_sequence_player.is_carrying_soundtrack():
+		music_director.sync_to_line(line_id)
 	_present_story_line(line, unit)
 
 
@@ -966,16 +1134,11 @@ func _cancel_chapter_interlude() -> void:
 	if chapter_music_fade_tween != null and chapter_music_fade_tween.is_valid():
 		chapter_music_fade_tween.kill()
 	chapter_music_fade_tween = null
-	if chapter_music_delay_tween != null and chapter_music_delay_tween.is_valid():
-		chapter_music_delay_tween.kill()
-	chapter_music_delay_tween = null
 	if chapter_interlude_tween != null and chapter_interlude_tween.is_valid():
 		chapter_interlude_tween.kill()
-	chapter_interlude_tween = null
+		chapter_interlude_tween = null
 	chapter_transition_pending = false
 	chapter_interlude_active = false
-	chapter_music_delay_active = false
-	pending_chapter_music_line_id = ""
 	pending_chapter_line.clear()
 	pending_chapter_unit.clear()
 	if ui.chapter_interlude_overlay != null:

@@ -19,7 +19,7 @@ G2 的逐行 `SHOT-xx` 切换。生成候选和实景原图继续保存在 ignor
 | G2-05 | SHOT-20 | [陶波远程答辩](../game/assets/shots/shot-20/master.webp) | 母帧试制 |
 | G2-05 | SHOT-28 | [任务重新落回](../game/assets/shots/shot-28/master.webp) | 母帧试制 |
 | G2-05 | SHOT-31 | [指出问题并重新竞聘](../game/assets/shots/shot-31/master.webp) | 母帧试制 |
-| G2-05 | SHOT-29 | [与 HR 两人谈话](../game/assets/shots/shot-29/master.webp) | HR 已改为西装革履的男性 |
+| G2-05 | SHOT-29 | [与 HR 两人谈话](../game/assets/shots/shot-29/master.webp) | 已重制为大阶梯会议室；全场只有我与男性 HR，并排坐在最前排正中间 |
 | G2-05 | SHOT-30 | [职责再次调整](../game/assets/shots/shot-30/master.webp) | 主角已按 H-LOOK-04 改回白衬衫 |
 | G2-06 | SHOT-21 | [组员丙送别宴](../game/assets/shots/shot-21/master.webp) | 母帧试制；饭后差分待审查 |
 
@@ -34,3 +34,6 @@ CG、清晰方形像素簇、写实成年人比例、固定 CHAR-H 与团队身�
 2026-08-13 根据实机审查表重新生成并替换 `SHOT-05`、`SHOT-24`、`SHOT-29`、
 `SHOT-30`；四张均以原母帧为构图边界，只改表内指出的屏幕内容、HR 性别与服装、
 主角 LOOK。其它 G2 母帧保持不变。
+
+2026-08-17 再次重制 `SHOT-29`，空间事实改为大型阶梯会议室、两人坐在最前排正中间；
+`SHOT-31` 去除原图底部黑边并按 16:9 重新构图。

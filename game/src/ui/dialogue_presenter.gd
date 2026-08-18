@@ -82,6 +82,15 @@ func advance_page() -> bool:
 	return true
 
 
+func show_timed_segment(segment_index: int) -> bool:
+	if segment_index < 0 or segment_index >= current_segments.size():
+		return false
+	current_segment_index = segment_index
+	_show_current_segment()
+	finish_reveal()
+	return true
+
+
 func cancel_reveal() -> void:
 	is_typing = false
 	type_progress = 0.0

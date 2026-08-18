@@ -3,7 +3,7 @@ extends Node
 
 const CUE_DATA_PATH := "res://content/music_cues.json"
 const SILENCE_DB := -80.0
-const AUDIO_BUSES := ["Voice", "Ambience", "SFX", "Music"]
+const AUDIO_BUSES := ["Voice", "Narration", "Ambience", "SFX", "Music"]
 
 var cues: Array = []
 var cue_by_id: Dictionary = {}

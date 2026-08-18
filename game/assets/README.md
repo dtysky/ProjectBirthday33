@@ -20,6 +20,10 @@ G1 当前的审核候选已导入 `shot-02`、`shot-03`、`shot-04` 与 `shot-19
 
 原始照片、视频和录屏放在 `../../art/references-local/`，PSD 等工程文件放在 `../../art/workfiles/`，AI 候选稿放在 `../../art/generated/`。
 
-`audio/music/` 只存放 Godot 直接加载的成品 Ogg、导入元数据与构建报告。AI 平台原始 MP3 和 24-bit WAV 母版不重复放入运行时目录；它们保存在 `/Users/dtysky/Downloads/b33/music/` 及其 `runtime-masters/` 子目录，可由 `game/tools/build_music.mjs` 重建。
+`audio/music/` 只存放 Godot 直接加载的完整原曲 Ogg、导入元数据与构建报告。AI 平台原始 MP3 和 24-bit WAV 母版不重复放入运行时目录；它们保存在 `/Users/dtysky/Downloads/b33/music/` 及其 `runtime-masters/` 子目录，可由 `game/tools/build_music.mjs` 从 0 秒开始、不做时间剪辑地重建。
+
+`audio/ambience/amb-g0-rooftop-wind.ogg` 是 G0 黄昏天台的 20 秒无缝循环环境声：开场黑屏与主观睁眼阶段单独播放，不属于 BGM；进入坐起 CG 后降到背景层，梦境车门白光结束时退出。
+
+`audio/ambience/amb-title-sea-wind-v2.ogg` 是标题页的 54 秒／48 kHz 原创无缝循环：以开阔海风和极远潮声为主，不包含鸟叫、汽笛或固定事件；进入游戏时约 1.35 秒渐隐，与 G0 天台风声交叉衔接。24-bit WAV 母版和生成中间件留在被忽略的 `art/generated/title/audio/`，运行时目录只保留 Ogg。
 
 `audio/voice/` 存放会由台词时间轴直接播放的配音或原片声音。当前 `g4-01-thirty-one.ogg` 来自三十一岁旧作的正式视频：前 56.5 秒保留提问与原始配乐，之后只保留分离后的人声外配乐直到自然收束，总长 110.7 秒。九个字幕入点和跨场交接点记录在 `game/content/voice_sequences.json`；后续配音沿用同一数据结构，不把时间码写死在章节脚本中。
