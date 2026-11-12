@@ -16,7 +16,8 @@ const ChapterFiveDirectorClass := preload("res://src/chapters/chapter_05.gd")
 
 const CHAPTER_MUSIC_FADE_SECONDS := 2.2
 const CHAPTER_INTERLUDE_SECONDS := 5.2
-const RECORDING_END_HOLD_SECONDS := 6.0
+const RECORDING_TITLE_HOLD_SECONDS := 10.0
+const RECORDING_END_HOLD_SECONDS := 10.0
 const VOICED_AUTO_WAIT_RATIO := 0.24
 
 const CHAPTER_INTERLUDES := {
@@ -123,6 +124,7 @@ var auto_delay := 3.4
 var master_volume := 0.8
 var is_auto := false
 var recording_auto_mode := false
+var recording_end_scheduled := false
 var history_entries: Array[String] = []
 var history_keys: Dictionary = {}
 var chapter_directors: Dictionary = {}
@@ -184,6 +186,17 @@ func _ready() -> void:
 	ui.dialogue_panel.visible = false
 	ui.dialogue_tail.visible = false
 	ui.show_title_screen()
+	if (
+		not Engine.get_write_movie_path().is_empty()
+		and OS.get_cmdline_user_args().has("--record-full-run")
+	):
+		_start_full_recording_after_title()
+
+
+func _start_full_recording_after_title() -> void:
+	await get_tree().create_timer(RECORDING_TITLE_HOLD_SECONDS).timeout
+	_start_new_game()
+	_toggle_recording_auto_mode()
 
 
 func _process(delta: float) -> void:
@@ -585,7 +598,14 @@ func _on_story_finished() -> void:
 	ui.quick_menu_overlay.visible = false
 	ui.ending_overlay.visible = true
 	if should_finalize_movie:
-		_finalize_recorded_movie_after_hold()
+		schedule_recording_end_from_finale()
+
+
+func schedule_recording_end_from_finale() -> void:
+	if recording_end_scheduled or Engine.get_write_movie_path().is_empty():
+		return
+	recording_end_scheduled = true
+	_finalize_recorded_movie_after_hold()
 
 
 func _finalize_recorded_movie_after_hold() -> void:

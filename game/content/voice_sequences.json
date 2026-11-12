@@ -400,7 +400,7 @@
       "advance_on_finish": false,
       "emit_cues": false,
       "volume_db": -2,
-      "duration": 2.54,
+      "duration": 1.68,
       "cues": [
         {
           "line_id": "G1-01-20",
@@ -418,7 +418,7 @@
       "advance_on_finish": false,
       "emit_cues": false,
       "volume_db": -2,
-      "duration": 1.18,
+      "duration": 1.247,
       "cues": [
         {
           "line_id": "G1-01-21",
@@ -919,7 +919,7 @@
       "advance_on_finish": false,
       "emit_cues": false,
       "volume_db": -2,
-      "duration": 6.22,
+      "duration": 6.34,
       "cues": [
         {
           "line_id": "G2-05-03",
@@ -1039,7 +1039,7 @@
       "advance_on_finish": false,
       "emit_cues": false,
       "volume_db": -2,
-      "duration": 4.68,
+      "duration": 4.8,
       "cues": [
         {
           "line_id": "G2-05-19",
@@ -1056,7 +1056,7 @@
       "advance_on_finish": false,
       "emit_cues": false,
       "volume_db": -2,
-      "duration": 5.62,
+      "duration": 5.74,
       "cues": [
         {
           "line_id": "G2-05-20",
@@ -1468,7 +1468,7 @@
       "advance_on_finish": false,
       "emit_cues": false,
       "volume_db": -2,
-      "duration": 6.06,
+      "duration": 6.18,
       "cues": [
         {
           "line_id": "G4-02-05",
@@ -2327,7 +2327,7 @@
       "advance_on_finish": false,
       "emit_cues": false,
       "volume_db": -2,
-      "duration": 6.25,
+      "duration": 6.37,
       "cues": [
         {
           "line_id": "G4-05-02",

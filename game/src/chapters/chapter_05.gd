@@ -14,22 +14,6 @@ const ENDING_LIVE_BEACON_POSITION := Vector2(604.0, 176.0)
 const ENDING_LIVE_BEACON_SIZE := Vector2(62.0, 62.0)
 const ENDING_IDENTITY_BEACON_POSITION := Vector2(986.0, 294.0)
 const ENDING_IDENTITY_BEACON_SIZE := Vector2(78.0, 78.0)
-const ENDING_IDENTITY_FRAME_VARIANTS := [
-	"identity-close",
-	"identity-wind-hair-lead",
-	"identity-wind-mid",
-	"identity-wind-peak",
-	"identity-wind-coat-lag",
-	"identity-wind-fall",
-]
-const ENDING_IDENTITY_FRAME_SECONDS := [0.0, 0.16, 0.20, 0.32, 0.22, 0.30]
-const ENDING_IDENTITY_REST_SECONDS := [1.05, 1.75, 1.30, 2.10]
-const ENDING_IDENTITY_GUST_PATTERNS := [
-	[1, 2, 3, 4, 5, 0],
-	[1, 2, 5, 0],
-	[1, 0],
-	[1, 2, 3, 4, 5, 0],
-]
 const ENDING_BEACON_ON_SECONDS := 0.72
 const ENDING_BEACON_OFF_SECONDS := 2.65
 
@@ -39,63 +23,8 @@ shader_type canvas_item;
 uniform float identity_mode = 0.0;
 uniform float beacon_on = 1.0;
 
-float band(float value, float start_value, float end_value, float softness) {
-	return smoothstep(start_value, start_value + softness, value)
-		* (1.0 - smoothstep(end_value - softness, end_value, value));
-}
-
-float box_mask(vec2 uv, vec2 minimum, vec2 maximum, float softness) {
-	vec2 enter = smoothstep(minimum, minimum + vec2(softness), uv);
-	vec2 leave = 1.0 - smoothstep(maximum - vec2(softness), maximum, uv);
-	return enter.x * enter.y * leave.x * leave.y;
-}
-
 void fragment() {
-	vec2 uv = UV;
-	vec4 base = texture(TEXTURE, uv);
-	float sea = band(uv.y, 0.32, 0.79, 0.045);
-	float left_water = 1.0 - smoothstep(0.30, 0.54, uv.x);
-	float right_water = smoothstep(0.48, 0.67, uv.x);
-	float live_water = sea * max(left_water, right_water);
-	// The identity close-up has a wet causeway and large breakwater blocks in
-	// front of the actual sea.  Only displace the open-water band; otherwise
-	// those rigid foreground forms bend with the waves and read as a screen warp.
-	float identity_far_sea = band(uv.y, 0.39, 0.53, 0.026)
-		* (1.0 - smoothstep(0.47, 0.72, uv.x));
-	float identity_left_sea = band(uv.y, 0.47, 0.66, 0.040)
-		* (1.0 - smoothstep(0.18, 0.34, uv.x));
-	float identity_open_sea = max(identity_far_sea, identity_left_sea);
-	float identity_person_guard = 1.0 - box_mask(
-		uv,
-		vec2(0.50, 0.21),
-		vec2(0.69, 0.88),
-		0.035
-	);
-	float identity_water = identity_open_sea * identity_person_guard;
-	float water_mask = mix(live_water, identity_water, identity_mode);
-	float phase = sin(uv.y * 214.0 - TIME * 2.05 + sin(uv.x * 24.0) * 1.35);
-	float cross_phase = sin(uv.x * 88.0 - TIME * 1.18 + uv.y * 37.0);
-	vec2 shifted_uv = uv + vec2(
-		(phase * 0.00230 + cross_phase * 0.00072) * water_mask,
-		(cross_phase * 0.00058 + phase * 0.00024) * water_mask
-	);
-	vec4 shifted = texture(TEXTURE, shifted_uv);
-	float moon_path = mix(
-		band(uv.x, 0.58, 0.93, 0.09) * band(uv.y, 0.32, 0.69, 0.06),
-		band(uv.x, 0.16, 0.55, 0.10) * band(uv.y, 0.40, 0.86, 0.08),
-		identity_mode
-	);
-	float shimmer = 0.5 + 0.5 * sin(uv.y * 420.0 - TIME * 3.05 + uv.x * 27.0);
-	float traveling_crest = pow(
-		0.5 + 0.5 * sin(uv.y * 286.0 - TIME * 2.42 + uv.x * 21.0),
-		9.0
-	);
-	vec3 lift = (
-		vec3(0.034, 0.048, 0.066) * moon_path * shimmer
-		+ vec3(0.022, 0.040, 0.060) * traveling_crest
-	) * water_mask;
-	vec4 animated = vec4(shifted.rgb + lift, base.a);
-	vec4 color = mix(base, animated, water_mask * 0.88);
+	vec4 color = texture(TEXTURE, UV);
 
 	vec2 live_beacon_center = vec2(0.331, 0.192);
 	vec2 identity_beacon_center = vec2(0.534, 0.308);
@@ -104,7 +33,7 @@ void fragment() {
 	float beacon_mask = 1.0 - smoothstep(
 		beacon_radius * 0.28,
 		beacon_radius,
-		length(uv - beacon_center)
+		length(UV - beacon_center)
 	);
 	vec3 unlit_beacon = color.rgb * 0.14;
 	unlit_beacon.g = min(unlit_beacon.g, unlit_beacon.r * 1.08 + 0.002);
@@ -273,11 +202,6 @@ var ending_sequence_active := false
 var ending_identity_ready := false
 var ending_final_hold_active := false
 var ending_motion_clock := 0.0
-var ending_identity_frames: Array[Texture2D] = []
-var ending_identity_frame_index := 0
-var ending_identity_frame_elapsed := 0.0
-var ending_identity_gust_index := 0
-var ending_identity_pattern_step := 0
 var ending_beacon_clock := 0.0
 var ending_beacon_on := true
 var finale_threshold_active := false
@@ -315,8 +239,6 @@ func tick(delta: float) -> void:
 			sin(ending_motion_clock * 0.82) * 0.45,
 			sin(ending_motion_clock * cadence) * amplitude,
 		)
-	if current_variant_id == "identity-close" and ending_ocean_layer.visible:
-		_tick_ending_identity_cels(delta)
 	if ending_ocean_layer.visible:
 		_tick_ending_beacon(delta)
 
@@ -974,11 +896,10 @@ func _show_ending_identity_close() -> void:
 	current_variant_id = "identity-close"
 	_present_texture("SHOT-74", close_texture, 0.0, true, false)
 	# This is a deliberate cut to the final camera, veiled by a short fade. From this
-	# point onward the full accepted frame remains on screen; only local wind, water
-	# and beacon motion are applied.
+	# point onward the accepted frame remains static; only the lighthouse beacon can
+	# blink without deforming the CG.
 	_flash_from_black(0.66, 0.50)
 	ending_ocean_layer.texture = close_texture
-	_reset_ending_identity_cels(close_texture)
 	(ending_ocean_layer.material as ShaderMaterial).set_shader_parameter(
 		"identity_mode",
 		1.0,
@@ -994,63 +915,6 @@ func _show_ending_identity_close() -> void:
 	master_texture.scale = Vector2.ONE
 	if camera_tween != null and camera_tween.is_valid():
 		camera_tween.kill()
-
-
-func _reset_ending_identity_cels(close_texture: Texture2D) -> void:
-	ending_identity_frames.clear()
-	for variant_id in ENDING_IDENTITY_FRAME_VARIANTS:
-		var frame_texture := close_texture
-		if variant_id != "identity-close":
-			frame_texture = asset_registry.call(
-				"load_variant",
-				"SHOT-74",
-				variant_id,
-			) as Texture2D
-		if frame_texture == null:
-			frame_texture = close_texture
-		ending_identity_frames.append(frame_texture)
-	ending_identity_frame_index = 0
-	ending_identity_frame_elapsed = 0.0
-	ending_identity_gust_index = 0
-	ending_identity_pattern_step = 0
-	ending_ocean_layer.texture = close_texture
-
-
-func _tick_ending_identity_cels(delta: float) -> void:
-	if ending_identity_frames.size() != ENDING_IDENTITY_FRAME_VARIANTS.size():
-		return
-	ending_identity_frame_elapsed += delta
-	var frame_seconds := _ending_identity_frame_seconds()
-	while ending_identity_frame_elapsed >= frame_seconds:
-		ending_identity_frame_elapsed -= frame_seconds
-		_advance_ending_identity_frame()
-		ending_ocean_layer.texture = ending_identity_frames[ending_identity_frame_index]
-		frame_seconds = _ending_identity_frame_seconds()
-
-
-func _ending_identity_frame_seconds() -> float:
-	if ending_identity_frame_index == 0:
-		return float(
-			ENDING_IDENTITY_REST_SECONDS[
-				ending_identity_gust_index % ENDING_IDENTITY_REST_SECONDS.size()
-			]
-		)
-	return float(ENDING_IDENTITY_FRAME_SECONDS[ending_identity_frame_index])
-
-
-func _advance_ending_identity_frame() -> void:
-	var pattern := ENDING_IDENTITY_GUST_PATTERNS[
-		ending_identity_gust_index % ENDING_IDENTITY_GUST_PATTERNS.size()
-	] as Array
-	if ending_identity_frame_index == 0:
-		ending_identity_pattern_step = 0
-		ending_identity_frame_index = int(pattern[0])
-		return
-	ending_identity_pattern_step += 1
-	ending_identity_frame_index = int(pattern[ending_identity_pattern_step])
-	if ending_identity_frame_index == 0:
-		ending_identity_gust_index += 1
-		ending_identity_pattern_step = 0
 
 
 func _reset_ending_beacon_cycle() -> void:
@@ -1093,15 +957,11 @@ func _start_ending_identity_hold() -> void:
 	if music_director != null:
 		music_director.call("fade_out", 4.2, "MUS-09C")
 	_show_ending_identity_close()
+	host.call("schedule_recording_end_from_finale")
 
 
 func _reset_ending_effects() -> void:
 	ending_environment_active = false
-	ending_identity_frames.clear()
-	ending_identity_frame_index = 0
-	ending_identity_frame_elapsed = 0.0
-	ending_identity_gust_index = 0
-	ending_identity_pattern_step = 0
 	ending_beacon_clock = 0.0
 	ending_beacon_on = true
 	if ending_ocean_layer != null:
@@ -1332,6 +1192,7 @@ func _start_final_hold() -> void:
 	if camera_tween != null and camera_tween.is_valid():
 		camera_tween.kill()
 	auto_timer.stop()
+	host.call("schedule_recording_end_from_finale")
 
 
 func _kill_tweens() -> void:

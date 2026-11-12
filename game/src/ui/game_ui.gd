@@ -652,7 +652,7 @@ func _build_title_screen() -> void:
 
 	var title := Label.new()
 	title.name = "TitleName"
-	title.text = "三十三岁的勇气，\n是坦然的失去"
+	title.text = "三十三岁的勇气，\n是坦然地失去"
 	title.custom_minimum_size.y = 160.0
 	title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	title.add_theme_font_size_override("font_size", 60)

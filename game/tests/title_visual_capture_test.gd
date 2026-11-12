@@ -32,7 +32,7 @@ func _run() -> void:
 		or title_video.stream == null
 		or not title_video.is_playing()
 		or spare_overlay.texture == null
-		or title_name.text != "三十三岁的勇气，\n是坦然的失去"
+		or title_name.text != "三十三岁的勇气，\n是坦然地失去"
 		or title_wind.stream == null
 		or not title_wind.playing
 	):

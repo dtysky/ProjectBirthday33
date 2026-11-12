@@ -1493,26 +1493,17 @@ func _run() -> void:
 		quit(1)
 		return
 	var identity_ocean := scene.get_node("ChapterFxLayer/G5EndingOcean") as TextureRect
-	if (chapter_five_director.get("ending_identity_frames") as Array).size() != 6:
-		push_error("G5-05 did not load the independent identity wind cels.")
-		quit(1)
-		return
-	chapter_five_director.call("tick", 1.06)
-	if not identity_ocean.texture.resource_path.ends_with("identity-wind-hair-lead.webp"):
-		push_error("G5-05 did not let the hair lead the hand-drawn gust.")
-		quit(1)
-		return
-	chapter_five_director.call("tick", 0.17)
-	if not identity_ocean.texture.resource_path.ends_with("identity-wind-mid.webp"):
-		push_error("G5-05 did not advance from hair lead to the rising coat cel.")
-		quit(1)
-		return
-	chapter_five_director.call("tick", 0.21)
-	if not identity_ocean.texture.resource_path.ends_with("identity-wind-peak.webp"):
-		push_error("G5-05 did not advance from the wind in-between to the peak gust cel.")
-		quit(1)
-		return
 	var beacon_material := identity_ocean.material as ShaderMaterial
+	var identity_texture := identity_ocean.texture
+	chapter_five_director.call("tick", 1.44)
+	if (
+		identity_ocean.texture != identity_texture
+		or not identity_ocean.texture.resource_path.ends_with("identity-close.png")
+		or beacon_material.shader.code.contains("TIME")
+	):
+		push_error("G5-05 identity frame should remain static without water or wind deformation.")
+		quit(1)
+		return
 	chapter_five_director.call("_reset_ending_beacon_cycle")
 	chapter_five_director.call("tick", 0.73)
 	if (
@@ -1559,8 +1550,9 @@ func _run() -> void:
 		or str(chapter_five_director.get("current_variant_id")) != "identity-close"
 		or (scene.get_node("EndingOverlay") as Control).visible
 		or not (scene.get_node("ChapterFxLayer/G5EndingOcean") as Control).visible
+		or bool(scene.get("recording_end_scheduled"))
 	):
-		push_error("G5 left the permanent animated ending frame or displayed an ending card.")
+		push_error("G5 left its ending frame, displayed a card or scheduled a non-recording exit.")
 		quit(1)
 		return
 
@@ -1569,7 +1561,7 @@ func _run() -> void:
 		+ "sixteen G2 trial masters with line-level shot switching, semantic dialogue beats, shot variants, "
 		+ "fourteen G3 masters with an independent opening, safe Ousia staging and a staged memory-search field, "
 		+ "twenty-seven G4 runtime packages, paper-revealed timed G4-01 voiceover, four staged SHOT-12 phases, staged sky phases and scored descent, "
-		+ "twenty-one G5 runtime states across nine packages, chapter interludes with music pre-fades and simultaneous scene/BGM entries, three-frame final walk, voiced identity close-up and a permanent asynchronous hand-drawn cel wind-and-sea hold without an ending card, "
+		+ "twenty-one G5 runtime states across nine packages, chapter interludes with music pre-fades and simultaneous scene/BGM entries, three-frame final walk, voiced identity close-up and a static final hold with a local beacon blink and no ending card, "
 		+ "timed soundtrack fades, age-jump handoffs, reverse split, core UI, and ending flow."
 	)
 	quit(0)
